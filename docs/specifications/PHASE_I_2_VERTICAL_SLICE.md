@@ -9,16 +9,19 @@
 
 Phase I.2 provides one complete, executable Laboratory journey:
 
-1. arrive in the Laboratory;
-2. state the canonical example question;
-3. verify the recorded LYRA translation;
-4. load and inspect the canonical ORION report fixture;
-5. pause in optional Human Reflection;
-6. depart or begin again.
+1. arrive in the Laboratory and choose an Orientation Mode;
+2. choose or describe an Orientation Object;
+3. define the intended direction;
+4. verify the scope and recorded LYRA translation;
+5. load and inspect the canonical ORION report fixture;
+6. pause in optional Human Reflection;
+7. depart or begin again.
 
-The application recognizes one exact question. Unsupported wording is retained in
-the browser long enough to explain the fixture boundary, but it is not sent,
-interpreted or inferred. No question, Reflection or session is persisted.
+The application exposes seven intention modes and eight object kinds, but the
+deterministic review journey recognizes one exact Understand + Observation
+combination. Unsupported material is retained in the browser long enough to
+explain the fixture boundary, but it is not sent, interpreted or inferred. No
+material, intention, Reflection or session is persisted.
 
 ## Canonical fixture
 
@@ -45,9 +48,10 @@ pause without pretending that LUCY exists and without capturing human material.
 
 | Place | Required state |
 |---|---|
-| Arrival | purpose, fixture disclosure, one primary action, visible authorities |
-| Question | empty, exact canonical example, unsupported wording |
-| Direction | recorded translation, adjust, confirm |
+| Arrival | NEXAH/NEXAHEDRON distinction, Why Orientation bridge, human-first material invitation, later Orientation Object terminology, external-source context, seven intention modes, fixture disclosure, visible authorities |
+| Orientation Object | kind, material description, recorded example |
+| Intention | direction, exact recorded example, unsupported combination |
+| Scope | selected mode and object, recorded translation, adjust, confirm |
 | Report | blocked summary, path, evidence, blockers, technical inspection |
 | Reflection | optional pause, no capture, return or continue |
 | Departure | outcome boundary, no-save disclosure, restart |

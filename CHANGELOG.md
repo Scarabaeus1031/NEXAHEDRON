@@ -4,6 +4,17 @@
 
 ### Added
 
+- Internal-alpha review guide covering reproduction, primary and boundary
+  journeys, known limitations and structured feedback prompts.
+- A concise Why Orientation bridge and human-first Bring what you have language
+  before introducing Orientation Object terminology.
+- A short landing-page orientation that distinguishes NEXAH as the Orientation
+  Layer from NEXAHEDRON as its first Laboratory application, while showing
+  that existing information sources remain external and unchanged.
+- Orientation-first entry and onboarding built around seven intention modes,
+  explicit Orientation Objects, intended direction and scope confirmation.
+- Transparent deterministic boundary that permits only the recorded Understand
+  + Observation journey to reach the unchanged report fixture.
 - Phase I.2 complete fixture-backed Orientation Laboratory journey from Arrival
   through Question, Direction, Report, Reflection and Departure.
 - Faithful display projection of the canonical ORION full-round-trip report,

@@ -1,28 +1,62 @@
 export type JourneyScreen =
   | "arrival"
-  | "question"
-  | "confirmation"
+  | "object"
+  | "intention"
+  | "scope"
   | "report"
   | "reflection"
   | "departure";
 
+export type OrientationMode =
+  | "wonder"
+  | "understand"
+  | "compare"
+  | "connect"
+  | "explore"
+  | "build"
+  | "reflect";
+
+export type OrientationObjectType =
+  | ""
+  | "Question"
+  | "Document"
+  | "Book"
+  | "Research Paper"
+  | "Theory"
+  | "Dataset"
+  | "Notes"
+  | "Observation"
+  | "Idea"
+  | "Image"
+  | "Conversation";
+
 export type ReportView = "summary" | "path" | "evidence" | "blockers" | "inspect";
-export type QuestionIssue = "empty" | "unsupported" | null;
+export type FieldIssue = "empty" | "unsupported" | null;
 
 export interface JourneyState {
   readonly screen: JourneyScreen;
-  readonly question: string;
-  readonly questionIssue: QuestionIssue;
+  readonly mode: OrientationMode | null;
+  readonly objectType: OrientationObjectType;
+  readonly objectDescription: string;
+  readonly objectIssue: FieldIssue;
+  readonly intention: string;
+  readonly intentionIssue: FieldIssue;
   readonly reportView: ReportView;
 }
 
 export type JourneyAction =
-  | { readonly type: "BEGIN" }
-  | { readonly type: "EDIT_QUESTION"; readonly value: string }
-  | { readonly type: "USE_EXAMPLE"; readonly value: string }
-  | { readonly type: "SUBMIT_QUESTION"; readonly supported: boolean }
-  | { readonly type: "ADJUST" }
-  | { readonly type: "CONFIRM" }
+  | { readonly type: "SELECT_MODE"; readonly mode: OrientationMode }
+  | { readonly type: "CHANGE_MODE" }
+  | { readonly type: "EDIT_OBJECT_TYPE"; readonly value: OrientationObjectType }
+  | { readonly type: "EDIT_OBJECT_DESCRIPTION"; readonly value: string }
+  | { readonly type: "USE_OBJECT_EXAMPLE"; readonly description: string }
+  | { readonly type: "SUBMIT_OBJECT" }
+  | { readonly type: "BACK_TO_OBJECT" }
+  | { readonly type: "EDIT_INTENTION"; readonly value: string }
+  | { readonly type: "USE_INTENTION_EXAMPLE"; readonly value: string }
+  | { readonly type: "SUBMIT_INTENTION"; readonly supported: boolean }
+  | { readonly type: "BACK_TO_INTENTION" }
+  | { readonly type: "CONFIRM_SCOPE" }
   | { readonly type: "SET_REPORT_VIEW"; readonly view: ReportView }
   | { readonly type: "REFLECT" }
   | { readonly type: "RETURN_TO_REPORT" }
@@ -31,8 +65,12 @@ export type JourneyAction =
 
 export const initialJourneyState: JourneyState = {
   screen: "arrival",
-  question: "",
-  questionIssue: null,
+  mode: null,
+  objectType: "",
+  objectDescription: "",
+  objectIssue: null,
+  intention: "",
+  intentionIssue: null,
   reportView: "summary",
 };
 
@@ -41,22 +79,51 @@ export function reduceJourney(
   action: JourneyAction,
 ): JourneyState {
   switch (action.type) {
-    case "BEGIN":
-      return state.screen === "arrival" ? { ...state, screen: "question" } : state;
-    case "EDIT_QUESTION":
-    case "USE_EXAMPLE":
-      return state.screen === "question"
-        ? { ...state, question: action.value, questionIssue: null }
+    case "SELECT_MODE":
+      return state.screen === "arrival"
+        ? { ...state, mode: action.mode, screen: "object" }
         : state;
-    case "SUBMIT_QUESTION":
-      if (state.screen !== "question") return state;
-      if (!state.question.trim()) return { ...state, questionIssue: "empty" };
-      if (!action.supported) return { ...state, questionIssue: "unsupported" };
-      return { ...state, screen: "confirmation", questionIssue: null };
-    case "ADJUST":
-      return state.screen === "confirmation" ? { ...state, screen: "question" } : state;
-    case "CONFIRM":
-      return state.screen === "confirmation"
+    case "CHANGE_MODE":
+      return state.screen === "object" ? { ...state, mode: null, screen: "arrival" } : state;
+    case "EDIT_OBJECT_TYPE":
+      return state.screen === "object"
+        ? { ...state, objectType: action.value, objectIssue: null }
+        : state;
+    case "EDIT_OBJECT_DESCRIPTION":
+      return state.screen === "object"
+        ? { ...state, objectDescription: action.value, objectIssue: null }
+        : state;
+    case "USE_OBJECT_EXAMPLE":
+      return state.screen === "object"
+        ? {
+            ...state,
+            objectType: "Observation",
+            objectDescription: action.description,
+            objectIssue: null,
+          }
+        : state;
+    case "SUBMIT_OBJECT":
+      if (state.screen !== "object") return state;
+      if (!state.objectType || !state.objectDescription.trim()) {
+        return { ...state, objectIssue: "empty" };
+      }
+      return { ...state, screen: "intention", objectIssue: null };
+    case "BACK_TO_OBJECT":
+      return state.screen === "intention" ? { ...state, screen: "object" } : state;
+    case "EDIT_INTENTION":
+    case "USE_INTENTION_EXAMPLE":
+      return state.screen === "intention"
+        ? { ...state, intention: action.value, intentionIssue: null }
+        : state;
+    case "SUBMIT_INTENTION":
+      if (state.screen !== "intention") return state;
+      if (!state.intention.trim()) return { ...state, intentionIssue: "empty" };
+      if (!action.supported) return { ...state, intentionIssue: "unsupported" };
+      return { ...state, screen: "scope", intentionIssue: null };
+    case "BACK_TO_INTENTION":
+      return state.screen === "scope" ? { ...state, screen: "intention" } : state;
+    case "CONFIRM_SCOPE":
+      return state.screen === "scope"
         ? { ...state, screen: "report", reportView: "summary" }
         : state;
     case "SET_REPORT_VIEW":

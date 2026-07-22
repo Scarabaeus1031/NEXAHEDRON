@@ -8,14 +8,26 @@ import {
 test("completes the deterministic Laboratory journey", () => {
   let state = initialJourneyState;
 
-  state = reduceJourney(state, { type: "BEGIN" });
-  assert.equal(state.screen, "question");
+  state = reduceJourney(state, { type: "SELECT_MODE", mode: "understand" });
+  assert.equal(state.screen, "object");
+  assert.equal(state.mode, "understand");
 
-  state = reduceJourney(state, { type: "USE_EXAMPLE", value: "canonical question" });
-  state = reduceJourney(state, { type: "SUBMIT_QUESTION", supported: true });
-  assert.equal(state.screen, "confirmation");
+  state = reduceJourney(state, {
+    type: "USE_OBJECT_EXAMPLE",
+    description: "canonical observation",
+  });
+  state = reduceJourney(state, { type: "SUBMIT_OBJECT" });
+  assert.equal(state.screen, "intention");
+  assert.equal(state.objectType, "Observation");
 
-  state = reduceJourney(state, { type: "CONFIRM" });
+  state = reduceJourney(state, {
+    type: "USE_INTENTION_EXAMPLE",
+    value: "canonical intention",
+  });
+  state = reduceJourney(state, { type: "SUBMIT_INTENTION", supported: true });
+  assert.equal(state.screen, "scope");
+
+  state = reduceJourney(state, { type: "CONFIRM_SCOPE" });
   assert.equal(state.screen, "report");
 
   state = reduceJourney(state, { type: "SET_REPORT_VIEW", view: "blockers" });
@@ -35,18 +47,29 @@ test("completes the deterministic Laboratory journey", () => {
   assert.deepEqual(state, initialJourneyState);
 });
 
-test("holds invalid transitions and exposes question boundaries", () => {
+test("holds invalid transitions and exposes deterministic onboarding boundaries", () => {
   assert.equal(
-    reduceJourney(initialJourneyState, { type: "CONFIRM" }),
+    reduceJourney(initialJourneyState, { type: "CONFIRM_SCOPE" }),
     initialJourneyState,
   );
 
-  let state = reduceJourney(initialJourneyState, { type: "BEGIN" });
-  state = reduceJourney(state, { type: "SUBMIT_QUESTION", supported: false });
-  assert.equal(state.questionIssue, "empty");
+  let state = reduceJourney(initialJourneyState, {
+    type: "SELECT_MODE",
+    mode: "compare",
+  });
+  state = reduceJourney(state, { type: "SUBMIT_OBJECT" });
+  assert.equal(state.objectIssue, "empty");
 
-  state = reduceJourney(state, { type: "EDIT_QUESTION", value: "another question" });
-  state = reduceJourney(state, { type: "SUBMIT_QUESTION", supported: false });
-  assert.equal(state.screen, "question");
-  assert.equal(state.questionIssue, "unsupported");
+  state = reduceJourney(state, { type: "EDIT_OBJECT_TYPE", value: "Document" });
+  state = reduceJourney(state, {
+    type: "EDIT_OBJECT_DESCRIPTION",
+    value: "two papers",
+  });
+  state = reduceJourney(state, { type: "SUBMIT_OBJECT" });
+  assert.equal(state.screen, "intention");
+
+  state = reduceJourney(state, { type: "EDIT_INTENTION", value: "compare them" });
+  state = reduceJourney(state, { type: "SUBMIT_INTENTION", supported: false });
+  assert.equal(state.screen, "intention");
+  assert.equal(state.intentionIssue, "unsupported");
 });

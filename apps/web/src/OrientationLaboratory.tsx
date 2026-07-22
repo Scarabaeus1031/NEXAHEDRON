@@ -5,10 +5,66 @@ import fixture from "../../../fixtures/orientation-sessions/full-round-trip.json
 import {
   initialJourneyState,
   reduceJourney,
+  type OrientationMode,
+  type OrientationObjectType,
   type ReportView,
 } from "../../../packages/laboratory-domain/src/journey";
 
-const places = ["Question", "Orientation", "Evidence", "Atlas", "Reflection"];
+const places = ["Choose a mode", "Orient an object", "Define intention", "Confirm scope", "Receive report", "Continue"];
+const canonicalObjectDescription = "An observation I want to trace toward a calendar projection.";
+const orientationObjectTypes: OrientationObjectType[] = [
+  "Question",
+  "Document",
+  "Book",
+  "Research Paper",
+  "Theory",
+  "Dataset",
+  "Notes",
+  "Observation",
+  "Idea",
+  "Image",
+  "Conversation",
+];
+const orientationObjects = [
+  "Question",
+  "Document",
+  "Book",
+  "Research Paper",
+  "Theory",
+  "Dataset",
+  "Notes",
+  "Observation",
+  "Idea",
+  "Image",
+  "Conversation",
+] as const;
+const sourceTypes = [
+  "Books",
+  "Research Papers",
+  "Repositories",
+  "Knowledge Bases",
+  "PDFs",
+  "Web Pages",
+  "Datasets",
+  "Images",
+  "Markdown",
+  "Model Outputs",
+] as const;
+const orientationModes: Array<{
+  id: OrientationMode;
+  symbol: string;
+  name: string;
+  description: string;
+  verbs: string;
+}> = [
+  { id: "wonder", symbol: "✦", name: "Wonder", description: "I do not know where to begin.", verbs: "Discover · Observe · Ask" },
+  { id: "understand", symbol: "◉", name: "Understand", description: "Understand a document, concept, book or theory.", verbs: "Read · Frame · Clarify" },
+  { id: "compare", symbol: "⇄", name: "Compare", description: "Compare two ideas, theories, documents or perspectives.", verbs: "Distinguish · Relate · Weigh" },
+  { id: "connect", symbol: "⌁", name: "Connect", description: "Reveal relationships, patterns and bridges.", verbs: "Link · Map · Bridge" },
+  { id: "explore", symbol: "⌖", name: "Explore", description: "Navigate concepts, evidence and the Living Atlas.", verbs: "Follow · Discover · Orient" },
+  { id: "build", symbol: "◇", name: "Build", description: "Turn understanding into architecture, research or implementation.", verbs: "Structure · Develop · Apply" },
+  { id: "reflect", symbol: "○", name: "Reflect", description: "Review what changed, what remains open and where to continue.", verbs: "Review · Pause · Continue" },
+];
 const reportViews: Array<{ id: ReportView; label: string }> = [
   { id: "summary", label: "Summary" },
   { id: "path", label: "Path" },
@@ -42,50 +98,156 @@ export function OrientationLaboratory() {
     }));
   }, []);
 
-  const submitQuestion = () => {
+  const submitIntention = () => {
     dispatch({
-      type: "SUBMIT_QUESTION",
-      supported: state.question.trim() === fixture.request.utterance,
+      type: "SUBMIT_INTENTION",
+      supported:
+        state.mode === "understand" &&
+        state.objectType === "Observation" &&
+        state.objectDescription.trim() === canonicalObjectDescription &&
+        state.intention.trim() === fixture.request.utterance,
     });
   };
 
   if (state.screen === "arrival") {
     return (
       <>
-        <section className="hero" id="top" aria-labelledby="hero-heading">
-          <div className="hero-copy">
-            <p className="eyebrow">Orientation Workspace · Deterministic fixture</p>
-            <h1 id="hero-heading">Bring a question. Find orientation. Not answers.</h1>
-            <p className="hero-intro">
-              A calm, inspectable place for seeing registered paths, evidence,
-              uncertainty and limits—while the decision remains yours.
-            </p>
-            <button
-              className="primary-button"
-              data-testid="begin-journey"
-              onClick={() => dispatch({ type: "BEGIN" })}
-              type="button"
-            >
-              Begin with a question
-            </button>
-            <p className="fixture-disclosure">
-              Phase I.2 uses one recorded canonical Orientation Session. No live
-              ORION request is made.
+        <section className="landing-introduction" id="top" aria-labelledby="hero-heading">
+          <div className="introduction-primary">
+            <p className="eyebrow">NEXAH · The underlying orientation system</p>
+            <h1 id="hero-heading">The Orientation Layer</h1>
+            <p className="introduction-lead">
+              Information already exists. Orientation is what is missing.
             </p>
           </div>
 
-          <aside className="hero-aside" aria-labelledby="places-heading">
-            <p className="eyebrow" id="places-heading">The orientation path</p>
-            <ol className="orientation-axis">
-              {places.map((place) => <li key={place}>{place}</li>)}
-            </ol>
+          <div className="orientation-definition">
+            <p className="section-index">What is this?</p>
+            <p>
+              NEXAH helps people see how ideas, documents, evidence and
+              representations relate—without replacing their sources or human judgment.
+            </p>
+            <p>
+              Through NEXAH, the Laboratory makes paths, connections, support,
+              limits and open questions visible instead of returning isolated answers.
+            </p>
+            <ul className="distinction-list" aria-label="What NEXAH is not">
+              <li>Not a search engine</li>
+              <li>Not an encyclopedia</li>
+              <li>Not an answer machine</li>
+            </ul>
+            <div className="laboratory-definition">
+              <span>NEXAHEDRON</span>
+              <strong>The Orientation Laboratory</strong>
+              <p>The first application where people can experience and interact with NEXAH.</p>
+            </div>
+          </div>
+        </section>
+
+        <section className="why-orientation" aria-labelledby="why-orientation-heading">
+          <p className="section-index">Why orientation?</p>
+          <div>
+            <h2 id="why-orientation-heading">We have more information—and more systems producing answers—than ever before.</h2>
+            <p>What is still missing is orientation.</p>
+          </div>
+        </section>
+
+        <section className="landing-section object-spectrum" id="orientation-objects" aria-labelledby="objects-heading">
+          <header className="landing-section-heading">
+            <p className="section-index">01 · Bring what you have</p>
+            <h2 id="objects-heading">Bring what you have.</h2>
+            <p>
+              A question, document, book, theory, dataset, note, observation or idea
+              can be the starting point. Inside the Laboratory, the material you
+              orient is called an Orientation Object.
+            </p>
+          </header>
+          <ul className="object-grid" aria-label="Examples of material you can bring">
+            {orientationObjects.map((object, index) => (
+              <li key={object}><span>{String(index + 1).padStart(2, "0")}</span>{object}</li>
+            ))}
+          </ul>
+        </section>
+
+        <section className="landing-section source-layer" aria-labelledby="sources-heading">
+          <header className="landing-section-heading">
+            <p className="section-index">02 · Orient across existing knowledge</p>
+            <h2 id="sources-heading">Knowledge remains where it already exists.</h2>
+            <p>
+              Books remain books. Research papers remain papers. Repositories and
+              knowledge bases remain their own. NEXAH does not replace them; it
+              creates orientation across them.
+            </p>
+            <p className="source-boundary">
+              The source ecosystem remains external. No connector is active in this
+              deterministic review build.
+            </p>
+            <a className="framework-link" href="https://nexah.de" rel="noreferrer" target="_blank">The wider NEXAH framework at nexah.de ↗</a>
+          </header>
+          <div className="source-map" aria-label="Relationship between existing knowledge, NEXAH and NEXAHEDRON">
+            <ul aria-label="Existing knowledge sources">
+              {sourceTypes.map((source) => <li key={source}>{source}</li>)}
+            </ul>
+            <div className="nexah-layer">
+              <span>NEXAH</span>
+              <strong>Orientation Layer</strong>
+              <small>Creates orientation across existing sources</small>
+            </div>
+            <div className="laboratory-access">
+              <span>NEXAHEDRON</span>
+              <strong>Orientation Laboratory</strong>
+              <small>First application · human access to NEXAH</small>
+            </div>
+          </div>
+        </section>
+
+        <section className="orientation-entry mode-entry" id="orientation-modes" aria-labelledby="modes-heading">
+          <header className="entry-heading">
+            <p className="eyebrow">03 · Enter the Laboratory</p>
+            <h2 id="modes-heading">Choose how you would like to begin.</h2>
+            <p>
+              Choose the kind of orientation you are looking for. You can change
+              direction later; the mode is an intention, not an identity.
+            </p>
+          </header>
+
+          <div className="mode-grid" aria-label="Orientation modes">
+            {orientationModes.map((mode) => (
+              <button
+                className="mode-card"
+                data-testid={`mode-${mode.id}`}
+                key={mode.id}
+                onClick={() => dispatch({ type: "SELECT_MODE", mode: mode.id })}
+                type="button"
+              >
+                <span className="mode-symbol" aria-hidden="true">{mode.symbol}</span>
+                <span className="mode-name">{mode.name}</span>
+                <span className="mode-description">{mode.description}</span>
+                <span className="mode-verbs">{mode.verbs}</span>
+              </button>
+            ))}
+          </div>
+
+          <div className="entry-boundary">
+            <p>
+              A scientist, student, child, teacher or engineer may enter through any mode.
+            </p>
+            <p>
+              This review build completes one recorded <strong>Understand</strong> journey.
+              No live ORION request is made.
+            </p>
+          </div>
+
+          <aside className="journey-overview" aria-labelledby="places-heading">
+            <p className="eyebrow" id="places-heading">An orientation journey</p>
+            <ol>{places.map((place) => <li key={place}>{place}</li>)}</ol>
           </aside>
         </section>
 
         <section className="boundary-section" id="authority" aria-labelledby="authority-heading">
           <div className="section-heading">
             <div>
-              <p className="section-index">01 · Authority remains visible</p>
+              <p className="section-index">04 · Authority remains visible</p>
               <h2 id="authority-heading">One Laboratory. Distinct responsibilities.</h2>
             </div>
           </div>
@@ -102,73 +264,123 @@ export function OrientationLaboratory() {
     );
   }
 
-  if (state.screen === "question") {
+  if (state.screen === "object") {
     return (
-      <JourneyRoom step="01" label="Question">
+      <JourneyRoom step="01" label="Orientation Object">
         <div className="room-copy">
-          <p className="eyebrow">Open the question</p>
-          <h1 ref={headingRef} tabIndex={-1}>What are you trying to find your way through?</h1>
-          <p>Begin with a real question. This milestone recognizes only the canonical example below and will not guess another meaning.</p>
+          <p className="eyebrow">Mode · {modeName(state.mode)}</p>
+          <h1 ref={headingRef} tabIndex={-1}>What would you like to orient?</h1>
+          <p>A question, document, book, research paper, theory, dataset, notes, observation, idea, image or conversation can become an Orientation Object.</p>
         </div>
 
-        <div className="question-panel">
-          <label htmlFor="orientation-question">Your question</label>
+        <div className="question-panel onboarding-panel">
+          <label htmlFor="orientation-object-type">Kind of material</label>
+          <select
+            data-testid="orientation-object-type"
+            id="orientation-object-type"
+            onChange={(event) => dispatch({ type: "EDIT_OBJECT_TYPE", value: event.target.value as OrientationObjectType })}
+            value={state.objectType}
+          >
+            <option value="">Choose a kind…</option>
+            {orientationObjectTypes.map((type) => <option key={type} value={type}>{type}</option>)}
+          </select>
+
+          <label htmlFor="orientation-object">Describe it or name the material</label>
           <textarea
-            id="orientation-question"
-            data-testid="orientation-question"
+            id="orientation-object"
+            data-testid="orientation-object"
             maxLength={300}
-            onChange={(event) => dispatch({ type: "EDIT_QUESTION", value: event.target.value })}
-            placeholder="Begin with what you are trying to understand…"
-            value={state.question}
+            onChange={(event) => dispatch({ type: "EDIT_OBJECT_DESCRIPTION", value: event.target.value })}
+            placeholder="A paper, a sketch, an observation, an idea…"
+            value={state.objectDescription}
           />
           <div className="field-meta">
             <button
               className="text-button"
-              data-testid="use-example"
-              onClick={() => dispatch({ type: "USE_EXAMPLE", value: fixture.request.utterance })}
+              data-testid="use-object-example"
+              onClick={() => dispatch({ type: "USE_OBJECT_EXAMPLE", description: canonicalObjectDescription })}
               type="button"
             >
-              Use the canonical example
+              Use the recorded Orientation Object
             </button>
-            <span>{state.question.length} / 300</span>
+            <span>{state.objectDescription.length} / 300</span>
           </div>
-          {state.questionIssue === "empty" && (
-            <p className="field-message" role="alert">Begin with what you have. A few words are enough.</p>
-          )}
-          {state.questionIssue === "unsupported" && (
-            <p className="field-message" role="alert">
-              This fixture-backed milestone cannot map that wording. Nothing was sent or inferred. Use the canonical example to continue.
-            </p>
+          {state.objectIssue === "empty" && (
+            <p className="field-message" role="alert">Choose a kind and describe what you are bringing.</p>
           )}
           <div className="room-actions">
-            <button className="secondary-button" onClick={() => dispatch({ type: "RESTART" })} type="button">Back</button>
-            <button className="primary-button" data-testid="continue-question" disabled={!state.question.trim()} onClick={submitQuestion} type="button">Continue</button>
+            <button className="secondary-button" data-testid="change-mode" onClick={() => dispatch({ type: "CHANGE_MODE" })} type="button">Change mode</button>
+            <button className="primary-button" data-testid="continue-object" disabled={!state.objectType || !state.objectDescription.trim()} onClick={() => dispatch({ type: "SUBMIT_OBJECT" })} type="button">Define the intention</button>
           </div>
         </div>
       </JourneyRoom>
     );
   }
 
-  if (state.screen === "confirmation") {
+  if (state.screen === "intention") {
     return (
-      <JourneyRoom step="02" label="Direction">
+      <JourneyRoom step="02" label="Intention">
         <div className="room-copy">
-          <p className="eyebrow lyra-accent">LYRA boundary · recorded translation</p>
-          <h1 ref={headingRef} tabIndex={-1}>Let us make sure the direction is yours.</h1>
-          <p>The wording below is copied from the canonical fixture. It is not generated in this Laboratory.</p>
+          <p className="eyebrow">{modeName(state.mode)} · {state.objectType}</p>
+          <h1 ref={headingRef} tabIndex={-1}>What direction would be useful?</h1>
+          <p>Describe what you hope to understand, compare, connect, explore, build or reflect on.</p>
         </div>
 
-        <section className="confirmation-card" aria-label="Confirmed orientation">
+        <div className="question-panel onboarding-panel">
+          <div className="object-reference">
+            <span>Orientation Object</span>
+            <strong>{state.objectDescription}</strong>
+          </div>
+          <label htmlFor="orientation-intention">Your intention</label>
+          <textarea
+            id="orientation-intention"
+            data-testid="orientation-intention"
+            maxLength={300}
+            onChange={(event) => dispatch({ type: "EDIT_INTENTION", value: event.target.value })}
+            placeholder="I would like to understand…"
+            value={state.intention}
+          />
+          <div className="field-meta">
+            <button className="text-button" data-testid="use-intention-example" onClick={() => dispatch({ type: "USE_INTENTION_EXAMPLE", value: fixture.request.utterance })} type="button">Use the recorded intention</button>
+            <span>{state.intention.length} / 300</span>
+          </div>
+          {state.intentionIssue === "empty" && <p className="field-message" role="alert">Describe the direction you want to take.</p>}
+          {state.intentionIssue === "unsupported" && (
+            <p className="field-message" role="alert">
+              This review build can complete only the recorded Understand + Observation journey. Nothing was sent or inferred. Choose that mode and the recorded examples to continue.
+            </p>
+          )}
+          <div className="room-actions">
+            <button className="secondary-button" data-testid="back-to-object" onClick={() => dispatch({ type: "BACK_TO_OBJECT" })} type="button">Back to the object</button>
+            <button className="primary-button" data-testid="continue-intention" disabled={!state.intention.trim()} onClick={submitIntention} type="button">Confirm the scope</button>
+          </div>
+        </div>
+      </JourneyRoom>
+    );
+  }
+
+  if (state.screen === "scope") {
+    return (
+      <JourneyRoom step="03" label="Scope">
+        <div className="room-copy">
+          <p className="eyebrow lyra-accent">LYRA boundary · recorded translation</p>
+          <h1 ref={headingRef} tabIndex={-1}>Confirm the scope.</h1>
+          <p>The structured direction below is copied from the canonical fixture. It is not created by this Laboratory.</p>
+        </div>
+
+        <section className="confirmation-card" aria-label="Orientation scope">
           <dl className="confirmation-definitions">
-            <Definition label="You want to understand" value={state.question} />
+            <Definition label="Orientation mode" value={modeName(state.mode)} />
+            <Definition label="Orientation Object" value={`${state.objectType} · ${state.objectDescription}`} />
+            <Definition label="Your intention" value={state.intention} />
             <Definition label="Starting from" value={fixture.translation.sourceRepresentation} />
             <Definition label="Looking toward" value={fixture.translation.targetRepresentation} />
-            <Definition label="Recognized intents" value={fixture.translation.intents.join(" + ")} />
+            <Definition label="Recorded intents" value={fixture.translation.intents.join(" + ")} />
           </dl>
           <p className="boundary-note">Confirming loads a deterministic report fixture. The ORION gateway remains unavailable.</p>
           <div className="room-actions">
-            <button className="secondary-button" data-testid="adjust-question" onClick={() => dispatch({ type: "ADJUST" })} type="button">Adjust</button>
-            <button className="primary-button" data-testid="confirm-orientation" onClick={() => dispatch({ type: "CONFIRM" })} type="button">Yes, orient this</button>
+            <button className="secondary-button" data-testid="back-to-intention" onClick={() => dispatch({ type: "BACK_TO_INTENTION" })} type="button">Adjust intention</button>
+            <button className="primary-button" data-testid="confirm-scope" onClick={() => dispatch({ type: "CONFIRM_SCOPE" })} type="button">Begin orientation</button>
           </div>
         </section>
       </JourneyRoom>
@@ -177,7 +389,7 @@ export function OrientationLaboratory() {
 
   if (state.screen === "report") {
     return (
-      <JourneyRoom step="03" label="Orientation">
+      <JourneyRoom step="04" label="Orientation">
         <div className="report-heading">
           <div>
             <p className="eyebrow orion-accent">ORION report · deterministic fixture</p>
@@ -235,7 +447,7 @@ export function OrientationLaboratory() {
 
   if (state.screen === "reflection") {
     return (
-      <JourneyRoom step="04" label="Reflection" quiet>
+      <JourneyRoom step="05" label="Reflection" quiet>
         <div className="reflection-room">
           <p className="eyebrow">Optional human space</p>
           <h1 ref={headingRef} tabIndex={-1}>What remains unresolved for you?</h1>
@@ -255,13 +467,15 @@ export function OrientationLaboratory() {
   }
 
   return (
-    <JourneyRoom step="05" label="Departure" quiet>
+    <JourneyRoom step="06" label="Departure" quiet>
       <div className="departure-room">
         <p className="eyebrow">The journey is complete</p>
-        <h1 ref={headingRef} tabIndex={-1}>You can leave the question here.</h1>
-        <p>The orientation remains a map, not a decision. No session, question or Reflection has been saved.</p>
+        <h1 ref={headingRef} tabIndex={-1}>You can leave this orientation here.</h1>
+        <p>The orientation remains a map, not a decision. No session, material, intention or Reflection has been saved.</p>
         <dl className="departure-summary">
-          <Definition label="Question" value={fixture.request.utterance} />
+          <Definition label="Orientation mode" value={modeName(state.mode)} />
+          <Definition label="Orientation Object" value={`${state.objectType} · ${state.objectDescription}`} />
+          <Definition label="Intention" value={fixture.request.utterance} />
           <Definition label="Orientation status" value="Blocked" />
           <Definition label="What was produced" value="A registered plan and report fixture" />
           <Definition label="What was not produced" value="A Target Representation" />
@@ -401,4 +615,8 @@ function InspectView() {
 
 function humanizeIssue(issue: string) {
   return issue === "MissingOperator" ? "Missing Operator" : "Missing Renderer";
+}
+
+function modeName(mode: OrientationMode | null) {
+  return orientationModes.find((item) => item.id === mode)?.name ?? "Orientation";
 }

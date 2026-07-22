@@ -8,12 +8,16 @@ interaction, visualization, Atlas exploration and report presentation. It does
 not own NEXAH semantics, ORION planning, LYRA translation, Library editorial
 authority or Human Reflection and decision.
 
-## Phase I status
+## Internal alpha status
 
-Phase I.1 establishes the repository foundation only. It contains an accessible
-web shell, explicit package boundaries, a pinned ORION baseline, deterministic
-Orientation Session fixture metadata and automated architecture checks. It does
-not submit an Orientation Request or simulate an ORION result.
+Phase I.2 provides the first complete deterministic Orientation Laboratory
+journey. It introduces NEXAH as the Orientation Layer, NEXAHEDRON as its first
+Laboratory application, Orientation Modes, human-first material intake, scope
+confirmation, an inspectable recorded report, optional Reflection and
+Departure.
+
+The internal-alpha procedure, review journey and known limitations are defined
+in [docs/alpha/INTERNAL_ALPHA_GUIDE.md](docs/alpha/INTERNAL_ALPHA_GUIDE.md).
 
 ## Repository map
 
@@ -45,7 +49,8 @@ npm install
 npm run check
 npm run build
 npm test
+npm run dev -- --port 3001
 ```
 
-The ORION consumer contract remains a Phase I blocker. No package in this
-repository imports ORION internals.
+The ORION consumer contract remains unavailable. The alpha uses a pinned report
+fixture only, and no package in this repository imports ORION internals.
