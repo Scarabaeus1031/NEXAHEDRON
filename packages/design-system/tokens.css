@@ -1,0 +1,25 @@
+:root {
+  color-scheme: light;
+  --color-canvas: #fbfaf6;
+  --color-wash: #f2f3f0;
+  --color-ink: #0a214c;
+  --color-muted: #4f5d72;
+  --color-accent: #174f91;
+  --color-line: #c7ced5;
+  --color-line-strong: #8a98aa;
+  --color-grid: rgb(19 55 99 / 4%);
+  --color-focus: #b45800;
+
+  --font-display: "Iowan Old Style", "Baskerville", "Times New Roman", serif;
+  --font-sans: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont,
+    "Segoe UI", sans-serif;
+
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-5: 24px;
+  --space-6: 32px;
+  --space-7: 48px;
+  --space-8: 72px;
+}

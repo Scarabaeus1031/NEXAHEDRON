@@ -1,0 +1,33 @@
+baseline:
+  id: orion-architecture-v1
+  status: frozen
+  repository: https://github.com/Scarabaeus1031/NEXAH-ORION.git
+  revision: 8a65f40464a4ccfa62d8f9fd8b831d107b0eaa35
+  version: 0.3.0-dev.0
+  freeze_date: 2026-07-19
+
+authority:
+  source_repository_remains_canonical: true
+  local_copies_may_not_be_edited: true
+
+adopted_surfaces:
+  - docs/architecture/ORION_V1_ARCHITECTURE_FREEZE.md
+  - docs/architecture/ORION_ARCHITECTURE.md
+  - docs/architecture/REPRESENTATION_ARCHITECTURE.md
+  - docs/architecture/lyra/LYRA_ARCHITECTURE.md
+  - docs/architecture/operators/OPERATOR_ARCHITECTURE.md
+  - docs/architecture/transformations/
+  - docs/architecture/lucy/LUCY_CONCEPT_REVIEW.md
+  - docs/governance/OWNERSHIP.md
+  - docs/governance/CROSS_REPOSITORY_GOVERNANCE.md
+  - docs/governance/COMPATIBILITY_POLICY.md
+  - docs/experience/FIRST_USER_JOURNEY.md
+  - docs/orientation_sessions/
+  - docs/adr/0001-orion-above-kernel.md
+  - docs/adr/0002-independent-repository-boundaries.md
+  - docs/adr/0003-structured-orientation-contracts.md
+  - docs/adr/0004-immutable-context-manifest.md
+  - docs/adr/0005-capability-based-reasoning-backends.md
+  - docs/adr/0006-human-approval-and-effect-classes.md
+  - docs/adr/0007-five-documentation-projections.md
+  - docs/adr/0008-orion-v1-architecture-freeze.md

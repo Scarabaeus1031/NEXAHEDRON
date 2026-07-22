@@ -1,0 +1,102 @@
+{
+  "schemaVersion": "nexahedron.orientation-session-fixtures/0.1",
+  "source": {
+    "baselineId": "orion-architecture-v1",
+    "repository": "Scarabaeus1031/NEXAH-ORION",
+    "revision": "8a65f40464a4ccfa62d8f9fd8b831d107b0eaa35",
+    "format": "orientation-session/1",
+    "vocabulary": "orion.lyra-vocabulary/0.1"
+  },
+  "sessions": [
+    {
+      "id": "full-round-trip",
+      "document": "canonical/full_round_trip.md",
+      "scenario": "full_round_trip",
+      "expectedOutcome": "blocked",
+      "sourceRepresentation": "Observation",
+      "targetRepresentation": "Calendar Projection",
+      "expectedPath": ["T02", "T04", "T06", "T08", "T11", "T13"]
+    },
+    {
+      "id": "existing-route",
+      "document": "navigation/existing_route.md",
+      "scenario": "navigation",
+      "expectedOutcome": "blocked",
+      "sourceRepresentation": "Stellar Projection",
+      "targetRepresentation": "Calendar Projection",
+      "expectedPath": ["T13"]
+    },
+    {
+      "id": "planned-identity",
+      "document": "explanation/planned_identity.md",
+      "scenario": "planned_identity",
+      "expectedOutcome": "planned",
+      "sourceRepresentation": "Observation",
+      "targetRepresentation": "Observation",
+      "expectedPath": []
+    },
+    {
+      "id": "blocked-route",
+      "document": "blockers/blocked_route.md",
+      "scenario": "blocked",
+      "expectedOutcome": "blocked",
+      "sourceRepresentation": "Observation",
+      "targetRepresentation": "Calendar Projection"
+    },
+    {
+      "id": "missing-operator",
+      "document": "blockers/missing_operator.md",
+      "scenario": "missing_operator",
+      "expectedOutcome": "MissingOperator"
+    },
+    {
+      "id": "missing-renderer",
+      "document": "blockers/missing_renderer.md",
+      "scenario": "missing_renderer",
+      "expectedOutcome": "MissingRenderer"
+    },
+    {
+      "id": "unknown-representation",
+      "document": "blockers/unknown_representation.md",
+      "scenario": "unknown_representation",
+      "expectedOutcome": "UnknownRepresentation"
+    },
+    {
+      "id": "clarification-required",
+      "document": "canonical/clarification_required.md",
+      "scenario": "clarification",
+      "expectedOutcome": "ClarificationRequired"
+    },
+    {
+      "id": "unsupported-vocabulary",
+      "document": "canonical/unsupported_vocabulary.md",
+      "scenario": "unsupported",
+      "expectedOutcome": "UnsupportedIntent"
+    },
+    {
+      "id": "report-comparison",
+      "document": "comparison/report_comparison.md",
+      "scenario": "comparison",
+      "expectedOutcome": "report_view"
+    },
+    {
+      "id": "report-metadata",
+      "document": "inspection/report_metadata.md",
+      "scenario": "inspection",
+      "expectedOutcome": "report_view"
+    },
+    {
+      "id": "validation-outcome",
+      "document": "validation/validation_outcome.md",
+      "scenario": "validation",
+      "expectedOutcome": "invalid"
+    },
+    {
+      "id": "registered-alternatives",
+      "document": "alternatives/registered_alternatives.md",
+      "scenario": "alternatives",
+      "expectedOutcome": "blocked",
+      "expectedAlternatives": [["T12", "T14"]]
+    }
+  ]
+}
