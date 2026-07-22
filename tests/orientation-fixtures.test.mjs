@@ -27,3 +27,38 @@ test("pins all canonical Orientation Session cases", async () => {
     "planned",
   );
 });
+
+test("projects the canonical full round trip without semantic alteration", async () => {
+  const fixture = JSON.parse(
+    await readFile(
+      new URL(
+        "../fixtures/orientation-sessions/full-round-trip.json",
+        import.meta.url,
+      ),
+      "utf8",
+    ),
+  );
+
+  assert.equal(fixture.source.revision, expectedRevision);
+  assert.equal(fixture.source.sessionFormat, "orientation-session/1");
+  assert.equal(
+    fixture.request.utterance,
+    "I want to understand how this observation reaches the calendar.",
+  );
+  assert.deepEqual(fixture.translation.intents, ["Navigate", "Explain"]);
+  assert.equal(fixture.report.status, "blocked");
+  assert.equal(fixture.report.producedRepresentation, null);
+  assert.deepEqual(
+    fixture.report.plan.path.map(({ transitionId }) => transitionId),
+    ["T02", "T04", "T06", "T08", "T11", "T13"],
+  );
+  assert.equal(fixture.report.plan.alternativePaths.length, 7);
+  assert.equal(fixture.report.issues.length, 12);
+  assert.equal(fixture.report.validation.valid, false);
+  assert.equal(fixture.report.validation.checkCount, 17);
+  assert.equal(fixture.report.validation.errorCount, 12);
+  assert.equal(
+    fixture.explanation.sentences.at(-1),
+    "No target representation was produced.",
+  );
+});

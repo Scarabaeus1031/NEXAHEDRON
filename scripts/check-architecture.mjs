@@ -47,6 +47,14 @@ const page = await readFile(new URL("../app/page.tsx", import.meta.url), "utf8")
 assert.match(page, /apps\/web\/src\/FoundationShell/);
 assert.doesNotMatch(page, /orion-gateway|laboratory-server/);
 
+const laboratory = await readFile(
+  new URL("../apps/web/src/OrientationLaboratory.tsx", import.meta.url),
+  "utf8",
+);
+assert.match(laboratory, /full-round-trip\.json/);
+assert.match(laboratory, /No live ORION request/);
+assert.doesNotMatch(laboratory, /orion-gateway|fetch\(|axios|XMLHttpRequest/);
+
 const hosting = JSON.parse(
   await readFile(new URL("../.openai/hosting.json", import.meta.url), "utf8"),
 );

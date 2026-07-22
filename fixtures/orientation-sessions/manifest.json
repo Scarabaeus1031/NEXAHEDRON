@@ -10,6 +10,7 @@
   "sessions": [
     {
       "id": "full-round-trip",
+      "fixture": "full-round-trip.json",
       "document": "canonical/full_round_trip.md",
       "scenario": "full_round_trip",
       "expectedOutcome": "blocked",

@@ -22,6 +22,9 @@ test("renders the accessible Phase I foundation shell", async () => {
   assert.match(html, /<main id="main-content">/);
   assert.match(html, /Skip to the Laboratory/);
   assert.match(html, /Bring a question\. Find orientation\. Not answers\./);
+  assert.match(html, /Phase I\.2 uses one recorded canonical Orientation Session/);
+  assert.match(html, /No live ORION request is made/);
+  assert.match(html, /data-testid="begin-journey"/);
   assert.match(html, /One Laboratory\. Distinct responsibilities\./);
   assert.match(html, /NEXAH/);
   assert.match(html, /ORION/);
