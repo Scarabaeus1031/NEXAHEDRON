@@ -12,19 +12,6 @@ import {
 
 const places = ["Choose a mode", "Orient an object", "Define intention", "Confirm scope", "Receive report", "Continue"];
 const canonicalObjectDescription = "An observation I want to trace toward a calendar projection.";
-const orientationObjectTypes: OrientationObjectType[] = [
-  "Question",
-  "Document",
-  "Book",
-  "Research Paper",
-  "Theory",
-  "Dataset",
-  "Notes",
-  "Observation",
-  "Idea",
-  "Image",
-  "Conversation",
-];
 const orientationObjects = [
   "Question",
   "Document",
@@ -50,20 +37,174 @@ const sourceTypes = [
   "Markdown",
   "Model Outputs",
 ] as const;
-const orientationModes: Array<{
+
+type ModeExample = {
+  label: string;
+  objectType: OrientationObjectType;
+  primary: string;
+  secondary?: string;
+};
+
+type OrientationModeProfile = {
   id: OrientationMode;
   symbol: string;
   name: string;
   description: string;
   verbs: string;
-}> = [
-  { id: "wonder", symbol: "✦", name: "Wonder", description: "I do not know where to begin.", verbs: "Discover · Observe · Ask" },
-  { id: "understand", symbol: "◉", name: "Understand", description: "Understand a document, concept, book or theory.", verbs: "Read · Frame · Clarify" },
-  { id: "compare", symbol: "⇄", name: "Compare", description: "Compare two ideas, theories, documents or perspectives.", verbs: "Distinguish · Relate · Weigh" },
-  { id: "connect", symbol: "⌁", name: "Connect", description: "Reveal relationships, patterns and bridges.", verbs: "Link · Map · Bridge" },
-  { id: "explore", symbol: "⌖", name: "Explore", description: "Navigate concepts, evidence and the Living Atlas.", verbs: "Follow · Discover · Orient" },
-  { id: "build", symbol: "◇", name: "Build", description: "Turn understanding into architecture, research or implementation.", verbs: "Structure · Develop · Apply" },
-  { id: "reflect", symbol: "○", name: "Reflect", description: "Review what changed, what remains open and where to continue.", verbs: "Review · Pause · Continue" },
+  openingQuestion: string;
+  openingSupport: string;
+  kindLabel: string;
+  objectTypes: OrientationObjectType[];
+  primaryLabel: string;
+  primaryPlaceholder: string;
+  secondaryLabel?: string;
+  secondaryPlaceholder?: string;
+  nextAction: string;
+  intentionQuestion: string;
+  intentionSupport: string;
+  intentionPlaceholder: string;
+  intentionExample: string;
+  examples: ModeExample[];
+};
+
+const orientationModes: OrientationModeProfile[] = [
+  {
+    id: "wonder", symbol: "✦", name: "Wonder", description: "I do not know where to begin.", verbs: "Notice · Follow · Ask",
+    openingQuestion: "What caught your attention?",
+    openingSupport: "Begin with what you noticed. It does not need to be complete, important or already understood.",
+    kindLabel: "What kind of starting point is it?",
+    objectTypes: ["Observation", "Question", "Idea", "Image", "Conversation", "Notes"],
+    primaryLabel: "What did you notice?",
+    primaryPlaceholder: "A detail, pattern, phrase or unexpected moment…",
+    nextAction: "Follow the wonder",
+    intentionQuestion: "What would you like to stay curious about?",
+    intentionSupport: "Name the part that feels alive, unresolved or worth following. A precise question is not required.",
+    intentionPlaceholder: "I want to stay with…",
+    intentionExample: "I want to follow why this pattern keeps appearing.",
+    examples: [
+      { label: "A recurring shape", objectType: "Observation", primary: "The same branching shape appears in a leaf, a river and a sketch." },
+      { label: "An unfamiliar phrase", objectType: "Notes", primary: "A phrase in my notes keeps returning: orientation before explanation." },
+      { label: "A surprising image", objectType: "Image", primary: "An image contains a relationship I cannot yet name." },
+    ],
+  },
+  {
+    id: "understand", symbol: "◉", name: "Understand", description: "Understand a document, concept, book or theory.", verbs: "Read · Frame · Clarify",
+    openingQuestion: "What would you like to understand?",
+    openingSupport: "Bring the material or name the idea. The Laboratory will preserve the difference between what it says and what remains uncertain.",
+    kindLabel: "What are you bringing?",
+    objectTypes: ["Document", "Book", "Research Paper", "Theory", "Dataset", "Notes", "Observation", "Idea", "Image", "Conversation", "Question"],
+    primaryLabel: "Describe or name it",
+    primaryPlaceholder: "A paper, concept, passage or observation…",
+    nextAction: "Define what understanding means",
+    intentionQuestion: "What would useful understanding make clearer?",
+    intentionSupport: "Name the direction of understanding—not the answer you expect to receive.",
+    intentionPlaceholder: "I would like to understand…",
+    intentionExample: fixture.request.utterance,
+    examples: [
+      { label: "Recorded observation", objectType: "Observation", primary: canonicalObjectDescription },
+      { label: "A difficult paper", objectType: "Research Paper", primary: "A research paper whose central argument and evidence I want to distinguish." },
+      { label: "A theory", objectType: "Theory", primary: "A theory I can describe but do not yet understand structurally." },
+    ],
+  },
+  {
+    id: "compare", symbol: "⇄", name: "Compare", description: "Compare two ideas, theories, documents or perspectives.", verbs: "Distinguish · Relate · Weigh",
+    openingQuestion: "What would you like to compare?",
+    openingSupport: "Place two subjects beside one another. Comparison begins by preserving their differences before looking for equivalence.",
+    kindLabel: "What kind of material are you comparing?",
+    objectTypes: ["Document", "Research Paper", "Book", "Theory", "Dataset", "Idea", "Image", "Notes"],
+    primaryLabel: "First subject",
+    primaryPlaceholder: "The first idea, paper, theory or perspective…",
+    secondaryLabel: "Second subject",
+    secondaryPlaceholder: "The second idea, paper, theory or perspective…",
+    nextAction: "Frame the comparison",
+    intentionQuestion: "What distinction matters in this comparison?",
+    intentionSupport: "Choose the lens that should organize the comparison: assumptions, evidence, structure, consequences or another boundary.",
+    intentionPlaceholder: "I want to compare them in terms of…",
+    intentionExample: "I want to compare their assumptions, evidence and practical consequences.",
+    examples: [
+      { label: "Two theories", objectType: "Theory", primary: "A theory centered on individual agency", secondary: "A theory centered on social systems" },
+      { label: "Two papers", objectType: "Research Paper", primary: "A qualitative study of learning", secondary: "A quantitative study of learning" },
+      { label: "Two designs", objectType: "Image", primary: "A centralized system diagram", secondary: "A distributed system diagram" },
+    ],
+  },
+  {
+    id: "connect", symbol: "⌁", name: "Connect", description: "Reveal relationships, patterns and bridges.", verbs: "Link · Map · Bridge",
+    openingQuestion: "What would you like to connect?",
+    openingSupport: "Begin with two points that seem related, distant or unexpectedly similar. The connection itself remains a question.",
+    kindLabel: "What kind of starting points are these?",
+    objectTypes: ["Idea", "Theory", "Observation", "Document", "Research Paper", "Dataset", "Image", "Conversation"],
+    primaryLabel: "First point",
+    primaryPlaceholder: "A concept, observation, source or domain…",
+    secondaryLabel: "Second point",
+    secondaryPlaceholder: "What might connect with it?",
+    nextAction: "Describe the possible bridge",
+    intentionQuestion: "What kind of connection are you looking for?",
+    intentionSupport: "The connection may be structural, historical, causal, visual or only a resemblance to inspect.",
+    intentionPlaceholder: "I want to see whether they connect through…",
+    intentionExample: "I want to inspect whether the shared pattern is structural or only superficial.",
+    examples: [
+      { label: "Nature and systems", objectType: "Idea", primary: "Branching patterns in rivers", secondary: "Dependency structures in software" },
+      { label: "Two disciplines", objectType: "Theory", primary: "Ecological resilience", secondary: "Organizational resilience" },
+      { label: "Evidence and claim", objectType: "Research Paper", primary: "A paper's central claim", secondary: "The dataset cited as support" },
+    ],
+  },
+  {
+    id: "explore", symbol: "⌖", name: "Explore", description: "Navigate concepts, evidence and the Living Atlas.", verbs: "Enter · Follow · Navigate",
+    openingQuestion: "Where would you like to begin?",
+    openingSupport: "Choose a starting point rather than a destination. Exploration can branch as the orientation develops.",
+    kindLabel: "What is your starting point?",
+    objectTypes: ["Idea", "Question", "Document", "Book", "Research Paper", "Theory", "Dataset", "Observation", "Image"],
+    primaryLabel: "Name the starting point",
+    primaryPlaceholder: "A concept, place in a text, field or open question…",
+    nextAction: "Choose an initial direction",
+    intentionQuestion: "Which direction would you like to explore first?",
+    intentionSupport: "Choose an initial path without closing the others. You may change direction later.",
+    intentionPlaceholder: "I would like to begin by following…",
+    intentionExample: "I would like to begin with the central concept and follow its strongest evidence links.",
+    examples: [
+      { label: "A broad field", objectType: "Idea", primary: "The relationship between memory and place." },
+      { label: "A book chapter", objectType: "Book", primary: "One chapter that opens into unfamiliar references." },
+      { label: "An open dataset", objectType: "Dataset", primary: "A dataset whose patterns I have not yet mapped." },
+    ],
+  },
+  {
+    id: "build", symbol: "◇", name: "Build", description: "Turn understanding into architecture, research or implementation.", verbs: "Frame · Structure · Make",
+    openingQuestion: "What would you like to build?",
+    openingSupport: "Begin with the intended form. Building here starts by orienting constraints, evidence and unresolved decisions—not by generating a finished artifact.",
+    kindLabel: "What are you beginning from?",
+    objectTypes: ["Idea", "Notes", "Document", "Theory", "Dataset", "Observation", "Image", "Conversation"],
+    primaryLabel: "Describe the intended work",
+    primaryPlaceholder: "A research plan, architecture, argument or implementation…",
+    nextAction: "Orient the work",
+    intentionQuestion: "What must this work make possible?",
+    intentionSupport: "Describe the purpose and constraints that should guide the build before deciding its final form.",
+    intentionPlaceholder: "The work should make it possible to…",
+    intentionExample: "The work should make the evidence, constraints and open decisions inspectable.",
+    examples: [
+      { label: "A research plan", objectType: "Idea", primary: "A research plan for studying how people navigate complex evidence." },
+      { label: "A software architecture", objectType: "Notes", primary: "An architecture that keeps navigation, language and evidence authority separate." },
+      { label: "An argument", objectType: "Document", primary: "A structured argument built from several conflicting sources." },
+    ],
+  },
+  {
+    id: "reflect", symbol: "○", name: "Reflect", description: "Review what changed, what remains open and where to continue.", verbs: "Return · Notice · Continue",
+    openingQuestion: "What would you like to reflect on?",
+    openingSupport: "Bring an experience, decision, orientation or body of work. Reflection remains human and is not interpreted on your behalf.",
+    kindLabel: "What are you returning to?",
+    objectTypes: ["Observation", "Notes", "Conversation", "Document", "Idea", "Question", "Image"],
+    primaryLabel: "Name what you are returning to",
+    primaryPlaceholder: "A decision, experience, report or unfinished thought…",
+    nextAction: "Open the reflection",
+    intentionQuestion: "What feels different now?",
+    intentionSupport: "You may notice what changed, what remains unresolved or where you want to continue. No conclusion is required.",
+    intentionPlaceholder: "I want to reflect on what changed in…",
+    intentionExample: "I want to notice what changed, what remains open and what deserves another look.",
+    examples: [
+      { label: "A recent decision", objectType: "Observation", primary: "A decision that felt clear at the time but now deserves another look." },
+      { label: "An orientation report", objectType: "Document", primary: "An orientation report whose open questions I want to revisit." },
+      { label: "An unfinished idea", objectType: "Notes", primary: "Notes from an idea I paused before it became a plan." },
+    ],
+  },
 ];
 const reportViews: Array<{ id: ReportView; label: string }> = [
   { id: "summary", label: "Summary" },
@@ -97,6 +238,8 @@ export function OrientationLaboratory() {
       ),
     }));
   }, []);
+
+  const activeMode = getModeProfile(state.mode);
 
   const submitIntention = () => {
     dispatch({
@@ -266,15 +409,20 @@ export function OrientationLaboratory() {
 
   if (state.screen === "object") {
     return (
-      <JourneyRoom step="01" label="Orientation Object">
+      <JourneyRoom step="01" label={activeMode.name} mode={state.mode}>
         <div className="room-copy">
-          <p className="eyebrow">Mode · {modeName(state.mode)}</p>
-          <h1 ref={headingRef} tabIndex={-1}>What would you like to orient?</h1>
-          <p>A question, document, book, research paper, theory, dataset, notes, observation, idea, image or conversation can become an Orientation Object.</p>
+          <p className="eyebrow">{activeMode.symbol} · {activeMode.name} entrance</p>
+          <h1 ref={headingRef} tabIndex={-1}>{activeMode.openingQuestion}</h1>
+          <p>{activeMode.openingSupport}</p>
         </div>
 
-        <div className="question-panel onboarding-panel">
-          <label htmlFor="orientation-object-type">Kind of material</label>
+        <div className="question-panel onboarding-panel mode-onboarding-panel">
+          <div className="mode-prompt-strip" aria-hidden="true">
+            <span>{activeMode.symbol}</span>
+            <p>{activeMode.verbs}</p>
+          </div>
+
+          <label htmlFor="orientation-object-type">{activeMode.kindLabel}</label>
           <select
             data-testid="orientation-object-type"
             id="orientation-object-type"
@@ -282,35 +430,74 @@ export function OrientationLaboratory() {
             value={state.objectType}
           >
             <option value="">Choose a kind…</option>
-            {orientationObjectTypes.map((type) => <option key={type} value={type}>{type}</option>)}
+            {activeMode.objectTypes.map((type) => <option key={type} value={type}>{type}</option>)}
           </select>
 
-          <label htmlFor="orientation-object">Describe it or name the material</label>
+          <label htmlFor="orientation-object">{activeMode.primaryLabel}</label>
           <textarea
             id="orientation-object"
             data-testid="orientation-object"
             maxLength={300}
             onChange={(event) => dispatch({ type: "EDIT_OBJECT_DESCRIPTION", value: event.target.value })}
-            placeholder="A paper, a sketch, an observation, an idea…"
+            placeholder={activeMode.primaryPlaceholder}
             value={state.objectDescription}
           />
+          {activeMode.secondaryLabel && (
+            <>
+              <label htmlFor="orientation-object-secondary">{activeMode.secondaryLabel}</label>
+              <textarea
+                id="orientation-object-secondary"
+                data-testid="orientation-object-secondary"
+                maxLength={300}
+                onChange={(event) => dispatch({ type: "EDIT_SECONDARY_OBJECT_DESCRIPTION", value: event.target.value })}
+                placeholder={activeMode.secondaryPlaceholder}
+                value={state.secondaryObjectDescription}
+              />
+            </>
+          )}
+
+          <fieldset className="mode-examples">
+            <legend>Examples for {activeMode.name}</legend>
+            <div>
+              {activeMode.examples.map((example, index) => (
+                <button
+                  data-testid={index === 0 ? "use-object-example" : undefined}
+                  key={example.label}
+                  onClick={() => dispatch({
+                    type: "USE_OBJECT_EXAMPLE",
+                    description: example.primary,
+                    objectType: example.objectType,
+                    secondaryDescription: example.secondary,
+                  })}
+                  type="button"
+                >
+                  {example.label}
+                </button>
+              ))}
+            </div>
+          </fieldset>
           <div className="field-meta">
-            <button
-              className="text-button"
-              data-testid="use-object-example"
-              onClick={() => dispatch({ type: "USE_OBJECT_EXAMPLE", description: canonicalObjectDescription })}
-              type="button"
-            >
-              Use the recorded Orientation Object
-            </button>
-            <span>{state.objectDescription.length} / 300</span>
+            <span>{activeMode.secondaryLabel ? "Two starting points form this orientation." : "You can revise this before confirming scope."}</span>
+            <span>{state.objectDescription.length}{activeMode.secondaryLabel ? ` + ${state.secondaryObjectDescription.length} / 300 each` : " / 300"}</span>
           </div>
           {state.objectIssue === "empty" && (
-            <p className="field-message" role="alert">Choose a kind and describe what you are bringing.</p>
+            <p className="field-message" role="alert">
+              {activeMode.secondaryLabel
+                ? "Choose a kind and name both starting points."
+                : "Choose a kind and describe what you are bringing."}
+            </p>
           )}
           <div className="room-actions">
             <button className="secondary-button" data-testid="change-mode" onClick={() => dispatch({ type: "CHANGE_MODE" })} type="button">Change mode</button>
-            <button className="primary-button" data-testid="continue-object" disabled={!state.objectType || !state.objectDescription.trim()} onClick={() => dispatch({ type: "SUBMIT_OBJECT" })} type="button">Define the intention</button>
+            <button
+              className="primary-button"
+              data-testid="continue-object"
+              disabled={!state.objectType || !state.objectDescription.trim() || Boolean(activeMode.secondaryLabel && !state.secondaryObjectDescription.trim())}
+              onClick={() => dispatch({ type: "SUBMIT_OBJECT" })}
+              type="button"
+            >
+              {activeMode.nextAction}
+            </button>
           </div>
         </div>
       </JourneyRoom>
@@ -319,17 +506,18 @@ export function OrientationLaboratory() {
 
   if (state.screen === "intention") {
     return (
-      <JourneyRoom step="02" label="Intention">
+      <JourneyRoom step="02" label={`${activeMode.name} intention`} mode={state.mode}>
         <div className="room-copy">
-          <p className="eyebrow">{modeName(state.mode)} · {state.objectType}</p>
-          <h1 ref={headingRef} tabIndex={-1}>What direction would be useful?</h1>
-          <p>Describe what you hope to understand, compare, connect, explore, build or reflect on.</p>
+          <p className="eyebrow">{activeMode.symbol} · {activeMode.name} · {state.objectType}</p>
+          <h1 ref={headingRef} tabIndex={-1}>{activeMode.intentionQuestion}</h1>
+          <p>{activeMode.intentionSupport}</p>
         </div>
 
         <div className="question-panel onboarding-panel">
           <div className="object-reference">
             <span>Orientation Object</span>
             <strong>{state.objectDescription}</strong>
+            {state.secondaryObjectDescription && <strong>{state.secondaryObjectDescription}</strong>}
           </div>
           <label htmlFor="orientation-intention">Your intention</label>
           <textarea
@@ -337,11 +525,11 @@ export function OrientationLaboratory() {
             data-testid="orientation-intention"
             maxLength={300}
             onChange={(event) => dispatch({ type: "EDIT_INTENTION", value: event.target.value })}
-            placeholder="I would like to understand…"
+            placeholder={activeMode.intentionPlaceholder}
             value={state.intention}
           />
           <div className="field-meta">
-            <button className="text-button" data-testid="use-intention-example" onClick={() => dispatch({ type: "USE_INTENTION_EXAMPLE", value: fixture.request.utterance })} type="button">Use the recorded intention</button>
+            <button className="text-button" data-testid="use-intention-example" onClick={() => dispatch({ type: "USE_INTENTION_EXAMPLE", value: activeMode.intentionExample })} type="button">Use a {activeMode.name.toLowerCase()} example</button>
             <span>{state.intention.length} / 300</span>
           </div>
           {state.intentionIssue === "empty" && <p className="field-message" role="alert">Describe the direction you want to take.</p>}
@@ -361,7 +549,7 @@ export function OrientationLaboratory() {
 
   if (state.screen === "scope") {
     return (
-      <JourneyRoom step="03" label="Scope">
+      <JourneyRoom step="03" label="Scope" mode={state.mode}>
         <div className="room-copy">
           <p className="eyebrow lyra-accent">LYRA boundary · recorded translation</p>
           <h1 ref={headingRef} tabIndex={-1}>Confirm the scope.</h1>
@@ -371,7 +559,7 @@ export function OrientationLaboratory() {
         <section className="confirmation-card" aria-label="Orientation scope">
           <dl className="confirmation-definitions">
             <Definition label="Orientation mode" value={modeName(state.mode)} />
-            <Definition label="Orientation Object" value={`${state.objectType} · ${state.objectDescription}`} />
+            <Definition label="Orientation Object" value={formatOrientationObject(state)} />
             <Definition label="Your intention" value={state.intention} />
             <Definition label="Starting from" value={fixture.translation.sourceRepresentation} />
             <Definition label="Looking toward" value={fixture.translation.targetRepresentation} />
@@ -474,7 +662,7 @@ export function OrientationLaboratory() {
         <p>The orientation remains a map, not a decision. No session, material, intention or Reflection has been saved.</p>
         <dl className="departure-summary">
           <Definition label="Orientation mode" value={modeName(state.mode)} />
-          <Definition label="Orientation Object" value={`${state.objectType} · ${state.objectDescription}`} />
+          <Definition label="Orientation Object" value={formatOrientationObject(state)} />
           <Definition label="Intention" value={fixture.request.utterance} />
           <Definition label="Orientation status" value="Blocked" />
           <Definition label="What was produced" value="A registered plan and report fixture" />
@@ -486,9 +674,13 @@ export function OrientationLaboratory() {
   );
 }
 
-function JourneyRoom({ children, label, quiet = false, step }: { children: React.ReactNode; label: string; quiet?: boolean; step: string }) {
+function JourneyRoom({ children, label, mode = null, quiet = false, step }: { children: React.ReactNode; label: string; mode?: OrientationMode | null; quiet?: boolean; step: string }) {
   return (
-    <section className={`journey-room${quiet ? " journey-room-quiet" : ""}`} data-screen={label.toLowerCase()}>
+    <section
+      className={`journey-room${quiet ? " journey-room-quiet" : ""}${mode ? ` mode-tone-${mode}` : ""}`}
+      data-mode={mode ?? undefined}
+      data-screen={label.toLowerCase()}
+    >
       <div className="journey-marker" aria-label={`Journey step ${step}: ${label}`}>
         <span>{step}</span><strong>{label}</strong>
       </div>
@@ -619,4 +811,19 @@ function humanizeIssue(issue: string) {
 
 function modeName(mode: OrientationMode | null) {
   return orientationModes.find((item) => item.id === mode)?.name ?? "Orientation";
+}
+
+function getModeProfile(mode: OrientationMode | null) {
+  return orientationModes.find((item) => item.id === mode) ?? orientationModes[1];
+}
+
+function formatOrientationObject(state: {
+  objectType: OrientationObjectType;
+  objectDescription: string;
+  secondaryObjectDescription: string;
+}) {
+  const subjects = state.secondaryObjectDescription
+    ? `${state.objectDescription} ↔ ${state.secondaryObjectDescription}`
+    : state.objectDescription;
+  return `${state.objectType} · ${subjects}`;
 }

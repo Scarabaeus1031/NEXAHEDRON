@@ -64,3 +64,27 @@ test("defines keyboard focus and reduced-motion behavior", async () => {
   assert.match(css, /prefers-reduced-motion:\s*reduce/);
   assert.match(css, /min-width:\s*280px/);
 });
+
+test("defines a distinct entrance for every Orientation Mode", async () => {
+  const source = await readFile(
+    new URL("../apps/web/src/OrientationLaboratory.tsx", import.meta.url),
+    "utf8",
+  );
+
+  for (const question of [
+    "What caught your attention?",
+    "What would you like to understand?",
+    "What would you like to compare?",
+    "What would you like to connect?",
+    "Where would you like to begin?",
+    "What would you like to build?",
+    "What would you like to reflect on?",
+  ]) {
+    assert.match(source, new RegExp(question.replace(/[?]/g, "\\?")));
+  }
+
+  assert.match(source, /secondaryLabel: "Second subject"/);
+  assert.match(source, /secondaryLabel: "Second point"/);
+  assert.match(source, /Examples for \{activeMode\.name\}/);
+  assert.match(source, /mode-tone-\$\{mode\}/);
+});

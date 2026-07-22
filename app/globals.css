@@ -28,6 +28,7 @@ a {
 
 a:focus-visible,
 button:focus-visible,
+select:focus-visible,
 textarea:focus-visible,
 summary:focus-visible {
   outline: 3px solid var(--color-focus);
@@ -791,6 +792,34 @@ button:disabled {
   background: color-mix(in srgb, var(--color-wash) 42%, var(--color-canvas));
 }
 
+.mode-tone-wonder { --mode-tone: #9a6a18; --mode-tint: #f6f0e2; }
+.mode-tone-understand { --mode-tone: #174f91; --mode-tint: #eaf0f6; }
+.mode-tone-compare { --mode-tone: #73537f; --mode-tint: #f0ebf2; }
+.mode-tone-connect { --mode-tone: #39705c; --mode-tint: #e8f0ec; }
+.mode-tone-explore { --mode-tone: #347181; --mode-tint: #e7f0f2; }
+.mode-tone-build { --mode-tone: #9a542e; --mode-tint: #f5ece6; }
+.mode-tone-reflect { --mode-tone: #5f6176; --mode-tint: #ededf1; }
+
+.journey-room[class*="mode-tone-"] {
+  background:
+    linear-gradient(135deg, color-mix(in srgb, var(--mode-tint) 34%, transparent), transparent 42%),
+    var(--color-canvas);
+}
+
+.journey-room[class*="mode-tone-"] .journey-marker {
+  border-right-color: color-mix(in srgb, var(--mode-tone) 45%, var(--color-line));
+  background: color-mix(in srgb, var(--mode-tint) 58%, var(--color-canvas));
+}
+
+.journey-room[class*="mode-tone-"] .journey-marker span {
+  border-color: var(--mode-tone);
+  color: var(--mode-tone);
+}
+
+.journey-room[class*="mode-tone-"] .room-copy .eyebrow {
+  color: var(--mode-tone);
+}
+
 .journey-marker {
   display: flex;
   flex-direction: column;
@@ -888,6 +917,40 @@ button:disabled {
   margin-top: var(--space-2);
 }
 
+.mode-onboarding-panel {
+  position: relative;
+  border-top: 3px solid var(--mode-tone);
+}
+
+.mode-prompt-strip {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  margin: calc(-1 * var(--space-2)) 0 var(--space-5);
+  padding-bottom: var(--space-4);
+  border-bottom: 1px solid color-mix(in srgb, var(--mode-tone) 34%, var(--color-line));
+  color: var(--mode-tone);
+}
+
+.mode-prompt-strip span {
+  display: grid;
+  width: 38px;
+  aspect-ratio: 1;
+  flex: 0 0 auto;
+  place-items: center;
+  border: 1px solid var(--mode-tone);
+  border-radius: 50%;
+  font-family: var(--font-display);
+  font-size: 1.1rem;
+}
+
+.mode-prompt-strip p {
+  margin: 0;
+  font-size: 0.7rem;
+  letter-spacing: 0.11em;
+  text-transform: uppercase;
+}
+
 .object-reference {
   display: grid;
   gap: var(--space-2);
@@ -915,6 +978,46 @@ button:disabled {
   font-family: var(--font-display);
   font-size: 1.35rem;
   line-height: 1.45;
+}
+
+.mode-onboarding-panel textarea + label {
+  margin-top: var(--space-5);
+}
+
+.mode-examples {
+  margin: var(--space-5) 0 0;
+  padding: 0;
+  border: 0;
+}
+
+.mode-examples legend {
+  margin-bottom: var(--space-3);
+  color: var(--color-muted);
+  font-size: 0.69rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.mode-examples > div {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: var(--space-2);
+}
+
+.mode-examples button {
+  min-height: 48px;
+  padding: var(--space-3);
+  border: 1px solid color-mix(in srgb, var(--mode-tone) 40%, var(--color-line));
+  background: color-mix(in srgb, var(--mode-tint) 56%, var(--color-canvas));
+  color: var(--color-ink);
+  text-align: left;
+  transition: background-color 160ms ease, border-color 160ms ease;
+}
+
+.mode-examples button:hover,
+.mode-examples button:focus-visible {
+  border-color: var(--mode-tone);
+  background: var(--mode-tint);
 }
 
 .field-meta,
@@ -1474,7 +1577,8 @@ code {
 
   .mode-grid,
   .entry-boundary,
-  .journey-overview ol {
+  .journey-overview ol,
+  .mode-examples > div {
     grid-template-columns: 1fr;
   }
 

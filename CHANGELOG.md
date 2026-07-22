@@ -4,6 +4,9 @@
 
 ### Added
 
+- Seven mode-specific Laboratory entrances with distinct opening questions,
+  onboarding language, examples, field structure, intention prompts and visual
+  emphasis; Compare and Connect preserve two explicit starting anchors.
 - Internal-alpha review guide covering reproduction, primary and boundary
   journeys, known limitations and structured feedback prompts.
 - A concise Why Orientation bridge and human-first Bring what you have language

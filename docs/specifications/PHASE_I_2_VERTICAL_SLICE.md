@@ -17,7 +17,7 @@ Phase I.2 provides one complete, executable Laboratory journey:
 6. pause in optional Human Reflection;
 7. depart or begin again.
 
-The application exposes seven intention modes and eight object kinds, but the
+The application exposes seven intention modes and eleven object kinds, but the
 deterministic review journey recognizes one exact Understand + Observation
 combination. Unsupported material is retained in the browser long enough to
 explain the fixture boundary, but it is not sent, interpreted or inferred. No
@@ -55,6 +55,26 @@ pause without pretending that LUCY exists and without capturing human material.
 | Report | blocked summary, path, evidence, blockers, technical inspection |
 | Reflection | optional pause, no capture, return or continue |
 | Departure | outcome boundary, no-save disclosure, restart |
+
+## Mode-specific entrances
+
+Each Orientation Mode is a distinct entrance into the same Laboratory journey.
+The mode changes the opening question, supporting language, relevant material
+kinds, examples, field labels, intention prompt and restrained visual tone.
+Compare and Connect begin with two explicit anchors; the other five modes begin
+with one starting material. This variation belongs only to Laboratory session
+flow and presentation. It does not change NEXAH, invoke ORION, translate through
+LYRA or assign knowledge authority.
+
+| Mode | Opening question | Entrance emphasis |
+|---|---|---|
+| Wonder | What caught your attention? | notice before forming a question |
+| Understand | What would you like to understand? | clarify material and uncertainty |
+| Compare | What would you like to compare? | preserve two subjects and their differences |
+| Connect | What would you like to connect? | preserve two points while inspecting a possible bridge |
+| Explore | Where would you like to begin? | select a starting point without fixing a destination |
+| Build | What would you like to build? | orient purpose and constraints before form |
+| Reflect | What would you like to reflect on? | return to experience without delegated interpretation |
 
 Keyboard focus moves to the new place heading. Report views use tab semantics,
 status is expressed in text as well as color, and reduced-motion behavior is

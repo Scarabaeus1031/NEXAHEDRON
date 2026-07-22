@@ -38,6 +38,7 @@ export interface JourneyState {
   readonly mode: OrientationMode | null;
   readonly objectType: OrientationObjectType;
   readonly objectDescription: string;
+  readonly secondaryObjectDescription: string;
   readonly objectIssue: FieldIssue;
   readonly intention: string;
   readonly intentionIssue: FieldIssue;
@@ -49,7 +50,13 @@ export type JourneyAction =
   | { readonly type: "CHANGE_MODE" }
   | { readonly type: "EDIT_OBJECT_TYPE"; readonly value: OrientationObjectType }
   | { readonly type: "EDIT_OBJECT_DESCRIPTION"; readonly value: string }
-  | { readonly type: "USE_OBJECT_EXAMPLE"; readonly description: string }
+  | { readonly type: "EDIT_SECONDARY_OBJECT_DESCRIPTION"; readonly value: string }
+  | {
+      readonly type: "USE_OBJECT_EXAMPLE";
+      readonly description: string;
+      readonly objectType?: OrientationObjectType;
+      readonly secondaryDescription?: string;
+    }
   | { readonly type: "SUBMIT_OBJECT" }
   | { readonly type: "BACK_TO_OBJECT" }
   | { readonly type: "EDIT_INTENTION"; readonly value: string }
@@ -68,6 +75,7 @@ export const initialJourneyState: JourneyState = {
   mode: null,
   objectType: "",
   objectDescription: "",
+  secondaryObjectDescription: "",
   objectIssue: null,
   intention: "",
   intentionIssue: null,
@@ -84,7 +92,7 @@ export function reduceJourney(
         ? { ...state, mode: action.mode, screen: "object" }
         : state;
     case "CHANGE_MODE":
-      return state.screen === "object" ? { ...state, mode: null, screen: "arrival" } : state;
+      return state.screen === "object" ? initialJourneyState : state;
     case "EDIT_OBJECT_TYPE":
       return state.screen === "object"
         ? { ...state, objectType: action.value, objectIssue: null }
@@ -93,18 +101,28 @@ export function reduceJourney(
       return state.screen === "object"
         ? { ...state, objectDescription: action.value, objectIssue: null }
         : state;
+    case "EDIT_SECONDARY_OBJECT_DESCRIPTION":
+      return state.screen === "object"
+        ? { ...state, secondaryObjectDescription: action.value, objectIssue: null }
+        : state;
     case "USE_OBJECT_EXAMPLE":
       return state.screen === "object"
         ? {
             ...state,
-            objectType: "Observation",
+            objectType: action.objectType ?? "Observation",
             objectDescription: action.description,
+            secondaryObjectDescription: action.secondaryDescription ?? "",
             objectIssue: null,
           }
         : state;
     case "SUBMIT_OBJECT":
       if (state.screen !== "object") return state;
-      if (!state.objectType || !state.objectDescription.trim()) {
+      if (
+        !state.objectType ||
+        !state.objectDescription.trim() ||
+        ((state.mode === "compare" || state.mode === "connect") &&
+          !state.secondaryObjectDescription.trim())
+      ) {
         return { ...state, objectIssue: "empty" };
       }
       return { ...state, screen: "intention", objectIssue: null };

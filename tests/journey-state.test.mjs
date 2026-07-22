@@ -66,10 +66,48 @@ test("holds invalid transitions and exposes deterministic onboarding boundaries"
     value: "two papers",
   });
   state = reduceJourney(state, { type: "SUBMIT_OBJECT" });
+  assert.equal(state.screen, "object");
+  assert.equal(state.objectIssue, "empty");
+
+  state = reduceJourney(state, {
+    type: "EDIT_SECONDARY_OBJECT_DESCRIPTION",
+    value: "two different papers",
+  });
+  state = reduceJourney(state, { type: "SUBMIT_OBJECT" });
   assert.equal(state.screen, "intention");
 
   state = reduceJourney(state, { type: "EDIT_INTENTION", value: "compare them" });
   state = reduceJourney(state, { type: "SUBMIT_INTENTION", supported: false });
   assert.equal(state.screen, "intention");
   assert.equal(state.intentionIssue, "unsupported");
+});
+
+test("preserves a two-anchor entrance for Compare and Connect", () => {
+  for (const mode of ["compare", "connect"]) {
+    let state = reduceJourney(initialJourneyState, { type: "SELECT_MODE", mode });
+    state = reduceJourney(state, {
+      type: "USE_OBJECT_EXAMPLE",
+      objectType: mode === "compare" ? "Theory" : "Idea",
+      description: "first anchor",
+      secondaryDescription: "second anchor",
+    });
+
+    assert.equal(state.objectDescription, "first anchor");
+    assert.equal(state.secondaryObjectDescription, "second anchor");
+    state = reduceJourney(state, { type: "SUBMIT_OBJECT" });
+    assert.equal(state.screen, "intention");
+  }
+});
+
+test("clears mode-specific material when changing entrances", () => {
+  let state = reduceJourney(initialJourneyState, { type: "SELECT_MODE", mode: "connect" });
+  state = reduceJourney(state, {
+    type: "USE_OBJECT_EXAMPLE",
+    objectType: "Idea",
+    description: "first anchor",
+    secondaryDescription: "second anchor",
+  });
+  state = reduceJourney(state, { type: "CHANGE_MODE" });
+
+  assert.deepEqual(state, initialJourneyState);
 });

@@ -41,9 +41,19 @@ Open `http://localhost:3001/`.
 
 ## Boundary review
 
-Choose **Compare**, describe a Document and enter a comparison intention. The
+Choose **Compare**, select a material kind, name both subjects and enter a
+comparison intention. The
 Laboratory must stop before scope confirmation and state that nothing was sent
 or inferred.
+
+## Mode entrance review
+
+Open each of the seven modes once and return with **Change mode**. Verify that
+the opening question, supporting language, examples, fields, next action and
+visual emphasis fit the selected intention. Compare and Connect should ask for
+two anchors. The remaining modes should ask for one starting material. None of
+these entrances should suggest that the Laboratory has already interpreted the
+material.
 
 ## Known limitations
 
@@ -63,6 +73,7 @@ or inferred.
 - What did you think NEXAHEDRON was?
 - Where did the language feel technical or uncertain?
 - Was the next action clear at every step?
+- Did each mode feel like a genuinely different entrance rather than renamed copy?
 - Did the blocked report feel trustworthy and understandable?
 - What, if anything, suggested an answer machine rather than an Orientation Laboratory?
 
