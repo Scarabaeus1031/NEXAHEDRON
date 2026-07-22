@@ -55,7 +55,7 @@ test("renders the local Wonder capture without an execution boundary", async () 
   assert.match(html, /Nothing is sent to ORION/);
 });
 
-test("renders Object Selection and names the intentional Sprint 1 limit", async () => {
+test("renders Object Selection without crossing the upload boundary", async () => {
   const response = await render("/object");
   assert.equal(response.status, 200);
   const html = await response.text();
@@ -68,6 +68,41 @@ test("renders Object Selection and names the intentional Sprint 1 limit", async 
   assert.match(html, /Preview/);
   assert.match(html, /Continue/);
   assert.match(html, /No upload occurs/);
+});
+
+test("renders a structured Request Editor with immediate local validation", async () => {
+  const response = await render("/request");
+  assert.equal(response.status, 200);
+  const html = await response.text();
+
+  assert.match(html, /Define your orientation request\./);
+  assert.match(html, /Selected Orientation Object/);
+  assert.match(html, /Intention/);
+  assert.match(html, /Focus/);
+  assert.match(html, /Success Boundary/);
+  assert.match(html, /Scope Include/);
+  assert.match(html, /Scope Exclude/);
+  assert.match(html, /Overview/);
+  assert.match(html, /Focused/);
+  assert.match(html, /Deep/);
+  assert.match(html, /Live Request Summary/);
+  assert.match(html, /Effects/);
+  assert.match(html, />none</);
+  assert.match(html, /Complete the required fields/);
+  assert.doesNotMatch(html, /prompt field|message history|Begin Orientation/i);
+});
+
+test("renders Human confirmation without exposing execution", async () => {
+  const response = await render("/confirmation");
+  assert.equal(response.status, 200);
+  const html = await response.text();
+
+  assert.match(html, /Confirm what you are preparing\./);
+  assert.match(html, /Orientation Object/);
+  assert.match(html, /Version/);
+  assert.match(html, /Wonder note/);
+  assert.match(html, /Prepare Orientation Request/);
+  assert.doesNotMatch(html, /Begin Orientation|JSON|Report|Evidence|Continuation/i);
 });
 
 test("defines visible focus, responsive layout and reduced motion", async () => {

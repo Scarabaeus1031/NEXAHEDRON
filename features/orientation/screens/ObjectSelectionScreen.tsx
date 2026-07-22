@@ -13,7 +13,6 @@ export function ObjectSelectionScreen() {
   const router = useRouter();
   const { state, dispatch } = useAlphaJourney();
   const [showIssues, setShowIssues] = useState(false);
-  const isComplete = state.step === "complete";
 
   function update(value: { title?: string; type?: OrientationObjectType; url?: string; fileName?: string }) {
     dispatch({ type: "UPDATE_OBJECT", value });
@@ -30,36 +29,7 @@ export function ObjectSelectionScreen() {
       return;
     }
     dispatch({ type: "COMPLETE_OBJECT" });
-  }
-
-  function startAgain() {
-    dispatch({ type: "RESET" });
-    router.push(alphaRoutes.landing);
-  }
-
-  if (isComplete) {
-    return (
-      <section className="page page--focused completion" aria-labelledby="completion-title">
-        <p className="eyebrow">Sprint 1 complete</p>
-        <h1 id="completion-title">Your starting point is defined.</h1>
-        <p className="completion__lead">
-          The Laboratory has preserved what you want to understand. It has not begun an orientation.
-        </p>
-        <ObjectPreview />
-        <div className="boundary-note">
-          <strong>Intentional boundary</strong>
-          <p>No Orientation Request has been created or sent. Everything after Object Selection remains unavailable in Sprint 1.</p>
-        </div>
-        <div className="button-row">
-          <button className="action action--quiet" type="button" onClick={() => dispatch({ type: "REVIEW_OBJECT" })}>
-            Review object
-          </button>
-          <button className="action action--primary" type="button" onClick={startAgain}>
-            Return to the Laboratory
-          </button>
-        </div>
-      </section>
-    );
+    router.push(alphaRoutes.request);
   }
 
   return (

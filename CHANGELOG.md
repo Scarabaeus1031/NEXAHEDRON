@@ -4,6 +4,12 @@
 
 ### Added
 
+- Alpha Sprint 2 Request Editor with structured Intention, Focus, Success
+  Boundary, Scope Include, Scope Exclude and Depth controls.
+- Continuous Human-readable Request Summary and reusable local validation for
+  the Orientation Object, Intention and included scope.
+- Separate Confirmation and prepared-request states with Effects explicitly set
+  to none and execution intentionally unavailable.
 - Alpha Sprint 1 production frontend foundation with four routes: Landing,
   Choose Orientation, Wonder and Object Selection.
 - In-memory Wonder and Orientation Object state, accessible form validation,

@@ -39,6 +39,8 @@ const routeScreens = new Map([
   ["app/orient/page.tsx", "ChooseOrientationScreen"],
   ["app/wonder/page.tsx", "WonderScreen"],
   ["app/object/page.tsx", "ObjectSelectionScreen"],
+  ["app/request/page.tsx", "RequestEditorScreen"],
+  ["app/confirmation/page.tsx", "ConfirmationScreen"],
 ]);
 for (const [path, screen] of routeScreens) {
   const source = await readFile(new URL(`../${path}`, import.meta.url), "utf8");
@@ -66,4 +68,4 @@ const sourceManifest = await readFile(new URL("../docs/upstream/orion-v1/SOURCE.
 assert.match(sourceManifest, new RegExp(`revision: ${expectedOrionRevision}`));
 assert.match(sourceManifest, /source_repository_remains_canonical: true/);
 
-console.log("NEXAHEDRON Sprint 1 authority and architecture checks passed.");
+console.log("NEXAHEDRON Sprint 2 authority and architecture checks passed.");

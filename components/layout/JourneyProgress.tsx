@@ -7,6 +7,8 @@ const steps = [
   { path: "/orient", label: "Choose" },
   { path: "/wonder", label: "Wonder" },
   { path: "/object", label: "Object" },
+  { path: "/request", label: "Request" },
+  { path: "/confirmation", label: "Confirm" },
 ] as const;
 
 export function JourneyProgress() {

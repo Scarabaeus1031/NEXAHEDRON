@@ -7,23 +7,31 @@ local flow that will eventually consume ORION. It does not own NEXAH semantics,
 ORION orientation, LYRA language, Library editorial authority, or Human
 intention and decisions.
 
-## Alpha Sprint 1
+## Alpha Sprint 2
 
-Sprint 1 is a frontend-only vertical slice:
+Sprint 2 extends the frontend-only preparation workflow:
 
 1. Landing
 2. Choose Orientation
 3. Wonder
 4. Object Selection
+5. Request Editor
+6. Confirmation
+7. Prepared request boundary
 
 The available journey is Wonder → Understand → Object Selection. Understand can
 also begin directly. Compare, Connect, Explore, Build and Reflect are visible as
 later modes but cannot be selected.
 
+The Request Editor captures Intention, Focus, Success Boundary, included and
+excluded scope, and Depth in separate structured cards. Local validation
+requires a defined Orientation Object, an Intention and at least one included
+scope item. Confirmation remains a separate Human decision.
+
 All entered material remains in memory for the current browser render only.
 There is no API, persistence, authentication, upload, Gateway call, Runtime call,
-or simulated ORION response. The final Object Selection state names this
-boundary explicitly.
+serialization or simulated ORION response. The prepared-request screen names
+this boundary explicitly.
 
 ## Application structure
 
@@ -57,4 +65,5 @@ npm run dev -- --port 3001
 ```
 
 The architecture check verifies that the application has no network calls,
-fixture-backed reports, ORION internals or provider dependencies.
+fixture-backed reports, ORION internals or provider dependencies. Execution
+intentionally begins in a later sprint.
