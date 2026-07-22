@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { AppShell } from "@/components/layout/AppShell";
 import { AlphaJourneyProvider } from "@/features/orientation/provider";
 import "./globals.css";
+import "../styles/public-experience.css";
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://nexahedron.com"),

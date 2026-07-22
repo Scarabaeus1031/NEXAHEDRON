@@ -13,7 +13,7 @@ async function render(path = "/") {
   );
 }
 
-test("renders the Landing as a quiet entrance to the Laboratory", async () => {
+test("renders the public homepage as a quiet entrance to Orientation Cases", async () => {
   const response = await render();
   assert.equal(response.status, 200);
   const html = await response.text();
@@ -21,9 +21,16 @@ test("renders the Landing as a quiet entrance to the Laboratory", async () => {
   assert.match(html, /<title>NEXAHEDRON — The Orientation Laboratory<\/title>/);
   assert.match(html, /<main id="main-content"/);
   assert.match(html, /Skip to main content/);
-  assert.match(html, /A place to find your bearings\./);
+  assert.match(html, /Find your bearings\./);
   assert.match(html, /NEXAHEDRON helps people orient themselves across existing knowledge\./);
-  assert.match(html, /Open the Laboratory/);
+  assert.match(html, /What is this\?/);
+  assert.match(html, /Why does it exist\?/);
+  assert.match(html, /Where can I begin\?/);
+  assert.match(html, /Enter through a case/);
+  assert.match(html, /Primary navigation/);
+  for (const destination of ["Home", "Explore", "Cases", "Library", "About", "GitHub"]) {
+    assert.match(html, new RegExp(destination));
+  }
   const visibleDocument = html
     .split("<body>")[1]
     .split('<script id="_R_">')[0];
