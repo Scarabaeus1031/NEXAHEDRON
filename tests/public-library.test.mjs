@@ -68,3 +68,34 @@ test("Plate Tectonics follows the canonical Orientation Case hierarchy", async (
   assert.match(html, /Inspect source/);
   assert.match(html, /Unknown is a valid position/);
 });
+
+test("Library presents an atlas with accessible rooms, paths, and frontiers", async () => {
+  const response = await render("/library");
+  assert.equal(response.status, 200);
+  const html = await response.text();
+
+  for (const text of [
+    "A landscape, not a list.",
+    "The first visible terrain.",
+    "How to read this view",
+    "Open room",
+    "Frontier",
+    "Collections as rooms",
+    "A subject is only one way in.",
+  ]) {
+    assert.match(html, new RegExp(text));
+  }
+});
+
+test("About introduces Orientation without exposing internal architecture", async () => {
+  const response = await render("/about");
+  assert.equal(response.status, 200);
+  const html = await response.text();
+
+  assert.match(html, /Information already exists\. Orientation is what is missing\./);
+  assert.match(html, /Finding is not the same as understanding\./);
+  assert.match(html, /Human first/);
+  assert.match(html, /Evidence before certainty/);
+  const visibleDocument = html.split("<body>")[1].split('<script id="_R_">')[0];
+  assert.doesNotMatch(visibleDocument, /Gateway|Runtime|public contract|provider/i);
+});
