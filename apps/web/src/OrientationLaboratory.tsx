@@ -257,7 +257,7 @@ export function OrientationLaboratory() {
       <>
         <section className="landing-introduction" id="top" aria-labelledby="hero-heading">
           <div className="introduction-primary">
-            <p className="eyebrow">NEXAH · The underlying orientation system</p>
+            <p className="eyebrow">01 · NEXAH · The underlying orientation system</p>
             <h1 id="hero-heading">The Orientation Layer</h1>
             <p className="introduction-lead">
               Information already exists. Orientation is what is missing.
@@ -288,59 +288,10 @@ export function OrientationLaboratory() {
         </section>
 
         <section className="why-orientation" aria-labelledby="why-orientation-heading">
-          <p className="section-index">Why orientation?</p>
+          <p className="section-index">02 · Why orientation?</p>
           <div>
             <h2 id="why-orientation-heading">We have more information—and more systems producing answers—than ever before.</h2>
             <p>What is still missing is orientation.</p>
-          </div>
-        </section>
-
-        <section className="landing-section object-spectrum" id="orientation-objects" aria-labelledby="objects-heading">
-          <header className="landing-section-heading">
-            <p className="section-index">01 · Bring what you have</p>
-            <h2 id="objects-heading">Bring what you have.</h2>
-            <p>
-              A question, document, book, theory, dataset, note, observation or idea
-              can be the starting point. Inside the Laboratory, the material you
-              orient is called an Orientation Object.
-            </p>
-          </header>
-          <ul className="object-grid" aria-label="Examples of material you can bring">
-            {orientationObjects.map((object, index) => (
-              <li key={object}><span>{String(index + 1).padStart(2, "0")}</span>{object}</li>
-            ))}
-          </ul>
-        </section>
-
-        <section className="landing-section source-layer" aria-labelledby="sources-heading">
-          <header className="landing-section-heading">
-            <p className="section-index">02 · Orient across existing knowledge</p>
-            <h2 id="sources-heading">Knowledge remains where it already exists.</h2>
-            <p>
-              Books remain books. Research papers remain papers. Repositories and
-              knowledge bases remain their own. NEXAH does not replace them; it
-              creates orientation across them.
-            </p>
-            <p className="source-boundary">
-              The source ecosystem remains external. No connector is active in this
-              deterministic review build.
-            </p>
-            <a className="framework-link" href="https://nexah.de" rel="noreferrer" target="_blank">The wider NEXAH framework at nexah.de ↗</a>
-          </header>
-          <div className="source-map" aria-label="Relationship between existing knowledge, NEXAH and NEXAHEDRON">
-            <ul aria-label="Existing knowledge sources">
-              {sourceTypes.map((source) => <li key={source}>{source}</li>)}
-            </ul>
-            <div className="nexah-layer">
-              <span>NEXAH</span>
-              <strong>Orientation Layer</strong>
-              <small>Creates orientation across existing sources</small>
-            </div>
-            <div className="laboratory-access">
-              <span>NEXAHEDRON</span>
-              <strong>Orientation Laboratory</strong>
-              <small>First application · human access to NEXAH</small>
-            </div>
           </div>
         </section>
 
@@ -387,10 +338,59 @@ export function OrientationLaboratory() {
           </aside>
         </section>
 
+        <section className="landing-section object-spectrum" id="orientation-objects" aria-labelledby="objects-heading">
+          <header className="landing-section-heading">
+            <p className="section-index">04 · Bring what you have</p>
+            <h2 id="objects-heading">Bring what you have.</h2>
+            <p>
+              A question, document, book, theory, dataset, note, observation or idea
+              can be the starting point. Inside the Laboratory, the material you
+              orient is called an Orientation Object.
+            </p>
+          </header>
+          <ul className="object-grid" aria-label="Examples of material you can bring">
+            {orientationObjects.map((object, index) => (
+              <li key={object}><span>{String(index + 1).padStart(2, "0")}</span>{object}</li>
+            ))}
+          </ul>
+        </section>
+
+        <section className="landing-section source-layer" aria-labelledby="sources-heading">
+          <header className="landing-section-heading">
+            <p className="section-index">05 · Orient across existing knowledge</p>
+            <h2 id="sources-heading">Knowledge remains where it already exists.</h2>
+            <p>
+              Books remain books. Research papers remain papers. Repositories and
+              knowledge bases remain their own. NEXAH does not replace them; it
+              creates orientation across them.
+            </p>
+            <p className="source-boundary">
+              The source ecosystem remains external. No connector is active in this
+              deterministic review build.
+            </p>
+            <a className="framework-link" href="https://nexah.de" rel="noreferrer" target="_blank">The wider NEXAH framework at nexah.de ↗</a>
+          </header>
+          <div className="source-map" aria-label="Relationship between existing knowledge, NEXAH and NEXAHEDRON">
+            <ul aria-label="Existing knowledge sources">
+              {sourceTypes.map((source) => <li key={source}>{source}</li>)}
+            </ul>
+            <div className="nexah-layer">
+              <span>NEXAH</span>
+              <strong>Orientation Layer</strong>
+              <small>Creates orientation across existing sources</small>
+            </div>
+            <div className="laboratory-access">
+              <span>NEXAHEDRON</span>
+              <strong>Orientation Laboratory</strong>
+              <small>First application · human access to NEXAH</small>
+            </div>
+          </div>
+        </section>
+
         <section className="boundary-section" id="authority" aria-labelledby="authority-heading">
           <div className="section-heading">
             <div>
-              <p className="section-index">04 · Authority remains visible</p>
+              <p className="section-index">06 · Authority remains visible</p>
               <h2 id="authority-heading">One Laboratory. Distinct responsibilities.</h2>
             </div>
           </div>

@@ -49,7 +49,7 @@ pause without pretending that LUCY exists and without capturing human material.
 
 | Place | Required state |
 |---|---|
-| Arrival | NEXAH/NEXAHEDRON distinction, Why Orientation bridge, human-first material invitation, later Orientation Object terminology, external-source context, seven intention modes, fixture disclosure, visible authorities |
+| Arrival | NEXAH/NEXAHEDRON distinction → Why Orientation bridge → seven intention modes → human-first material invitation → external-source context → visible authorities |
 | Orientation Object | kind, material description, recorded example |
 | Intention | direction, exact recorded example, unsupported combination |
 | Scope | selected mode and object, recorded translation, adjust, confirm |

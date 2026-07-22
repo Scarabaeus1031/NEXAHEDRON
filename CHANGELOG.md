@@ -4,6 +4,8 @@
 
 ### Added
 
+- Landing narrative reordered from identity and purpose to mode choice before
+  material, source context and visible authority, without visual redesign.
 - A reference-quality Understand path organized around Commitment, Insight and
   Continuation, keeping the current orientation open after its first report.
 - Seven mode-specific Laboratory entrances with distinct opening questions,

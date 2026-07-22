@@ -56,6 +56,18 @@ test("renders the accessible Phase I foundation shell", async () => {
   assert.match(html, /Human/);
   assert.doesNotMatch(html, /codex-preview|react-loading-skeleton/i);
   assert.doesNotMatch(html, /\bAI\b|assistant|chat interface/i);
+
+  const narrative = [
+    "The Orientation Layer",
+    "Why orientation?",
+    "Choose how you would like to begin.",
+    "Bring what you have.",
+    "Knowledge remains where it already exists.",
+    "One Laboratory. Distinct responsibilities.",
+  ].map((text) => html.indexOf(text));
+
+  assert.ok(narrative.every((position) => position >= 0));
+  assert.deepEqual(narrative, [...narrative].sort((left, right) => left - right));
 });
 
 test("defines keyboard focus and reduced-motion behavior", async () => {
