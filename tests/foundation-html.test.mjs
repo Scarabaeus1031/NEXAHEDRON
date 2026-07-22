@@ -87,4 +87,10 @@ test("defines a distinct entrance for every Orientation Mode", async () => {
   assert.match(source, /secondaryLabel: "Second point"/);
   assert.match(source, /Examples for \{activeMode\.name\}/);
   assert.match(source, /mode-tone-\$\{mode\}/);
+  assert.match(source, /A route becomes visible\./);
+  assert.match(source, /Where would you like to continue\?/);
+  assert.match(source, /Stay with the report/);
+  assert.match(source, /Adjust the direction/);
+  assert.match(source, /Revisit the material/);
+  assert.doesNotMatch(source, /data-testid="end-from-report"/);
 });

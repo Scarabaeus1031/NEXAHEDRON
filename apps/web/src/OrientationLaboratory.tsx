@@ -409,7 +409,7 @@ export function OrientationLaboratory() {
 
   if (state.screen === "object") {
     return (
-      <JourneyRoom step="01" label={activeMode.name} mode={state.mode}>
+      <JourneyRoom step="01" label={activeMode.name} mode={state.mode} moment="Commitment">
         <div className="room-copy">
           <p className="eyebrow">{activeMode.symbol} · {activeMode.name} entrance</p>
           <h1 ref={headingRef} tabIndex={-1}>{activeMode.openingQuestion}</h1>
@@ -417,44 +417,46 @@ export function OrientationLaboratory() {
         </div>
 
         <div className="question-panel onboarding-panel mode-onboarding-panel">
-          <div className="mode-prompt-strip" aria-hidden="true">
-            <span>{activeMode.symbol}</span>
-            <p>{activeMode.verbs}</p>
+          <div className="onboarding-fields">
+            <div className="mode-prompt-strip" aria-hidden="true">
+              <span>{activeMode.symbol}</span>
+              <p>{activeMode.verbs}</p>
+            </div>
+
+            <label htmlFor="orientation-object-type">{activeMode.kindLabel}</label>
+            <select
+              data-testid="orientation-object-type"
+              id="orientation-object-type"
+              onChange={(event) => dispatch({ type: "EDIT_OBJECT_TYPE", value: event.target.value as OrientationObjectType })}
+              value={state.objectType}
+            >
+              <option value="">Choose a kind…</option>
+              {activeMode.objectTypes.map((type) => <option key={type} value={type}>{type}</option>)}
+            </select>
+
+            <label htmlFor="orientation-object">{activeMode.primaryLabel}</label>
+            <textarea
+              id="orientation-object"
+              data-testid="orientation-object"
+              maxLength={300}
+              onChange={(event) => dispatch({ type: "EDIT_OBJECT_DESCRIPTION", value: event.target.value })}
+              placeholder={activeMode.primaryPlaceholder}
+              value={state.objectDescription}
+            />
+            {activeMode.secondaryLabel && (
+              <>
+                <label htmlFor="orientation-object-secondary">{activeMode.secondaryLabel}</label>
+                <textarea
+                  id="orientation-object-secondary"
+                  data-testid="orientation-object-secondary"
+                  maxLength={300}
+                  onChange={(event) => dispatch({ type: "EDIT_SECONDARY_OBJECT_DESCRIPTION", value: event.target.value })}
+                  placeholder={activeMode.secondaryPlaceholder}
+                  value={state.secondaryObjectDescription}
+                />
+              </>
+            )}
           </div>
-
-          <label htmlFor="orientation-object-type">{activeMode.kindLabel}</label>
-          <select
-            data-testid="orientation-object-type"
-            id="orientation-object-type"
-            onChange={(event) => dispatch({ type: "EDIT_OBJECT_TYPE", value: event.target.value as OrientationObjectType })}
-            value={state.objectType}
-          >
-            <option value="">Choose a kind…</option>
-            {activeMode.objectTypes.map((type) => <option key={type} value={type}>{type}</option>)}
-          </select>
-
-          <label htmlFor="orientation-object">{activeMode.primaryLabel}</label>
-          <textarea
-            id="orientation-object"
-            data-testid="orientation-object"
-            maxLength={300}
-            onChange={(event) => dispatch({ type: "EDIT_OBJECT_DESCRIPTION", value: event.target.value })}
-            placeholder={activeMode.primaryPlaceholder}
-            value={state.objectDescription}
-          />
-          {activeMode.secondaryLabel && (
-            <>
-              <label htmlFor="orientation-object-secondary">{activeMode.secondaryLabel}</label>
-              <textarea
-                id="orientation-object-secondary"
-                data-testid="orientation-object-secondary"
-                maxLength={300}
-                onChange={(event) => dispatch({ type: "EDIT_SECONDARY_OBJECT_DESCRIPTION", value: event.target.value })}
-                placeholder={activeMode.secondaryPlaceholder}
-                value={state.secondaryObjectDescription}
-              />
-            </>
-          )}
 
           <fieldset className="mode-examples">
             <legend>Examples for {activeMode.name}</legend>
@@ -506,38 +508,40 @@ export function OrientationLaboratory() {
 
   if (state.screen === "intention") {
     return (
-      <JourneyRoom step="02" label={`${activeMode.name} intention`} mode={state.mode}>
+      <JourneyRoom step="02" label={`${activeMode.name} intention`} mode={state.mode} moment="Commitment">
         <div className="room-copy">
           <p className="eyebrow">{activeMode.symbol} · {activeMode.name} · {state.objectType}</p>
           <h1 ref={headingRef} tabIndex={-1}>{activeMode.intentionQuestion}</h1>
           <p>{activeMode.intentionSupport}</p>
         </div>
 
-        <div className="question-panel onboarding-panel">
+        <div className="question-panel onboarding-panel intention-panel">
           <div className="object-reference">
             <span>Orientation Object</span>
             <strong>{state.objectDescription}</strong>
             {state.secondaryObjectDescription && <strong>{state.secondaryObjectDescription}</strong>}
           </div>
-          <label htmlFor="orientation-intention">Your intention</label>
-          <textarea
-            id="orientation-intention"
-            data-testid="orientation-intention"
-            maxLength={300}
-            onChange={(event) => dispatch({ type: "EDIT_INTENTION", value: event.target.value })}
-            placeholder={activeMode.intentionPlaceholder}
-            value={state.intention}
-          />
-          <div className="field-meta">
-            <button className="text-button" data-testid="use-intention-example" onClick={() => dispatch({ type: "USE_INTENTION_EXAMPLE", value: activeMode.intentionExample })} type="button">Use a {activeMode.name.toLowerCase()} example</button>
-            <span>{state.intention.length} / 300</span>
+          <div className="intention-field">
+            <label htmlFor="orientation-intention">Your intention</label>
+            <textarea
+              id="orientation-intention"
+              data-testid="orientation-intention"
+              maxLength={300}
+              onChange={(event) => dispatch({ type: "EDIT_INTENTION", value: event.target.value })}
+              placeholder={activeMode.intentionPlaceholder}
+              value={state.intention}
+            />
+            <div className="field-meta">
+              <button className="text-button" data-testid="use-intention-example" onClick={() => dispatch({ type: "USE_INTENTION_EXAMPLE", value: activeMode.intentionExample })} type="button">Use a {activeMode.name.toLowerCase()} example</button>
+              <span>{state.intention.length} / 300</span>
+            </div>
+            {state.intentionIssue === "empty" && <p className="field-message" role="alert">Describe the direction you want to take.</p>}
+            {state.intentionIssue === "unsupported" && (
+              <p className="field-message" role="alert">
+                This review build can complete only the recorded Understand + Observation journey. Nothing was sent or inferred. Choose that mode and the recorded examples to continue.
+              </p>
+            )}
           </div>
-          {state.intentionIssue === "empty" && <p className="field-message" role="alert">Describe the direction you want to take.</p>}
-          {state.intentionIssue === "unsupported" && (
-            <p className="field-message" role="alert">
-              This review build can complete only the recorded Understand + Observation journey. Nothing was sent or inferred. Choose that mode and the recorded examples to continue.
-            </p>
-          )}
           <div className="room-actions">
             <button className="secondary-button" data-testid="back-to-object" onClick={() => dispatch({ type: "BACK_TO_OBJECT" })} type="button">Back to the object</button>
             <button className="primary-button" data-testid="continue-intention" disabled={!state.intention.trim()} onClick={submitIntention} type="button">Confirm the scope</button>
@@ -549,22 +553,32 @@ export function OrientationLaboratory() {
 
   if (state.screen === "scope") {
     return (
-      <JourneyRoom step="03" label="Scope" mode={state.mode}>
+      <JourneyRoom step="03" label="Scope" mode={state.mode} moment="Commitment">
         <div className="room-copy">
           <p className="eyebrow lyra-accent">LYRA boundary · recorded translation</p>
-          <h1 ref={headingRef} tabIndex={-1}>Confirm the scope.</h1>
-          <p>The structured direction below is copied from the canonical fixture. It is not created by this Laboratory.</p>
+          <h1 ref={headingRef} tabIndex={-1}>Is this the orientation you want?</h1>
+          <p>Confirm your material and direction before the recorded route is opened. Nothing has been interpreted or sent.</p>
         </div>
 
         <section className="confirmation-card" aria-label="Orientation scope">
-          <dl className="confirmation-definitions">
-            <Definition label="Orientation mode" value={modeName(state.mode)} />
-            <Definition label="Orientation Object" value={formatOrientationObject(state)} />
-            <Definition label="Your intention" value={state.intention} />
-            <Definition label="Starting from" value={fixture.translation.sourceRepresentation} />
-            <Definition label="Looking toward" value={fixture.translation.targetRepresentation} />
-            <Definition label="Recorded intents" value={fixture.translation.intents.join(" + ")} />
-          </dl>
+          <div className="scope-groups">
+            <section aria-labelledby="your-orientation-heading">
+              <p className="card-label" id="your-orientation-heading">Your orientation</p>
+              <dl className="confirmation-definitions">
+                <Definition label="Mode" value={modeName(state.mode)} />
+                <Definition label="Material" value={formatOrientationObject(state)} />
+                <Definition label="Direction" value={state.intention} />
+              </dl>
+            </section>
+            <section aria-labelledby="recorded-scope-heading">
+              <p className="card-label lyra-accent" id="recorded-scope-heading">Recorded LYRA translation</p>
+              <dl className="confirmation-definitions">
+                <Definition label="From" value={fixture.translation.sourceRepresentation} />
+                <Definition label="Toward" value={fixture.translation.targetRepresentation} />
+                <Definition label="Intents" value={fixture.translation.intents.join(" + ")} />
+              </dl>
+            </section>
+          </div>
           <p className="boundary-note">Confirming loads a deterministic report fixture. The ORION gateway remains unavailable.</p>
           <div className="room-actions">
             <button className="secondary-button" data-testid="back-to-intention" onClick={() => dispatch({ type: "BACK_TO_INTENTION" })} type="button">Adjust intention</button>
@@ -577,18 +591,23 @@ export function OrientationLaboratory() {
 
   if (state.screen === "report") {
     return (
-      <JourneyRoom step="04" label="Orientation">
+      <JourneyRoom step="04" label="Orientation Report" moment="Insight">
         <div className="report-heading">
           <div>
             <p className="eyebrow orion-accent">ORION report · deterministic fixture</p>
-            <h1 ref={headingRef} tabIndex={-1}>Your orientation</h1>
-            <p className="report-lead">There is a registered route, but it cannot currently be completed.</p>
+            <h1 ref={headingRef} tabIndex={-1}>A route becomes visible.</h1>
+            <p className="report-lead">The route is registered and inspectable. Its missing capabilities remain visible rather than being turned into an answer.</p>
           </div>
           <div className="status-block" aria-label="Report status blocked">
             <span>Status</span>
             <strong>Blocked</strong>
           </div>
         </div>
+
+        <aside className="report-context" aria-label="Orientation being reported">
+          <div><span>Understanding</span><strong>{state.objectDescription}</strong></div>
+          <div><span>Direction</span><strong>{state.intention}</strong></div>
+        </aside>
 
         <div className="report-disclosure" role="note">
           Canonical fixture loaded from <code>orientation-session/1</code>. No live ORION request was made.
@@ -626,8 +645,8 @@ export function OrientationLaboratory() {
         </section>
 
         <div className="room-actions report-actions">
-          <button className="secondary-button" data-testid="end-from-report" onClick={() => dispatch({ type: "DEPART" })} type="button">End here</button>
-          <button className="primary-button" data-testid="pause-reflect" onClick={() => dispatch({ type: "REFLECT" })} type="button">Pause and reflect</button>
+          <button className="secondary-button" data-testid="pause-reflect" onClick={() => dispatch({ type: "REFLECT" })} type="button">Pause and reflect</button>
+          <button className="primary-button" data-testid="continue-orientation" onClick={() => dispatch({ type: "OPEN_CONTINUATION" })} type="button">Continue orientation</button>
         </div>
       </JourneyRoom>
     );
@@ -635,7 +654,7 @@ export function OrientationLaboratory() {
 
   if (state.screen === "reflection") {
     return (
-      <JourneyRoom step="05" label="Reflection" quiet>
+      <JourneyRoom step="05" label="Reflection" moment="Insight" quiet>
         <div className="reflection-room">
           <p className="eyebrow">Optional human space</p>
           <h1 ref={headingRef} tabIndex={-1}>What remains unresolved for you?</h1>
@@ -647,7 +666,7 @@ export function OrientationLaboratory() {
           </aside>
           <div className="room-actions centered-actions">
             <button className="secondary-button" data-testid="return-report" onClick={() => dispatch({ type: "RETURN_TO_REPORT" })} type="button">Return to the orientation</button>
-            <button className="primary-button" data-testid="continue-departure" onClick={() => dispatch({ type: "DEPART" })} type="button">Continue</button>
+            <button className="primary-button" data-testid="continue-from-reflection" onClick={() => dispatch({ type: "OPEN_CONTINUATION" })} type="button">Continue orientation</button>
           </div>
         </div>
       </JourneyRoom>
@@ -655,26 +674,45 @@ export function OrientationLaboratory() {
   }
 
   return (
-    <JourneyRoom step="06" label="Departure" quiet>
-      <div className="departure-room">
-        <p className="eyebrow">The journey is complete</p>
-        <h1 ref={headingRef} tabIndex={-1}>You can leave this orientation here.</h1>
-        <p>The orientation remains a map, not a decision. No session, material, intention or Reflection has been saved.</p>
-        <dl className="departure-summary">
-          <Definition label="Orientation mode" value={modeName(state.mode)} />
-          <Definition label="Orientation Object" value={formatOrientationObject(state)} />
-          <Definition label="Intention" value={fixture.request.utterance} />
-          <Definition label="Orientation status" value="Blocked" />
-          <Definition label="What was produced" value="A registered plan and report fixture" />
-          <Definition label="What was not produced" value="A Target Representation" />
-        </dl>
-        <button className="primary-button" data-testid="begin-again" onClick={() => dispatch({ type: "RESTART" })} type="button">Return to the Laboratory</button>
+    <JourneyRoom step="06" label="Continue Orientation" moment="Continuation" quiet>
+      <div className="continuation-room">
+        <p className="eyebrow">The report is a beginning</p>
+        <h1 ref={headingRef} tabIndex={-1}>Where would you like to continue?</h1>
+        <p>Your material, intention and report remain together in this local session. Choose what deserves the next look.</p>
+
+        <aside className="continuation-reference" aria-label="Current orientation">
+          <div><span>Understanding</span><strong>{state.objectDescription}</strong></div>
+          <div><span>Current status</span><strong>Route visible · execution blocked</strong></div>
+        </aside>
+
+        <div className="continuation-options" aria-label="Ways to continue this orientation">
+          <button data-testid="continue-with-report" onClick={() => dispatch({ type: "RETURN_TO_REPORT" })} type="button">
+            <span>01 · Inspect</span>
+            <strong>Stay with the report</strong>
+            <small>Return to the path, evidence or open blockers.</small>
+          </button>
+          <button data-testid="continue-with-intention" onClick={() => dispatch({ type: "CONTINUE_WITH_INTENTION" })} type="button">
+            <span>02 · Refine</span>
+            <strong>Adjust the direction</strong>
+            <small>Keep the material and make the intended understanding more precise.</small>
+          </button>
+          <button data-testid="continue-with-object" onClick={() => dispatch({ type: "CONTINUE_WITH_OBJECT" })} type="button">
+            <span>03 · Reframe</span>
+            <strong>Revisit the material</strong>
+            <small>Change the starting point without abandoning this orientation.</small>
+          </button>
+        </div>
+
+        <div className="continuation-boundary">
+          <p>No session, material, intention or Reflection is saved in this alpha.</p>
+          <button className="text-button" data-testid="begin-again" onClick={() => dispatch({ type: "RESTART" })} type="button">Leave this orientation and return to the Laboratory</button>
+        </div>
       </div>
     </JourneyRoom>
   );
 }
 
-function JourneyRoom({ children, label, mode = null, quiet = false, step }: { children: React.ReactNode; label: string; mode?: OrientationMode | null; quiet?: boolean; step: string }) {
+function JourneyRoom({ children, label, mode = null, moment, quiet = false, step }: { children: React.ReactNode; label: string; mode?: OrientationMode | null; moment: "Commitment" | "Insight" | "Continuation"; quiet?: boolean; step: string }) {
   return (
     <section
       className={`journey-room${quiet ? " journey-room-quiet" : ""}${mode ? ` mode-tone-${mode}` : ""}`}
@@ -682,7 +720,7 @@ function JourneyRoom({ children, label, mode = null, quiet = false, step }: { ch
       data-screen={label.toLowerCase()}
     >
       <div className="journey-marker" aria-label={`Journey step ${step}: ${label}`}>
-        <span>{step}</span><strong>{label}</strong>
+        <span>{step}</span><small>Moment · {moment}</small><strong>{label}</strong>
       </div>
       <div className="journey-content">{children}</div>
       <p className="screen-announcement" aria-live="polite">Current place: {label}</p>

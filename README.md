@@ -14,7 +14,7 @@ Phase I.2 provides the first complete deterministic Orientation Laboratory
 journey. It introduces NEXAH as the Orientation Layer, NEXAHEDRON as its first
 Laboratory application, Orientation Modes, human-first material intake, scope
 confirmation, an inspectable recorded report, optional Reflection and
-Departure.
+Continuation.
 
 The internal-alpha procedure, review journey and known limitations are defined
 in [docs/alpha/INTERNAL_ALPHA_GUIDE.md](docs/alpha/INTERNAL_ALPHA_GUIDE.md).

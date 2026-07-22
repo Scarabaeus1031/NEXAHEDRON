@@ -40,8 +40,22 @@ test("completes the deterministic Laboratory journey", () => {
   assert.equal(state.screen, "report");
   assert.equal(state.reportView, "blockers");
 
-  state = reduceJourney(state, { type: "DEPART" });
-  assert.equal(state.screen, "departure");
+  state = reduceJourney(state, { type: "OPEN_CONTINUATION" });
+  assert.equal(state.screen, "continuation");
+
+  state = reduceJourney(state, { type: "RETURN_TO_REPORT" });
+  assert.equal(state.screen, "report");
+  assert.equal(state.reportView, "blockers");
+
+  state = reduceJourney(state, { type: "OPEN_CONTINUATION" });
+  state = reduceJourney(state, { type: "CONTINUE_WITH_INTENTION" });
+  assert.equal(state.screen, "intention");
+  assert.equal(state.intention, "canonical intention");
+
+  state = reduceJourney(state, { type: "SUBMIT_INTENTION", supported: true });
+  state = reduceJourney(state, { type: "CONFIRM_SCOPE" });
+  state = reduceJourney(state, { type: "OPEN_CONTINUATION" });
+  assert.equal(state.screen, "continuation");
 
   state = reduceJourney(state, { type: "RESTART" });
   assert.deepEqual(state, initialJourneyState);

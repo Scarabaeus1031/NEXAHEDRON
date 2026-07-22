@@ -32,12 +32,12 @@ Open `http://localhost:3001/`.
 
 1. Read the landing without prior explanation.
 2. Choose **Understand**.
-3. Use the recorded Orientation Object.
-4. Use the recorded intention.
+3. Choose the **Recorded observation** example.
+4. Choose the **Understand** intention example.
 5. Confirm the scope.
 6. Inspect Summary, Path, Evidence, Blockers and Inspect.
-7. Pause in Reflection.
-8. Continue to Departure.
+7. Continue the orientation directly or pause in Reflection first.
+8. From Continuation, return to the report, refine the intention or revisit the material.
 
 ## Boundary review
 
@@ -75,6 +75,7 @@ material.
 - Was the next action clear at every step?
 - Did each mode feel like a genuinely different entrance rather than renamed copy?
 - Did the blocked report feel trustworthy and understandable?
+- Did the report feel like the beginning of further orientation rather than a terminal answer?
 - What, if anything, suggested an answer machine rather than an Orientation Laboratory?
 
 Record observations by screen, quote confusing copy exactly and distinguish

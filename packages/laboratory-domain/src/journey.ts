@@ -5,7 +5,7 @@ export type JourneyScreen =
   | "scope"
   | "report"
   | "reflection"
-  | "departure";
+  | "continuation";
 
 export type OrientationMode =
   | "wonder"
@@ -67,7 +67,9 @@ export type JourneyAction =
   | { readonly type: "SET_REPORT_VIEW"; readonly view: ReportView }
   | { readonly type: "REFLECT" }
   | { readonly type: "RETURN_TO_REPORT" }
-  | { readonly type: "DEPART" }
+  | { readonly type: "OPEN_CONTINUATION" }
+  | { readonly type: "CONTINUE_WITH_OBJECT" }
+  | { readonly type: "CONTINUE_WITH_INTENTION" }
   | { readonly type: "RESTART" };
 
 export const initialJourneyState: JourneyState = {
@@ -149,10 +151,20 @@ export function reduceJourney(
     case "REFLECT":
       return state.screen === "report" ? { ...state, screen: "reflection" } : state;
     case "RETURN_TO_REPORT":
-      return state.screen === "reflection" ? { ...state, screen: "report" } : state;
-    case "DEPART":
+      return state.screen === "reflection" || state.screen === "continuation"
+        ? { ...state, screen: "report" }
+        : state;
+    case "OPEN_CONTINUATION":
       return state.screen === "reflection" || state.screen === "report"
-        ? { ...state, screen: "departure" }
+        ? { ...state, screen: "continuation" }
+        : state;
+    case "CONTINUE_WITH_OBJECT":
+      return state.screen === "continuation"
+        ? { ...state, screen: "object", objectIssue: null, intentionIssue: null }
+        : state;
+    case "CONTINUE_WITH_INTENTION":
+      return state.screen === "continuation"
+        ? { ...state, screen: "intention", intentionIssue: null }
         : state;
     case "RESTART":
       return initialJourneyState;

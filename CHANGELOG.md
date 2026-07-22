@@ -4,6 +4,8 @@
 
 ### Added
 
+- A reference-quality Understand path organized around Commitment, Insight and
+  Continuation, keeping the current orientation open after its first report.
 - Seven mode-specific Laboratory entrances with distinct opening questions,
   onboarding language, examples, field structure, intention prompts and visual
   emphasis; Compare and Connect preserve two explicit starting anchors.
@@ -19,7 +21,7 @@
 - Transparent deterministic boundary that permits only the recorded Understand
   + Observation journey to reach the unchanged report fixture.
 - Phase I.2 complete fixture-backed Orientation Laboratory journey from Arrival
-  through Question, Direction, Report, Reflection and Departure.
+  through Question, Direction, Report, Reflection and Continuation.
 - Faithful display projection of the canonical ORION full-round-trip report,
   including path, alternatives, evidence, validation and explicit blockers.
 - Deterministic journey-state and fixture-integrity tests with no live gateway.

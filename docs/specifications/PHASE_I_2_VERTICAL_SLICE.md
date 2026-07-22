@@ -15,7 +15,8 @@ Phase I.2 provides one complete, executable Laboratory journey:
 4. verify the scope and recorded LYRA translation;
 5. load and inspect the canonical ORION report fixture;
 6. pause in optional Human Reflection;
-7. depart or begin again.
+7. continue the same orientation by inspecting the report, refining the
+   intention or revisiting the material.
 
 The application exposes seven intention modes and eleven object kinds, but the
 deterministic review journey recognizes one exact Understand + Observation
@@ -54,7 +55,26 @@ pause without pretending that LUCY exists and without capturing human material.
 | Scope | selected mode and object, recorded translation, adjust, confirm |
 | Report | blocked summary, path, evidence, blockers, technical inspection |
 | Reflection | optional pause, no capture, return or continue |
-| Departure | outcome boundary, no-save disclosure, restart |
+| Continuation | retained local context, inspect report, refine intention, revisit material, explicit leave action |
+
+## Experience moments
+
+The reference Understand journey is evaluated as five human moments rather than
+as a sequence of forms:
+
+1. **Arrival** — the visitor understands NEXAH and NEXAHEDRON;
+2. **Choice** — Understand matches the orientation they are seeking;
+3. **Commitment** — the material, intended understanding and scope feel exact;
+4. **Insight** — the report makes a route, its support and its limits visible;
+5. **Continuation** — the report opens a next move inside the same orientation.
+
+Object, intention and scope remain distinct steps inside Commitment. Report and
+optional Human Reflection remain distinct steps inside Insight. This preserves
+the complete engine while giving the experience a coherent rhythm.
+
+Continuation is local session flow only. Returning to the report, intention or
+material retains existing browser memory; it does not create persistence,
+Library writes, Atlas mutation or a new ORION request.
 
 ## Mode-specific entrances
 
@@ -93,7 +113,7 @@ retained from the Foundation Shell.
 ## Acceptance boundary
 
 Phase I.2 is complete when the deterministic journey can be traversed from
-Arrival through Departure, all report views faithfully expose the fixture, the
+Arrival through Continuation, all report views faithfully expose the fixture, the
 architecture checks remain green, and desktop and mobile browser review confirms
 the canonical visual language. Live ORION integration remains blocked until its
 public consumer contract is separately approved.
