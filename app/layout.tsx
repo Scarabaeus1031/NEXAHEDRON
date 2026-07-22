@@ -1,10 +1,11 @@
 import type { Metadata } from "next";
+import { AppShell } from "@/components/layout/AppShell";
+import { AlphaJourneyProvider } from "@/features/orientation/provider";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "NEXAHEDRON — The NEXAH Laboratory",
-  description:
-    "A calm, precise workspace for orientation through paths, evidence and limits.",
+  title: "NEXAHEDRON — The Orientation Laboratory",
+  description: "NEXAHEDRON helps people orient themselves across existing knowledge.",
 };
 
 export default function RootLayout({
@@ -14,7 +15,11 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body>{children}</body>
+      <body>
+        <AlphaJourneyProvider>
+          <AppShell>{children}</AppShell>
+        </AlphaJourneyProvider>
+      </body>
     </html>
   );
 }

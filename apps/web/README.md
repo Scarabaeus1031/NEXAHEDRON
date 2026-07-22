@@ -1,5 +1,8 @@
 # Web experience
 
-This directory owns the NEXAHEDRON browser experience. The root `app/`
-directory is a thin Sites/Next hosting adapter and may import this surface and
-the design system only. It must not import ORION or NEXAH implementations.
+The former single-page browser prototype has been retired. Sprint 1 production
+screens now live in the root `features/` directory, shared interface components
+in `components/`, and route composition in `app/`.
+
+This workspace remains as a reserved boundary and must not import ORION or NEXAH
+implementations.

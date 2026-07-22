@@ -1,5 +1,5 @@
-import { FoundationShell } from "@/apps/web/src/FoundationShell";
+import { LandingScreen } from "@/features/orientation/screens/LandingScreen";
 
 export default function Home() {
-  return <FoundationShell />;
+  return <LandingScreen />;
 }

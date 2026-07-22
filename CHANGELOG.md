@@ -4,6 +4,13 @@
 
 ### Added
 
+- Alpha Sprint 1 production frontend foundation with four routes: Landing,
+  Choose Orientation, Wonder and Object Selection.
+- In-memory Wonder and Orientation Object state, accessible form validation,
+  responsive navigation and an explicit end-of-sprint boundary with no request
+  execution.
+- Architecture verification preventing network calls, runtime imports,
+  provider dependencies and fixture-backed reports from entering the frontend.
 - Landing narrative reordered from identity and purpose to mode choice before
   material, source context and visible authority, without visual redesign.
 - A reference-quality Understand path organized around Commitment, Insight and
