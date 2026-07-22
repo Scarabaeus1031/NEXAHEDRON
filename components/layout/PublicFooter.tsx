@@ -4,7 +4,7 @@ export function PublicFooter() {
   return (
     <footer className="public-footer">
       <p>
-        <span>NEXAHEDRON</span>
+        <span><i aria-hidden="true">✦</i> NEXAHEDRON</span>
         A place to find your bearings.
       </p>
       <nav aria-label="Footer navigation">

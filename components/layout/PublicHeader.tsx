@@ -12,8 +12,11 @@ export function PublicHeader({ pathname }: { readonly pathname: string }) {
   return (
     <header className="public-header">
       <Link className="public-brand" href="/" aria-label="NEXAHEDRON, home">
-        <span className="public-brand__name">NEXAHEDRON</span>
-        <span className="public-brand__descriptor">The Orientation Laboratory</span>
+        <span className="public-brand__mark" aria-hidden="true">✦</span>
+        <span className="public-brand__copy">
+          <span className="public-brand__name">NEXAHEDRON</span>
+          <span className="public-brand__descriptor">The Orientation Laboratory</span>
+        </span>
       </Link>
       <nav className="public-navigation" aria-label="Primary navigation">
         {navigation.map((item) => {

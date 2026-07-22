@@ -1,9 +1,18 @@
 .site-shell--public {
+  --color-canvas: #f7f4ed;
+  --color-wash: #f0ece2;
+  --color-ink: #0e2746;
+  --color-muted: #415066;
+  --color-accent: #8f6526;
+  --color-line: #d9d3c6;
+  --color-line-strong: #b7aa92;
+  --color-grid: rgb(143 101 38 / 5%);
+  --font-display: Georgia, "Times New Roman", serif;
   width: 100%;
   max-width: none;
   border: 0;
   background:
-    linear-gradient(90deg, transparent 0 49.95%, rgb(16 32 63 / 2.5%) 50%, transparent 50.05%),
+    linear-gradient(90deg, transparent 0 49.95%, rgb(14 39 70 / 2.5%) 50%, transparent 50.05%),
     var(--color-canvas);
 }
 
@@ -11,8 +20,8 @@
   position: relative;
   z-index: 2;
   display: flex;
-  width: min(calc(100% - 3rem), 86rem);
-  min-height: 6rem;
+  width: min(calc(100% - 3rem), 76rem);
+  min-height: 5.8rem;
   margin-inline: auto;
   align-items: center;
   justify-content: space-between;
@@ -21,9 +30,26 @@
 }
 
 .public-brand {
-  display: grid;
-  gap: 0.2rem;
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
   text-decoration: none;
+}
+
+.public-brand__mark {
+  display: grid;
+  width: 2.15rem;
+  aspect-ratio: 1;
+  place-items: center;
+  border: 1px solid var(--color-line-strong);
+  border-radius: 50%;
+  color: var(--color-accent);
+  font-size: 0.75rem;
+}
+
+.public-brand__copy {
+  display: grid;
+  gap: 0.05rem;
 }
 
 .public-brand__name {
@@ -35,7 +61,7 @@
 .public-brand__descriptor,
 .public-kicker,
 .home-answer__index {
-  color: var(--color-muted);
+  color: var(--color-accent);
   font-size: 0.66rem;
   font-weight: 650;
   letter-spacing: 0.14em;
@@ -51,9 +77,12 @@
 .public-navigation a {
   position: relative;
   padding-block: 0.45rem;
-  color: var(--color-muted);
-  font-size: 0.78rem;
+  color: var(--color-ink);
+  font-size: 0.72rem;
+  font-weight: 650;
+  letter-spacing: 0.11em;
   text-decoration: none;
+  text-transform: uppercase;
 }
 
 .public-navigation a::after {
@@ -71,13 +100,12 @@
 
 .public-navigation a:hover,
 .public-navigation a[aria-current="page"] {
-  color: var(--color-ink);
+  color: var(--color-accent);
 }
 
 .public-navigation a:hover::after,
 .public-navigation a[aria-current="page"]::after {
-  opacity: 1;
-  transform: scaleX(1);
+  opacity: 0;
 }
 
 .public-home {
@@ -86,13 +114,13 @@
 
 .public-hero {
   display: grid;
-  width: min(calc(100% - 3rem), 86rem);
-  min-height: min(47rem, calc(100vh - 6rem));
+  width: min(calc(100% - 3rem), 76rem);
+  min-height: min(43rem, calc(100vh - 5.8rem));
   margin-inline: auto;
   grid-template-columns: minmax(0, 1.15fr) minmax(20rem, 0.85fr);
   align-items: center;
-  gap: clamp(3rem, 9vw, 10rem);
-  padding-block: clamp(5rem, 10vw, 9rem);
+  gap: clamp(3rem, 7vw, 7rem);
+  padding-block: clamp(4.5rem, 8vw, 7rem);
 }
 
 .public-hero__copy {
@@ -104,7 +132,7 @@
   max-width: 8ch;
   margin: 1.1rem 0 1.75rem;
   font-family: var(--font-display);
-  font-size: clamp(4.2rem, 9vw, 8.8rem);
+  font-size: clamp(4.2rem, 8.5vw, 7.8rem);
   font-weight: 400;
   letter-spacing: -0.055em;
   line-height: 0.87;
@@ -132,10 +160,13 @@
 .public-link--primary {
   min-height: 3.6rem;
   margin-top: 2.75rem;
-  padding: 0.9rem 1.2rem;
+  padding: 0.9rem 1.5rem;
   border: 1px solid var(--color-ink);
+  border-radius: 999px;
   background: var(--color-ink);
   color: white;
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
   transition: background 180ms ease, color 180ms ease;
 }
 
@@ -151,23 +182,33 @@
   justify-self: center;
 }
 
+.orientation-field::before {
+  position: absolute;
+  inset: 2%;
+  border-radius: 50%;
+  background: radial-gradient(ellipse at 48% 62%, rgb(143 101 38 / 11%), rgb(14 39 70 / 4%) 38%, transparent 68%);
+  content: "";
+  filter: blur(12px);
+  transform: scaleY(0.68) rotate(-8deg);
+}
+
 .orientation-field__orbit,
 .orientation-field__axis {
   position: absolute;
   inset: 9%;
-  border: 1px solid rgb(16 32 63 / 20%);
+  border: 1px solid rgb(14 39 70 / 15%);
   border-radius: 50%;
 }
 
 .orientation-field__orbit--two {
   inset: 25%;
-  border-color: rgb(16 32 63 / 38%);
+  border-color: rgb(143 101 38 / 34%);
 }
 
 .orientation-field__axis {
   inset: 49.9% 5%;
   border: 0;
-  border-top: 1px solid rgb(16 32 63 / 17%);
+  border-top: 1px solid rgb(14 39 70 / 13%);
   border-radius: 0;
   transform: rotate(32deg);
 }
@@ -213,20 +254,20 @@
   aspect-ratio: 1;
   place-items: center;
   transform: translate(-50%, -50%);
-  border: 1px solid var(--color-ink);
+  border: 1px solid var(--color-line-strong);
   border-radius: 50%;
   background: var(--color-canvas);
-  font-family: var(--font-display);
-  font-size: 1.4rem;
+  color: var(--color-accent);
+  font-size: 1rem;
 }
 
 .home-answer {
   display: grid;
-  width: min(calc(100% - 3rem), 70rem);
+  width: min(calc(100% - 3rem), 64rem);
   margin: 0 auto;
   grid-template-columns: 4rem minmax(0, 1fr);
   gap: clamp(1.5rem, 5vw, 5rem);
-  padding-block: clamp(7rem, 14vw, 13rem);
+  padding-block: clamp(5.5rem, 9vw, 8rem);
   border-top: 1px solid var(--color-line);
 }
 
@@ -239,7 +280,7 @@
   max-width: 16ch;
   margin: 1rem 0 1.7rem;
   font-family: var(--font-display);
-  font-size: clamp(3rem, 6vw, 5.75rem);
+  font-size: clamp(3rem, 5.5vw, 5rem);
   font-weight: 400;
   letter-spacing: -0.045em;
   line-height: 0.98;
@@ -257,9 +298,9 @@
 }
 
 .home-begin {
-  width: min(calc(100% - 3rem), 86rem);
+  width: min(calc(100% - 3rem), 76rem);
   margin-inline: auto;
-  padding-block: clamp(7rem, 14vw, 12rem);
+  padding-block: clamp(5.5rem, 9vw, 8rem);
   border-top: 1px solid var(--color-line);
 }
 
@@ -281,12 +322,12 @@
 .featured-entrance {
   display: grid;
   max-width: 67rem;
-  margin: 4rem 0 2rem auto;
+  margin: 3rem 0 2rem auto;
   grid-template-columns: minmax(0, 1.2fr) minmax(16rem, 0.8fr);
   gap: 1.5rem 4rem;
   padding: clamp(2rem, 5vw, 4rem);
   border: 1px solid var(--color-line);
-  background: var(--color-wash);
+  background: rgb(255 255 255 / 24%);
   text-decoration: none;
   transition: border-color 180ms ease, transform 180ms ease;
 }
@@ -298,7 +339,7 @@
 
 .featured-entrance__meta {
   grid-column: 1 / -1;
-  color: var(--color-muted);
+  color: var(--color-accent);
   font-size: 0.66rem;
   font-weight: 650;
   letter-spacing: 0.12em;
@@ -334,8 +375,8 @@
 
 .public-footer {
   display: flex;
-  width: min(calc(100% - 3rem), 86rem);
-  min-height: 10rem;
+  width: min(calc(100% - 3rem), 76rem);
+  min-height: 8.5rem;
   margin-inline: auto;
   align-items: center;
   justify-content: space-between;
@@ -355,6 +396,12 @@
   color: var(--color-ink);
   font-family: var(--font-display);
   letter-spacing: 0.14em;
+}
+
+.public-footer p span i {
+  margin-right: 0.35rem;
+  color: var(--color-accent);
+  font-style: normal;
 }
 
 .public-footer nav {
@@ -426,6 +473,18 @@
     display: none;
   }
 
+  .public-navigation {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 0;
+    overflow: visible;
+  }
+
+  .public-navigation a {
+    padding-block: 0.55rem;
+    font-size: 0.65rem;
+  }
+
   .public-hero h1 {
     font-size: clamp(3.8rem, 21vw, 5.3rem);
   }
@@ -471,27 +530,27 @@
 /* Public Library rooms */
 .public-page,
 .orientation-case {
-  width: min(calc(100% - 3rem), 86rem);
+  width: min(calc(100% - 3rem), 76rem);
   margin-inline: auto;
 }
 
 .public-page {
-  padding-bottom: clamp(7rem, 12vw, 11rem);
+  padding-bottom: clamp(5.5rem, 9vw, 8rem);
 }
 
 .public-page-intro {
   display: grid;
-  min-height: 34rem;
+  min-height: 29rem;
   max-width: 67rem;
   align-content: center;
-  padding-block: clamp(5rem, 11vw, 9rem);
+  padding-block: clamp(4.5rem, 8vw, 6.5rem);
 }
 
 .public-page-intro h1 {
   max-width: 17ch;
   margin: 1rem 0 2rem;
   font-family: var(--font-display);
-  font-size: clamp(3.5rem, 7.5vw, 7.2rem);
+  font-size: clamp(3.5rem, 6.7vw, 6.35rem);
   font-weight: 400;
   letter-spacing: -0.05em;
   line-height: 0.94;
@@ -540,7 +599,7 @@
 .explore-featured,
 .explore-section,
 .cases-page > section {
-  padding-block: clamp(5rem, 9vw, 8rem);
+  padding-block: clamp(4.25rem, 7vw, 6.25rem);
   border-top: 1px solid var(--color-line);
 }
 
@@ -605,7 +664,7 @@ a.case-card:hover {
 }
 
 .case-card--planned {
-  background: var(--color-wash);
+  background: rgb(255 255 255 / 18%);
   color: var(--color-muted);
 }
 
@@ -691,7 +750,7 @@ a.case-card:hover {
 .explore-entry-grid {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
-  padding-top: clamp(5rem, 9vw, 8rem);
+  padding-top: clamp(4.25rem, 7vw, 6.25rem);
   border-top: 1px solid var(--color-line);
 }
 
@@ -738,7 +797,7 @@ a.case-card:hover {
 .random-discovery {
   display: flex;
   flex-direction: column;
-  background: var(--color-wash);
+  background: rgb(255 255 255 / 22%);
 }
 
 .random-discovery > p:not(.public-kicker) {

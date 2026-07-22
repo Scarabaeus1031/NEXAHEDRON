@@ -22,7 +22,7 @@ export function LandingScreen() {
           <span className="orientation-field__point orientation-field__point--one" />
           <span className="orientation-field__point orientation-field__point--two" />
           <span className="orientation-field__point orientation-field__point--three" />
-          <span className="orientation-field__center">N</span>
+          <span className="orientation-field__center">✦</span>
         </div>
       </section>
 
