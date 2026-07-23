@@ -43,7 +43,7 @@ export function AppShell({ children }: { readonly children: ReactNode }) {
               aria-label="NEXAHEDRON, return to landing"
             >
               <span className="brand__mark" aria-hidden="true">
-                N
+                ✦
               </span>
               <span className="brand__copy">
                 <span className="brand__name">NEXAHEDRON</span>
@@ -51,7 +51,7 @@ export function AppShell({ children }: { readonly children: ReactNode }) {
               </span>
             </button>
             <Link className="header-link" href={alphaRoutes.choose}>
-              Laboratory
+              Orientation modes
             </Link>
           </header>
           <JourneyProgress />

@@ -1,0 +1,677 @@
+.site-shell:not(.site-shell--public) {
+  --color-canvas: #f7f4ed;
+  --color-wash: #f0ece2;
+  --color-ink: #0e2746;
+  --color-muted: #415066;
+  --color-accent: #8f6526;
+  --color-line: #d9d3c6;
+  --color-line-strong: #b7aa92;
+  --color-grid: rgb(143 101 38 / 5%);
+  --font-display: Georgia, "Times New Roman", serif;
+  width: 100%;
+  max-width: none;
+  border: 0;
+  background:
+    linear-gradient(90deg, transparent 0 49.95%, rgb(14 39 70 / 2.5%) 50%, transparent 50.05%),
+    var(--color-canvas);
+}
+
+.site-shell:not(.site-shell--public) .site-header {
+  width: min(calc(100% - 3rem), 76rem);
+  min-height: 5.8rem;
+  margin-inline: auto;
+  padding: 1rem 0;
+  border-color: var(--color-line);
+}
+
+.site-shell:not(.site-shell--public) .brand {
+  gap: 0.8rem;
+}
+
+.site-shell:not(.site-shell--public) .brand__mark {
+  width: 2.15rem;
+  height: 2.15rem;
+  border-color: var(--color-line-strong);
+  border-radius: 50%;
+  color: var(--color-accent);
+  font-family: var(--font-sans);
+  font-size: 0.72rem;
+}
+
+.site-shell:not(.site-shell--public) .brand__name {
+  font-family: var(--font-display);
+  font-size: 1.05rem;
+  letter-spacing: 0.18em;
+}
+
+.site-shell:not(.site-shell--public) .brand__descriptor {
+  color: var(--color-accent);
+  font-size: 0.62rem;
+  letter-spacing: 0.14em;
+}
+
+.site-shell:not(.site-shell--public) .header-link {
+  padding-block: 0.35rem;
+  color: var(--color-muted);
+  font-size: 0.68rem;
+  font-weight: 650;
+  letter-spacing: 0.1em;
+  text-decoration-color: var(--color-line-strong);
+  text-transform: uppercase;
+}
+
+.site-shell:not(.site-shell--public) .journey-progress {
+  padding: 0;
+  border-color: var(--color-line);
+  background: rgb(247 244 237 / 88%);
+}
+
+.site-shell:not(.site-shell--public) .journey-progress ol {
+  width: min(calc(100% - 3rem), 76rem);
+  max-width: none;
+}
+
+.site-shell:not(.site-shell--public) .journey-progress li {
+  min-height: 3.8rem;
+  border-bottom-width: 1px;
+  font-size: 0.67rem;
+  font-weight: 650;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.site-shell:not(.site-shell--public) .journey-progress li span {
+  color: var(--color-accent);
+  font-family: var(--font-display);
+  font-size: 0.72rem;
+}
+
+.site-shell:not(.site-shell--public) .journey-progress li.is-current {
+  border-color: var(--color-accent);
+  color: var(--color-ink);
+}
+
+.site-shell:not(.site-shell--public) .page {
+  width: min(calc(100% - 3rem), 76rem);
+  padding: clamp(3.75rem, 7vw, 6.5rem) 0 clamp(5rem, 9vw, 8rem);
+}
+
+.site-shell:not(.site-shell--public) .page--focused {
+  width: min(calc(100% - 3rem), 64rem);
+}
+
+.site-shell:not(.site-shell--public) .page-intro {
+  grid-template-columns: minmax(4rem, 0.22fr) minmax(0, 1fr);
+  gap: clamp(1.5rem, 4vw, 4rem);
+  margin-bottom: clamp(2.75rem, 5vw, 4.5rem);
+}
+
+.site-shell:not(.site-shell--public) .page-intro__index {
+  padding-top: 0.25rem;
+  color: var(--color-accent);
+  font-family: var(--font-display);
+  font-size: 0.75rem;
+}
+
+.site-shell:not(.site-shell--public) .page-intro h1 {
+  max-width: 15ch;
+  margin-top: 0.8rem;
+  font-size: clamp(3.4rem, 6.5vw, 6rem);
+  line-height: 0.94;
+}
+
+.site-shell:not(.site-shell--public) .page-intro__copy {
+  max-width: 41rem;
+  color: var(--color-muted);
+  font-family: var(--font-display);
+  font-size: clamp(1.05rem, 1.8vw, 1.25rem);
+  line-height: 1.5;
+}
+
+.site-shell:not(.site-shell--public) .eyebrow,
+.site-shell:not(.site-shell--public) .status {
+  color: var(--color-accent);
+  letter-spacing: 0.14em;
+}
+
+.site-shell:not(.site-shell--public) .action {
+  min-height: 3.65rem;
+  padding-inline: 1.5rem;
+  border-radius: 999px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.site-shell:not(.site-shell--public) .action--primary {
+  background: var(--color-ink);
+}
+
+.site-shell:not(.site-shell--public) .action--primary:hover {
+  border-color: var(--color-ink);
+  background: transparent;
+  color: var(--color-ink);
+}
+
+.site-shell:not(.site-shell--public) .action--quiet {
+  background: transparent;
+}
+
+.laboratory-entrances {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  border-top: 1px solid var(--color-ink);
+  border-left: 1px solid var(--color-line-strong);
+}
+
+.laboratory-entrance {
+  display: grid;
+  min-height: 31rem;
+  padding: clamp(1.75rem, 4vw, 3rem);
+  grid-template-rows: auto 1fr auto;
+  border-right: 1px solid var(--color-line-strong);
+  border-bottom: 1px solid var(--color-ink);
+  background: rgb(247 244 237 / 68%);
+}
+
+.laboratory-entrance--understand {
+  background: rgb(240 236 226 / 76%);
+}
+
+.laboratory-entrance__figure {
+  position: relative;
+  width: 7.5rem;
+  height: 7.5rem;
+  margin: 0 0 3.5rem auto;
+}
+
+.laboratory-entrance__figure span {
+  position: absolute;
+  border: 1px solid var(--color-line-strong);
+  border-radius: 50%;
+}
+
+.laboratory-entrance__figure span:nth-child(1) { inset: 0; }
+.laboratory-entrance__figure span:nth-child(2) { inset: 25%; }
+.laboratory-entrance__figure span:nth-child(3) {
+  top: 50%;
+  right: -8%;
+  left: -8%;
+  border: 0;
+  border-top: 1px solid var(--color-line-strong);
+  border-radius: 0;
+  transform: rotate(-28deg);
+}
+
+.laboratory-entrance__figure i {
+  position: absolute;
+  top: 13%;
+  right: 12%;
+  display: grid;
+  width: 1.6rem;
+  height: 1.6rem;
+  place-items: center;
+  border: 1px solid var(--color-accent);
+  border-radius: 50%;
+  background: var(--color-canvas);
+  color: var(--color-accent);
+  font-size: 0.55rem;
+  font-style: normal;
+}
+
+.laboratory-entrance--understand .laboratory-entrance__figure span {
+  border-radius: 0;
+}
+
+.laboratory-entrance--understand .laboratory-entrance__figure span:nth-child(1) {
+  inset: 8% 17%;
+}
+
+.laboratory-entrance--understand .laboratory-entrance__figure span:nth-child(2) {
+  inset: 25% 4% 25% 30%;
+  border-color: var(--color-accent);
+}
+
+.laboratory-entrance--understand .laboratory-entrance__figure span:nth-child(3) {
+  inset: 50% -5% auto 5%;
+  transform: none;
+}
+
+.laboratory-entrance__meta {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.laboratory-entrance h2 {
+  margin: 0.7rem 0 1rem;
+  font-family: var(--font-display);
+  font-size: clamp(2.7rem, 4vw, 4.2rem);
+  font-weight: 400;
+  letter-spacing: -0.04em;
+  line-height: 1;
+}
+
+.laboratory-entrance__copy > p:last-child {
+  max-width: 29rem;
+  color: var(--color-muted);
+  font-family: var(--font-display);
+  font-size: 1.05rem;
+}
+
+.laboratory-entrance .text-action {
+  justify-self: start;
+  margin-top: 2.5rem;
+  color: var(--color-ink);
+  font-size: 0.72rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.later-modes {
+  margin-top: clamp(4rem, 8vw, 7rem);
+  padding-top: 1.5rem;
+  border-top: 1px solid var(--color-line-strong);
+}
+
+.later-modes > header {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(16rem, 0.55fr);
+  gap: 3rem;
+  align-items: end;
+  margin-bottom: 2rem;
+}
+
+.later-modes > header h2 {
+  margin: 0.5rem 0 0;
+  font-family: var(--font-display);
+  font-size: clamp(2rem, 3.5vw, 3.4rem);
+  font-weight: 400;
+  letter-spacing: -0.035em;
+}
+
+.later-modes > header > p {
+  margin: 0;
+  color: var(--color-muted);
+  font-size: 0.82rem;
+}
+
+.later-mode-list {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  border-top: 1px solid var(--color-line);
+  border-left: 1px solid var(--color-line);
+}
+
+.later-mode {
+  min-height: 11rem;
+  padding: 1.25rem;
+  border-right: 1px solid var(--color-line);
+  border-bottom: 1px solid var(--color-line);
+}
+
+.later-mode h3 {
+  margin: 0;
+  font-family: var(--font-display);
+  font-size: 1.25rem;
+  font-weight: 400;
+}
+
+.later-mode p {
+  margin: 1.25rem 0 0;
+  color: var(--color-muted);
+  font-size: 0.72rem;
+  line-height: 1.5;
+}
+
+.site-shell:not(.site-shell--public) .wonder-form {
+  position: relative;
+  padding: clamp(1.5rem, 4vw, 3rem);
+  border-top: 1px solid var(--color-ink);
+  border-bottom: 1px solid var(--color-ink);
+  background:
+    linear-gradient(90deg, transparent 49.8%, var(--color-grid) 50%, transparent 50.2%),
+    linear-gradient(transparent 49.8%, var(--color-grid) 50%, transparent 50.2%),
+    rgb(247 244 237 / 72%);
+  background-size: 2.2rem 2.2rem;
+}
+
+.site-shell:not(.site-shell--public) .wonder-form textarea {
+  border: 0;
+  border-bottom: 1px solid var(--color-line-strong);
+  background: rgb(247 244 237 / 94%);
+  font-size: clamp(1.7rem, 3vw, 2.5rem);
+}
+
+.site-shell:not(.site-shell--public) .example-list button {
+  border-color: var(--color-line-strong);
+  border-radius: 999px;
+  background: var(--color-canvas);
+}
+
+.site-shell:not(.site-shell--public) .wonder-reference {
+  max-width: 51rem;
+  margin: -1.5rem 0 3rem clamp(0rem, 8vw, 8rem);
+  border-color: var(--color-accent);
+  background: transparent;
+}
+
+.site-shell:not(.site-shell--public) .object-layout {
+  grid-template-columns: minmax(0, 1.4fr) minmax(18rem, 0.68fr);
+  gap: clamp(2.5rem, 6vw, 5rem);
+}
+
+.object-primary-fields {
+  display: grid;
+  grid-template-columns: minmax(0, 1.35fr) minmax(12rem, 0.65fr);
+  gap: 1.5rem;
+  padding: clamp(1.5rem, 4vw, 2.5rem) 0;
+  border-top: 1px solid var(--color-ink);
+  border-bottom: 1px solid var(--color-line-strong);
+}
+
+.source-fields {
+  display: grid;
+  gap: 1.5rem;
+  margin-top: 1rem;
+  padding: clamp(1.5rem, 4vw, 2.5rem);
+  border: 1px solid var(--color-line-strong);
+  background: rgb(240 236 226 / 76%);
+}
+
+.source-fields header {
+  padding-bottom: 0.5rem;
+}
+
+.source-fields h2 {
+  margin: 0.45rem 0 0.6rem;
+  font-family: var(--font-display);
+  font-size: 2rem;
+  font-weight: 400;
+}
+
+.source-fields header > p:last-child {
+  max-width: 34rem;
+  margin: 0;
+  color: var(--color-muted);
+  font-size: 0.82rem;
+}
+
+.site-shell:not(.site-shell--public) .field input,
+.site-shell:not(.site-shell--public) .field select,
+.site-shell:not(.site-shell--public) .editor-card textarea,
+.site-shell:not(.site-shell--public) .scope-row input {
+  border: 0;
+  border-bottom: 1px solid var(--color-line-strong);
+  background: rgb(247 244 237 / 62%);
+}
+
+.site-shell:not(.site-shell--public) .field input:focus,
+.site-shell:not(.site-shell--public) .field select:focus,
+.site-shell:not(.site-shell--public) .editor-card textarea:focus,
+.site-shell:not(.site-shell--public) .scope-row input:focus {
+  background: var(--color-canvas);
+}
+
+.site-shell:not(.site-shell--public) .field input[type="file"]::file-selector-button {
+  margin-right: 1rem;
+  padding: 0.55rem 0.85rem;
+  border: 1px solid var(--color-line-strong);
+  border-radius: 999px;
+  background: var(--color-canvas);
+  color: var(--color-ink);
+  font: inherit;
+  font-size: 0.7rem;
+  cursor: pointer;
+}
+
+.site-shell:not(.site-shell--public) .object-preview,
+.site-shell:not(.site-shell--public) .request-summary {
+  top: 2rem;
+  padding: clamp(1.5rem, 3vw, 2.25rem);
+  border: 1px solid var(--color-line-strong);
+  background: rgb(240 236 226 / 84%);
+}
+
+.site-shell:not(.site-shell--public) .object-preview::before,
+.site-shell:not(.site-shell--public) .request-summary::before {
+  display: block;
+  width: 2.25rem;
+  height: 2.25rem;
+  margin: 0 0 2rem auto;
+  border: 1px solid var(--color-accent);
+  border-radius: 50%;
+  color: var(--color-accent);
+  content: "✦";
+  font-size: 0.65rem;
+  line-height: 2.25rem;
+  text-align: center;
+}
+
+.site-shell:not(.site-shell--public) .page--request {
+  width: min(calc(100% - 3rem), 82rem);
+  max-width: none;
+}
+
+.site-shell:not(.site-shell--public) .request-workspace {
+  grid-template-columns: minmax(0, 1.55fr) minmax(20rem, 0.65fr);
+}
+
+.site-shell:not(.site-shell--public) .request-main {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0;
+  counter-reset: request-section;
+  border-top: 1px solid var(--color-ink);
+}
+
+.site-shell:not(.site-shell--public) .request-main > .orientation-context,
+.site-shell:not(.site-shell--public) .request-main > .editor-card--depth,
+.site-shell:not(.site-shell--public) .request-main > .editor-card--success,
+.site-shell:not(.site-shell--public) .request-main > .validation-summary,
+.site-shell:not(.site-shell--public) .request-main > .action {
+  grid-column: 1 / -1;
+}
+
+.site-shell:not(.site-shell--public) .editor-card--intention,
+.site-shell:not(.site-shell--public) .editor-card--scopeInclude {
+  border-right: 1px solid var(--color-line-strong);
+}
+
+.site-shell:not(.site-shell--public) .editor-card--intention textarea,
+.site-shell:not(.site-shell--public) .editor-card--focus textarea {
+  min-height: 10.5rem;
+}
+
+.site-shell:not(.site-shell--public) .orientation-context,
+.site-shell:not(.site-shell--public) .editor-card,
+.site-shell:not(.site-shell--public) .validation-summary {
+  border: 0;
+  border-bottom: 1px solid var(--color-line-strong);
+  background: rgb(247 244 237 / 62%);
+}
+
+.site-shell:not(.site-shell--public) .orientation-context {
+  padding-inline: clamp(1.5rem, 4vw, 3rem);
+  background: rgb(240 236 226 / 76%);
+}
+
+.site-shell:not(.site-shell--public) .editor-card {
+  position: relative;
+  padding: clamp(2rem, 5vw, 3.5rem) clamp(1.5rem, 4vw, 3rem);
+  counter-increment: request-section;
+}
+
+.site-shell:not(.site-shell--public) .editor-card::before {
+  position: absolute;
+  top: 2rem;
+  right: clamp(1.5rem, 4vw, 3rem);
+  color: var(--color-accent);
+  content: "0" counter(request-section);
+  font-family: var(--font-display);
+  font-size: 0.72rem;
+}
+
+.site-shell:not(.site-shell--public) .editor-card__heading > span {
+  margin-right: 2.5rem;
+}
+
+.site-shell:not(.site-shell--public) .depth-options {
+  border-color: var(--color-line-strong);
+}
+
+.site-shell:not(.site-shell--public) .depth-options label {
+  border-color: var(--color-line-strong);
+}
+
+.site-shell:not(.site-shell--public) .depth-options label.is-selected {
+  background: var(--color-wash);
+  box-shadow: inset 0 -2px var(--color-accent);
+}
+
+.site-shell:not(.site-shell--public) .validation-summary {
+  padding: 2rem clamp(1.5rem, 4vw, 3rem);
+}
+
+.site-shell:not(.site-shell--public) .request-main > .action {
+  justify-self: start;
+  margin-top: 2rem;
+}
+
+.site-shell:not(.site-shell--public) .page--confirmation {
+  width: min(calc(100% - 3rem), 70rem);
+  max-width: none;
+}
+
+.site-shell:not(.site-shell--public) .confirmation-sheet {
+  border-top: 1px solid var(--color-ink);
+  border-right: 0;
+  border-left: 0;
+  background: rgb(247 244 237 / 58%);
+}
+
+.site-shell:not(.site-shell--public) .confirmation-row {
+  padding: 1.4rem 0;
+  grid-template-columns: minmax(11rem, 0.3fr) minmax(0, 1fr);
+  border-color: var(--color-line-strong);
+}
+
+.site-shell:not(.site-shell--public) .confirmation-row dt {
+  color: var(--color-accent);
+}
+
+.site-shell:not(.site-shell--public) .confirmation-actions {
+  margin-top: 2.5rem;
+}
+
+.site-shell:not(.site-shell--public) .site-footer {
+  width: min(calc(100% - 3rem), 76rem);
+  margin-inline: auto;
+  padding-inline: 0;
+  border-color: var(--color-line);
+  font-size: 0.68rem;
+  letter-spacing: 0.04em;
+}
+
+@media (max-width: 900px) {
+  .later-mode-list {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  .site-shell:not(.site-shell--public) .object-layout,
+  .site-shell:not(.site-shell--public) .request-workspace {
+    grid-template-columns: 1fr;
+  }
+
+  .site-shell:not(.site-shell--public) .object-preview,
+  .site-shell:not(.site-shell--public) .request-summary {
+    position: static;
+  }
+}
+
+@media (max-width: 760px) {
+  .site-shell:not(.site-shell--public) .request-main {
+    grid-template-columns: 1fr;
+  }
+
+  .site-shell:not(.site-shell--public) .request-main > .editor-card,
+  .site-shell:not(.site-shell--public) .request-main > .orientation-context,
+  .site-shell:not(.site-shell--public) .request-main > .validation-summary,
+  .site-shell:not(.site-shell--public) .request-main > .action {
+    grid-column: 1;
+  }
+
+  .site-shell:not(.site-shell--public) .editor-card--intention,
+  .site-shell:not(.site-shell--public) .editor-card--scopeInclude {
+    border-right: 0;
+  }
+}
+
+@media (max-width: 700px) {
+  .site-shell:not(.site-shell--public) .site-header,
+  .site-shell:not(.site-shell--public) .journey-progress ol,
+  .site-shell:not(.site-shell--public) .page,
+  .site-shell:not(.site-shell--public) .site-footer {
+    width: min(calc(100% - 2.5rem), 76rem);
+  }
+
+  .site-shell:not(.site-shell--public) .journey-progress li {
+    justify-content: center;
+    font-size: 0;
+  }
+
+  .site-shell:not(.site-shell--public) .journey-progress li span {
+    font-size: 0.7rem;
+  }
+
+  .site-shell:not(.site-shell--public) .journey-progress li.is-current {
+    gap: 0.4rem;
+    font-size: 0.62rem;
+  }
+
+  .site-shell:not(.site-shell--public) .page-intro {
+    grid-template-columns: 1fr;
+    gap: 0.5rem;
+  }
+
+  .laboratory-entrances,
+  .later-modes > header,
+  .object-primary-fields {
+    grid-template-columns: 1fr;
+  }
+
+  .laboratory-entrance {
+    min-height: 27rem;
+  }
+
+  .later-mode-list {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .site-shell:not(.site-shell--public) .confirmation-row {
+    grid-template-columns: 1fr;
+    gap: 0.35rem;
+  }
+}
+
+@media (max-width: 440px) {
+  .site-shell:not(.site-shell--public) .brand__descriptor {
+    display: none;
+  }
+
+  .site-shell:not(.site-shell--public) .header-link {
+    max-width: 7rem;
+    text-align: right;
+  }
+
+  .site-shell:not(.site-shell--public) .page-intro h1 {
+    font-size: clamp(3rem, 15vw, 4.4rem);
+  }
+
+  .later-mode-list {
+    grid-template-columns: 1fr;
+  }
+
+  .site-shell:not(.site-shell--public) .confirmation-actions .action {
+    width: 100%;
+  }
+}

@@ -30,14 +30,14 @@ export function RequestEditorScreen() {
   return (
     <section className="page page--request" aria-labelledby="request-title">
       <PageIntro index="05" eyebrow="Request Editor" title="Define your orientation request." titleId="request-title">
-        <p>Shape the request in clear parts. Nothing here is a prompt, and nothing is sent for execution.</p>
+        <p>Set the direction, boundaries and level of detail. You will review everything before Orientation begins.</p>
       </PageIntro>
 
       <div className="request-workspace">
         <div className="request-main">
           <OrientationContext />
 
-          <section className="editor-card" aria-labelledby="intention-title">
+          <section className="editor-card editor-card--intention" aria-labelledby="intention-title">
             <div className="editor-card__heading"><div><p className="eyebrow">Direction</p><h2 id="intention-title">Intention</h2></div><span>Required</span></div>
             <p className="editor-card__description">Describe what you want to understand about this object.</p>
             <label className="sr-only" htmlFor="request-intention">Intention</label>
@@ -52,7 +52,7 @@ export function RequestEditorScreen() {
             {!validation.intention ? <p className="field-issue" role="alert">Intention is required.</p> : null}
           </section>
 
-          <section className="editor-card" aria-labelledby="focus-title">
+          <section className="editor-card editor-card--focus" aria-labelledby="focus-title">
             <div className="editor-card__heading"><div><p className="eyebrow">Attention</p><h2 id="focus-title">Focus</h2></div><span>Optional</span></div>
             <p className="editor-card__description">Name the aspect that deserves particular attention.</p>
             <label className="sr-only" htmlFor="request-focus">Focus</label>
@@ -62,7 +62,7 @@ export function RequestEditorScreen() {
           <ScopeListEditor field="scopeInclude" label="Scope Include" description="Define what belongs inside this orientation." required />
           <ScopeListEditor field="scopeExclude" label="Scope Exclude" description="Set a visible boundary around what should not be covered." />
 
-          <fieldset className="editor-card depth-card">
+          <fieldset className="editor-card depth-card editor-card--depth">
             <legend><span className="eyebrow">Resolution</span>Depth</legend>
             <div className="depth-options">
               {depthOptions.map((option) => (
@@ -75,7 +75,7 @@ export function RequestEditorScreen() {
             </div>
           </fieldset>
 
-          <section className="editor-card" aria-labelledby="success-title">
+          <section className="editor-card editor-card--success" aria-labelledby="success-title">
             <div className="editor-card__heading"><div><p className="eyebrow">Completion</p><h2 id="success-title">Success Boundary</h2></div><span>Optional</span></div>
             <p className="editor-card__description">Describe what would make this orientation sufficient for now.</p>
             <label className="sr-only" htmlFor="request-success">Success Boundary</label>

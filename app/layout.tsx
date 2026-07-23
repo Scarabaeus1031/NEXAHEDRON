@@ -3,6 +3,7 @@ import { AppShell } from "@/components/layout/AppShell";
 import { AlphaJourneyProvider } from "@/features/orientation/provider";
 import "./globals.css";
 import "../styles/public-experience.css";
+import "../styles/laboratory-experience.css";
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://nexahedron.com"),

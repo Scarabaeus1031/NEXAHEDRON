@@ -17,7 +17,7 @@ export function ScopeListEditor({
   const missing = required && !values.some((value) => value.trim());
 
   return (
-    <section className="editor-card" aria-labelledby={`${field}-title`}>
+    <section className={`editor-card editor-card--scope editor-card--${field}`} aria-labelledby={`${field}-title`}>
       <div className="editor-card__heading">
         <div>
           <p className="eyebrow">Scope</p>
