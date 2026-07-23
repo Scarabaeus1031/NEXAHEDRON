@@ -6,6 +6,7 @@ import type { ReactNode } from "react";
 import { JourneyProgress } from "@/components/layout/JourneyProgress";
 import { PublicFooter } from "@/components/layout/PublicFooter";
 import { PublicHeader } from "@/components/layout/PublicHeader";
+import { JourneyReflection } from "@/features/orientation/components/JourneyReflection";
 import { useAlphaJourney } from "@/hooks/use-alpha-journey";
 import { alphaRoutes } from "@/lib/routes";
 
@@ -57,8 +58,13 @@ export function AppShell({ children }: { readonly children: ReactNode }) {
           <JourneyProgress />
         </>
       )}
-      <main id="main-content" tabIndex={-1}>
+      <main
+        className={pathname === "/confirmation" || pathname === "/orientation" ? "main--with-reflection" : undefined}
+        id="main-content"
+        tabIndex={-1}
+      >
         {children}
+        {!isPublicExperience ? <JourneyReflection pathname={pathname} /> : null}
       </main>
       {isPublicExperience ? (
         <PublicFooter />

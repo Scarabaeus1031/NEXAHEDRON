@@ -356,6 +356,102 @@
   background: transparent;
 }
 
+.reflection-workspace {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(16rem, 0.38fr);
+  gap: clamp(2rem, 5vw, 4rem);
+  align-items: start;
+}
+
+.reflection-workspace--wonder {
+  margin-inline: calc(clamp(0rem, 4vw, 3rem) * -1);
+}
+
+.reflection-margin {
+  position: relative;
+  padding: 1.5rem 0 0 1.5rem;
+  border-top: 1px solid var(--color-accent);
+  border-left: 1px solid var(--color-line-strong);
+  color: var(--color-muted);
+}
+
+.reflection-margin::before {
+  position: absolute;
+  top: -0.28rem;
+  left: -0.28rem;
+  width: 0.5rem;
+  height: 0.5rem;
+  border: 1px solid var(--color-accent);
+  border-radius: 50%;
+  background: var(--color-canvas);
+  content: "";
+}
+
+.reflection-margin h2 {
+  margin: 0.7rem 0 1rem;
+  font-family: var(--font-display);
+  font-size: clamp(1.65rem, 2.5vw, 2.25rem);
+  font-weight: 400;
+  letter-spacing: -0.03em;
+  line-height: 1.08;
+}
+
+.reflection-margin__introduction {
+  margin: 0;
+  font-family: var(--font-display);
+  font-size: 0.95rem;
+  line-height: 1.55;
+}
+
+.reflection-margin dl {
+  margin: 1.5rem 0 0;
+}
+
+.reflection-margin dl div {
+  padding: 0.75rem 0;
+  border-top: 1px solid var(--color-line);
+}
+
+.reflection-margin dt,
+.reflection-margin__question span {
+  color: var(--color-accent);
+  font-size: 0.6rem;
+  font-weight: 650;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.reflection-margin dd {
+  margin: 0.2rem 0 0;
+  color: var(--color-ink);
+  font-size: 0.78rem;
+  line-height: 1.45;
+}
+
+.reflection-margin__question {
+  margin: 1.25rem 0 0;
+  padding: 1rem 0;
+  border-block: 1px solid var(--color-line-strong);
+  color: var(--color-ink);
+  font-family: var(--font-display);
+  font-size: 1rem;
+  line-height: 1.45;
+}
+
+.reflection-margin__question span {
+  display: block;
+  margin-bottom: 0.45rem;
+  font-family: var(--font-sans);
+}
+
+.reflection-margin small {
+  display: block;
+  margin-top: 1rem;
+  color: var(--color-muted);
+  font-size: 0.62rem;
+  line-height: 1.5;
+}
+
 .site-shell:not(.site-shell--public) .object-layout {
   grid-template-columns: minmax(0, 1.4fr) minmax(18rem, 0.68fr);
   gap: clamp(2.5rem, 6vw, 5rem);
@@ -431,6 +527,19 @@
   padding: clamp(1.5rem, 3vw, 2.25rem);
   border: 1px solid var(--color-line-strong);
   background: rgb(240 236 226 / 84%);
+}
+
+.object-rail,
+.request-rail {
+  position: sticky;
+  top: 2rem;
+  display: grid;
+  gap: 2rem;
+}
+
+.site-shell:not(.site-shell--public) .object-rail .object-preview,
+.site-shell:not(.site-shell--public) .request-rail .request-summary {
+  position: static;
 }
 
 .site-shell:not(.site-shell--public) .object-preview::before,
@@ -572,6 +681,26 @@
   letter-spacing: 0.04em;
 }
 
+.main--with-reflection {
+  display: grid;
+  width: min(calc(100% - 3rem), 90rem);
+  margin-inline: auto;
+  grid-template-columns: minmax(0, 1fr) minmax(16rem, 0.28fr);
+  gap: clamp(2rem, 5vw, 4rem);
+  align-items: start;
+}
+
+.main--with-reflection > .page {
+  width: 100%;
+  margin: 0;
+}
+
+.journey-reflection {
+  position: sticky;
+  top: 2rem;
+  margin-top: clamp(7rem, 15vw, 13rem);
+}
+
 @media (max-width: 900px) {
   .later-mode-list {
     grid-template-columns: repeat(3, minmax(0, 1fr));
@@ -585,6 +714,26 @@
   .site-shell:not(.site-shell--public) .object-preview,
   .site-shell:not(.site-shell--public) .request-summary {
     position: static;
+  }
+
+  .reflection-workspace,
+  .main--with-reflection {
+    grid-template-columns: 1fr;
+  }
+
+  .reflection-workspace--wonder {
+    margin-inline: 0;
+  }
+
+  .object-rail,
+  .request-rail,
+  .journey-reflection {
+    position: static;
+  }
+
+  .journey-reflection {
+    width: min(calc(100% - 3rem), 70rem);
+    margin: 0 auto 5rem;
   }
 }
 
@@ -611,6 +760,11 @@
   .site-shell:not(.site-shell--public) .journey-progress ol,
   .site-shell:not(.site-shell--public) .page,
   .site-shell:not(.site-shell--public) .site-footer {
+    width: min(calc(100% - 2.5rem), 76rem);
+  }
+
+  .main--with-reflection,
+  .journey-reflection {
     width: min(calc(100% - 2.5rem), 76rem);
   }
 

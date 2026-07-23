@@ -4,6 +4,7 @@ import { useState, type ChangeEvent, type FormEvent } from "react";
 import { useRouter } from "next/navigation";
 import { Field } from "@/components/ui/Field";
 import { PageIntro } from "@/components/ui/PageIntro";
+import { ReflectionMargin } from "@/features/orientation/components/ReflectionMargin";
 import { orientationObjectTypes } from "@/features/orientation/constants";
 import { useAlphaJourney } from "@/hooks/use-alpha-journey";
 import { alphaRoutes } from "@/lib/routes";
@@ -112,9 +113,41 @@ export function ObjectSelectionScreen() {
           </button>
         </form>
 
-        <ObjectPreview />
+        <div className="object-rail">
+          <ObjectPreview />
+          <ObjectReflection />
+        </div>
       </div>
     </section>
+  );
+}
+
+function describeFile(fileName: string) {
+  if (!fileName) return "No local file selected";
+  const extension = fileName.split(".").pop()?.toUpperCase();
+  return extension && extension !== fileName.toUpperCase()
+    ? `${extension} file selected`
+    : "Local file selected";
+}
+
+function ObjectReflection() {
+  const { state } = useAlphaJourney();
+  const { object } = state;
+  const source = object.url.trim()
+    ? "A URL reference is present"
+    : describeFile(object.fileName);
+
+  return (
+    <ReflectionMargin
+      title={object.title.trim() ? "The material has an identity." : "The material is still open."}
+      introduction="The Laboratory reflects only the identity and source details you provide. It has not inspected the material."
+      notes={[
+        { label: "Named as", value: object.type || "Type still open" },
+        { label: "Source", value: source },
+        { label: "Wonder", value: state.wonder ? "Original note preserved" : "No Wonder note" },
+      ]}
+      question="What makes this the right object for the orientation?"
+    />
   );
 }
 
