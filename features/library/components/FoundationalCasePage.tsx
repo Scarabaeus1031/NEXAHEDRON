@@ -1,4 +1,6 @@
 import Link from "next/link";
+import { caseLineages } from "@/features/library/case-lineage";
+import { CaseLineage } from "@/features/library/components/CaseLineage";
 import { CaseSection } from "@/features/library/components/CaseSection";
 import type { FoundationalCase } from "@/features/library/foundational-cases";
 
@@ -154,8 +156,13 @@ export function FoundationalCasePage({ orientationCase }: { readonly orientation
       <CaseSection index="12" title="Reflection" tone="reflection">
         <p className="case-lead">What changed?</p>
         {orientationCase.reflection.map((paragraph) => <p key={paragraph}>{paragraph}</p>)}
-        <Link className="public-link public-link--primary" href="/cases">Return to the collection <span aria-hidden="true">→</span></Link>
       </CaseSection>
+
+      <CaseLineage lineage={caseLineages[orientationCase.slug as keyof typeof caseLineages]} />
+
+      <nav className="case-end-navigation" aria-label="Case navigation">
+        <Link className="public-link public-link--primary" href="/cases">Return to the collection <span aria-hidden="true">→</span></Link>
+      </nav>
     </article>
   );
 }

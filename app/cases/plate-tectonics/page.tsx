@@ -1,4 +1,6 @@
 import Link from "next/link";
+import { caseLineages } from "@/features/library/case-lineage";
+import { CaseLineage } from "@/features/library/components/CaseLineage";
 import { CaseSection } from "@/features/library/components/CaseSection";
 
 const evidence = [
@@ -161,8 +163,13 @@ export default function PlateTectonicsCasePage() {
         <p className="case-lead">What changed?</p>
         <p>“Plates move and cause earthquakes” has become a more useful position: plates are identified, relative motion connects to boundary type, several observations support different parts of the framework, and its limits remain visible.</p>
         <p>The purpose was not to say everything. It was to make a grounded next step possible.</p>
-        <Link className="public-link public-link--primary" href="/explore">Continue exploring <span aria-hidden="true">→</span></Link>
       </CaseSection>
+
+      <CaseLineage lineage={caseLineages["plate-tectonics"]} />
+
+      <nav className="case-end-navigation" aria-label="Case navigation">
+        <Link className="public-link public-link--primary" href="/explore">Continue exploring <span aria-hidden="true">→</span></Link>
+      </nav>
     </article>
   );
 }

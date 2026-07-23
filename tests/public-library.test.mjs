@@ -83,6 +83,10 @@ for (const foundationalCase of [
     assert.match(html, /This orientation supports/);
     assert.match(html, /It does not establish/);
     assert.match(html, /Choose a path—or stop here/);
+    assert.match(html, /Case lineage/);
+    assert.match(html, /How this orientation came into being/);
+    assert.match(html, /Canonical Case v1\.0/);
+    assert.match(html, /Evidence for the Case.+claims remains separate/);
   });
 }
 
@@ -110,6 +114,10 @@ test("Plate Tectonics follows the canonical Orientation Case hierarchy", async (
   assert.match(html, /NSF GAGE/);
   assert.match(html, /Inspect source/);
   assert.match(html, /Unknown is a valid position/);
+  assert.match(html, /Canonical demonstration/);
+  assert.match(html, /Public Website Experience Review · 2026/);
+  assert.match(html, /USGS, NOAA, and NSF GAGE sources/);
+  assert.match(html, /Canonical Case v1\.0/);
 });
 
 test("Library presents an atlas with accessible rooms, paths, and frontiers", async () => {

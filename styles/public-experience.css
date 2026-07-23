@@ -1471,6 +1471,96 @@ a.case-card:hover {
   margin-top: 2rem;
 }
 
+.case-lineage {
+  display: grid;
+  padding: clamp(3rem, 7vw, 5.5rem) 0;
+  grid-template-columns: minmax(12rem, 0.72fr) minmax(0, 2fr);
+  gap: clamp(2.5rem, 7vw, 7rem);
+  border-top: 1px solid var(--color-line);
+  color: var(--color-muted);
+}
+
+.case-lineage header h2 {
+  max-width: 15rem;
+  margin: 0.85rem 0 1.25rem;
+  color: var(--color-ink);
+  font-family: var(--font-display);
+  font-size: clamp(1.45rem, 2.6vw, 2.15rem);
+  font-weight: 400;
+  line-height: 1.05;
+}
+
+.case-lineage header > p:last-child {
+  max-width: 21rem;
+  font-size: 0.72rem;
+  line-height: 1.55;
+}
+
+.case-lineage ol {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  border-top: 1px solid var(--color-line);
+}
+
+.case-lineage li {
+  position: relative;
+  display: grid;
+  padding: 1.15rem 0 1.15rem 1.75rem;
+  grid-template-columns: minmax(7rem, 0.62fr) minmax(10rem, 1fr) minmax(12rem, 1.45fr);
+  gap: 1.25rem;
+  border-bottom: 1px solid var(--color-line);
+}
+
+.case-lineage li::before {
+  position: absolute;
+  top: 1.5rem;
+  left: 0;
+  width: 0.42rem;
+  aspect-ratio: 1;
+  border: 1px solid var(--color-accent);
+  border-radius: 50%;
+  background: var(--color-canvas);
+  content: "";
+}
+
+.case-lineage li:not(:last-child)::after {
+  position: absolute;
+  top: 1.92rem;
+  bottom: -1.5rem;
+  left: 0.2rem;
+  border-left: 1px solid var(--color-line);
+  content: "";
+}
+
+.case-lineage li > span {
+  color: var(--color-accent);
+  font-size: 0.59rem;
+  letter-spacing: 0.12em;
+  line-height: 1.45;
+  text-transform: uppercase;
+}
+
+.case-lineage li strong {
+  color: var(--color-ink);
+  font-family: var(--font-display);
+  font-size: 0.98rem;
+  font-weight: 400;
+  line-height: 1.35;
+}
+
+.case-lineage li p {
+  margin: 0;
+  font-size: 0.68rem;
+  line-height: 1.55;
+}
+
+.case-end-navigation {
+  display: flex;
+  padding: 0 0 clamp(4rem, 9vw, 7rem);
+  justify-content: flex-end;
+}
+
 @media (max-width: 900px) {
   .case-evidence-list {
     grid-template-columns: 1fr;
@@ -1505,6 +1595,11 @@ a.case-card:hover {
   .orientation-case__section-heading {
     max-width: 30rem;
   }
+
+  .case-lineage {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
 }
 
 @media (max-width: 650px) {
@@ -1529,6 +1624,19 @@ a.case-card:hover {
 
   .case-grid .case-card:first-child {
     grid-column: auto;
+  }
+
+  .case-lineage li {
+    grid-template-columns: 1fr;
+    gap: 0.45rem;
+  }
+
+  .case-lineage li::before {
+    top: 1.45rem;
+  }
+
+  .case-lineage li:not(:last-child)::after {
+    top: 1.87rem;
   }
 
   .bridge-list article {
