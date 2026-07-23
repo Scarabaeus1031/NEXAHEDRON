@@ -63,14 +63,27 @@ export default function PlateTectonicsCasePage() {
 
       <CaseSection index="03" title="Subject">
         <p className="case-lead">Plate tectonics is the broad scientific framework in which Earth&apos;s outer rigid layer is divided into moving plates.</p>
-        <p>A tectonic plate is a large, irregular slab of lithosphere: the crust and rigid uppermost mantle. Plates move relative to one another rather than remaining fixed.</p>
-        <p>The framework connects seafloor formation, ocean trenches, mountain building, many earthquakes, and many volcanoes. It does not imply that every geological event occurs on one simple boundary line.</p>
+        <div className="subject-composition">
+          <p>A tectonic plate is a large, irregular slab of lithosphere: the crust and rigid uppermost mantle. Plates move relative to one another rather than remaining fixed.</p>
+          <div className="subject-field" aria-label="Processes connected by the plate tectonics framework">
+            <strong>Moving plates</strong>
+            <span>Seafloor formation</span>
+            <span>Ocean trenches</span>
+            <span>Mountain building</span>
+            <span>Earthquakes</span>
+            <span>Volcanoes</span>
+          </div>
+        </div>
+        <p>These connections do not imply that every geological event occurs on one simple boundary line.</p>
         <p className="source-marker">Supported by <a href="#evidence-E1">E1</a> and <a href="#evidence-E2">E2</a></p>
       </CaseSection>
 
       <CaseSection index="04" title="Context">
-        <p>Plate tectonics became a unifying framework in Earth science during the twentieth century. The apparent fit of continents was suggestive, but not enough on its own.</p>
-        <p>Ocean-floor mapping, magnetic records in oceanic rock, the distribution of earthquakes and volcanoes, and direct measurements of crustal motion made a connected account possible.</p>
+        <ol className="context-trace">
+          <li><span>Earlier observation</span><strong>Apparent fit of continents</strong><p>Suggestive, but not enough on its own.</p></li>
+          <li><span>Connected record</span><strong>Ocean floor and magnetic patterns</strong><p>Earthquakes and volcanoes could be seen in relation.</p></li>
+          <li><span>Present measurement</span><strong>Crustal motion</strong><p>Direct measurements made the movement observable.</p></li>
+        </ol>
         <aside className="orientation-shift">
           <span>The orientation shift</span>
           <p>From isolated landforms and events to related consequences of moving lithospheric plates.</p>

@@ -123,3 +123,22 @@ The Library map uses gold only for the open Earth room and keeps future rooms
 as restrained frontier points. Paths fade across the field rather than reading
 as a network diagram. The written key and room list remain the complete,
 accessible equivalent of the visual atlas.
+
+## Museum exhibition refinement
+
+The final editorial pass treated scroll length and section height as part of
+the reading experience. Large intervals were reduced across Home, Explore,
+Cases, Library, and About so that adjacent ideas feel connected without making
+the pages dense.
+
+The canonical Plate Tectonics Case now alternates deliberately between prose
+and visible structure. Existing subject relationships form a small field map;
+existing context becomes a three-stage trace from observation to measurement;
+and the three Evidence References sit side by side for direct comparison. No
+claim, source, case, page, or interaction was added. On narrow viewports the
+same structures become ordered vertical sequences and retain their complete
+textual meaning.
+
+The governing decision was to replace repetition with composition. Visual
+elements expose relationships already present in the case; they do not add
+decoration, inference, or evidence.
