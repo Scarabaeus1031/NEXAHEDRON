@@ -1,5 +1,50 @@
 import Link from "next/link";
 
+const orientationGates = [
+  {
+    title: "Wonder",
+    intention: "Something caught my attention.",
+    invitation: "Discover something unexpected.",
+    action: "Leave room for surprise",
+    href: "/explore#discovery",
+  },
+  {
+    title: "Compare",
+    intention: "How are these things different?",
+    invitation: "Place ideas beside each other.",
+    action: "Compare visible relationships",
+    href: "/cases/plate-tectonics#case-05",
+  },
+  {
+    title: "Connect",
+    intention: "How are these ideas related?",
+    invitation: "Follow bridges across subjects.",
+    action: "Follow what connects",
+    href: "/explore#bridges",
+  },
+  {
+    title: "Verify",
+    intention: "Can I trust this?",
+    invitation: "Inspect evidence, uncertainty, boundaries, and lineage.",
+    action: "Begin with evidence",
+    href: "/cases/what-is-evidence#case-06",
+  },
+  {
+    title: "Explore",
+    intention: "Show me the landscape.",
+    invitation: "Enter the Library without a fixed destination.",
+    action: "Open the atlas",
+    href: "/library",
+  },
+  {
+    title: "Learn",
+    intention: "I want to understand one topic well.",
+    invitation: "Begin with a complete Orientation Case.",
+    action: "Enter through a case",
+    href: "/cases/plate-tectonics",
+  },
+] as const;
+
 export function LandingScreen() {
   return (
     <article className="public-home">
@@ -10,8 +55,8 @@ export function LandingScreen() {
           <p className="public-hero__lead">
             NEXAHEDRON helps people orient themselves across existing knowledge.
           </p>
-          <Link className="public-link public-link--primary" href="/cases/plate-tectonics">
-            Enter through a case <span aria-hidden="true">→</span>
+          <Link className="public-link public-link--primary" href="#ways-in">
+            Choose your way in <span aria-hidden="true">↓</span>
           </Link>
         </div>
         <div className="orientation-field" aria-hidden="true">
@@ -51,11 +96,24 @@ export function LandingScreen() {
         </div>
       </section>
 
-      <section className="home-begin" aria-labelledby="begin-title">
+      <section className="home-begin" id="ways-in" aria-labelledby="begin-title">
         <div className="home-begin__intro">
           <p className="home-answer__index">03</p>
           <p className="public-kicker">Where can I begin?</p>
-          <h2 id="begin-title">Begin with something you want to understand.</h2>
+          <h2 id="begin-title">Choose your way in.</h2>
+        </div>
+        <div className="orientation-gates" aria-label="Ways to begin orientation">
+          {orientationGates.map((gate, index) => (
+            <Link className="orientation-gate" href={gate.href} key={gate.title}>
+              <span className="orientation-gate__position" aria-hidden="true">
+                <i>✦</i>{String(index + 1).padStart(2, "0")}
+              </span>
+              <strong>{gate.title}</strong>
+              <p>{gate.intention}</p>
+              <span className="orientation-gate__invitation">{gate.invitation}</span>
+              <span className="orientation-gate__action">{gate.action} <span aria-hidden="true">→</span></span>
+            </Link>
+          ))}
         </div>
         <Link className="featured-entrance" href="/cases/plate-tectonics">
           <span className="featured-entrance__meta">Featured Orientation Case · Earth Science</span>

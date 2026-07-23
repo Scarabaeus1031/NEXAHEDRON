@@ -49,7 +49,7 @@ export default function ExplorePage() {
         </div>
       </section>
 
-      <section className="explore-section" aria-labelledby="bridges-title">
+      <section className="explore-section" id="bridges" aria-labelledby="bridges-title">
         <div className="section-heading">
           <div>
             <p className="public-kicker">Bridges</p>
@@ -88,7 +88,7 @@ export default function ExplorePage() {
             ))}
           </ul>
         </article>
-        <article className="random-discovery">
+        <article className="random-discovery" id="discovery">
           <p className="public-kicker">Random discovery</p>
           <h2>Leave room for surprise.</h2>
           <p>One reviewed case at a time. Enough context to decide. Never an endless feed.</p>
