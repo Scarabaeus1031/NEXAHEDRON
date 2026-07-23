@@ -625,7 +625,7 @@ a.case-card:hover {
 .room-card small,
 .continuation-grid article > span,
 .unknown-grid article > span {
-  color: var(--color-muted);
+  color: var(--color-accent);
   font-size: 0.65rem;
   font-weight: 650;
   letter-spacing: 0.1em;
@@ -812,10 +812,34 @@ a.case-card:hover {
 }
 
 .orientation-case__hero {
+  position: relative;
   display: grid;
-  min-height: min(47rem, calc(100vh - 6rem));
+  min-height: min(43rem, calc(100vh - 5.8rem));
   align-content: center;
-  padding-block: clamp(5rem, 10vw, 9rem);
+  padding-block: clamp(4.5rem, 8vw, 7rem);
+  overflow: hidden;
+}
+
+.orientation-case__hero::after {
+  position: absolute;
+  z-index: 0;
+  top: 18%;
+  right: -5%;
+  width: min(32vw, 26rem);
+  aspect-ratio: 1;
+  border: 1px solid rgb(143 101 38 / 15%);
+  border-radius: 50%;
+  background:
+    linear-gradient(33deg, transparent 49.8%, rgb(14 39 70 / 10%) 50%, transparent 50.2%),
+    linear-gradient(-51deg, transparent 49.8%, rgb(14 39 70 / 8%) 50%, transparent 50.2%),
+    radial-gradient(circle, transparent 0 31%, rgb(143 101 38 / 11%) 31.2% 31.5%, transparent 31.7%);
+  content: "";
+  pointer-events: none;
+}
+
+.orientation-case__hero > * {
+  position: relative;
+  z-index: 1;
 }
 
 .orientation-case__hero nav {
@@ -850,7 +874,7 @@ a.case-card:hover {
 .case-position {
   display: grid;
   max-width: 60rem;
-  margin: clamp(3rem, 7vw, 6rem) 0 0;
+  margin: clamp(2.5rem, 5vw, 4.5rem) 0 0;
   grid-template-columns: repeat(4, minmax(0, 1fr));
   border-top: 1px solid var(--color-line);
 }
@@ -860,7 +884,7 @@ a.case-card:hover {
 }
 
 .case-position dt {
-  color: var(--color-muted);
+  color: var(--color-accent);
   font-size: 0.64rem;
   font-weight: 650;
   letter-spacing: 0.1em;
@@ -875,8 +899,8 @@ a.case-card:hover {
 .orientation-case__section {
   display: grid;
   grid-template-columns: minmax(12rem, 0.35fr) minmax(0, 1fr);
-  gap: clamp(2rem, 8vw, 9rem);
-  padding-block: clamp(6rem, 11vw, 10rem);
+  gap: clamp(2rem, 7vw, 7rem);
+  padding-block: clamp(4.75rem, 7.5vw, 7rem);
   border-top: 1px solid var(--color-line);
 }
 
@@ -887,7 +911,7 @@ a.case-card:hover {
 }
 
 .orientation-case__section-heading span {
-  color: var(--color-muted);
+  color: var(--color-accent);
   font-size: 0.66rem;
   font-weight: 650;
   letter-spacing: 0.12em;
@@ -905,6 +929,8 @@ a.case-card:hover {
 .orientation-case__section-body {
   min-width: 0;
   max-width: 52rem;
+  font-size: 1.02rem;
+  line-height: 1.72;
 }
 
 .orientation-case__section-body > p {
@@ -946,10 +972,11 @@ a.case-card:hover {
   padding: 1.5rem;
   border-right: 1px solid var(--color-line);
   border-bottom: 1px solid var(--color-line);
+  background: rgb(255 255 255 / 18%);
 }
 
 .starting-grid span {
-  color: var(--color-muted);
+  color: var(--color-accent);
   font-size: 0.65rem;
   text-transform: uppercase;
 }
@@ -963,7 +990,7 @@ a.case-card:hover {
 .source-marker {
   margin-top: 2rem;
   padding-top: 1rem;
-  border-top: 1px solid var(--color-line);
+  border-top: 1px solid rgb(143 101 38 / 35%);
   font-size: 0.72rem;
 }
 
@@ -971,12 +998,12 @@ a.case-card:hover {
   max-width: 40rem;
   margin-top: 3rem;
   padding: 2rem;
-  border-left: 2px solid var(--color-ink);
-  background: var(--color-wash);
+  border-left: 2px solid var(--color-accent);
+  background: rgb(255 255 255 / 22%);
 }
 
 .orientation-shift span {
-  color: var(--color-muted);
+  color: var(--color-accent);
   font-size: 0.65rem;
   text-transform: uppercase;
 }
@@ -1033,15 +1060,18 @@ a.case-card:hover {
 }
 
 .orientation-case__section--evidence {
-  width: 100vw;
-  margin-left: calc((min(100vw, 86rem) - 100vw) / 2);
-  padding-inline: max(1.5rem, calc((100vw - 86rem) / 2));
+  width: auto;
+  margin-left: 0;
+  padding-inline: 0;
+  border-bottom: 1px solid rgb(143 101 38 / 18%);
   background: var(--color-wash);
+  box-shadow: 0 0 0 100vmax var(--color-wash);
+  clip-path: inset(0 -100vmax);
 }
 
 .case-evidence-list {
   margin-top: 3rem;
-  border-top: 1px solid var(--color-line-strong);
+  border-top: 1px solid rgb(143 101 38 / 45%);
 }
 
 .case-evidence-list > article {
@@ -1057,9 +1087,9 @@ a.case-card:hover {
   width: 2.25rem;
   height: 2.25rem;
   place-items: center;
-  border: 1px solid var(--color-library);
+  border: 1px solid var(--color-accent);
   border-radius: 50%;
-  color: var(--color-library);
+  color: var(--color-accent);
   font-size: 0.7rem;
 }
 
@@ -1081,6 +1111,10 @@ a.case-card:hover {
   gap: 1rem;
   padding: 0.55rem 0;
   border-top: 1px solid var(--color-line);
+}
+
+.case-evidence-list article:hover h3 {
+  color: var(--color-accent);
 }
 
 .case-evidence-list dt {
@@ -1127,6 +1161,7 @@ a.case-card:hover {
 
 .orientation-case__section--unknown {
   position: relative;
+  background: radial-gradient(circle at 78% 46%, rgb(143 101 38 / 4%), transparent 38%);
 }
 
 .unknown-grid {
@@ -1154,7 +1189,8 @@ a.case-card:hover {
 .case-boundary {
   margin-top: 3rem;
   padding: clamp(1.5rem, 4vw, 3rem);
-  border: 1px solid var(--color-ink);
+  border: 1px solid rgb(143 101 38 / 55%);
+  background: rgb(255 255 255 / 18%);
 }
 
 .case-boundary > p:not(.public-kicker) {
@@ -1179,14 +1215,19 @@ a.case-card:hover {
   flex-direction: column;
 }
 
+.continuation-grid article:hover {
+  border-bottom-color: var(--color-accent);
+}
+
 .continuation-grid a {
   align-self: flex-start;
   margin-top: auto;
 }
 
 .orientation-case__section--reflection {
-  min-height: 43rem;
+  min-height: 35rem;
   align-items: center;
+  background: linear-gradient(90deg, transparent, rgb(143 101 38 / 3%), transparent);
 }
 
 .orientation-case__section--reflection .public-link {
@@ -1273,8 +1314,8 @@ a.case-card:hover {
   }
 
   .orientation-case__section--evidence {
-    margin-left: -1.25rem;
-    padding-inline: 1.25rem;
+    margin-left: 0;
+    padding-inline: 0;
   }
 
   .case-evidence-list dl > div {
@@ -1290,7 +1331,7 @@ a.case-card:hover {
 .about-statement,
 .about-principles,
 .about-contribution {
-  padding-block: clamp(6rem, 11vw, 10rem);
+  padding-block: clamp(4.75rem, 7.5vw, 7rem);
   border-top: 1px solid var(--color-line);
 }
 
@@ -1306,7 +1347,7 @@ a.case-card:hover {
   min-height: 42rem;
   overflow: hidden;
   background:
-    radial-gradient(circle at 50% 50%, rgb(23 79 145 / 5%), transparent 42%),
+    radial-gradient(ellipse at 50% 55%, rgb(143 101 38 / 10%), rgb(14 39 70 / 3%) 36%, transparent 58%),
     linear-gradient(var(--color-grid) 1px, transparent 1px),
     linear-gradient(90deg, var(--color-grid) 1px, transparent 1px);
   background-size: auto, 4rem 4rem, 4rem 4rem;
@@ -1319,7 +1360,7 @@ a.case-card:hover {
   width: min(70%, 30rem);
   aspect-ratio: 1;
   transform: translate(-50%, -50%);
-  border: 1px solid rgb(16 32 63 / 12%);
+  border: 1px solid rgb(14 39 70 / 12%);
   border-radius: 50%;
 }
 
@@ -1334,7 +1375,7 @@ a.case-card:hover {
   width: 62%;
   height: 1px;
   transform: translate(-50%, -50%) rotate(25deg);
-  background: rgb(16 32 63 / 19%);
+  background: linear-gradient(90deg, transparent, rgb(143 101 38 / 35%), rgb(14 39 70 / 14%), transparent);
 }
 
 .atlas-path--two {
@@ -1371,9 +1412,9 @@ a.case-card:hover {
 
 .atlas-point--earth b {
   width: 1.1rem;
-  border-color: var(--color-library);
-  background: var(--color-library);
-  box-shadow: 0 0 0 6px var(--color-canvas), 0 0 0 7px var(--color-library);
+  border-color: var(--color-accent);
+  background: var(--color-accent);
+  box-shadow: 0 0 0 6px var(--color-canvas), 0 0 0 7px var(--color-accent);
 }
 
 .atlas-point--evidence { top: 19%; left: 25%; }
@@ -1386,7 +1427,7 @@ a.case-card:hover {
   padding: clamp(1.5rem, 4vw, 3rem);
   flex-direction: column;
   border-left: 1px solid var(--color-line);
-  background: var(--color-wash);
+  background: rgb(255 255 255 / 20%);
 }
 
 .atlas-key dl {
@@ -1419,8 +1460,8 @@ a.case-card:hover {
 }
 
 .key-mark--open {
-  border-color: var(--color-library);
-  background: var(--color-library);
+  border-color: var(--color-accent);
+  background: var(--color-accent);
 }
 
 .key-line {
@@ -1451,7 +1492,7 @@ a.case-card:hover {
 
 .library-room-list article > span,
 .library-room-list small {
-  color: var(--color-muted);
+  color: var(--color-accent);
   font-size: 0.66rem;
   letter-spacing: 0.08em;
   text-transform: uppercase;
@@ -1475,7 +1516,9 @@ a.case-card:hover {
   width: 2rem;
   aspect-ratio: 1;
   place-items: center;
-  border: 1px solid var(--color-ink);
+  border: 1px solid var(--color-accent);
+  border-radius: 50%;
+  color: var(--color-accent);
   text-decoration: none;
 }
 

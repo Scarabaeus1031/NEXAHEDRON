@@ -78,3 +78,48 @@ introducing dashboard, feed, or startup patterns.
 
 The public Orientation Library is an editorial presentation surface. It does
 not infer, execute, validate, or manufacture Orientation behavior.
+
+## Editorial Art Direction refinement
+
+The public experience was subsequently reviewed beside `nexah.de` at desktop
+and mobile sizes. The goal was architectural kinship rather than page or
+identity duplication.
+
+### Shared family traits
+
+The refinement adopts the most durable traits visible across NEXAH:
+
+- warm paper rather than a digital-white canvas;
+- deep orientation blue with quiet gold used only for position and emphasis;
+- Georgia-led editorial display type with restrained sans-serif labels;
+- an orientation star inside a fine circular boundary;
+- uppercase navigation with the current position shown through color;
+- fine cartographic lines, low-contrast fields, and generous but purposeful
+  negative space;
+- rounded primary entrances paired with simple underlined continuation links.
+
+NEXAHEDRON retains its own field geometry, Orientation Case hierarchy, and
+atlas language. It does not reproduce the compositions or publication imagery
+of `nexah.de`.
+
+### Rhythm and composition
+
+Public content width was narrowed to create magazine-like margins at large
+viewports. Section intervals were reduced so the narrative continues across
+rules rather than restarting after each one. Mobile navigation becomes a quiet
+two-row index instead of a clipped horizontal rail.
+
+### Case and evidence treatment
+
+The Plate Tectonics Case now uses a faint orientation field at arrival, a
+closer reading rhythm, warmer evidence terrain, and gold source markers.
+Evidence remains structurally separate and directly inspectable. Unknowns and
+boundaries gain presence without becoming warnings; Continuations remain
+optional paths rather than recommendations.
+
+### Atlas treatment
+
+The Library map uses gold only for the open Earth room and keeps future rooms
+as restrained frontier points. Paths fade across the field rather than reading
+as a network diagram. The written key and room list remain the complete,
+accessible equivalent of the visual atlas.
