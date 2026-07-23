@@ -1060,6 +1060,76 @@ a.case-card:hover {
 .subject-field span:nth-of-type(4) { bottom: 9%; left: 39%; }
 .subject-field span:nth-of-type(5) { bottom: 22%; left: 9%; }
 
+.foundation-relationship {
+  margin: 3rem 0 0;
+}
+
+.foundation-relationship ol {
+  display: grid;
+  margin: 0;
+  padding: 0;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  list-style: none;
+  border-top: 1px solid var(--color-line);
+  border-left: 1px solid var(--color-line);
+}
+
+.foundation-relationship li {
+  position: relative;
+  display: flex;
+  min-height: 12rem;
+  padding: 1.25rem;
+  flex-direction: column;
+  border-right: 1px solid var(--color-line);
+  border-bottom: 1px solid var(--color-line);
+  background: rgb(255 255 255 / 15%);
+}
+
+.foundation-relationship li:not(:last-child)::after {
+  position: absolute;
+  z-index: 1;
+  top: 50%;
+  right: -0.55rem;
+  display: grid;
+  width: 1rem;
+  aspect-ratio: 1;
+  place-items: center;
+  border-radius: 50%;
+  background: var(--color-canvas);
+  color: var(--color-accent);
+  content: "→";
+  font-size: 0.7rem;
+}
+
+.foundation-relationship li > span {
+  color: var(--color-accent);
+  font-size: 0.62rem;
+  letter-spacing: 0.1em;
+}
+
+.foundation-relationship strong {
+  margin: auto 0 0.65rem;
+  font-family: var(--font-display);
+  font-size: 1.15rem;
+  font-weight: 400;
+  line-height: 1.1;
+}
+
+.foundation-relationship small {
+  min-height: 2.6rem;
+  color: var(--color-muted);
+  font-size: 0.68rem;
+  line-height: 1.45;
+}
+
+.foundation-relationship figcaption {
+  max-width: 42rem;
+  margin: 1rem 0 0 auto;
+  color: var(--color-muted);
+  font-size: 0.72rem;
+  line-height: 1.5;
+}
+
 .context-trace {
   display: grid;
   margin: 0;
@@ -1348,6 +1418,30 @@ a.case-card:hover {
   color: var(--color-muted);
 }
 
+.case-boundary--split {
+  display: grid;
+  margin-top: 0;
+  padding: 0;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  border-color: var(--color-line);
+}
+
+.case-boundary--split > div {
+  padding: clamp(1.5rem, 4vw, 3rem);
+}
+
+.case-boundary--split > div + div {
+  border-left: 1px solid var(--color-line);
+  background: rgb(143 101 38 / 4%);
+}
+
+.case-boundary--split p:not(.public-kicker) {
+  margin: 1rem 0 0;
+  font-family: var(--font-display);
+  font-size: 1.2rem;
+  line-height: 1.45;
+}
+
 .continuation-grid {
   grid-template-columns: repeat(3, minmax(0, 1fr));
 }
@@ -1462,6 +1556,38 @@ a.case-card:hover {
 
   .relationship-sequence i {
     transform: rotate(90deg);
+  }
+
+  .foundation-relationship ol {
+    grid-template-columns: 1fr;
+  }
+
+  .foundation-relationship li {
+    min-height: 0;
+  }
+
+  .foundation-relationship li:not(:last-child)::after {
+    top: auto;
+    right: 50%;
+    bottom: -0.55rem;
+    transform: rotate(90deg);
+  }
+
+  .foundation-relationship strong {
+    margin-top: 1.4rem;
+  }
+
+  .foundation-relationship small {
+    min-height: 0;
+  }
+
+  .case-boundary--split {
+    grid-template-columns: 1fr;
+  }
+
+  .case-boundary--split > div + div {
+    border-top: 1px solid var(--color-line);
+    border-left: 0;
   }
 
   .subject-field {
@@ -1594,6 +1720,15 @@ a.case-card:hover {
   border: 1px solid var(--color-line-strong);
   border-radius: 50%;
   background: var(--color-canvas);
+}
+
+.atlas-point--open {
+  color: var(--color-ink);
+}
+
+.atlas-point--open b {
+  border-color: var(--color-accent);
+  box-shadow: 0 0 0 3px var(--color-canvas), 0 0 0 4px rgb(143 101 38 / 45%);
 }
 
 .atlas-point--earth {

@@ -3,10 +3,10 @@ import { PublicPageIntro } from "@/features/library/components/PublicPageIntro";
 import { foundationRooms } from "@/features/library/data";
 
 const atlasPoints = [
-  { name: "Earth", className: "atlas-point atlas-point--earth", available: true },
-  { name: "Evidence", className: "atlas-point atlas-point--evidence", available: false },
-  { name: "Systems", className: "atlas-point atlas-point--systems", available: false },
-  { name: "Maps", className: "atlas-point atlas-point--maps", available: false },
+  { name: "Earth", className: "atlas-point atlas-point--earth atlas-point--open", available: true },
+  { name: "Evidence", className: "atlas-point atlas-point--evidence atlas-point--open", available: true },
+  { name: "Systems", className: "atlas-point atlas-point--systems atlas-point--open", available: true },
+  { name: "Maps", className: "atlas-point atlas-point--maps atlas-point--open", available: true },
   { name: "Time", className: "atlas-point atlas-point--time", available: false },
 ] as const;
 
@@ -48,7 +48,7 @@ export default function LibraryPage() {
               <div><dt><span className="key-mark" />Frontier</dt><dd>A meaningful direction without a published case yet.</dd></div>
               <div><dt><span className="key-line" />Path</dt><dd>A named relationship that can be followed.</dd></div>
             </dl>
-            <Link href="/cases/plate-tectonics">Enter the Earth room <span aria-hidden="true">→</span></Link>
+            <Link href="/cases">Enter the first collection <span aria-hidden="true">→</span></Link>
           </div>
         </div>
       </section>
@@ -66,7 +66,7 @@ export default function LibraryPage() {
               <span>{String(index + 1).padStart(2, "0")}</span>
               <div><h3>{room.name}</h3><p>{room.note}</p></div>
               <small>{room.caseCount ? `${room.caseCount} open case` : "Frontier"}</small>
-              {room.caseCount ? <Link href="/cases/plate-tectonics" aria-label={`Enter ${room.name}`}>→</Link> : <i aria-hidden="true">○</i>}
+              {room.caseCount ? <Link href={room.href} aria-label={`Enter ${room.name}`}>→</Link> : <i aria-hidden="true">○</i>}
             </article>
           ))}
         </div>

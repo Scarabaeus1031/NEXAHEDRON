@@ -32,16 +32,59 @@ test("Explore offers cases, foundations, bridges, and evidence-led entry points"
   assert.doesNotMatch(html, /dashboard|news feed|trending/i);
 });
 
-test("Cases distinguish the canonical example from future rooms", async () => {
+test("Cases open the canonical foundational collection", async () => {
   const response = await render("/cases");
   assert.equal(response.status, 200);
   const html = await response.text();
 
-  assert.match(html, /Plate Tectonics/);
+  for (const title of [
+    "Plate Tectonics",
+    "What is Evidence?",
+    "What is a Map?",
+    "What is Scale?",
+    "What is a Scientific Model?",
+  ]) {
+    assert.match(html, new RegExp(title.replace(/[?]/g, "\\?")));
+  }
   assert.match(html, /Canonical/);
-  assert.match(html, /In preparation/);
-  assert.match(html, /A future room/);
+  assert.doesNotMatch(html, /A future room/);
 });
+
+for (const foundationalCase of [
+  ["/cases/what-is-evidence", "What is Evidence?"],
+  ["/cases/what-is-a-map", "What is a Map?"],
+  ["/cases/what-is-scale", "What is Scale?"],
+  ["/cases/what-is-a-scientific-model", "What is a Scientific Model?"],
+]) {
+  test(`${foundationalCase[1]} follows the complete canonical Case structure`, async () => {
+    const response = await render(foundationalCase[0]);
+    assert.equal(response.status, 200);
+    const html = await response.text();
+
+    for (const section of [
+      "Human Intention",
+      "Starting Orientation",
+      "Subject",
+      "Context",
+      "Relationships",
+      "Evidence",
+      "Assumptions",
+      "Uncertainty",
+      "Boundaries",
+      "Unknowns",
+      "Continuations",
+      "Reflection",
+    ]) {
+      assert.match(html, new RegExp(section));
+    }
+
+    assert.match(html, /Foundational Orientation Case/);
+    assert.match(html, /Inspect source/);
+    assert.match(html, /This orientation supports/);
+    assert.match(html, /It does not establish/);
+    assert.match(html, /Choose a path—or stop here/);
+  });
+}
 
 test("Plate Tectonics follows the canonical Orientation Case hierarchy", async () => {
   const response = await render("/cases/plate-tectonics");
