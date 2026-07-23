@@ -3,47 +3,69 @@ import Link from "next/link";
 const orientationGates = [
   {
     title: "Wonder",
+    kind: "wonder",
     intention: "Something caught my attention.",
     invitation: "Discover something unexpected.",
     action: "Leave room for surprise",
     href: "/explore#discovery",
   },
   {
-    title: "Compare",
-    intention: "How are these things different?",
-    invitation: "Place ideas beside each other.",
-    action: "Compare visible relationships",
-    href: "/cases/plate-tectonics#case-05",
-  },
-  {
-    title: "Connect",
-    intention: "How are these ideas related?",
-    invitation: "Follow bridges across subjects.",
-    action: "Follow what connects",
-    href: "/explore#bridges",
-  },
-  {
     title: "Verify",
+    kind: "verify",
     intention: "Can I trust this?",
     invitation: "Inspect evidence, uncertainty, boundaries, and lineage.",
     action: "Begin with evidence",
     href: "/cases/what-is-evidence#case-06",
   },
   {
-    title: "Explore",
-    intention: "Show me the landscape.",
-    invitation: "Enter the Library without a fixed destination.",
-    action: "Open the atlas",
-    href: "/library",
-  },
-  {
     title: "Learn",
-    intention: "I want to understand one topic well.",
+    kind: "learn",
+    intention: "I want to understand this properly.",
     invitation: "Begin with a complete Orientation Case.",
     action: "Enter through a case",
     href: "/cases/plate-tectonics",
   },
+  {
+    title: "Connect",
+    kind: "connect",
+    intention: "How does this relate to other things?",
+    invitation: "Follow bridges across subjects.",
+    action: "Follow what connects",
+    href: "/explore#bridges",
+  },
+  {
+    title: "Compare",
+    kind: "compare",
+    intention: "How is it different?",
+    invitation: "Place ideas beside each other.",
+    action: "Compare visible relationships",
+    href: "/cases/plate-tectonics#case-05",
+  },
+  {
+    title: "Explore",
+    kind: "explore",
+    intention: "Show me the wider landscape.",
+    invitation: "Enter the Library without a fixed destination.",
+    action: "Open the atlas",
+    href: "/library",
+  },
 ] as const;
+
+function GateFigure({ kind }: { readonly kind: (typeof orientationGates)[number]["kind"] }) {
+  if (kind === "verify") {
+    return (
+      <span className="orientation-gate__figure orientation-gate__figure--verify" aria-hidden="true">
+        <i>Source</i><i>Claim</i><i>Boundary</i>
+      </span>
+    );
+  }
+
+  return (
+    <span className={`orientation-gate__figure orientation-gate__figure--${kind}`} aria-hidden="true">
+      <i /><i /><i /><i /><b />
+    </span>
+  );
+}
 
 export function LandingScreen() {
   return (
@@ -104,10 +126,11 @@ export function LandingScreen() {
         </div>
         <div className="orientation-gates" aria-label="Ways to begin orientation">
           {orientationGates.map((gate, index) => (
-            <Link className="orientation-gate" href={gate.href} key={gate.title}>
+            <Link className={`orientation-gate orientation-gate--${gate.kind}`} href={gate.href} key={gate.title}>
               <span className="orientation-gate__position" aria-hidden="true">
                 <i>✦</i>{String(index + 1).padStart(2, "0")}
               </span>
+              <GateFigure kind={gate.kind} />
               <strong>{gate.title}</strong>
               <p>{gate.intention}</p>
               <span className="orientation-gate__invitation">{gate.invitation}</span>

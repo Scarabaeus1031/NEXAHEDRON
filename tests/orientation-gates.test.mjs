@@ -1,4 +1,5 @@
 import assert from "node:assert/strict";
+import { readFile } from "node:fs/promises";
 import test from "node:test";
 
 async function render(path) {
@@ -19,9 +20,13 @@ test("offers six Human intentions that lead to existing editorial experiences", 
 
   assert.match(html, /Choose your way in/);
   assert.match(html, /Ways to begin orientation/);
-  for (const gate of ["Wonder", "Compare", "Connect", "Verify", "Explore", "Learn"]) {
+  const narrativeOrder = ["Wonder", "Verify", "Learn", "Connect", "Compare", "Explore"];
+  for (const gate of narrativeOrder) {
     assert.match(html, new RegExp(`>${gate}<`));
   }
+  const gatesHtml = html.slice(html.indexOf('class="orientation-gates"'), html.indexOf('class="featured-entrance"'));
+  const positions = narrativeOrder.map((gate) => gatesHtml.indexOf(`>${gate}<`));
+  assert.deepEqual(positions, [...positions].sort((left, right) => left - right));
   for (const destination of [
     "/explore#discovery",
     "/cases/plate-tectonics#case-05",
@@ -34,6 +39,20 @@ test("offers six Human intentions that lead to existing editorial experiences", 
   }
 
   assert.doesNotMatch(html, /role="tab"|role="button"/);
+  for (const kind of ["wonder", "verify", "learn", "connect", "compare", "explore"]) {
+    assert.match(html, new RegExp(`orientation-gate__figure--${kind}`));
+  }
+});
+
+test("distinguishes Gate composition without animation", async () => {
+  const css = await readFile(new URL("../styles/public-experience.css", import.meta.url), "utf8");
+  const gateStyles = css.slice(css.indexOf(".orientation-gates"), css.indexOf(".featured-entrance"));
+
+  for (const kind of ["wonder", "verify", "learn", "connect", "compare", "explore"]) {
+    assert.match(gateStyles, new RegExp(`orientation-gate__figure--${kind}`));
+  }
+  assert.match(gateStyles, /grid-template-columns:\s*repeat\(12/);
+  assert.doesNotMatch(gateStyles, /animation|transition/);
 });
 
 test("provides stable landmarks for Wonder and Connect", async () => {
