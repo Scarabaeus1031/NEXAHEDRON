@@ -77,9 +77,14 @@ export function LandingScreen() {
           <p className="public-hero__lead">
             NEXAHEDRON helps people orient themselves across existing knowledge.
           </p>
-          <Link className="public-link public-link--primary" href="#ways-in">
-            Choose your way in <span aria-hidden="true">↓</span>
-          </Link>
+          <div className="public-hero__actions">
+            <Link className="public-link public-link--primary" href="/orient">
+              Begin an Orientation <span aria-hidden="true">→</span>
+            </Link>
+            <Link className="public-hero__secondary" href="#ways-in">
+              Or explore ways in <span aria-hidden="true">↓</span>
+            </Link>
+          </div>
         </div>
         <div className="orientation-field" aria-hidden="true">
           <span className="orientation-field__orbit orientation-field__orbit--one" />
@@ -124,6 +129,37 @@ export function LandingScreen() {
           <p className="public-kicker">Where can I begin?</p>
           <h2 id="begin-title">Choose your way in.</h2>
         </div>
+        <section className="orientation-workspace-entrance" aria-labelledby="workspace-title">
+          <div className="orientation-workspace-entrance__copy">
+            <p className="public-kicker">Orientation Workspace</p>
+            <h3 id="workspace-title">Bring what you have.</h3>
+            <p>
+              Orientation begins with something you bring—not something we provide.
+              Begin by naming what caught your attention and what you want to understand.
+            </p>
+            <Link className="public-link public-link--primary" href="/orient">
+              Begin an Orientation <span aria-hidden="true">→</span>
+            </Link>
+            <small>The current Laboratory entrance begins with Wonder or Understand.</small>
+          </div>
+          <div className="orientation-workspace-entrance__field">
+            <p className="public-kicker">An Orientation may begin with</p>
+            <ul>
+              {[
+                "a question",
+                "an article",
+                "a research paper",
+                "a claim",
+                "a source",
+                "a relationship",
+                "an observation",
+                "a map",
+                "a dataset",
+                "an uncertainty",
+              ].map((item) => <li key={item}>{item}</li>)}
+            </ul>
+          </div>
+        </section>
         <div className="orientation-gates" aria-label="Ways to begin orientation">
           {orientationGates.map((gate, index) => (
             <Link className={`orientation-gate orientation-gate--${gate.kind}`} href={gate.href} key={gate.title}>

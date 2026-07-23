@@ -33,6 +33,9 @@ export function PublicHeader({ pathname }: { readonly pathname: string }) {
             </Link>
           );
         })}
+        <Link className="public-navigation__inquiry" href="/orient">
+          Begin Orientation <span aria-hidden="true">→</span>
+        </Link>
         <a
           href="https://github.com/Scarabaeus1031/nexah"
           rel="noreferrer"
