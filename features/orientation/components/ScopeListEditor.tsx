@@ -6,15 +6,17 @@ export function ScopeListEditor({
   label,
   description,
   required = false,
+  showIssue = true,
 }: {
   readonly field: ScopeField;
   readonly label: string;
   readonly description: string;
   readonly required?: boolean;
+  readonly showIssue?: boolean;
 }) {
   const { state, dispatch } = useAlphaJourney();
   const values = state.request[field];
-  const missing = required && !values.some((value) => value.trim());
+  const missing = required && showIssue && !values.some((value) => value.trim());
 
   return (
     <section className={`editor-card editor-card--scope editor-card--${field}`} aria-labelledby={`${field}-title`}>

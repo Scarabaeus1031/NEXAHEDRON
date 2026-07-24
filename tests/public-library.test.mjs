@@ -12,13 +12,13 @@ async function render(path) {
   );
 }
 
-test("Explore offers cases, foundations, bridges, and evidence-led entry points", async () => {
+test("Explore remains a contextual continuation beyond the primary Cases entrance", async () => {
   const response = await render("/explore");
   assert.equal(response.status, 200);
   const html = await response.text();
 
   for (const text of [
-    "Begin with what draws your attention.",
+    "Continue through relationships, questions, and evidence.",
     "Featured case",
     "Foundations",
     "Bridges",
@@ -47,6 +47,7 @@ test("Cases open the canonical foundational collection", async () => {
     assert.match(html, new RegExp(title.replace(/[?]/g, "\\?")));
   }
   assert.match(html, /Canonical/);
+  assert.match(html, /Begin with what draws your attention\./);
   assert.doesNotMatch(html, /A future room/);
 });
 
@@ -144,9 +145,16 @@ test("About introduces Orientation without exposing internal architecture", asyn
   const html = await response.text();
 
   assert.match(html, /Information already exists\. Orientation is what is missing\./);
+  assert.match(html, /NEXAH is a place for orientation\./);
+  assert.match(html, /ORION makes structure inspectable\./);
+  assert.match(html, /One person\. One question\. One bounded session\./);
   assert.match(html, /Finding is not the same as understanding\./);
   assert.match(html, /Human first/);
   assert.match(html, /Evidence before certainty/);
+  const beginCase = html.indexOf("Begin with a case");
+  const bringQuestion = html.indexOf("Bring your own question");
+  const inspectImplementation = html.indexOf("Inspect the reference implementation");
+  assert.ok(beginCase < bringQuestion && bringQuestion < inspectImplementation);
   const visibleDocument = html.split("<body>")[1].split('<script id="_R_">')[0];
   assert.doesNotMatch(visibleDocument, /Gateway|Runtime|public contract|provider/i);
 });

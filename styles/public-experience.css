@@ -138,6 +138,19 @@
   z-index: 1;
 }
 
+.public-release-status {
+  display: inline-flex;
+  margin: 1rem 0 0;
+  padding: 0.42rem 0.7rem;
+  border: 1px solid var(--color-line-strong);
+  border-radius: 999px;
+  color: var(--color-muted);
+  font-size: 0.64rem;
+  font-weight: 650;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
 .public-hero h1 {
   max-width: 8ch;
   margin: 1.1rem 0 1.75rem;
@@ -2536,11 +2549,152 @@ a.case-card:hover {
   color: var(--color-accent);
 }
 
+.legal-public-page h1 {
+  margin: .5rem 0 1rem;
+  font-family: var(--font-display);
+  font-size: clamp(2.25rem, 5vw, 4.5rem);
+  font-weight: 400;
+}
+
+.legal-public-page > header p:last-child {
+  max-width: 48rem;
+  color: var(--color-muted);
+}
+
+.legal-public-page {
+  display: grid;
+  gap: 0;
+  width: min(100% - 2.5rem, 72rem);
+  margin: 0 auto;
+  padding: clamp(4rem, 9vw, 8rem) 0;
+}
+
+.legal-public-page > header { padding-bottom: 2rem; }
+
+.legal-public-page section {
+  padding: 2rem 0;
+  border-top: 1px solid var(--color-line);
+}
+
+.legal-public-page h2 {
+  margin-top: 0;
+  font-family: var(--font-display);
+  font-weight: 400;
+}
+
+.legal-public-page p { max-width: 52rem; }
+
+.visitor-guide-page,
+.not-found-page {
+  width: min(100% - 2.5rem, 76rem);
+  margin: 0 auto;
+  padding: clamp(4rem, 9vw, 8rem) 0;
+}
+
+.ecosystem-guide {
+  padding: clamp(3rem, 7vw, 6rem) 0;
+  border-top: 1px solid var(--color-line);
+  border-bottom: 1px solid var(--color-line);
+}
+
+.ecosystem-guide ol {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 0;
+  margin: 2rem 0 0;
+  padding: 0;
+  list-style: none;
+  border: 1px solid var(--color-line);
+}
+
+.ecosystem-guide li + li {
+  border-left: 1px solid var(--color-line);
+}
+
+.ecosystem-guide a {
+  display: grid;
+  min-height: 10rem;
+  align-content: space-between;
+  gap: 0.75rem;
+  padding: 1.25rem;
+  color: inherit;
+  text-decoration: none;
+}
+
+.ecosystem-guide strong {
+  font-family: var(--font-display);
+  font-size: 1.4rem;
+  font-weight: 400;
+}
+
+.ecosystem-guide span,
+.ecosystem-guide small {
+  color: var(--color-muted);
+}
+
+.ecosystem-guide .is-current {
+  background: var(--color-ink);
+  color: var(--color-paper);
+}
+
+.ecosystem-guide .is-current span,
+.ecosystem-guide .is-current small {
+  color: inherit;
+}
+
+.guide-actions {
+  max-width: 52rem;
+  padding: clamp(3rem, 7vw, 6rem) 0 0;
+}
+
+.guide-actions h2,
+.not-found-page h1 {
+  margin: 0.75rem 0 1.25rem;
+  font-family: var(--font-display);
+  font-size: clamp(2.5rem, 6vw, 5rem);
+  font-weight: 400;
+  letter-spacing: -0.04em;
+  line-height: 1;
+}
+
+.guide-actions > div,
+.not-found-page > div {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin-top: 2rem;
+}
+
+.not-found-page {
+  min-height: 65vh;
+}
+
+.public-footer > small {
+  grid-column: 1 / -1;
+  color: var(--color-muted);
+}
+
 @media (max-width: 800px) {
   .atlas-layout,
   .library-paths,
   .about-contribution {
     grid-template-columns: 1fr;
+  }
+
+  .ecosystem-guide ol {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .ecosystem-guide li + li {
+    border-left: 0;
+  }
+
+  .ecosystem-guide li:nth-child(even) {
+    border-left: 1px solid var(--color-line);
+  }
+
+  .ecosystem-guide li:nth-child(n + 3) {
+    border-top: 1px solid var(--color-line);
   }
 
   .atlas-key {
@@ -2581,5 +2735,17 @@ a.case-card:hover {
 
   .about-statement {
     grid-template-columns: 1fr;
+  }
+
+  .ecosystem-guide ol {
+    grid-template-columns: 1fr;
+  }
+
+  .ecosystem-guide li:nth-child(even) {
+    border-left: 0;
+  }
+
+  .ecosystem-guide li:nth-child(n + 2) {
+    border-top: 1px solid var(--color-line);
   }
 }

@@ -1,3 +1,4 @@
+import type { Metadata } from "next";
 import Link from "next/link";
 import { CaseCard } from "@/features/library/components/CaseCard";
 import { PublicPageIntro } from "@/features/library/components/PublicPageIntro";
@@ -12,10 +13,10 @@ import {
 export default function ExplorePage() {
   return (
     <article className="public-page explore-page">
-      <PublicPageIntro eyebrow="Explore" title="Begin with what draws your attention.">
+      <PublicPageIntro eyebrow="Explore further" title="Continue through relationships, questions, and evidence.">
         <p>
-          Enter through a subject, a question, a relationship, or a piece of evidence.
-          You do not need to know the name of the room before you begin.
+          Move beyond one case without losing its boundaries. Follow only the
+          paths that remain visible and inspectable.
         </p>
       </PublicPageIntro>
 
@@ -98,3 +99,8 @@ export default function ExplorePage() {
     </article>
   );
 }
+export const metadata: Metadata = {
+  title: "Explore Further",
+  description: "Continue from an Orientation Case through visible relationships, questions and evidence.",
+  alternates: { canonical: "/explore" },
+};

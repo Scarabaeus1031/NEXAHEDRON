@@ -17,7 +17,7 @@ export function ChooseOrientationScreen() {
 
   function beginUnderstand() {
     dispatch({ type: "BEGIN_UNDERSTAND" });
-    router.push(alphaRoutes.object);
+    router.push(alphaRoutes.wonder);
   }
 
   const understand = orientationModes.find((mode) => mode.id === "understand");
@@ -26,7 +26,7 @@ export function ChooseOrientationScreen() {
   return (
     <section className="page page--choose" aria-labelledby="choose-title">
       <PageIntro index="02" eyebrow="Choose Orientation" title="Choose how you would like to begin." titleId="choose-title">
-        <p>Begin with curiosity, or enter the available Understand journey directly.</p>
+        <p>Begin with curiosity or material. Both entrances open the same complete Orientation Session.</p>
       </PageIntro>
 
       <div className="laboratory-entrances" aria-label="Available ways to begin">

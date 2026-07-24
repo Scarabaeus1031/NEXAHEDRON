@@ -1,3 +1,4 @@
+import type { Metadata } from "next";
 import Link from "next/link";
 import { PublicPageIntro } from "@/features/library/components/PublicPageIntro";
 import { foundationRooms } from "@/features/library/data";
@@ -89,3 +90,8 @@ export default function LibraryPage() {
     </article>
   );
 }
+export const metadata: Metadata = {
+  title: "Orientation Library",
+  description: "Explore the small Version 1 collection as rooms, cases, maps and bounded paths.",
+  alternates: { canonical: "/library" },
+};

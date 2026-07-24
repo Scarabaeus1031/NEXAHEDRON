@@ -7,8 +7,18 @@ import "../styles/laboratory-experience.css";
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://nexahedron.com"),
-  title: "NEXAHEDRON — The Orientation Laboratory",
+  applicationName: "NEXAHEDRON",
+  title: {
+    default: "NEXAHEDRON — The Orientation Laboratory",
+    template: "%s — NEXAHEDRON",
+  },
   description: "NEXAHEDRON helps people orient themselves across existing knowledge.",
+  alternates: { canonical: "/" },
+  authors: [{ name: "Haptikdesign GmbH", url: "https://nexah.de" }],
+  creator: "Haptikdesign GmbH",
+  publisher: "Haptikdesign GmbH",
+  robots: { index: true, follow: true },
+  icons: { icon: "/icon.svg" },
   openGraph: {
     title: "NEXAHEDRON — The Orientation Laboratory",
     description: "NEXAHEDRON helps people orient themselves across existing knowledge.",

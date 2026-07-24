@@ -9,13 +9,13 @@ export function ReflectionMargin({
   title,
   introduction,
   notes,
-  question,
+  openItem,
   className = "",
 }: {
   readonly title: string;
   readonly introduction: string;
   readonly notes: readonly ReflectionNote[];
-  readonly question: string;
+  readonly openItem: string;
   readonly className?: string;
 }) {
   const titleId = useId();
@@ -39,8 +39,8 @@ export function ReflectionMargin({
         ))}
       </dl>
       <p className="reflection-margin__question">
-        <span>Question to carry</span>
-        {question}
+        <span>Still open</span>
+        {openItem}
       </p>
       <small>These notes reflect only what you have made explicit. Nothing has been interpreted.</small>
     </aside>

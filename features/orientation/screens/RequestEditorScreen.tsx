@@ -3,9 +3,7 @@
 import { useRouter } from "next/navigation";
 import { PageIntro } from "@/components/ui/PageIntro";
 import { ValidationSummary } from "@/components/ui/ValidationSummary";
-import { OrientationContext } from "@/features/orientation/components/OrientationContext";
-import { ReflectionMargin } from "@/features/orientation/components/ReflectionMargin";
-import { RequestSummary } from "@/features/orientation/components/RequestSummary";
+import { MaterialFolio } from "@/features/orientation/components/MaterialFolio";
 import { ScopeListEditor } from "@/features/orientation/components/ScopeListEditor";
 import { validateRequest } from "@/features/orientation/state";
 import { useAlphaJourney } from "@/hooks/use-alpha-journey";
@@ -22,8 +20,6 @@ export function RequestEditorScreen() {
   const router = useRouter();
   const { state, dispatch } = useAlphaJourney();
   const validation = validateRequest(state);
-  const includeCount = state.request.scopeInclude.filter((item) => item.trim()).length;
-  const excludeCount = state.request.scopeExclude.filter((item) => item.trim()).length;
 
   function reviewRequest() {
     dispatch({ type: "REVIEW_REQUEST" });
@@ -38,7 +34,7 @@ export function RequestEditorScreen() {
 
       <div className="request-workspace">
         <div className="request-main">
-          <OrientationContext />
+          <MaterialFolio showOrientation />
 
           <section className="editor-card editor-card--intention" aria-labelledby="intention-title">
             <div className="editor-card__heading"><div><p className="eyebrow">Direction</p><h2 id="intention-title">Intention</h2></div><span>Required</span></div>
@@ -89,26 +85,6 @@ export function RequestEditorScreen() {
           <button className="action action--primary" type="button" onClick={reviewRequest} disabled={!validation.valid}>
             Review request <span aria-hidden="true">→</span>
           </button>
-        </div>
-        <div className="request-rail">
-          <RequestSummary />
-          <ReflectionMargin
-            title={validation.valid ? "The request can be read as a whole." : "The orientation is still taking shape."}
-            introduction="Each field makes one part of your intention explicit. The Laboratory is not interpreting the subject."
-            notes={[
-              { label: "Direction", value: state.request.intention.trim() ? "Named" : "Still open" },
-              { label: "Attention", value: state.request.focus.trim() ? "Focus named" : "No particular focus yet" },
-              { label: "Boundary", value: `${includeCount} inside · ${excludeCount} outside` },
-              { label: "Resolution", value: state.request.depth },
-            ]}
-            question={!state.request.intention.trim()
-              ? "What do you want to understand?"
-              : includeCount === 0
-                ? "What belongs inside this orientation?"
-                : !state.request.successBoundary.trim()
-                  ? "What would make this sufficient for now?"
-                  : "Does every field still serve your original intention?"}
-          />
         </div>
       </div>
     </section>

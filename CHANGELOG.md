@@ -4,12 +4,60 @@
 
 ### Added
 
+- A deterministic Representation-Referenced Request Alpha proof that assembles
+  and publicly validates one existing `OrientationRequest 1.0` containing the
+  exact immutable Representation reference, without Runtime or Gateway
+  execution.
+- An adapter-free, deterministic handoff proof from NEXAHEDRON Confirmed
+  Material to the accepted ORION Representation Alpha profile, stopping after
+  one conformant immutable Representation.
+- A deterministic Confirmed Material Alpha proof that turns mutable,
+  Human-owned local text into an immutable, integrity-checked artifact matching
+  the accepted ORION Representation Alpha input profile without invoking ORION.
+- Alpha RC1 immutable ORION verification using the audited Git revision and
+  canonical-content fingerprint; execution now stops on any mismatch.
+- Mechanically generated TypeScript declarations from the canonical ORION
+  public models plus automated contract-drift verification.
+- Distinct presentation boundaries for transport failure, Gateway failure,
+  contract violation, invalid public response and unsupported contract version.
+- Current-documentation consistency verification and an RC1 verification report.
+
+- First live NEXAHEDRON → ORION Version 1 integration through a dedicated HTTP
+  transport adapter and the immutable in-process `OrientationGateway`.
+- Exact Orientation Request 1.0 mapping, calm execution states, direct public
+  report rendering, evidence inspection, clarification collection and bounded
+  Runtime Error presentation.
+- Real Gateway integration tests covering complete and blocked reports,
+  clarification, unsupported mode, evidence preservation and transport
+  unavailability without a fixture-backed execution path.
+- Integration architecture note documenting transport responsibilities, the
+  current Library evidence boundary and the immutable clarification-lineage
+  incompatibility.
 - Alpha Sprint 2 Request Editor with structured Intention, Focus, Success
   Boundary, Scope Include, Scope Exclude and Depth controls.
 - Continuous Human-readable Request Summary and reusable local validation for
   the Orientation Object, Intention and included scope.
 - Separate Confirmation and prepared-request states with Effects explicitly set
   to none and execution intentionally unavailable.
+
+### Changed
+
+- Confirmation now begins the real Understand execution instead of ending at a
+  prepared-request placeholder.
+- Current Alpha and architecture guides now describe the live Gateway path;
+  historical Phase I fixture specifications remain historical records only.
+
+### Known limitations
+
+- ORION Version 1's frozen Gateway cannot validate a clarified request's
+  `clarification_of` lineage because its public invocation accepts no prior
+  Clarification Result contract. The valid public outcome is currently
+  `validation_failed`; NEXAHEDRON does not remove lineage or bypass the Gateway.
+- No production ORION transport endpoint or Library evidence adapter is
+  configured in this repository.
+
+### Earlier milestones
+
 - Alpha Sprint 1 production frontend foundation with four routes: Landing,
   Choose Orientation, Wonder and Object Selection.
 - In-memory Wonder and Orientation Object state, accessible form validation,

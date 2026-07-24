@@ -14,7 +14,17 @@ export type AlphaStep =
   | "object"
   | "request"
   | "confirmation"
-  | "prepared";
+  | "orientation";
+
+export type OrientationWorkspaceOperation =
+  | "anchor"
+  | "place"
+  | "attend"
+  | "relate"
+  | "bound"
+  | "turn"
+  | "reflect"
+  | "rest";
 
 export type OrientationDepth = "Overview" | "Focused" | "Deep";
 
@@ -48,6 +58,40 @@ export interface OrientationRequestDraft {
   readonly depth: OrientationDepth;
 }
 
+export interface OrientationWorkspaceDraft {
+  readonly operation: OrientationWorkspaceOperation;
+  readonly relation: string;
+  readonly uncertainty: string;
+  readonly turn: string;
+  readonly reflection: string;
+  readonly rested: boolean;
+  readonly encounter: EncounterDraft;
+}
+
+export interface EncounterFragmentLocator {
+  readonly sectionId: string;
+  readonly blockId: string;
+  readonly startOffset: number;
+  readonly endOffset: number;
+}
+
+export interface EncounterFragment {
+  readonly fragmentId: string;
+  readonly sourceId: string;
+  readonly sourceVersion: string;
+  readonly sourceUrl: string;
+  readonly exactText: string;
+  readonly representationType: "text/html";
+  readonly sourceTimestamp: string;
+  readonly locator: EncounterFragmentLocator;
+}
+
+export interface EncounterDraft {
+  readonly sourceId: string | null;
+  readonly fragments: readonly EncounterFragment[];
+  readonly fragmentRelation: string;
+}
+
 export interface AlphaJourneyState {
   readonly step: AlphaStep;
   readonly entry: "wonder" | "understand" | null;
@@ -55,4 +99,6 @@ export interface AlphaJourneyState {
   readonly wonder: string;
   readonly object: OrientationObjectDraft;
   readonly request: OrientationRequestDraft;
+  readonly workspace: OrientationWorkspaceDraft;
+  readonly executionRequestId: string | null;
 }

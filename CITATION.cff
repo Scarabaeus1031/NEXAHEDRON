@@ -1,0 +1,16 @@
+cff-version: 1.2.0
+message: "If you use NEXAHEDRON in research, please cite the software and the exact source revision."
+title: "NEXAHEDRON: Human-facing Reference Implementation"
+type: software
+authors:
+  - family-names: "Hofmann"
+    given-names: "Thomas"
+version: "0.1.0-dev.0"
+license: "Apache-2.0"
+url: "https://nexahedron.com"
+repository: "https://github.com/Scarabaeus1031/NEXAHEDRON"
+keywords:
+  - orientation
+  - provenance
+  - human-computer interaction
+  - reference implementation

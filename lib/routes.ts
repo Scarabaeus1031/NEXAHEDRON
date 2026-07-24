@@ -5,4 +5,5 @@ export const alphaRoutes = {
   object: "/object",
   request: "/request",
   confirmation: "/confirmation",
+  orientation: "/orientation",
 } as const;

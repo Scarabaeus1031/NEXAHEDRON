@@ -5,7 +5,7 @@ import { fileURLToPath } from "node:url";
 
 const root = new URL("../", import.meta.url);
 const rootPath = fileURLToPath(root);
-const expectedOrionRevision = "8a65f40464a4ccfa62d8f9fd8b831d107b0eaa35";
+const expectedOrionRevision = "d34fbb2f99334534f4db89465a29f8bdb16d14d3";
 const forbiddenPackageNames = new Set(["nexah", "orion", "lyra", "lucy"]);
 
 for (const name of await readdir(new URL("../packages/", import.meta.url))) {
@@ -41,6 +41,7 @@ const routeScreens = new Map([
   ["app/object/page.tsx", "ObjectSelectionScreen"],
   ["app/request/page.tsx", "RequestEditorScreen"],
   ["app/confirmation/page.tsx", "ConfirmationScreen"],
+  ["app/orientation/page.tsx", "OrientationSessionScreen"],
 ]);
 for (const [path, screen] of routeScreens) {
   const source = await readFile(new URL(`../${path}`, import.meta.url), "utf8");
@@ -52,10 +53,22 @@ for (const sourceRoot of ["app", "components", "features", "hooks", "lib", "type
   for (const path of await sourceFiles(sourceDirectory)) {
     const source = await readFile(path, "utf8");
     const displayPath = relative(rootPath, path);
-    assert.doesNotMatch(source, /\bfetch\s*\(|axios|XMLHttpRequest/i, displayPath);
-    assert.doesNotMatch(source, /orion-gateway|laboratory-server|full-round-trip\.json|orientation-sessions/i, displayPath);
+    if (displayPath !== "app/api/orientation/route.ts") {
+      assert.doesNotMatch(source, /\bfetch\s*\(|axios|XMLHttpRequest/i, displayPath);
+    }
+    assert.doesNotMatch(source, /laboratory-server|full-round-trip\.json|orientation-sessions/i, displayPath);
   }
 }
+
+const transportRoute = await readFile(new URL("../app/api/orientation/route.ts", import.meta.url), "utf8");
+assert.match(transportRoute, /ORION_GATEWAY_URL/);
+assert.match(transportRoute, /application\/vnd\.orion\.contracts\+json;version=1\.0/);
+assert.doesNotMatch(transportRoute, /OrientationReport|ClarificationResult|evidence_class|orientation_summary/);
+
+const orionTransport = await readFile(new URL("../services/orion_transport/server.py", import.meta.url), "utf8");
+assert.match(orionTransport, /from orion\.gateway import OrientationGateway/);
+assert.match(orionTransport, /from orion\.public_contracts import/);
+assert.doesNotMatch(orionTransport, /orientation_runtime|public_contracts\.fixtures|fake_backend|ollama|openai|anthropic/i);
 
 const hosting = JSON.parse(await readFile(new URL("../.openai/hosting.json", import.meta.url), "utf8"));
 assert.deepEqual(hosting, {
@@ -66,6 +79,11 @@ assert.deepEqual(hosting, {
 
 const sourceManifest = await readFile(new URL("../docs/upstream/orion-v1/SOURCE.yaml", import.meta.url), "utf8");
 assert.match(sourceManifest, new RegExp(`revision: ${expectedOrionRevision}`));
+assert.match(sourceManifest, /canonical_content_fingerprint: 6201362c094530a0a31fa3d80b46c9131011bb8c8d400183271b0da0eb423f8d/);
 assert.match(sourceManifest, /source_repository_remains_canonical: true/);
 
-console.log("NEXAHEDRON Sprint 2 authority and architecture checks passed.");
+const consumerBoundary = await readFile(new URL("../packages/orion-gateway/src/index.ts", import.meta.url), "utf8");
+assert.match(consumerBoundary, /\.\/generated\/orion-v1/);
+assert.doesNotMatch(consumerBoundary, /interface\s+(?:OrientationRequest|OrientationReport|ClarificationResult|ContinuationOption|EvidenceReference|RuntimeError)\b/);
+
+console.log("NEXAHEDRON live ORION integration boundary checks passed.");

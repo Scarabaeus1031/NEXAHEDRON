@@ -73,6 +73,7 @@ export function LandingScreen() {
       <section className="public-hero" aria-labelledby="landing-title">
         <div className="public-hero__copy">
           <p className="public-kicker">The Orientation Laboratory</p>
+          <p className="public-release-status">Version 1 · Public Development Preview</p>
           <h1 id="landing-title">Find your bearings.</h1>
           <p className="public-hero__lead">
             NEXAHEDRON helps people orient themselves across existing knowledge.

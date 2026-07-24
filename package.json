@@ -2,6 +2,15 @@
   "name": "nexahedron",
   "version": "0.1.0-dev.0",
   "private": true,
+  "license": "Apache-2.0",
+  "homepage": "https://nexahedron.com",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Scarabaeus1031/NEXAHEDRON.git"
+  },
+  "bugs": {
+    "url": "https://github.com/Scarabaeus1031/NEXAHEDRON/issues"
+  },
   "workspaces": [
     "apps/*",
     "packages/*"
@@ -15,11 +24,19 @@
   },
   "scripts": {
     "dev": "WRANGLER_LOG_PATH=.wrangler/wrangler.log vinext dev",
+    "dev:orion": "node scripts/run-orion-transport.mjs",
     "build": "WRANGLER_LOG_PATH=.wrangler/wrangler.log vinext build",
     "start": "WRANGLER_LOG_PATH=.wrangler/wrangler.log vinext start",
-    "check": "npm run check:architecture && npm run lint",
+    "check": "npm run verify:dependency && npm run contracts:check && npm run check:architecture && npm run check:docs && npm run lint",
+    "verify:dependency": "node scripts/verify-orion-dependency.mjs",
+    "contracts:generate": "node scripts/generate-orion-contracts.mjs",
+    "contracts:check": "node scripts/generate-orion-contracts.mjs --check",
+    "proof:confirmed-material": "node --no-warnings --experimental-strip-types scripts/confirmed-material-proof.mjs",
+    "proof:representation-handoff": "node --no-warnings --experimental-strip-types scripts/representation-alpha-handoff.mjs",
+    "proof:representation-request": "node --no-warnings --experimental-strip-types scripts/representation-referenced-request.mjs",
+    "check:docs": "node scripts/check-documentation.mjs",
     "check:architecture": "node scripts/check-architecture.mjs",
-    "test": "npm run build && node --experimental-strip-types --test tests/*.test.mjs",
+    "test": "npm run build && node --experimental-strip-types --test tests/*.test.mjs && node scripts/test-orion-integration.mjs",
     "lint": "eslint . --ignore-pattern dist --ignore-pattern .next"
   },
   "dependencies": {

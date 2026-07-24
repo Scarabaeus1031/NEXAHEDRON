@@ -1,3 +1,4 @@
+import type { Metadata } from "next";
 import { CaseCard } from "@/features/library/components/CaseCard";
 import { PublicPageIntro } from "@/features/library/components/PublicPageIntro";
 import { orientationCases } from "@/features/library/data";
@@ -5,10 +6,10 @@ import { orientationCases } from "@/features/library/data";
 export default function CasesPage() {
   return (
     <article className="public-page cases-page">
-      <PublicPageIntro eyebrow="Orientation Cases" title="Understand something before understanding NEXAH.">
+      <PublicPageIntro eyebrow="Orientation Cases" title="Begin with what draws your attention.">
         <p>
-          Each case begins with a Human intention and makes context, evidence,
-          uncertainty, boundaries, and possible continuations visible.
+          Enter through a subject or a question. Each case makes context,
+          evidence, uncertainty, boundaries, and possible continuations visible.
         </p>
       </PublicPageIntro>
       <section aria-labelledby="cases-title">
@@ -28,3 +29,8 @@ export default function CasesPage() {
     </article>
   );
 }
+export const metadata: Metadata = {
+  title: "Orientation Cases",
+  description: "Inspect bounded Orientation Cases with visible context, evidence, uncertainty and continuations.",
+  alternates: { canonical: "/cases" },
+};

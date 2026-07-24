@@ -2,10 +2,10 @@ import Link from "next/link";
 
 const navigation = [
   { href: "/", label: "Home" },
-  { href: "/explore", label: "Explore" },
   { href: "/cases", label: "Cases" },
   { href: "/library", label: "Library" },
   { href: "/about", label: "About" },
+  { href: "/visitor-guide", label: "Visitor Guide" },
 ] as const;
 
 export function PublicHeader({ pathname }: { readonly pathname: string }) {
@@ -37,7 +37,7 @@ export function PublicHeader({ pathname }: { readonly pathname: string }) {
           Begin Orientation <span aria-hidden="true">→</span>
         </Link>
         <a
-          href="https://github.com/Scarabaeus1031/nexah"
+          href="https://github.com/Scarabaeus1031/NEXAHEDRON"
           rel="noreferrer"
           target="_blank"
         >

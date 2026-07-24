@@ -22,19 +22,54 @@ test("renders the public homepage as a quiet entrance to Orientation Cases", asy
   assert.match(html, /<main id="main-content"/);
   assert.match(html, /Skip to main content/);
   assert.match(html, /Find your bearings\./);
+  assert.match(html, /Version 1 · Public Development Preview/);
   assert.match(html, /NEXAHEDRON helps people orient themselves across existing knowledge\./);
   assert.match(html, /What is this\?/);
   assert.match(html, /Why does it exist\?/);
   assert.match(html, /Where can I begin\?/);
   assert.match(html, /Enter through a case/);
   assert.match(html, /Primary navigation/);
-  for (const destination of ["Home", "Explore", "Cases", "Library", "About", "GitHub"]) {
+  for (const destination of ["Home", "Cases", "Library", "About", "Visitor Guide", "GitHub"]) {
     assert.match(html, new RegExp(destination));
   }
+  const primaryNavigation = html.slice(
+    html.indexOf('aria-label="Primary navigation"'),
+    html.indexOf("</nav>", html.indexOf('aria-label="Primary navigation"')),
+  );
+  assert.doesNotMatch(primaryNavigation, /href="\/explore"/);
   const visibleDocument = html
     .split("<body>")[1]
     .split('<script id="_R_">')[0];
   assert.doesNotMatch(visibleDocument, /ORION|Gateway|Runtime|\bAI\b|assistant|chat interface/i);
+});
+
+test("renders the Version 1 visitor guide as the local ecosystem orientation layer", async () => {
+  const response = await render("/visitor-guide");
+  assert.equal(response.status, 200);
+  const html = await response.text();
+
+  assert.match(html, /<title>Visitor Guide — NEXAHEDRON<\/title>/);
+  assert.match(html, /You are in the Human-facing Workspace/);
+  assert.match(html, /Four places\. Four responsibilities\./);
+  for (const place of ["nexah.de", "NEXAH", "ORION", "NEXAHEDRON"]) {
+    assert.match(html, new RegExp(place));
+  }
+  assert.match(html, /You are here/);
+  assert.match(html, /Begin an Orientation/);
+  assert.match(html, /Human-owned/);
+});
+
+test("renders maintained public operational routes", async () => {
+  for (const [path, expected] of [
+    ["/contact", "Reach the responsible place"],
+    ["/imprint", "Canonical provider information"],
+    ["/privacy", "Hosting and technical logs"],
+    ["/accessibility", "Report a barrier"],
+  ]) {
+    const response = await render(path);
+    assert.equal(response.status, 200);
+    assert.match(await response.text(), new RegExp(expected));
+  }
 });
 
 test("renders one available mode and marks the remaining modes as Later", async () => {
@@ -50,16 +85,20 @@ test("renders one available mode and marks the remaining modes as Later", async 
   assert.equal((html.match(/>Later</g) ?? []).length, 5);
 });
 
-test("renders the local Wonder capture without an execution boundary", async () => {
+test("renders the complete local Orientation Session without crossing the execution boundary", async () => {
   const response = await render("/wonder");
   assert.equal(response.status, 200);
   const html = await response.text();
 
-  assert.match(html, /What caught your attention\?/);
+  assert.match(html, /Your material stays on one table\./);
+  for (const operation of ["Anchor", "Place", "Attend", "Relate", "Bound", "Turn", "Reflect", "Rest"]) {
+    assert.match(html, new RegExp(operation));
+  }
+  assert.match(html, /Question Anchor/);
+  assert.match(html, /What are you trying to orient\?/);
   assert.match(html, /<textarea/);
-  assert.match(html, /Understand this/);
-  assert.match(html, /local application state/);
-  assert.match(html, /Nothing is sent to ORION/);
+  assert.match(html, /Place this on the table/);
+  assert.match(html, /Nothing crosses the ORION boundary until you review and confirm it/);
 });
 
 test("renders Object Selection without crossing the upload boundary", async () => {
@@ -71,10 +110,12 @@ test("renders Object Selection without crossing the upload boundary", async () =
   assert.match(html, /Object title/);
   assert.match(html, /Object type/);
   assert.match(html, /URL/);
-  assert.match(html, /Uploaded file/);
-  assert.match(html, /Preview/);
+  assert.match(html, /Local file/);
+  assert.match(html, /Material folio/);
+  assert.match(html, /Human-held · local/);
   assert.match(html, /Continue/);
   assert.match(html, /No upload occurs/);
+  assert.doesNotMatch(html, /Preview/);
 });
 
 test("renders a structured Request Editor with immediate local validation", async () => {
@@ -83,7 +124,8 @@ test("renders a structured Request Editor with immediate local validation", asyn
   const html = await response.text();
 
   assert.match(html, /Define your orientation request\./);
-  assert.match(html, /Selected Orientation Object/);
+  assert.match(html, /Material folio/);
+  assert.match(html, /Human-authored orientation/);
   assert.match(html, /Intention/);
   assert.match(html, /Focus/);
   assert.match(html, /Success Boundary/);
@@ -92,24 +134,46 @@ test("renders a structured Request Editor with immediate local validation", asyn
   assert.match(html, /Overview/);
   assert.match(html, /Focused/);
   assert.match(html, /Deep/);
-  assert.match(html, /Live Request Summary/);
   assert.match(html, /Effects/);
   assert.match(html, />none</);
   assert.match(html, /Complete the required fields/);
   assert.doesNotMatch(html, /prompt field|message history|Begin Orientation/i);
 });
 
-test("renders Human confirmation without exposing execution", async () => {
+test("renders Human confirmation as the execution boundary", async () => {
   const response = await render("/confirmation");
   assert.equal(response.status, 200);
   const html = await response.text();
 
   assert.match(html, /Confirm what you are preparing\./);
-  assert.match(html, /Orientation Object/);
+  assert.match(html, /Material folio/);
+  assert.match(html, /Human decision/);
+  assert.match(html, /ORION public boundary/);
   assert.match(html, /Version/);
   assert.match(html, /Wonder note/);
-  assert.match(html, /Prepare Orientation Request/);
-  assert.doesNotMatch(html, /Begin Orientation|JSON|Report|Evidence|Continuation/i);
+  assert.match(html, /Begin Orientation/);
+  const visibleDocument = html.split("<body>")[1].split('<script id="_R_">')[0];
+  assert.doesNotMatch(visibleDocument, /Prepare Orientation Request|JSON|stack trace|provider/i);
+});
+
+test("renders the live session boundary without private implementation details", async () => {
+  const response = await render("/orientation");
+  assert.equal(response.status, 200);
+  const html = await response.text();
+  assert.match(html, /No submitted request/);
+  assert.match(html, /Return to confirmation/);
+
+  const reportSource = await readFile(new URL("../features/orientation/components/ReportView.tsx", import.meta.url), "utf8");
+  assert.match(reportSource, /Orientation is blocked at the evidence boundary/);
+  assert.match(reportSource, /EvidencePanel/);
+  assert.match(reportSource, /Assumptions/);
+  assert.match(reportSource, /Uncertainties/);
+  assert.match(reportSource, /Confidence/);
+  assert.match(reportSource, /Validation/);
+  assert.doesNotMatch(reportSource, /stack|provider|prompt|reasoning trace/i);
+
+  const boundarySource = await readFile(new URL("../features/orientation/components/BoundaryFailureView.tsx", import.meta.url), "utf8");
+  for (const category of ["transport_failure", "gateway_failure", "contract_violation", "invalid_public_response", "unsupported_contract_version"]) assert.match(boundarySource, new RegExp(category));
 });
 
 test("defines visible focus, responsive layout and reduced motion", async () => {

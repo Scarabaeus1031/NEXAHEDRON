@@ -2,9 +2,11 @@ baseline:
   id: orion-architecture-v1
   status: frozen
   repository: https://github.com/Scarabaeus1031/NEXAH-ORION.git
-  revision: 8a65f40464a4ccfa62d8f9fd8b831d107b0eaa35
-  version: 0.3.0-dev.0
-  freeze_date: 2026-07-19
+  revision: d34fbb2f99334534f4db89465a29f8bdb16d14d3
+  canonical_content_fingerprint: 6201362c094530a0a31fa3d80b46c9131011bb8c8d400183271b0da0eb423f8d
+  version: 1.0.0
+  contract_suite: "1.0"
+  freeze_date: 2026-07-22
 
 authority:
   source_repository_remains_canonical: true
