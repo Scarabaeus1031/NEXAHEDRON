@@ -2,6 +2,8 @@
 
 ## [Unreleased]
 
+## [1.0.0] - 2026-07-26
+
 ### Added
 
 - A deterministic Representation-Referenced Request Alpha proof that assembles
@@ -42,6 +44,8 @@
 
 ### Changed
 
+- Published one coherent Version 1 source identity across the repository,
+  private workspaces, citation metadata and release tag.
 - Confirmation now begins the real Understand execution instead of ending at a
   prepared-request placeholder.
 - Current Alpha and architecture guides now describe the live Gateway path;

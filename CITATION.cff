@@ -5,7 +5,7 @@ type: software
 authors:
   - family-names: "Hofmann"
     given-names: "Thomas"
-version: "0.1.0-dev.0"
+version: "1.0.0"
 license: "Apache-2.0"
 url: "https://nexahedron.com"
 repository: "https://github.com/Scarabaeus1031/NEXAHEDRON"

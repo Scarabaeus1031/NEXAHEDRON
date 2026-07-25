@@ -13,13 +13,14 @@ intention and decisions.
 
 ## Release status
 
-This repository is the Version 1 release candidate for the Human-facing
-reference implementation. The local Workspace and its deterministic boundary
-proofs are executable and reviewed. A public production release is not complete
-until the deployment, privacy facts, public repository revision and hosted
-anonymous verification recorded in
-[`NEXAHEDRON_RELEASE_READINESS_REPORT.md`](NEXAHEDRON_RELEASE_READINESS_REPORT.md)
-are green.
+This repository is the Version 1 source release for the Human-facing reference
+implementation. The exact source baseline is identified by the annotated
+`v1.0.0` tag and recorded in
+[`NEXAHEDRON Version 1 Source Release`](docs/releases/NEXAHEDRON_V1_SOURCE_RELEASE.md).
+The public production surface remains a bounded development preview; source
+publication does not by itself close the deployment, privacy, operational or
+hosted-verification gates preserved in
+[`NEXAHEDRON_RELEASE_READINESS_REPORT.md`](NEXAHEDRON_RELEASE_READINESS_REPORT.md).
 
 Version 1 demonstrates one bounded Orientation Session and a Human-owned
 Orientation Record. It does not claim a complete production ORION service,

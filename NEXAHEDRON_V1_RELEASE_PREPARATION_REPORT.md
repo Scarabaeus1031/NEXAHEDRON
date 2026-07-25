@@ -1,5 +1,9 @@
 # NEXAHEDRON Version 1 Release Preparation Report
 
+> Historical preparation record. The current immutable source identity is
+> recorded in
+> [`NEXAHEDRON Version 1 Source Release`](docs/releases/NEXAHEDRON_V1_SOURCE_RELEASE.md).
+
 **Review date:** 2026-07-24
 **Repository:** `/Users/tho2020/Documents/NEXAHEDRON`
 **Repository status:** **APPROVED AS VERSION 1 RELEASE CANDIDATE**
