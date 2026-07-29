@@ -4,7 +4,6 @@ const LOCAL_GATEWAY_URL = "http://127.0.0.1:4317/orientation/v1/requests";
 export async function POST(request: Request) {
   const configuredGatewayUrl = process.env.ORION_GATEWAY_URL;
   const gatewayUrl = configuredGatewayUrl || LOCAL_GATEWAY_URL;
-  const gatewayHost = new URL(gatewayUrl).host;
   const bearerToken = process.env.ORION_GATEWAY_BEARER_TOKEN;
   if (configuredGatewayUrl && !bearerToken) {
     return Response.json(
@@ -26,11 +25,7 @@ export async function POST(request: Request) {
     });
     return new Response(await response.text(), {
       status: response.status,
-      headers: {
-        "content-type": PUBLIC_MEDIA_TYPE,
-        "cache-control": "no-store",
-        "x-orion-gateway-host": gatewayHost,
-      },
+      headers: { "content-type": PUBLIC_MEDIA_TYPE, "cache-control": "no-store" },
     });
   } catch {
     return Response.json(
