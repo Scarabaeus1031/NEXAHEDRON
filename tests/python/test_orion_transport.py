@@ -1,9 +1,11 @@
 from __future__ import annotations
 
 import json
+import os
 import unittest
+from unittest.mock import patch
 
-from services.orion_transport.server import execute_envelope
+from services.orion_transport.server import _authorized, execute_envelope
 
 
 def request_payload(*, mode: str = "understand", version: str = "1", resolved: bool = True):
@@ -116,6 +118,37 @@ def evidence_payload():
 
 
 class OrionTransportIntegrationTests(unittest.TestCase):
+    def test_production_authentication_fails_closed_without_exposing_credentials(self):
+        with patch.dict(
+            os.environ,
+            {
+                "ORION_GATEWAY_REQUIRE_AUTH": "1",
+                "ORION_GATEWAY_BEARER_TOKEN": "test-secret",
+            },
+            clear=True,
+        ):
+            self.assertFalse(_authorized("Bearer wrong"))
+            self.assertTrue(_authorized("Bearer test-secret"))
+
+        with patch.dict(
+            os.environ,
+            {
+                "ORION_GATEWAY_REQUIRE_AUTH": "1",
+                "ORION_GATEWAY_CREDENTIALS_JSON": '{"nexahedron":"test-secret"}',
+            },
+            clear=False,
+        ):
+            self.assertFalse(_authorized(None))
+            self.assertFalse(_authorized("Bearer wrong"))
+            self.assertTrue(_authorized("Bearer test-secret"))
+
+        with patch.dict(
+            os.environ,
+            {"ORION_GATEWAY_REQUIRE_AUTH": "1"},
+            clear=True,
+        ):
+            self.assertFalse(_authorized("Bearer test-secret"))
+
     def test_real_gateway_returns_complete_report_and_exact_evidence(self):
         status, body = execute_envelope({"request": request_payload(), "evidence": [evidence_payload()]})
         self.assertEqual(status, 200)

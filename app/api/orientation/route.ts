@@ -2,12 +2,24 @@ const PUBLIC_MEDIA_TYPE = "application/vnd.orion.contracts+json;version=1.0";
 const LOCAL_GATEWAY_URL = "http://127.0.0.1:4317/orientation/v1/requests";
 
 export async function POST(request: Request) {
-  const gatewayUrl = process.env.ORION_GATEWAY_URL || LOCAL_GATEWAY_URL;
+  const configuredGatewayUrl = process.env.ORION_GATEWAY_URL;
+  const gatewayUrl = configuredGatewayUrl || LOCAL_GATEWAY_URL;
+  const bearerToken = process.env.ORION_GATEWAY_BEARER_TOKEN;
+  if (configuredGatewayUrl && !bearerToken) {
+    return Response.json(
+      { boundary_failure: { category: "gateway_failure", code: "gateway_credentials_unavailable" } },
+      { status: 503, headers: { "cache-control": "no-store" } },
+    );
+  }
   try {
     const payload = await request.text();
     const response = await fetch(gatewayUrl, {
       method: "POST",
-      headers: { "content-type": PUBLIC_MEDIA_TYPE, accept: PUBLIC_MEDIA_TYPE },
+      headers: {
+        "content-type": PUBLIC_MEDIA_TYPE,
+        accept: PUBLIC_MEDIA_TYPE,
+        ...(bearerToken ? { authorization: `Bearer ${bearerToken}` } : {}),
+      },
       body: payload,
       cache: "no-store",
     });

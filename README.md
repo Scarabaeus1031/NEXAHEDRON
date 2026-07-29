@@ -27,6 +27,14 @@ Orientation Record. It does not claim a complete production ORION service,
 Library evidence integration, persistence, accounts or automatic
 interpretation.
 
+**Current public boundary:** the deployed preview is a Readiness Alpha built
+around a Human-owned Workspace. Its explicit confirmation boundary can invoke
+the pinned ORION Version 1 Gateway through an authenticated server-side
+transport. Runtime and Gateway remain outside the certified ORION Version 1
+Core, there is no production evidence adapter, and the known clarification
+lineage limitation remains visible. The public preview must not be described as
+evidence-bound Orientation Alpha or certified-ORION execution.
+
 ## Historical Alpha integration record
 
 The following section records an earlier Alpha integration path. It is preserved for traceability and does not redefine the frozen public Version 1 claim:

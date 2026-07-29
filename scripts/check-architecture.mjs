@@ -62,6 +62,7 @@ for (const sourceRoot of ["app", "components", "features", "hooks", "lib", "type
 
 const transportRoute = await readFile(new URL("../app/api/orientation/route.ts", import.meta.url), "utf8");
 assert.match(transportRoute, /ORION_GATEWAY_URL/);
+assert.match(transportRoute, /ORION_GATEWAY_BEARER_TOKEN/);
 assert.match(transportRoute, /application\/vnd\.orion\.contracts\+json;version=1\.0/);
 assert.doesNotMatch(transportRoute, /OrientationReport|ClarificationResult|evidence_class|orientation_summary/);
 

@@ -131,6 +131,13 @@ defaults to `http://127.0.0.1:4317/orientation/v1/requests`. The Python adapter
 uses `ORION_SOURCE_PATH` to locate the pinned external checkout and requires
 Python 3.10 or newer. `ORION_PYTHON` may select the interpreter explicitly.
 
-No production ORION transport deployment is configured in this repository.
-Without a reachable external URL, the UI presents a transport failure boundary
-and does not claim that ORION returned a Runtime Error.
+The controlled Readiness Alpha deployment configures an authenticated
+server-side Version 1 Gateway through `ORION_GATEWAY_URL` and
+`ORION_GATEWAY_BEARER_TOKEN`. The bearer credential is never exposed to the
+browser. A missing hosted credential fails closed as `gateway_failure` with
+`gateway_credentials_unavailable`; an unreachable endpoint remains
+`gateway_unavailable`.
+
+This deployment does not make Runtime or Gateway part of the certified Version
+1 Core, add a production evidence adapter, or resolve the immutable
+clarification-lineage blocker described above.

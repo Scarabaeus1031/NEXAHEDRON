@@ -8,6 +8,7 @@ from __future__ import annotations
 
 from dataclasses import asdict
 from http.server import BaseHTTPRequestHandler, ThreadingHTTPServer
+import hmac
 import json
 import os
 import sys
@@ -28,6 +29,36 @@ from orion.public_contracts import (
 
 MEDIA_TYPE = "application/vnd.orion.contracts+json;version=1.0"
 REQUEST_PATH = "/orientation/v1/requests"
+
+
+def _service_credentials() -> tuple[str, ...]:
+    bearer_token = os.environ.get("ORION_GATEWAY_BEARER_TOKEN")
+    if bearer_token:
+        return (bearer_token,)
+    raw = os.environ.get("ORION_GATEWAY_CREDENTIALS_JSON")
+    if raw is None:
+        return ()
+    try:
+        value = json.loads(raw)
+    except json.JSONDecodeError:
+        return ()
+    if not isinstance(value, dict):
+        return ()
+    return tuple(
+        credential
+        for credential in value.values()
+        if isinstance(credential, str) and credential
+    )
+
+
+def _authorized(authorization: str | None) -> bool:
+    credentials = _service_credentials()
+    if not credentials:
+        return os.environ.get("ORION_GATEWAY_REQUIRE_AUTH") != "1"
+    if not authorization or not authorization.startswith("Bearer "):
+        return False
+    supplied = authorization.removeprefix("Bearer ")
+    return any(hmac.compare_digest(supplied, credential) for credential in credentials)
 
 
 def execute_envelope(envelope: Mapping[str, Any]) -> tuple[int, dict[str, Any]]:
@@ -189,6 +220,13 @@ class OrionTransportHandler(BaseHTTPRequestHandler):
         if self.path != REQUEST_PATH:
             self._write(404, {"transport_error": "not_found"})
             return
+        if not _authorized(self.headers.get("Authorization")):
+            self._write(
+                401,
+                {"transport_error": "service_credential_invalid"},
+                {"WWW-Authenticate": "Bearer"},
+            )
+            return
         try:
             size = int(self.headers.get("Content-Length", "0"))
             if size <= 0 or size > 2_000_000:
@@ -205,12 +243,19 @@ class OrionTransportHandler(BaseHTTPRequestHandler):
         if os.environ.get("ORION_TRANSPORT_LOG") == "1":
             super().log_message(format, *args)
 
-    def _write(self, status: int, body: Mapping[str, Any]) -> None:
+    def _write(
+        self,
+        status: int,
+        body: Mapping[str, Any],
+        headers: Mapping[str, str] | None = None,
+    ) -> None:
         payload = json.dumps(body, separators=(",", ":")).encode("utf-8")
         self.send_response(status)
         self.send_header("Content-Type", MEDIA_TYPE)
         self.send_header("Content-Length", str(len(payload)))
         self.send_header("Cache-Control", "no-store")
+        for name, value in (headers or {}).items():
+            self.send_header(name, value)
         self.end_headers()
         self.wfile.write(payload)
 
@@ -223,6 +268,8 @@ def main() -> None:
         return
     host = os.environ.get("ORION_TRANSPORT_HOST", "127.0.0.1")
     port = int(os.environ.get("ORION_TRANSPORT_PORT", "4317"))
+    if os.environ.get("ORION_GATEWAY_REQUIRE_AUTH") == "1" and not _service_credentials():
+        raise RuntimeError("required gateway credentials are unavailable")
     server = ThreadingHTTPServer((host, port), OrionTransportHandler)
     print(f"ORION Version 1 transport listening on http://{host}:{port}", flush=True)
     server.serve_forever()

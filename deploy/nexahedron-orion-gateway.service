@@ -1,0 +1,44 @@
+[Unit]
+Description=NEXAHEDRON authenticated ORION Version 1 Gateway
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=simple
+User=nexahedron-gateway
+Group=nexahedron-gateway
+WorkingDirectory=/opt/nexahedron-gateway/current
+EnvironmentFile=/etc/nexahedron-gateway/gateway.env
+ExecStart=/usr/bin/python3 -m services.orion_transport.server
+Restart=on-failure
+RestartSec=2
+NoNewPrivileges=true
+PrivateTmp=true
+PrivateDevices=true
+ProtectSystem=strict
+ProtectHome=true
+ProtectKernelTunables=true
+ProtectKernelModules=true
+ProtectControlGroups=true
+ProtectClock=true
+ProtectHostname=true
+ProtectProc=invisible
+ProcSubset=pid
+RestrictAddressFamilies=AF_UNIX AF_INET AF_INET6
+RestrictNamespaces=true
+RestrictRealtime=true
+LockPersonality=true
+MemoryDenyWriteExecute=true
+RemoveIPC=true
+SystemCallArchitectures=native
+CapabilityBoundingSet=
+AmbientCapabilities=
+UMask=0077
+MemoryMax=512M
+TasksMax=32
+LimitNOFILE=64
+IPAddressDeny=any
+IPAddressAllow=localhost
+
+[Install]
+WantedBy=multi-user.target
