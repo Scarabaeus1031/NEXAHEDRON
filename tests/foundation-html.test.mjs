@@ -189,8 +189,12 @@ test("renders the live session boundary without private implementation details",
 
 test("defines visible focus, responsive layout and reduced motion", async () => {
   const css = await readFile(new URL("../app/globals.css", import.meta.url), "utf8");
+  const publicCss = await readFile(new URL("../styles/public-experience.css", import.meta.url), "utf8");
   assert.match(css, /:focus-visible/);
   assert.match(css, /prefers-reduced-motion:\s*reduce/);
   assert.match(css, /min-width:\s*280px/);
   assert.match(css, /@media \(max-width:\s*480px\)/);
+  assert.match(publicCss, /\.public-footer nav\s*\{[^}]*flex-wrap:\s*wrap/s);
+  assert.match(publicCss, /\.public-footer a\s*\{[^}]*min-height:\s*2\.75rem/s);
+  assert.match(publicCss, /\.public-navigation a\s*\{[^}]*min-height:\s*2\.75rem/s);
 });
