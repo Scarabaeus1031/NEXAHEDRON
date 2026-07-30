@@ -15,13 +15,13 @@ const orientationGates = [
     intention: "Can I trust this?",
     invitation: "Inspect evidence, uncertainty, boundaries, and lineage.",
     action: "Begin with evidence",
-    href: "/cases/what-is-evidence#case-06",
+    href: "/cases/what-is-evidence",
   },
   {
     title: "Learn",
     kind: "learn",
     intention: "I want to understand this properly.",
-    invitation: "Begin with a complete Orientation Case.",
+    invitation: "Begin with a Curated Reference Case.",
     action: "Enter through a case",
     href: "/cases/plate-tectonics",
   },
@@ -39,14 +39,14 @@ const orientationGates = [
     intention: "How is it different?",
     invitation: "Place ideas beside each other.",
     action: "Compare visible relationships",
-    href: "/cases/plate-tectonics#case-05",
+    href: "/cases/plate-tectonics",
   },
   {
     title: "Explore",
     kind: "explore",
     intention: "Show me the wider landscape.",
-    invitation: "Enter the Library without a fixed destination.",
-    action: "Open the atlas",
+    invitation: "Enter the curated reference collection without a fixed destination.",
+    action: "Open the reference map",
     href: "/library",
   },
 ] as const;
@@ -72,15 +72,17 @@ export function LandingScreen() {
     <article className="public-home">
       <section className="public-hero" aria-labelledby="landing-title">
         <div className="public-hero__copy">
-          <p className="public-kicker">The Orientation Laboratory</p>
+          <p className="public-kicker">Public Human-facing research demonstrator</p>
           <p className="public-release-status">Version 1 · Public Development Preview</p>
-          <h1 id="landing-title">Find your bearings.</h1>
+          <h1 id="landing-title">Can a bounded process help a Human find their bearings?</h1>
           <p className="public-hero__lead">
-            NEXAHEDRON helps people orient themselves across existing knowledge.
+            NEXAHEDRON makes that research question public. Explore a
+            Human-authored reference case or try the current live experiment.
+            Neither path promises an answer or transfers judgment to software.
           </p>
           <div className="public-hero__actions">
             <Link className="public-link public-link--primary" href="/orient">
-              Begin an Orientation <span aria-hidden="true">→</span>
+              Try the live experiment <span aria-hidden="true">→</span>
             </Link>
             <Link className="public-hero__secondary" href="#ways-in">
               Or explore ways in <span aria-hidden="true">↓</span>
@@ -103,10 +105,11 @@ export function LandingScreen() {
         <p className="home-answer__index">01</p>
         <div>
           <p className="public-kicker">What is this?</p>
-          <h2 id="what-title">A library of orientation.</h2>
+          <h2 id="what-title">An open, bounded experiment.</h2>
           <p>
-            Not a collection of isolated answers. A place to see a subject, its
-            context, its evidence, its limits, and the paths that remain open.
+            The demonstrator places one Human question, available material,
+            relationships, boundaries and reflection on one visible table.
+            Its current working state exists only in the open browser session.
           </p>
         </div>
       </section>
@@ -118,8 +121,9 @@ export function LandingScreen() {
           <h2 id="why-title">Information is abundant. Orientation is not.</h2>
           <p>
             Books, research, maps, repositories, and lived experience already
-            exist. NEXAHEDRON helps make their relationships and boundaries
-            visible without replacing them.
+            exist. This experiment asks whether their relationships and
+            boundaries can be made more visible without replacing Human
+            interpretation.
           </p>
         </div>
       </section>
@@ -132,16 +136,16 @@ export function LandingScreen() {
         </div>
         <section className="orientation-workspace-entrance" aria-labelledby="workspace-title">
           <div className="orientation-workspace-entrance__copy">
-            <p className="public-kicker">Orientation Workspace</p>
+            <p className="public-kicker">Live Bounded Experiment</p>
             <h3 id="workspace-title">Bring what you have.</h3>
             <p>
               Orientation begins with something you bring—not something we provide.
               Begin by naming what caught your attention and what you want to understand.
             </p>
             <Link className="public-link public-link--primary" href="/orient">
-              Begin an Orientation <span aria-hidden="true">→</span>
+              Enter the live experiment <span aria-hidden="true">→</span>
             </Link>
-            <small>The current Laboratory entrance begins with Wonder or Understand.</small>
+            <small>Human-authored · memory only · Rest is a valid ending · ORION is optional</small>
           </div>
           <div className="orientation-workspace-entrance__field">
             <p className="public-kicker">An Orientation may begin with</p>
@@ -176,7 +180,7 @@ export function LandingScreen() {
           ))}
         </div>
         <Link className="featured-entrance" href="/cases/plate-tectonics">
-          <span className="featured-entrance__meta">Featured Orientation Case · Earth Science</span>
+          <span className="featured-entrance__meta">Curated Reference Case · Human/editorial-authored · Earth Science</span>
           <strong>Plate Tectonics</strong>
           <span>
             See how moving plates connect landscapes, evidence, uncertainty,
@@ -184,8 +188,8 @@ export function LandingScreen() {
           </span>
           <span className="featured-entrance__action">Explore the case <span aria-hidden="true">→</span></span>
         </Link>
-        <Link className="public-link public-link--text" href="/explore">
-          Or explore the Library <span aria-hidden="true">→</span>
+        <Link className="public-link public-link--text" href="/library">
+          Explore all Reference Cases <span aria-hidden="true">→</span>
         </Link>
       </section>
     </article>

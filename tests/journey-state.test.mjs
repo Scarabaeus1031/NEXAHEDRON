@@ -25,7 +25,7 @@ test("the Question Anchor remains Human-owned as the session opens on the same t
   assert.equal(state.object.type, "Observation");
 });
 
-test("the canonical Orientation Session completes Anchor through Rest without crossing into ORION", () => {
+test("the Live Bounded Experiment completes Anchor through Rest without crossing into ORION", () => {
   let state = reduceAlphaJourney(initialAlphaJourneyState, { type: "BEGIN_WONDER" });
   state = reduceAlphaJourney(state, { type: "SAVE_WONDER", value: "Why do two maps lead to different conclusions?" });
   assert.equal(validateWorkspaceOperation(state, "anchor"), true);
@@ -131,6 +131,28 @@ test("a transport failure can return the preserved request to confirmation", () 
   assert.equal(state.step, "confirmation");
   assert.equal(state.executionRequestId, null);
   assert.equal(state.request.intention, "Understand it");
+});
+
+test("an ORION boundary outcome can return to the transient Working Session Record", () => {
+  let state = reduceAlphaJourney(initialAlphaJourneyState, { type: "BEGIN_WONDER" });
+  state = reduceAlphaJourney(state, { type: "SAVE_WONDER", value: "A question" });
+  state = reduceAlphaJourney(state, { type: "UPDATE_OBJECT", value: { title: "A document", type: "Document" } });
+  state = reduceAlphaJourney(state, { type: "EDIT_REQUEST_FIELD", field: "intention", value: "Understand it" });
+  state = reduceAlphaJourney(state, { type: "EDIT_SCOPE_ITEM", field: "scopeInclude", index: 0, value: "central claim" });
+  state = reduceAlphaJourney(state, { type: "EDIT_WORKSPACE_NOTE", field: "relation", value: "The document bears on the question" });
+  state = reduceAlphaJourney(state, { type: "EDIT_WORKSPACE_NOTE", field: "uncertainty", value: "Evidence is absent" });
+  state = reduceAlphaJourney(state, { type: "EDIT_WORKSPACE_NOTE", field: "turn", value: "Consider another scale" });
+  state = reduceAlphaJourney(state, { type: "EDIT_WORKSPACE_NOTE", field: "reflection", value: "The boundary is now visible" });
+  state = reduceAlphaJourney(state, { type: "REST_SESSION" });
+  state = reduceAlphaJourney(state, { type: "PREPARE_ORION_REQUEST" });
+  state = reduceAlphaJourney(state, { type: "BEGIN_ORIENTATION", requestId: "request-rest-return" });
+  state = reduceAlphaJourney(state, { type: "RETURN_TO_REST" });
+
+  assert.equal(state.step, "wonder");
+  assert.equal(state.workspace.operation, "rest");
+  assert.equal(state.workspace.rested, true);
+  assert.equal(state.executionRequestId, null);
+  assert.equal(state.workspace.reflection, "The boundary is now visible");
 });
 
 test("Reset clears the complete local preparation", () => {

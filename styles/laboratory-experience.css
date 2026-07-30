@@ -210,6 +210,52 @@
   border-left: 1px solid var(--color-line-strong);
 }
 
+.experiment-agreement {
+  margin: 0 0 clamp(2rem, 5vw, 4rem);
+  padding: clamp(1.25rem, 3vw, 2rem);
+  border: 1px solid var(--color-line-strong);
+  background: rgb(240 236 226 / 72%);
+}
+
+.experiment-agreement h2 {
+  max-width: 22ch;
+  margin: 0.35rem 0 1.5rem;
+  font-family: var(--font-display);
+  font-size: clamp(1.5rem, 3vw, 2.35rem);
+  font-weight: 500;
+  line-height: 1.08;
+}
+
+.experiment-agreement dl {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1px;
+  margin: 0;
+  overflow: hidden;
+  border: 1px solid var(--color-line);
+  background: var(--color-line);
+}
+
+.experiment-agreement dl > div {
+  padding: 1rem;
+  background: var(--color-canvas);
+}
+
+.experiment-agreement dt {
+  margin-bottom: 0.35rem;
+  color: var(--color-ink);
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.11em;
+  text-transform: uppercase;
+}
+
+.experiment-agreement dd {
+  margin: 0;
+  color: var(--color-muted);
+  line-height: 1.55;
+}
+
 .laboratory-entrance {
   display: grid;
   min-height: 31rem;
@@ -1045,6 +1091,10 @@
   .laboratory-entrances,
   .later-modes > header,
   .object-primary-fields {
+    grid-template-columns: 1fr;
+  }
+
+  .experiment-agreement dl {
     grid-template-columns: 1fr;
   }
 

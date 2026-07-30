@@ -1,4 +1,5 @@
 import { EvidencePanel } from "@/features/orientation/components/EvidencePanel";
+import { OrionBoundarySummary } from "@/features/orientation/components/OrionBoundarySummary";
 import { PublicValueView } from "@/features/orientation/components/PublicValueView";
 import type { ContinuationOptionV1, EvidenceReferenceV1, OrientationReportV1 } from "@/packages/orion-gateway/src/index";
 
@@ -11,6 +12,12 @@ export function ReportView({ report, evidence, continuations }: { readonly repor
         <p>{textValue(report.mode_payload.content.orientation_summary)}</p>
         <dl><div><dt>Report</dt><dd>{report.identity.report_id}@{report.identity.report_version}</dd></div><div><dt>Effects</dt><dd>{report.effects}</dd></div></dl>
       </header>
+      <OrionBoundarySummary
+        gatewayStatus="A report contract reached the Workspace through the public Gateway."
+        outcomeStatus={`Orientation Report received with status “${report.status}”.`}
+        producer="Compatible Runtime response observed through the public Gateway"
+        contractType={`OrientationReport ${report.identity.report_version}`}
+      />
 
       <ContractSection title="Orientation" value={report.orientation} />
       <ContractSection title="Representations" value={report.representations} />

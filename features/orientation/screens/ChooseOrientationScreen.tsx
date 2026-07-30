@@ -25,9 +25,22 @@ export function ChooseOrientationScreen() {
 
   return (
     <section className="page page--choose" aria-labelledby="choose-title">
-      <PageIntro index="02" eyebrow="Choose Orientation" title="Choose how you would like to begin." titleId="choose-title">
-        <p>Begin with curiosity or material. Both entrances open the same complete Orientation Session.</p>
+      <PageIntro index="02" eyebrow="Live Bounded Experiment" title="Choose how you would like to begin." titleId="choose-title">
+        <p>Begin with curiosity or material. Both entrances open the same Human-held experiment—not a finished orientation service.</p>
       </PageIntro>
+
+      <aside className="experiment-agreement" aria-labelledby="experiment-agreement-title">
+        <div>
+          <p className="eyebrow">Before you begin</p>
+          <h2 id="experiment-agreement-title">What this experiment holds—and where it stops.</h2>
+        </div>
+        <dl>
+          <div><dt>You provide</dt><dd>The question, material, relationships, boundaries, reflection and decision to Rest.</dd></div>
+          <div><dt>The Workspace holds</dt><dd>Your current working state in browser memory only. Reloading or closing this page loses it.</dd></div>
+          <div><dt>ORION may contribute</dt><dd>Only after confirmation, through the public Gateway and a compatible Runtime. Availability does not guarantee a result.</dd></div>
+          <div><dt>A valid ending</dt><dd>You may Rest without invoking ORION. No interpretation or decision is made for you.</dd></div>
+        </dl>
+      </aside>
 
       <div className="laboratory-entrances" aria-label="Available ways to begin">
         <article className="laboratory-entrance laboratory-entrance--wonder">

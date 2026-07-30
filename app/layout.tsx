@@ -9,10 +9,10 @@ export const metadata: Metadata = {
   metadataBase: new URL("https://nexahedron.com"),
   applicationName: "NEXAHEDRON",
   title: {
-    default: "NEXAHEDRON — The Orientation Laboratory",
+    default: "NEXAHEDRON — Orientation Research Demonstrator",
     template: "%s — NEXAHEDRON",
   },
-  description: "NEXAHEDRON helps people orient themselves across existing knowledge.",
+  description: "A public Human-facing research demonstrator for one bounded experiment in orientation.",
   alternates: { canonical: "/" },
   authors: [{ name: "Haptikdesign GmbH", url: "https://nexah.de" }],
   creator: "Haptikdesign GmbH",
@@ -20,14 +20,14 @@ export const metadata: Metadata = {
   robots: { index: true, follow: true },
   icons: { icon: "/icon.svg" },
   openGraph: {
-    title: "NEXAHEDRON — The Orientation Laboratory",
-    description: "NEXAHEDRON helps people orient themselves across existing knowledge.",
-    images: [{ url: "/og.png", width: 1734, height: 909, alt: "NEXAHEDRON — The Orientation Laboratory" }],
+    title: "NEXAHEDRON — Orientation Research Demonstrator",
+    description: "A public Human-facing research demonstrator for one bounded experiment in orientation.",
+    images: [{ url: "/og.png", width: 1734, height: 909, alt: "NEXAHEDRON — Orientation Research Demonstrator" }],
   },
   twitter: {
     card: "summary_large_image",
-    title: "NEXAHEDRON — The Orientation Laboratory",
-    description: "NEXAHEDRON helps people orient themselves across existing knowledge.",
+    title: "NEXAHEDRON — Orientation Research Demonstrator",
+    description: "A public Human-facing research demonstrator for one bounded experiment in orientation.",
     images: ["/og.png"],
   },
 };

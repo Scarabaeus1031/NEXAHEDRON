@@ -2,8 +2,8 @@ import type { Metadata } from "next";
 import { ChooseOrientationScreen } from "@/features/orientation/screens/ChooseOrientationScreen";
 
 export const metadata: Metadata = {
-  title: "Begin Orientation",
-  description: "Begin one bounded Human-owned Orientation Session in the NEXAHEDRON reference Workspace.",
+  title: "Live Bounded Experiment",
+  description: "Enter one Human-held, memory-only experiment in orientation.",
   alternates: { canonical: "/orient" },
 };
 

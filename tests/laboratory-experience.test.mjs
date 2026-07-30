@@ -69,7 +69,8 @@ test("keeps the Question Anchor, Human reflection, uncertainty, and STOP boundar
   assert.match(source, /This remains Human-authored/);
   assert.match(source, /No evidence is attached/);
   assert.match(source, /Prepare for ORION/);
-  assert.doesNotMatch(source, /fetch\(|invokeOrion|Gateway|EvidenceReference/);
+  assert.match(source, /Gateway, Runtime, contract, or evidence boundary/);
+  assert.doesNotMatch(source, /fetch\(|invokeOrion|EvidenceReference/);
 });
 
 test("places one bounded real-source Encounter inside the existing Place operation", async () => {

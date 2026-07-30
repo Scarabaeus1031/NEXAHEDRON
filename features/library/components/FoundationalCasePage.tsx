@@ -34,14 +34,16 @@ export function FoundationalCasePage({ orientationCase }: { readonly orientation
         <nav aria-label="Breadcrumb">
           <Link href="/cases">Cases</Link><span aria-hidden="true">/</span><span>{orientationCase.category}</span>
         </nav>
-        <p className="public-kicker">Foundational Orientation Case · {orientationCase.readingTime}</p>
+        <p className="public-kicker">Curated Reference Case · Human/editorial-authored · {orientationCase.readingTime}</p>
         <h1>{orientationCase.title}</h1>
         <p className="orientation-case__dek">{orientationCase.dek}</p>
         <dl className="case-position">
           <div><dt>Position</dt><dd>Foundation</dd></div>
           <div><dt>Evidence</dt><dd>{orientationCase.evidence.length} public sources</dd></div>
           <div><dt>Boundary</dt><dd>Introductory orientation</dd></div>
-          <div><dt>Status</dt><dd>Canonical</dd></div>
+          <div><dt>Status</dt><dd>Curated Reference Case</dd></div>
+          <div><dt>Producer</dt><dd>Human and editorial authors</dd></div>
+          <div><dt>Not produced by</dt><dd>Live Workspace or ORION</dd></div>
         </dl>
       </header>
 

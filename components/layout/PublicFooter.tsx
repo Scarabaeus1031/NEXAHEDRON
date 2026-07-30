@@ -5,7 +5,7 @@ export function PublicFooter() {
     <footer className="public-footer">
       <p>
         <span><i aria-hidden="true">✦</i> NEXAHEDRON</span>
-        A place to find your bearings.
+        A public experiment in Human orientation.
       </p>
       <nav aria-label="Footer navigation">
         <a href="https://nexah.de/visitor-guide/">Ecosystem map</a>
@@ -17,7 +17,7 @@ export function PublicFooter() {
         <a href="https://github.com/Scarabaeus1031/NEXAHEDRON/security/policy">Security</a>
         <a href="https://github.com/Scarabaeus1031/NEXAHEDRON">Open source</a>
       </nav>
-      <small>© Haptikdesign GmbH · NEXAHEDRON Version 1 reference implementation</small>
+      <small>© Haptikdesign GmbH · NEXAHEDRON Version 1 public research demonstrator</small>
     </footer>
   );
 }

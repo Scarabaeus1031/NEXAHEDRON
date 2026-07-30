@@ -1009,6 +1009,57 @@ fieldset.editor-card {
   font-size: clamp(2.7rem, 6vw, 5rem);
 }
 
+.orion-boundary-summary {
+  margin: 2rem 0;
+  padding: clamp(1rem, 3vw, 1.6rem);
+  border: 1px solid var(--color-line-strong);
+  background: rgb(240 236 226 / 68%);
+}
+
+.orion-boundary-summary h2 {
+  max-width: 24ch;
+  margin: 0.25rem 0 1.25rem;
+  font-family: var(--font-display);
+  font-size: clamp(1.35rem, 2.5vw, 2rem);
+  font-weight: 500;
+}
+
+.orion-boundary-summary dl {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1px;
+  margin: 0;
+  overflow: hidden;
+  border: 1px solid var(--color-line);
+  background: var(--color-line);
+}
+
+.orion-boundary-summary dl > div {
+  padding: 0.85rem;
+  background: var(--color-canvas);
+}
+
+.orion-boundary-summary dt {
+  color: var(--color-ink);
+  font-size: 0.66rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.orion-boundary-summary dd {
+  margin: 0.3rem 0 0;
+  color: var(--color-muted);
+  line-height: 1.5;
+}
+
+.boundary-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  margin-top: 1.5rem;
+}
+
 .report-section,
 .preserved-context,
 .required-actions,
@@ -1182,6 +1233,10 @@ fieldset.editor-card {
 }
 
 @media (max-width: 760px) {
+  .orion-boundary-summary dl {
+    grid-template-columns: 1fr;
+  }
+
   .site-shell {
     border: 0;
   }

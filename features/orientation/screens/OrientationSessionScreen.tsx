@@ -5,6 +5,7 @@ import { useRouter } from "next/navigation";
 import { ClarificationView } from "@/features/orientation/components/ClarificationView";
 import { BoundaryFailureView } from "@/features/orientation/components/BoundaryFailureView";
 import { PublicValueView } from "@/features/orientation/components/PublicValueView";
+import { OrionBoundarySummary } from "@/features/orientation/components/OrionBoundarySummary";
 import { ReportView } from "@/features/orientation/components/ReportView";
 import { RuntimeErrorView } from "@/features/orientation/components/RuntimeErrorView";
 import { mapToOrientationRequest, type ClarificationValues } from "@/features/orientation/integration/request-mapping";
@@ -23,6 +24,11 @@ export function OrientationSessionScreen() {
   const [result, setResult] = useState<OrionInvocationResult | null>(null);
   const [clarificationValues, setClarificationValues] = useState<ClarificationValues>({});
   const started = useRef(false);
+
+  function returnToRest() {
+    dispatch({ type: "RETURN_TO_REST" });
+    router.push(alphaRoutes.wonder);
+  }
 
   const execute = useCallback(async (
     requestVersion: number,
@@ -82,7 +88,7 @@ export function OrientationSessionScreen() {
   }
 
   if (result.kind === "boundary_failure") {
-    return <BoundaryFailureView failure={result.failure} onReturn={() => { dispatch({ type: "RETURN_TO_CONFIRMATION" }); router.push(alphaRoutes.confirmation); }} />;
+    return <BoundaryFailureView failure={result.failure} onReturn={() => { dispatch({ type: "RETURN_TO_CONFIRMATION" }); router.push(alphaRoutes.confirmation); }} onRest={returnToRest} />;
   }
 
   const outcome = result.outcome;
@@ -90,7 +96,7 @@ export function OrientationSessionScreen() {
     return <div className="page page--session"><ClarificationView clarification={outcome.clarification} values={clarificationValues} onChange={setClarificationValues} onSubmit={() => setPhase("clarification_review")} /></div>;
   }
   if (outcome.kind === "runtime_error") {
-    return <div className="page page--session"><RuntimeErrorView error={outcome.error} /></div>;
+    return <div className="page page--session"><RuntimeErrorView error={outcome.error} onRest={returnToRest} /></div>;
   }
   return <div className="page page--session"><ReportView report={outcome.report} evidence={outcome.evidence} continuations={outcome.continuations} /></div>;
 }
@@ -99,9 +105,15 @@ function OrientationLoading({ phase, objectTitle, intention }: { readonly phase:
   const currentIndex = Math.max(0, ["preparing", "submitting", "orienting", "receiving"].indexOf(phase));
   return (
     <section className="page page--focused orientation-loading" aria-labelledby="loading-title" aria-live="polite">
-      <p className="eyebrow">Orientation in progress</p>
+      <p className="eyebrow">Public Gateway request in progress</p>
       <h1 id="loading-title">{loadingStages[currentIndex]}</h1>
-      <p>Your confirmed object, intention and scope are being oriented. The result will remain bounded by the evidence and uncertainty available.</p>
+      <p>Your confirmed object, intention and scope are being submitted. A reachable Gateway is not yet an ORION result.</p>
+      <OrionBoundarySummary
+        gatewayStatus="Submission is in progress; final reachability is not yet known."
+        outcomeStatus="No public outcome has been received."
+        producer="NEXAHEDRON Gateway consumer"
+        contractType="OrientationRequest"
+      />
       <dl><div><dt>Object</dt><dd>{objectTitle}</dd></div><div><dt>Intention</dt><dd>{intention}</dd></div></dl>
       <ol>{loadingStages.map((stage, index) => <li key={stage} className={index === currentIndex ? "is-current" : index < currentIndex ? "is-complete" : undefined} aria-current={index === currentIndex ? "step" : undefined}>{stage}</li>)}</ol>
     </section>

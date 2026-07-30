@@ -40,9 +40,9 @@ export default function AboutPage() {
       <section className="about-statement" aria-labelledby="about-nexahedron">
         <p className="home-answer__index">03</p>
         <div>
-          <p className="public-kicker">The Human-facing Workspace</p>
-          <h2 id="about-nexahedron">One person. One question. One bounded session.</h2>
-          <p>NEXAHEDRON is where a Human encounters material, notices relationships and boundaries, reflects, and may leave with a Human-owned Orientation Record.</p>
+          <p className="public-kicker">The public research demonstrator</p>
+          <h2 id="about-nexahedron">One person. One question. One bounded experiment.</h2>
+          <p>NEXAHEDRON lets a Human encounter material, name relationships and boundaries, reflect, and Rest with a transient Working Session Record. The current record exists only while the browser session remains open.</p>
         </div>
       </section>
 
@@ -77,8 +77,8 @@ export default function AboutPage() {
           <p>Review a case. Inspect its evidence. Name a missing boundary. Propose a clearer connection. Teach with it. Translate it. Make it more accessible.</p>
         </div>
         <div className="about-contribution__actions">
-          <Link href="/cases/plate-tectonics">Begin with a case <span aria-hidden="true">→</span></Link>
-          <Link href="/orient">Bring your own question <span aria-hidden="true">→</span></Link>
+          <Link href="/cases/plate-tectonics">Begin with a Curated Reference Case <span aria-hidden="true">→</span></Link>
+          <Link href="/orient">Try the live experiment <span aria-hidden="true">→</span></Link>
           <a href="https://github.com/Scarabaeus1031/NEXAHEDRON">Inspect the reference implementation <span aria-hidden="true">↗</span></a>
         </div>
       </section>

@@ -70,12 +70,13 @@ export function OrientationWorkspaceScreen() {
     <section className="page orientation-workspace" aria-labelledby="workspace-operation-title">
       <header className="orientation-workspace__header">
         <div>
-          <p className="eyebrow">Orientation Session · Human-held</p>
+          <p className="eyebrow">Live Bounded Experiment · Human-held</p>
           <h1>Your material stays on one table.</h1>
         </div>
         <p>
-          Each operation changes the focus, not the place. Nothing crosses the
-          ORION boundary until you review and confirm it.
+          Each operation changes the focus, not the place. This working state
+          exists in browser memory only. Nothing crosses the ORION boundary
+          until you review and confirm it.
         </p>
       </header>
 
@@ -433,8 +434,8 @@ export function OrientationWorkspaceScreen() {
       <section className="rest-sheet" aria-labelledby="rest-title">
         <div className="rest-sheet__mark" aria-hidden="true">✦</div>
         <div>
-          <p className="eyebrow">Orientation Record · held, not closed</p>
-          <h3 id="rest-title">You can stop without losing the work.</h3>
+          <p className="eyebrow">Working Session Record · Rest View</p>
+          <h3 id="rest-title">You can Rest with the work visible in this browser session.</h3>
           <p>
             The session has a place, a relationship, a boundary, a turn, and
             your reflection. Its uncertainty remains visible.
@@ -484,8 +485,9 @@ export function OrientationWorkspaceScreen() {
           </div>
         </div>
         <p className="rest-sheet__boundary">
-          ORION may stop at the evidence boundary. This Human-authored session
-          remains complete as a working orientation either way.
+          This transient Human-held record is not persistent or immutable.
+          Reloading or closing the page loses it. ORION is optional and may
+          stop at a Gateway, Runtime, contract, or evidence boundary.
         </p>
       </section>
     );

@@ -18,15 +18,15 @@ export function ConfirmationScreen() {
   return (
     <section className="page page--confirmation" aria-labelledby="confirmation-title">
       <PageIntro index="06" eyebrow="Confirmation" title="Confirm what you are preparing." titleId="confirmation-title">
-        <p>Your completed session remains intact. This review selects only the bounded fields that may cross to ORION.</p>
+        <p>Your Working Session Record remains intact in this open browser session. This review selects only the bounded fields that may cross the public Gateway.</p>
       </PageIntro>
 
       <MaterialFolio showOrientation />
 
       <div className="confirmation-boundary">
         <p className="eyebrow">Human decision</p>
-        <p>Beginning Orientation submits only the confirmed fields above through the ORION public boundary.</p>
-        <span>No external changes · Effects: none</span>
+        <p>Beginning Orientation submits only the confirmed fields above to the Gateway. A reachable Gateway may contact a compatible Runtime; neither reachability nor a contract-shaped response proves a successful certified Core result.</p>
+        <span>Human confirmation · No external changes · Effects: none</span>
       </div>
 
       <div className="confirmation-actions">

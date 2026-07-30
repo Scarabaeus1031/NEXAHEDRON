@@ -29,11 +29,10 @@ test("offers six Human intentions that lead to existing editorial experiences", 
   assert.deepEqual(positions, [...positions].sort((left, right) => left - right));
   for (const destination of [
     "/explore#discovery",
-    "/cases/plate-tectonics#case-05",
-    "/explore#bridges",
-    "/cases/what-is-evidence#case-06",
-    "/library",
     "/cases/plate-tectonics",
+    "/explore#bridges",
+    "/cases/what-is-evidence",
+    "/library",
   ]) {
     assert.match(html, new RegExp(`href="${destination}"`));
   }

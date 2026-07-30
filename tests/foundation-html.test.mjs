@@ -13,23 +13,23 @@ async function render(path = "/") {
   );
 }
 
-test("renders the public homepage as a quiet entrance to Orientation Cases", async () => {
+test("renders the public homepage as a bounded research-demonstrator entrance", async () => {
   const response = await render();
   assert.equal(response.status, 200);
   const html = await response.text();
 
-  assert.match(html, /<title>NEXAHEDRON — The Orientation Laboratory<\/title>/);
+  assert.match(html, /<title>NEXAHEDRON — Orientation Research Demonstrator<\/title>/);
   assert.match(html, /<main id="main-content"/);
   assert.match(html, /Skip to main content/);
-  assert.match(html, /Find your bearings\./);
+  assert.match(html, /Can a bounded process help a Human find their bearings\?/);
   assert.match(html, /Version 1 · Public Development Preview/);
-  assert.match(html, /NEXAHEDRON helps people orient themselves across existing knowledge\./);
+  assert.match(html, /NEXAHEDRON makes that research question public/);
   assert.match(html, /What is this\?/);
   assert.match(html, /Why does it exist\?/);
   assert.match(html, /Where can I begin\?/);
   assert.match(html, /Enter through a case/);
   assert.match(html, /Primary navigation/);
-  for (const destination of ["Home", "Cases", "Library", "About", "Visitor Guide", "GitHub"]) {
+  for (const destination of ["Home", "Cases", "Reference Cases", "About", "Visitor Guide", "GitHub"]) {
     assert.match(html, new RegExp(destination));
   }
   const primaryNavigation = html.slice(
@@ -40,23 +40,25 @@ test("renders the public homepage as a quiet entrance to Orientation Cases", asy
   const visibleDocument = html
     .split("<body>")[1]
     .split('<script id="_R_">')[0];
-  assert.doesNotMatch(visibleDocument, /ORION|Gateway|Runtime|\bAI\b|assistant|chat interface/i);
+  assert.doesNotMatch(visibleDocument, /\bAI\b|assistant|chat interface/i);
+  assert.match(visibleDocument, /ORION is optional/);
 });
 
-test("renders the Version 1 visitor guide as the local ecosystem orientation layer", async () => {
+test("renders the Version 1 visitor guide as the local demonstrator orientation layer", async () => {
   const response = await render("/visitor-guide");
   assert.equal(response.status, 200);
   const html = await response.text();
 
   assert.match(html, /<title>Visitor Guide — NEXAHEDRON<\/title>/);
-  assert.match(html, /You are in the Human-facing Workspace/);
+  assert.match(html, /You are in a public research demonstrator/);
   assert.match(html, /Four places\. Four responsibilities\./);
   for (const place of ["nexah.de", "NEXAH", "ORION", "NEXAHEDRON"]) {
     assert.match(html, new RegExp(place));
   }
   assert.match(html, /You are here/);
-  assert.match(html, /Begin an Orientation/);
-  assert.match(html, /Human-owned/);
+  assert.match(html, /Try the live experiment/);
+  assert.match(html, /Working Session Record/);
+  assert.match(html, /Reloading or closing the page loses/);
 });
 
 test("renders maintained public operational routes", async () => {
@@ -78,6 +80,9 @@ test("renders one available mode and marks the remaining modes as Later", async 
   const html = await response.text();
 
   assert.match(html, /Choose how you would like to begin\./);
+  assert.match(html, /What this experiment holds—and where it stops\./);
+  assert.match(html, /browser memory only/);
+  assert.match(html, /Rest without invoking ORION/);
   assert.match(html, /Begin with Wonder/);
   assert.match(html, /Choose Understand/);
   for (const mode of ["Compare", "Connect", "Explore", "Build", "Reflect"]) assert.match(html, new RegExp(mode));
@@ -148,7 +153,7 @@ test("renders Human confirmation as the execution boundary", async () => {
   assert.match(html, /Confirm what you are preparing\./);
   assert.match(html, /Material folio/);
   assert.match(html, /Human decision/);
-  assert.match(html, /ORION public boundary/);
+  assert.match(html, /public Gateway/);
   assert.match(html, /Version/);
   assert.match(html, /Wonder note/);
   assert.match(html, /Begin Orientation/);
@@ -174,6 +179,12 @@ test("renders the live session boundary without private implementation details",
 
   const boundarySource = await readFile(new URL("../features/orientation/components/BoundaryFailureView.tsx", import.meta.url), "utf8");
   for (const category of ["transport_failure", "gateway_failure", "contract_violation", "invalid_public_response", "unsupported_contract_version"]) assert.match(boundarySource, new RegExp(category));
+  assert.match(boundarySource, /Return to Working Session Record/);
+
+  const boundarySummary = await readFile(new URL("../features/orientation/components/OrionBoundarySummary.tsx", import.meta.url), "utf8");
+  for (const layer of ["Certified Core", "Runtime", "Gateway", "Observed outcome", "Producer", "Contract type"]) {
+    assert.match(boundarySummary, new RegExp(layer));
+  }
 });
 
 test("defines visible focus, responsive layout and reduced motion", async () => {

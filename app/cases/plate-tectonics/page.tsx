@@ -37,7 +37,7 @@ export default function PlateTectonicsCasePage() {
         <nav aria-label="Breadcrumb">
           <Link href="/cases">Cases</Link><span aria-hidden="true">/</span><span>Earth Science</span>
         </nav>
-        <p className="public-kicker">Canonical Orientation Case · 12 min</p>
+        <p className="public-kicker">Curated Reference Case · Human/editorial-authored · 12 min</p>
         <h1>Plate Tectonics</h1>
         <p className="orientation-case__dek">
           Moving plates, geological patterns, inspectable evidence, and the limits of prediction.
@@ -46,7 +46,9 @@ export default function PlateTectonicsCasePage() {
           <div><dt>Position</dt><dd>Introduction</dd></div>
           <div><dt>Evidence</dt><dd>3 public sources</dd></div>
           <div><dt>Boundary</dt><dd>Conceptual understanding</dd></div>
-          <div><dt>Status</dt><dd>Canonical</dd></div>
+          <div><dt>Status</dt><dd>Curated Reference Case</dd></div>
+          <div><dt>Producer</dt><dd>Human and editorial authors</dd></div>
+          <div><dt>Not produced by</dt><dd>Live Workspace or ORION</dd></div>
         </dl>
       </header>
 

@@ -1,5 +1,6 @@
 import type { FormEvent } from "react";
 import { PublicValueView } from "@/features/orientation/components/PublicValueView";
+import { OrionBoundarySummary } from "@/features/orientation/components/OrionBoundarySummary";
 import type { ClarificationResultV1 } from "@/packages/orion-gateway/src/index";
 import type { ClarificationValues } from "@/features/orientation/integration/request-mapping";
 
@@ -25,6 +26,12 @@ export function ClarificationView({ clarification, values, onChange, onSubmit }:
         <h1 id="clarification-title">One boundary needs your attention.</h1>
         <p>Only the values identified by ORION are requested. Your valid object, intention and scope remain preserved.</p>
       </header>
+      <OrionBoundarySummary
+        gatewayStatus="A clarification contract reached the Workspace through the public Gateway."
+        outcomeStatus="Clarification required. No Orientation Report has been accepted."
+        producer="Compatible Runtime response observed through the public Gateway"
+        contractType={`ClarificationResult ${clarification.request_version}`}
+      />
 
       <section className="preserved-context" aria-labelledby="preserved-title">
         <h2 id="preserved-title">Preserved context</h2>

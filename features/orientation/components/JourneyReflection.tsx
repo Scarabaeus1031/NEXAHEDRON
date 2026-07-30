@@ -33,7 +33,7 @@ export function JourneyReflection({ pathname }: { readonly pathname: string }) {
         ? "The same question is still here."
         : "Begin before you know the answer.";
     introduction = operation === "rest"
-      ? "Rest preserves the work and its uncertainty. It does not convert either into a conclusion."
+      ? "Rest keeps the work and its uncertainty visible in this open browser session. It does not convert either into a conclusion."
       : "This margin follows the work without interpreting, completing, or directing it.";
     notes = [
       { label: "Current lens", value: operation },

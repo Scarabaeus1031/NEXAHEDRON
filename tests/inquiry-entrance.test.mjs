@@ -12,17 +12,17 @@ async function render(path) {
   );
 }
 
-test("makes the existing Laboratory journey the primary public action", async () => {
+test("makes the Live Bounded Experiment the primary public action", async () => {
   const response = await render("/");
   assert.equal(response.status, 200);
   const html = await response.text();
-  assert.match(html, /Begin an Orientation/);
-  assert.match(html, /Begin Orientation/);
+  assert.match(html, /Try the live experiment/);
+  assert.match(html, /Live Experiment/);
   assert.ok((html.match(/href="\/orient"/g) ?? []).length >= 3);
-  assert.match(html, /Orientation Workspace/);
+  assert.match(html, /Live Bounded Experiment/);
   assert.match(html, /Bring what you have/);
   assert.match(html, /Orientation begins with something you bring/);
-  assert.match(html, /The current Laboratory entrance begins with Wonder or Understand/);
+  assert.match(html, /memory only · Rest is a valid ending · ORION is optional/);
 });
 
 test("communicates possible starting material without simulating new workflows", async () => {
@@ -48,11 +48,11 @@ test("communicates possible starting material without simulating new workflows",
   assert.doesNotMatch(visibleDocument, /chat interface|AI assistant|upload now/i);
 });
 
-test("keeps the Inquiry entrance visible across public pages", async () => {
+test("keeps the Live Experiment entrance visible across public pages", async () => {
   for (const path of ["/explore", "/cases", "/library", "/about"]) {
     const response = await render(path);
     assert.equal(response.status, 200);
     const html = await response.text();
-    assert.match(html, /href="\/orient"[^>]*>Begin Orientation/);
+    assert.match(html, /href="\/orient"[^>]*>Live Experiment/);
   }
 });

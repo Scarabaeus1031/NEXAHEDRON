@@ -1,4 +1,4 @@
-export type CaseStatus = "Canonical" | "Reviewed" | "In preparation";
+export type CaseStatus = "Curated Reference Case" | "Reviewed" | "In preparation";
 
 export type OrientationCasePreview = {
   readonly slug: string;
@@ -18,7 +18,7 @@ export const orientationCases: readonly OrientationCasePreview[] = [
     category: "Earth Science",
     intention: "I want to understand what this is, why it is accepted, and where I should continue.",
     description: "Moving plates, geological patterns, inspectable evidence, and the limits of prediction.",
-    status: "Canonical",
+    status: "Curated Reference Case",
     readingTime: "12 min",
     available: true,
   },
@@ -28,7 +28,7 @@ export const orientationCases: readonly OrientationCasePreview[] = [
     category: "Foundations",
     intention: "I want to understand what counts as evidence, and why a source alone is not enough.",
     description: "Source, method, claim, uncertainty, and the boundary between support and certainty.",
-    status: "Canonical",
+    status: "Curated Reference Case",
     readingTime: "10 min",
     available: true,
   },
@@ -38,7 +38,7 @@ export const orientationCases: readonly OrientationCasePreview[] = [
     category: "Maps",
     intention: "I want to understand what a map reveals, transforms, and leaves out.",
     description: "Selection, symbol, scale, purpose, and the distance between map and territory.",
-    status: "Canonical",
+    status: "Curated Reference Case",
     readingTime: "10 min",
     available: true,
   },
@@ -48,7 +48,7 @@ export const orientationCases: readonly OrientationCasePreview[] = [
     category: "Maps",
     intention: "I want to understand what changes when I zoom in or out.",
     description: "Extent, detail, ratio, and the patterns that appear only from another level.",
-    status: "Canonical",
+    status: "Curated Reference Case",
     readingTime: "9 min",
     available: true,
   },
@@ -58,7 +58,7 @@ export const orientationCases: readonly OrientationCasePreview[] = [
     category: "Foundations",
     intention: "I want to understand what a scientific model can show—and why it is not the thing itself.",
     description: "Purpose, assumptions, representation, comparison, revision, and domain of validity.",
-    status: "Canonical",
+    status: "Curated Reference Case",
     readingTime: "11 min",
     available: true,
   },

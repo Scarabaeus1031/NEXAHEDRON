@@ -14,7 +14,7 @@ export const caseLineages = {
     slug: "plate-tectonics",
     entries: [
       {
-        label: "Canonical demonstration",
+        label: "Curated demonstration",
         title: "A First Orientation — Plate Tectonics",
         note: "The bounded demonstration established the Human intention, evidence map, unknowns, and possible continuations.",
       },
@@ -29,9 +29,9 @@ export const caseLineages = {
         note: "The demonstration was distilled into a calm public Case with visible relationships, boundaries, and optional paths.",
       },
       {
-        label: "Canonical public Case",
+        label: "Curated public reference",
         title: "Plate Tectonics",
-        note: "Canonical Case v1.0",
+        note: "Curated Reference Case v1.0",
       },
     ],
   },
@@ -54,9 +54,9 @@ export const caseLineages = {
         note: "Exploratory validity claims were removed; independent public sources were retained separately as Evidence.",
       },
       {
-        label: "Canonical public Case",
+        label: "Curated public reference",
         title: "What is Evidence?",
-        note: "Canonical Case v1.0",
+        note: "Curated Reference Case v1.0",
       },
     ],
   },
@@ -79,9 +79,9 @@ export const caseLineages = {
         note: "Geographic definition was placed first; conceptual map language remained bounded and external Evidence stayed separate.",
       },
       {
-        label: "Canonical public Case",
+        label: "Curated public reference",
         title: "What is a Map?",
-        note: "Canonical Case v1.0",
+        note: "Curated Reference Case v1.0",
       },
     ],
   },
@@ -104,9 +104,9 @@ export const caseLineages = {
         note: "Resemblance across scales was not treated as proof; exact cartographic scale and public references remained distinct.",
       },
       {
-        label: "Canonical public Case",
+        label: "Curated public reference",
         title: "What is Scale?",
-        note: "Canonical Case v1.0",
+        note: "Curated Reference Case v1.0",
       },
     ],
   },
@@ -129,9 +129,9 @@ export const caseLineages = {
         note: "The false choice between models and maps was removed; independent scientific guidance grounded validation.",
       },
       {
-        label: "Canonical public Case",
+        label: "Curated public reference",
         title: "What is a Scientific Model?",
-        note: "Canonical Case v1.0",
+        note: "Curated Reference Case v1.0",
       },
     ],
   },

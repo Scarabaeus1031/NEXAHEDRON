@@ -33,6 +33,7 @@ export type AlphaJourneyAction =
   | { readonly type: "REVIEW_REQUEST" }
   | { readonly type: "EDIT_REQUEST" }
   | { readonly type: "RETURN_TO_CONFIRMATION" }
+  | { readonly type: "RETURN_TO_REST" }
   | { readonly type: "BEGIN_ORIENTATION"; readonly requestId: string };
 
 const emptyObject: OrientationObjectDraft = {
@@ -342,6 +343,14 @@ export function reduceAlphaJourney(
     case "RETURN_TO_CONFIRMATION":
       if (state.step !== "orientation") return state;
       return { ...state, step: "confirmation", executionRequestId: null };
+    case "RETURN_TO_REST":
+      if (state.step !== "orientation") return state;
+      return {
+        ...state,
+        step: "wonder",
+        executionRequestId: null,
+        workspace: { ...state.workspace, operation: "rest", rested: true },
+      };
     case "BEGIN_ORIENTATION":
       if (state.step !== "confirmation" || !validateRequest(state).valid) return state;
       return { ...state, step: "orientation", executionRequestId: action.requestId };

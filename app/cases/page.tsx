@@ -6,10 +6,11 @@ import { orientationCases } from "@/features/library/data";
 export default function CasesPage() {
   return (
     <article className="public-page cases-page">
-      <PublicPageIntro eyebrow="Orientation Cases" title="Begin with what draws your attention.">
+      <PublicPageIntro eyebrow="Curated Reference Cases" title="See one possible orientation before entering the experiment.">
         <p>
-          Enter through a subject or a question. Each case makes context,
-          evidence, uncertainty, boundaries, and possible continuations visible.
+          These cases were created by Human and editorial authors. They are not
+          live Workspace results, ORION outputs, or claims of general system
+          capability.
         </p>
       </PublicPageIntro>
       <section aria-labelledby="cases-title">
@@ -18,7 +19,7 @@ export default function CasesPage() {
             <p className="public-kicker">The collection</p>
             <h2 id="cases-title">Foundations before expansion.</h2>
           </div>
-          <p>Five canonical cases establish the first public terrain. Each remains bounded, inspectable, and open to continuation.</p>
+          <p>Five Curated Reference Cases form the current public collection. Sources, editorial lineage, limits, and open continuations remain visible.</p>
         </div>
         <div className="case-grid">
           {orientationCases.map((orientationCase) => (
@@ -30,7 +31,7 @@ export default function CasesPage() {
   );
 }
 export const metadata: Metadata = {
-  title: "Orientation Cases",
-  description: "Inspect bounded Orientation Cases with visible context, evidence, uncertainty and continuations.",
+  title: "Curated Reference Cases",
+  description: "Inspect Human- and editorial-authored reference cases with visible sources, boundaries and lineage.",
   alternates: { canonical: "/cases" },
 };

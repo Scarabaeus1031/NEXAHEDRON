@@ -14,10 +14,11 @@ const atlasPoints = [
 export default function LibraryPage() {
   return (
     <article className="public-page library-page">
-      <PublicPageIntro eyebrow="The Orientation Library" title="A landscape, not a list.">
+      <PublicPageIntro eyebrow="Reference Cases" title="A local view of the curated collection.">
         <p>
-          Collections become rooms. Cases become maps. Connections become paths.
-          Unknowns remain visible as frontiers.
+          This read-only surface arranges NEXAHEDRON&apos;s Human- and
+          editorial-authored reference cases. It is not the canonical NEXAH
+          Library and creates no Library authority.
         </p>
       </PublicPageIntro>
 
@@ -27,7 +28,7 @@ export default function LibraryPage() {
             <p className="public-kicker">Atlas</p>
             <h2 id="atlas-title">The first visible terrain.</h2>
           </div>
-          <p>The Library is intentionally small. Open rooms and future frontiers are clearly distinguished.</p>
+          <p>The local collection is intentionally small. Available reference cases and unimplemented frontiers are clearly distinguished.</p>
         </div>
         <div className="atlas-layout">
           <div className="atlas-map" aria-hidden="true">
@@ -77,7 +78,7 @@ export default function LibraryPage() {
         <div>
           <p className="public-kicker">Paths</p>
           <h2 id="paths-title">A subject is only one way in.</h2>
-          <p>You may also move through the Library by question, relationship, evidence, pattern, or uncertainty.</p>
+          <p>You may move through the reference collection by question, relationship, evidence, pattern, or uncertainty.</p>
         </div>
         <ol>
           <li><span>01</span><strong>Question</strong><p>Begin with what you are trying to understand.</p></li>
@@ -91,7 +92,7 @@ export default function LibraryPage() {
   );
 }
 export const metadata: Metadata = {
-  title: "Orientation Library",
-  description: "Explore the small Version 1 collection as rooms, cases, maps and bounded paths.",
+  title: "Reference Cases",
+  description: "Explore NEXAHEDRON's local read-only collection of Curated Reference Cases.",
   alternates: { canonical: "/library" },
 };

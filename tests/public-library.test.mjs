@@ -32,7 +32,7 @@ test("Explore remains a contextual continuation beyond the primary Cases entranc
   assert.doesNotMatch(html, /dashboard|news feed|trending/i);
 });
 
-test("Cases open the canonical foundational collection", async () => {
+test("Cases open the curated foundational reference collection", async () => {
   const response = await render("/cases");
   assert.equal(response.status, 200);
   const html = await response.text();
@@ -46,8 +46,9 @@ test("Cases open the canonical foundational collection", async () => {
   ]) {
     assert.match(html, new RegExp(title.replace(/[?]/g, "\\?")));
   }
-  assert.match(html, /Canonical/);
-  assert.match(html, /Begin with what draws your attention\./);
+  assert.match(html, /Curated Reference Case/);
+  assert.match(html, /Human and editorial authors/);
+  assert.match(html, /See one possible orientation before entering the experiment\./);
   assert.doesNotMatch(html, /A future room/);
 });
 
@@ -57,7 +58,7 @@ for (const foundationalCase of [
   ["/cases/what-is-scale", "What is Scale?"],
   ["/cases/what-is-a-scientific-model", "What is a Scientific Model?"],
 ]) {
-  test(`${foundationalCase[1]} follows the complete canonical Case structure`, async () => {
+  test(`${foundationalCase[1]} follows the complete Curated Reference Case structure`, async () => {
     const response = await render(foundationalCase[0]);
     assert.equal(response.status, 200);
     const html = await response.text();
@@ -79,19 +80,20 @@ for (const foundationalCase of [
       assert.match(html, new RegExp(section));
     }
 
-    assert.match(html, /Foundational Orientation Case/);
+    assert.match(html, /Curated Reference Case/);
+    assert.match(html, /Human\/editorial-authored/);
     assert.match(html, /Inspect source/);
     assert.match(html, /This orientation supports/);
     assert.match(html, /It does not establish/);
     assert.match(html, /Choose a path—or stop here/);
     assert.match(html, /Case lineage/);
     assert.match(html, /How this orientation came into being/);
-    assert.match(html, /Canonical Case v1\.0/);
+    assert.match(html, /Curated Reference Case v1\.0/);
     assert.match(html, /Evidence for the Case.+claims remains separate/);
   });
 }
 
-test("Plate Tectonics follows the canonical Orientation Case hierarchy", async () => {
+test("Plate Tectonics follows the Curated Reference Case hierarchy", async () => {
   const response = await render("/cases/plate-tectonics");
   assert.equal(response.status, 200);
   const html = await response.text();
@@ -115,19 +117,19 @@ test("Plate Tectonics follows the canonical Orientation Case hierarchy", async (
   assert.match(html, /NSF GAGE/);
   assert.match(html, /Inspect source/);
   assert.match(html, /Unknown is a valid position/);
-  assert.match(html, /Canonical demonstration/);
+  assert.match(html, /Curated demonstration/);
   assert.match(html, /Public Website Experience Review · 2026/);
   assert.match(html, /USGS, NOAA, and NSF GAGE sources/);
-  assert.match(html, /Canonical Case v1\.0/);
+  assert.match(html, /Curated Reference Case v1\.0/);
 });
 
-test("Library presents an atlas with accessible rooms, paths, and frontiers", async () => {
+test("the stable library route presents a bounded local Reference Case map", async () => {
   const response = await render("/library");
   assert.equal(response.status, 200);
   const html = await response.text();
 
   for (const text of [
-    "A landscape, not a list.",
+    "A local view of the curated collection.",
     "The first visible terrain.",
     "How to read this view",
     "Open room",
@@ -137,6 +139,7 @@ test("Library presents an atlas with accessible rooms, paths, and frontiers", as
   ]) {
     assert.match(html, new RegExp(text));
   }
+  assert.match(html, /not the canonical NEXAH Library/);
 });
 
 test("About introduces Orientation without exposing internal architecture", async () => {
@@ -147,12 +150,12 @@ test("About introduces Orientation without exposing internal architecture", asyn
   assert.match(html, /Information already exists\. Orientation is what is missing\./);
   assert.match(html, /NEXAH is a place for orientation\./);
   assert.match(html, /ORION makes structure inspectable\./);
-  assert.match(html, /One person\. One question\. One bounded session\./);
+  assert.match(html, /One person\. One question\. One bounded experiment\./);
   assert.match(html, /Finding is not the same as understanding\./);
   assert.match(html, /Human first/);
   assert.match(html, /Evidence before certainty/);
-  const beginCase = html.indexOf("Begin with a case");
-  const bringQuestion = html.indexOf("Bring your own question");
+  const beginCase = html.indexOf("Begin with a Curated Reference Case");
+  const bringQuestion = html.indexOf("Try the live experiment");
   const inspectImplementation = html.indexOf("Inspect the reference implementation");
   assert.ok(beginCase < bringQuestion && bringQuestion < inspectImplementation);
   const visibleDocument = html.split("<body>")[1].split('<script id="_R_">')[0];
