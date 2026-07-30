@@ -23,8 +23,15 @@ jobs:
   foundation-conformance:
     runs-on: ubuntu-latest
     timeout-minutes: 10
+    env:
+      ORION_SOURCE_PATH: ${{ github.workspace }}/orion/src
     steps:
       - uses: actions/checkout@v6
+      - uses: actions/checkout@v6
+        with:
+          repository: Scarabaeus1031/NEXAH-ORION
+          ref: d34fbb2f99334534f4db89465a29f8bdb16d14d3
+          path: orion
       - uses: actions/setup-node@v6
         with:
           node-version: "22"
