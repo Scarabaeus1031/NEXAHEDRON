@@ -128,11 +128,115 @@ function readGatewayEnvelope(value: unknown): OrionGatewayEnvelopeV1 {
   if (!isRecord(value) || !Array.isArray(value.contracts) || !Array.isArray(value.evidence)) {
     throw new PublicBoundaryError("invalid_public_response", "public_envelope_invalid");
   }
-  for (const contract of [...value.contracts, ...value.evidence]) {
+  if (value.request !== null && !hasRequestShape(value.request)) {
+    throw new PublicBoundaryError("invalid_public_response", "public_request_invalid");
+  }
+  for (const contract of value.contracts) {
     if (!isRecord(contract) || typeof contract.schema_version !== "string") throw new PublicBoundaryError("invalid_public_response", "public_contract_discriminator_missing");
     if (!supportedSchemas.has(contract.schema_version)) throw new PublicBoundaryError("unsupported_contract_version", contract.schema_version);
+    if (!hasOutputContractShape(contract)) throw new PublicBoundaryError("invalid_public_response", "public_contract_invalid");
+  }
+  for (const evidence of value.evidence) {
+    if (!isRecord(evidence) || evidence.schema_version !== EVIDENCE_REFERENCE_SCHEMA) {
+      throw new PublicBoundaryError("invalid_public_response", "public_evidence_invalid");
+    }
+    if (!hasEvidenceShape(evidence)) throw new PublicBoundaryError("invalid_public_response", "public_evidence_invalid");
   }
   return value as unknown as OrionGatewayEnvelopeV1;
+}
+
+function hasRequestShape(value: unknown): boolean {
+  return isRecord(value)
+    && value.schema_version === ORIENTATION_REQUEST_SCHEMA
+    && isString(value.request_id)
+    && isString(value.request_version)
+    && Array.isArray(value.orientation_objects)
+    && isRecord(value.intention)
+    && isRecord(value.scope)
+    && value.effects === "none";
+}
+
+function hasOutputContractShape(value: Record<string, unknown>): boolean {
+  switch (value.schema_version) {
+    case ORIENTATION_REPORT_SCHEMA:
+      return isRecord(value.identity)
+        && isString(value.identity.report_id)
+        && isString(value.identity.report_version)
+        && isRecord(value.mode_payload)
+        && isString(value.mode_payload.payload_version)
+        && isRecord(value.mode_payload.content)
+        && isString(value.status)
+        && Array.isArray(value.process)
+        && Array.isArray(value.evidence)
+        && Array.isArray(value.assumptions)
+        && Array.isArray(value.uncertainties)
+        && Array.isArray(value.issues)
+        && Array.isArray(value.continuations)
+        && value.effects === "none";
+    case CLARIFICATION_RESULT_SCHEMA:
+      return isString(value.result_id)
+        && isString(value.result_version)
+        && isString(value.request_id)
+        && isString(value.request_version)
+        && Array.isArray(value.issues)
+        && value.issues.every(hasClarificationIssueShape)
+        && isRecord(value.retained_context)
+        && Array.isArray(value.required_user_actions)
+        && value.effects === "none";
+    case RUNTIME_ERROR_SCHEMA:
+      return isString(value.error_id)
+        && isString(value.error_version)
+        && isString(value.kind)
+        && isString(value.stage)
+        && isString(value.reason_code)
+        && Array.isArray(value.issues)
+        && value.effects === "none";
+    case CONTINUATION_OPTION_SCHEMA:
+      return isString(value.option_id)
+        && isString(value.option_version)
+        && isString(value.source_report_id)
+        && isString(value.source_report_version)
+        && isString(value.action_type)
+        && isString(value.availability)
+        && Array.isArray(value.reason_refs)
+        && Array.isArray(value.request_delta)
+        && Array.isArray(value.blockers)
+        && Array.isArray(value.required_user_actions)
+        && value.effects === "none";
+    default:
+      return false;
+  }
+}
+
+function hasClarificationIssueShape(value: unknown): boolean {
+  return isRecord(value)
+    && isString(value.issue_id)
+    && isString(value.issue_code)
+    && isString(value.field_path)
+    && isString(value.priority_tier)
+    && isString(value.reason)
+    && isString(value.expected_value)
+    && isString(value.required_action)
+    && typeof value.blocking === "boolean"
+    && Array.isArray(value.current_value_refs);
+}
+
+function hasEvidenceShape(value: Record<string, unknown>): boolean {
+  return isString(value.evidence_id)
+    && isString(value.evidence_version)
+    && isRecord(value.source)
+    && isString(value.source.source_version)
+    && isRecord(value.authority)
+    && Array.isArray(value.provenance)
+    && Array.isArray(value.traceability)
+    && isRecord(value.validation)
+    && isString(value.relationship)
+    && isString(value.evidence_class)
+    && isString(value.access_status);
+}
+
+function isString(value: unknown): value is string {
+  return typeof value === "string" && value.length > 0;
 }
 
 function isRecord(value: unknown): value is Record<string, unknown> {

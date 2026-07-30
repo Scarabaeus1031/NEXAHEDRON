@@ -95,6 +95,19 @@ test("classifies Gateway, invalid response, unsupported version and lifecycle vi
   const invalid = await invokeOrion(envelope, async () => new Response("not-json", { status: 502 }));
   assert.equal(invalid.failure.category, "invalid_public_response");
 
+  const incompleteKnownContract = await invokeOrion(
+    envelope,
+    async () => new Response(JSON.stringify({
+      request: null,
+      contracts: [{ schema_version: "orion.orientation-report/1.0" }],
+      evidence: [],
+    })),
+  );
+  assert.deepEqual(incompleteKnownContract, {
+    kind: "boundary_failure",
+    failure: { category: "invalid_public_response", code: "public_contract_invalid" },
+  });
+
   const unsupported = await invokeOrion(envelope, async () => new Response(JSON.stringify({ request: null, contracts: [{ schema_version: "orion.orientation-report/2.0" }], evidence: [] })));
   assert.equal(unsupported.failure.category, "unsupported_contract_version");
 
