@@ -1,6 +1,9 @@
 # NEXAH Evaluation Protocol
 
-- Status: Canonical research protocol baseline
+- Current status: Active research / NEXAHEDRON-local evaluation reference
+- Previous status: Canonical research protocol baseline (preserved for
+  lineage)
+- Authority: no ecosystem-wide research authority without owner adoption
 - Scope: evaluation of Human orientation
 - Intended use: future user studies, comparative studies and independent review
 - Product metrics: out of scope

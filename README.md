@@ -1,13 +1,28 @@
-# NEXAHEDRON — Human-facing Reference Implementation
+# NEXAHEDRON — Public Human-facing Research Demonstrator
 
-NEXAHEDRON is the Human-facing reference implementation of the NEXAH Orientation Ecosystem. A visitor brings one real question, encounters material, keeps exact fragments, relates them, reflects and may stop at a Human-owned Orientation Record.
+NEXAHEDRON is a public Human-facing research demonstrator and bounded
+experiment within the NEXAH Orientation Ecosystem. A visitor can inspect
+Human-/editorial-authored Curated Reference Cases or bring one real question
+into the Live Bounded Experiment. The current Rest output is a transient,
+Human-held Working Session Record stored only in browser memory.
 
-**Public path:** [NEXAH Visitor Guide](https://nexah.de/visitor-guide/) → [NEXAHEDRON](https://nexahedron.com) → Orientation Record
+**Public path:** [NEXAH Visitor Guide](https://nexah.de/visitor-guide/) →
+[NEXAHEDRON](https://nexahedron.com) → Curated Reference Case or Live Bounded
+Experiment → Rest View
 
-It is not the public intellectual home, the research repository or the certified deterministic Core. Those responsibilities belong to [nexah.de](https://nexah.de), [NEXAH](https://github.com/Scarabaeus1031/NEXAH) and [ORION](https://github.com/Scarabaeus1031/NEXAH-ORION).
+The repository also serves as a subordinate technical reference implementation
+for its interaction and transport-consumer boundaries. That description does
+not establish general product or system capability.
 
-NEXAHEDRON owns the Laboratory experience: presentation, interaction and the
-consumer flow around immutable ORION Version 1. It does not own NEXAH semantics,
+It is not the public intellectual home, the research repository, an independent
+Library authority, or the certified deterministic Core. Those responsibilities
+belong to [nexah.de](https://nexah.de),
+[NEXAH](https://github.com/Scarabaeus1031/NEXAH), the named Library/source
+authorities, and [ORION](https://github.com/Scarabaeus1031/NEXAH-ORION).
+
+NEXAHEDRON owns the demonstrator experience: presentation, interaction,
+transient local state, and its consumer flow toward the ORION public boundary.
+It does not own NEXAH semantics,
 ORION orientation, LYRA language, Library editorial authority, or Human
 intention and decisions.
 
@@ -22,18 +37,19 @@ publication does not by itself close the deployment, privacy, operational or
 hosted-verification gates preserved in
 [`NEXAHEDRON_RELEASE_READINESS_REPORT.md`](NEXAHEDRON_RELEASE_READINESS_REPORT.md).
 
-Version 1 demonstrates one bounded Orientation Session and a Human-owned
-Orientation Record. It does not claim a complete production ORION service,
+Version 1 demonstrates one bounded Human-held session through Rest and its
+memory-only Working Session Record. It does not claim a durable or immutable
+Orientation Record, a complete production ORION service,
 Library evidence integration, persistence, accounts or automatic
 interpretation.
 
-**Current public boundary:** the deployed preview is a Readiness Alpha built
-around a Human-owned Workspace. Its explicit confirmation boundary can invoke
-the pinned ORION Version 1 Gateway through an authenticated server-side
-transport. Runtime and Gateway remain outside the certified ORION Version 1
-Core, there is no production evidence adapter, and the known clarification
-lineage limitation remains visible. The public preview must not be described as
-evidence-bound Orientation Alpha or certified-ORION execution.
+**Current public boundary:** the deployed preview is built around a Human-held
+Workspace. Its explicit confirmation boundary can submit to a public Gateway.
+The certified ORION Version 1 (ORION V1) Core, compatible Runtime, Gateway reachability, and an
+actually returned session outcome are four separate states. Runtime and Gateway
+remain outside the certified Core. The public interface does not assert a
+Runtime version or certified Core execution unless the returned public contract
+proves it. There is no production evidence adapter.
 
 ## Historical Alpha integration record
 

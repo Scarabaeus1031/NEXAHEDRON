@@ -1,6 +1,10 @@
 # Editorial Strategy for the Orientation Library
 
-- Status: Canonical editorial constitution
+- Current status: Historical / partially superseded editorial proposal
+- Previous status: Canonical editorial constitution (preserved for lineage)
+- Current authority: none over the NEXAH Library or ecosystem-wide editorial
+  policy; D2–D4 govern NEXAHEDRON's public case presentation
+- Current public term: Curated Reference Case
 - Scope: selection, development, review and stewardship of Orientation Cases
 - Time horizon: long-term
 - Product implementation: out of scope

@@ -1,7 +1,11 @@
 # RFC-0001 — The Open Orientation Protocol
 
 - Category: Architecture specification
-- Status: Canonical
+- Current status: Active research
+- Previous status: Canonical in the NEXAHEDRON repository (preserved for
+  lineage)
+- Authority: no ecosystem-wide protocol authority without adoption by the
+  responsible owners
 - Version: 1.0
 - Date: 2026-07-24
 - Implementation status: independent of any implementation

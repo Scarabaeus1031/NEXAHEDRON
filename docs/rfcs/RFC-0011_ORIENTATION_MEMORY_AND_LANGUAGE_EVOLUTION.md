@@ -1,7 +1,13 @@
 # RFC-0011 — Orientation Memory and Language Evolution
 
 - Category: Architecture specification
-- Status: Canonical
+- Current status: Active research
+- Previous status: Canonical in the NEXAHEDRON repository (preserved for
+  lineage)
+- Authority: no ecosystem-wide Memory or Language authority without adoption
+  by the responsible owners
+- Implementation note: the current NEXAHEDRON Rest View is not the immutable
+  Orientation Record specified here
 - Version: 1.0
 - Date: 2026-07-24
 - Depends on: RFC-0001 — The Open Orientation Protocol

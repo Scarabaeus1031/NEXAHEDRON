@@ -1,10 +1,13 @@
-# NEXAHEDRON Alpha Application Architecture
+# NEXAHEDRON Application Architecture
 
-- Status: current Alpha RC1 architecture
-- ORION dependency: immutable Version 1 RC1 candidate
+- Status: locally normative within NEXAHEDRON presentation, interaction,
+  transient-state, and transport-consumer boundaries
+- Public role: Human-facing research demonstrator and bounded experiment
+- ORION dependency: verified external dependency; certification authority
+  remains in ORION
 - Executable mode: Understand only
 
-NEXAHEDRON is a modular Laboratory application. It owns presentation,
+NEXAHEDRON is a modular research-demonstrator application. It owns presentation,
 interaction, in-memory session state and transport adaptation. It does not own
 orientation behavior, evidence authority or ORION validation.
 
@@ -29,20 +32,26 @@ Human-confirmed local state
   → Orientation Request mapping
   → POST /api/orientation
   → HTTP transport adapter
-  → immutable ORION Version 1 Gateway
-  → immutable Runtime
+  → public Gateway
+  → compatible Runtime, when available
   → validated public Version 1 contracts
   → direct NEXAHEDRON presentation
 ```
 
+The execution path distinguishes the separately certified ORION V1 Core,
+compatible Runtime identity, Gateway reachability, and the actual returned
+session outcome. A reachable Gateway or contract-shaped error is not a
+successful certified Core result.
+
 The application has no persistence, authentication, upload transport, Library
 adapter, provider integration or alternate Runtime.
 
-The canonical boundary for every future evidence source or Library adapter is
-defined in [`EVIDENCE_ARCHITECTURE.md`](EVIDENCE_ARCHITECTURE.md). That document
-authorizes no implementation by itself.
+The active research boundary for a possible future evidence source or Library
+adapter is described in
+[`EVIDENCE_ARCHITECTURE.md`](EVIDENCE_ARCHITECTURE.md). That document
+authorizes no implementation or external authority by itself.
 
-The report-specific ownership choreography is governed by
+The report-specific ownership choreography is explored by
 [`EVIDENCE_BINDING_ARCHITECTURE.md`](EVIDENCE_BINDING_ARCHITECTURE.md).
 NEXAHEDRON, its transport adapter and the Gateway MUST NOT manufacture the
 ORION-owned relationship or report traceability missing from the current

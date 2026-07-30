@@ -1,6 +1,9 @@
 # NEXAH Evidence Architecture
 
-- Status: Canonical architectural reference
+- Current status: Active research / derived reference
+- Previous status: Canonical architectural reference (preserved for lineage)
+- Authority: no Library, source-authority, or ORION authority is created by
+  this NEXAHEDRON document
 - Scope: immutable evidence boundary between external sources, Library,
   NEXAHEDRON, ORION and the Human
 - Public contract: `orion.evidence-reference/1.0`

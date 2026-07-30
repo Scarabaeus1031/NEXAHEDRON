@@ -1,5 +1,10 @@
 # The NEXAHEDRON Website Experience
 
+- Current status: Historical / partially superseded experience blueprint
+- Previous role: broad public-experience proposal
+- Current authority: none beyond adopted NEXAHEDRON presentation boundaries;
+  D1–D6 govern current public alignment
+
 The public website is a place for finding one's bearings.
 
 It should feel like entering a museum, a library and an observatory at the same

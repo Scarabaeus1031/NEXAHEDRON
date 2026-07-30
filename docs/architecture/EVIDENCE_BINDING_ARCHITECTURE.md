@@ -1,6 +1,9 @@
 # NEXAH Evidence Binding Architecture
 
-- Status: Canonical governance decision
+- Current status: Active research / unadopted cross-repository proposal
+- Previous status: Canonical governance decision (preserved for lineage)
+- Authority: no Library, source-authority, or ORION governance authority is
+  created by this NEXAHEDRON document
 - Scope: binding source-side evidence to exact Orientation Report content
 - Applies to: Library, ORION, NEXAHEDRON and every future evidence integration
 - Frozen baseline: ORION Public Contract Suite Version 1.0

@@ -1,6 +1,10 @@
 # NEXAH Version 1.0 Public Release Claim
 
-- Status: Canonical
+- Current status: Historical coordinated release claim
+- Previous status: Canonical (preserved for release lineage)
+- Current NEXAHEDRON representation: superseded by adopted decisions D1–D6
+  where this record refers to Library authority, product capability, or a
+  durable Orientation Record
 - Version: 1.0
 - Purpose: Public release claim
 - Publication condition: Applies to the coordinated NEXAH Version 1.0 release
