@@ -74,20 +74,22 @@ test("renders maintained public operational routes", async () => {
   }
 });
 
-test("renders one available mode and marks the remaining modes as Later", async () => {
+test("renders two entrances into one canonical Phase II Workspace", async () => {
   const response = await render("/orient");
   assert.equal(response.status, 200);
   const html = await response.text();
 
-  assert.match(html, /Choose how you would like to begin\./);
+  assert.match(html, /Choose how you would like to enter the Workspace\./);
   assert.match(html, /What this experiment holds—and where it stops\./);
   assert.match(html, /browser memory only/);
   assert.match(html, /Rest without invoking ORION/);
   assert.match(html, /Begin with Wonder/);
   assert.match(html, /Choose Understand/);
-  for (const mode of ["Compare", "Connect", "Explore", "Build", "Reflect"]) assert.match(html, new RegExp(mode));
+  assert.match(html, /Anchor → Place → Attend → Relate → Bound → Turn → Reflect → Rest/);
+  assert.match(html, /Additional orientation modes remain outside the bounded Phase II release/);
   assert.equal((html.match(/>Available</g) ?? []).length, 1);
-  assert.equal((html.match(/>Later</g) ?? []).length, 5);
+  assert.equal((html.match(/>Later</g) ?? []).length, 0);
+  assert.doesNotMatch(html, /Alpha journey progress/);
 });
 
 test("renders the complete local Orientation Session without crossing the execution boundary", async () => {

@@ -3,7 +3,7 @@ import { ChooseOrientationScreen } from "@/features/orientation/screens/ChooseOr
 
 export const metadata: Metadata = {
   title: "Live Bounded Experiment",
-  description: "Enter one Human-held, memory-only experiment in orientation.",
+  description: "Enter the Human-held, memory-only Phase II Orientation Workspace.",
   alternates: { canonical: "/orient" },
 };
 

@@ -21,12 +21,10 @@ export function ChooseOrientationScreen() {
   }
 
   const understand = orientationModes.find((mode) => mode.id === "understand");
-  const laterModes = orientationModes.filter((mode) => mode.availability === "later");
-
   return (
     <section className="page page--choose" aria-labelledby="choose-title">
-      <PageIntro index="02" eyebrow="Live Bounded Experiment" title="Choose how you would like to begin." titleId="choose-title">
-        <p>Begin with curiosity or material. Both entrances open the same Human-held experiment—not a finished orientation service.</p>
+      <PageIntro index="02" eyebrow="Phase II · Live Bounded Experiment" title="Choose how you would like to enter the Workspace." titleId="choose-title">
+        <p>Begin with curiosity or material. Both entrances open the same Human-held Workspace—not a finished orientation service.</p>
       </PageIntro>
 
       <aside className="experiment-agreement" aria-labelledby="experiment-agreement-title">
@@ -40,6 +38,9 @@ export function ChooseOrientationScreen() {
           <div><dt>ORION may contribute</dt><dd>Only after confirmation, through the public Gateway and a compatible Runtime. Availability does not guarantee a result.</dd></div>
           <div><dt>A valid ending</dt><dd>You may Rest without invoking ORION. No interpretation or decision is made for you.</dd></div>
         </dl>
+        <p className="experiment-agreement__path">
+          Anchor → Place → Attend → Relate → Bound → Turn → Reflect → Rest
+        </p>
       </aside>
 
       <div className="laboratory-entrances" aria-label="Available ways to begin">
@@ -77,27 +78,9 @@ export function ChooseOrientationScreen() {
         ) : null}
       </div>
 
-      <section className="later-modes" aria-labelledby="later-modes-title">
-        <header>
-          <div>
-            <p className="eyebrow">Other ways of orienting</p>
-            <h2 id="later-modes-title">Visible, but not yet open.</h2>
-          </div>
-          <p>The Laboratory is perfecting one path before opening the others.</p>
-        </header>
-        <div className="later-mode-list" aria-label="Orientation modes">
-          {laterModes.map((mode) => (
-            <article className="later-mode" key={mode.id}>
-              <div className="mode-card__heading">
-                <h3>{mode.name}</h3>
-                <span className="status">Later</span>
-              </div>
-              <p>{mode.description}</p>
-              <span className="sr-only" aria-label={`${mode.name} will be available later`}>Not yet available</span>
-            </article>
-          ))}
-        </div>
-      </section>
+      <p className="later-modes__note">
+        Additional orientation modes remain outside the bounded Phase II release.
+      </p>
     </section>
   );
 }

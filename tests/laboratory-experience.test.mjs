@@ -20,9 +20,10 @@ test("gives the two executable Laboratory entrances visual priority", async () =
   assert.match(html, /Available ways to begin/);
   assert.match(html, /01 · Begin with curiosity/);
   assert.match(html, /02 · Begin with material/);
-  assert.match(html, /Visible, but not yet open/);
+  assert.match(html, /Additional orientation modes remain outside the bounded Phase II release/);
   assert.equal((html.match(/class="laboratory-entrance /g) ?? []).length, 2);
-  assert.equal((html.match(/class="later-mode"/g) ?? []).length, 5);
+  assert.equal((html.match(/class="later-mode"/g) ?? []).length, 0);
+  assert.doesNotMatch(html, /Alpha journey progress/);
 });
 
 test("presents source references as one bounded part of Object Selection", async () => {

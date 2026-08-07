@@ -35,6 +35,7 @@ export function AppShell({ children }: { readonly children: ReactNode }) {
     "/confirmation",
     "/orientation",
   ].includes(pathname);
+  const isExperimentEntry = pathname === "/orient";
 
   function returnToLanding() {
     dispatch({ type: "RESET" });
@@ -62,14 +63,18 @@ export function AppShell({ children }: { readonly children: ReactNode }) {
               </span>
               <span className="brand__copy">
                 <span className="brand__name">NEXAHEDRON</span>
-                <span className="brand__descriptor">The Orientation Laboratory</span>
+                <span className="brand__descriptor">Human Orientation Workspace</span>
               </span>
             </button>
             <Link className="header-link" href={alphaRoutes.choose}>
               Orientation modes
             </Link>
           </header>
-          {isWorkspace ? <WorkspaceTrace pathname={pathname} /> : <JourneyProgress />}
+          {isWorkspace ? (
+            <WorkspaceTrace pathname={pathname} />
+          ) : isExperimentEntry ? null : (
+            <JourneyProgress />
+          )}
         </>
       )}
       <WorkspaceDraftProvider key={`${state.step}:${state.wonder}`} initialWonder={state.wonder}>
