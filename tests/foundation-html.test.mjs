@@ -24,6 +24,8 @@ test("renders the public homepage as a bounded research-demonstrator entrance", 
   assert.match(html, /Can a bounded process help a Human find their bearings\?/);
   assert.match(html, /Phase II · Bounded Public Workspace/);
   assert.match(html, /NEXAHEDRON makes that research question public/);
+  assert.match(html, /A question held on an open working surface/);
+  assert.match(html, /deliberately incomplete boundary/);
   assert.match(html, /What is this\?/);
   assert.match(html, /Why does it exist\?/);
   assert.match(html, /Where can I begin\?/);
@@ -50,7 +52,12 @@ test("renders the Version 1 visitor guide as the local demonstrator orientation 
   const html = await response.text();
 
   assert.match(html, /<title>Visitor Guide — NEXAHEDRON<\/title>/);
-  assert.match(html, /You are in a public research demonstrator/);
+  assert.match(html, /When should I use NEXAHEDRON\?/);
+  assert.match(html, /Human Orientation Workspace/);
+  assert.match(html, /Good for/);
+  assert.match(html, /Not designed for/);
+  assert.match(html, /Rest is already a complete outcome/);
+  assert.match(html, /You remain responsible for understanding, judgment and decisions/);
   assert.match(html, /Four places\. Four responsibilities\./);
   for (const place of ["nexah.de", "NEXAH", "ORION", "NEXAHEDRON"]) {
     assert.match(html, new RegExp(place));
@@ -202,4 +209,6 @@ test("defines visible focus, responsive layout and reduced motion", async () => 
   assert.match(publicCss, /\.public-footer nav\s*\{[^}]*flex-wrap:\s*wrap/s);
   assert.match(publicCss, /\.public-footer a\s*\{[^}]*min-height:\s*2\.75rem/s);
   assert.match(publicCss, /\.public-navigation a\s*\{[^}]*min-height:\s*2\.75rem/s);
+  assert.match(publicCss, /prefers-reduced-motion:\s*reduce[\s\S]*\.living-workspace__question[\s\S]*animation:\s*none/);
+  assert.doesNotMatch(publicCss, /\.living-workspace[^}]*animation:[^;]*infinite/s);
 });

@@ -213,90 +213,166 @@
   color: var(--color-ink);
 }
 
-.orientation-field {
+.living-workspace {
   position: relative;
-  width: min(34vw, 31rem);
-  aspect-ratio: 1;
+  width: min(42vw, 36.5rem);
+  margin: 0;
   justify-self: center;
 }
 
-.orientation-field::before {
-  position: absolute;
-  inset: 2%;
-  border-radius: 50%;
-  background: radial-gradient(ellipse at 48% 62%, rgb(143 101 38 / 11%), rgb(14 39 70 / 4%) 38%, transparent 68%);
-  content: "";
-  filter: blur(12px);
-  transform: scaleY(0.68) rotate(-8deg);
+.living-workspace__drawing {
+  display: block;
+  width: 100%;
+  height: auto;
+  overflow: visible;
 }
 
-.orientation-field__orbit,
-.orientation-field__axis {
-  position: absolute;
-  inset: 9%;
-  border: 1px solid rgb(14 39 70 / 15%);
-  border-radius: 50%;
+.living-workspace__surface-wash {
+  fill: rgb(242 243 240 / 52%);
+  stroke: none;
 }
 
-.orientation-field__orbit--two {
-  inset: 25%;
-  border-color: rgb(143 101 38 / 34%);
+.living-workspace__boundary {
+  fill: none;
+  stroke: var(--color-line-strong);
+  stroke-width: 1;
+  vector-effect: non-scaling-stroke;
+  opacity: 0;
+  stroke-dasharray: 1150;
+  stroke-dashoffset: 1150;
+  animation: living-workspace-boundary 1.8s cubic-bezier(0.32, 0, 0.22, 1) 3.1s forwards;
 }
 
-.orientation-field__axis {
-  inset: 49.9% 5%;
-  border: 0;
-  border-top: 1px solid rgb(14 39 70 / 13%);
-  border-radius: 0;
-  transform: rotate(32deg);
+.living-workspace__boundary--short {
+  animation-delay: 3.55s;
 }
 
-.orientation-field__axis--two {
-  transform: rotate(-54deg);
+.living-workspace__question,
+.living-workspace__material {
+  opacity: 0;
+  transform: translateY(8px);
+  transform-box: fill-box;
+  transform-origin: center;
+  animation: living-workspace-material 1.2s cubic-bezier(0.32, 0, 0.22, 1) forwards;
 }
 
-.orientation-field__point {
-  position: absolute;
-  width: 0.65rem;
-  aspect-ratio: 1;
-  border: 2px solid var(--color-canvas);
-  border-radius: 50%;
-  background: var(--color-library);
-  box-shadow: 0 0 0 1px var(--color-library);
+.living-workspace__question {
+  animation-delay: 0.25s;
 }
 
-.orientation-field__point--one {
-  top: 13%;
-  left: 31%;
+.living-workspace__material--one {
+  animation-delay: 0.55s;
 }
 
-.orientation-field__point--two {
-  right: 8%;
-  bottom: 35%;
-  background: var(--color-atlas);
-  box-shadow: 0 0 0 1px var(--color-atlas);
+.living-workspace__material--two {
+  animation-delay: 0.8s;
 }
 
-.orientation-field__point--three {
-  bottom: 9%;
-  left: 27%;
-  background: var(--color-orion);
-  box-shadow: 0 0 0 1px var(--color-orion);
+.living-workspace__material--outside {
+  animation-delay: 1.05s;
 }
 
-.orientation-field__center {
-  position: absolute;
-  inset: 50% auto auto 50%;
-  display: grid;
-  width: 4.75rem;
-  aspect-ratio: 1;
-  place-items: center;
-  transform: translate(-50%, -50%);
-  border: 1px solid var(--color-line-strong);
-  border-radius: 50%;
-  background: var(--color-canvas);
-  color: var(--color-accent);
-  font-size: 1rem;
+.living-workspace__question > path:first-child,
+.living-workspace__material > path:first-child {
+  fill: var(--color-canvas);
+  stroke: var(--color-line-strong);
+  stroke-width: 1;
+  vector-effect: non-scaling-stroke;
+}
+
+.living-workspace__question > path:first-child {
+  fill: rgb(242 243 240 / 34%);
+  stroke: rgb(138 152 170 / 72%);
+}
+
+.living-workspace__question-mark,
+.living-workspace__material > path:last-child {
+  fill: none;
+  stroke: var(--color-muted);
+  stroke-width: 1;
+  vector-effect: non-scaling-stroke;
+  opacity: 0.5;
+}
+
+.living-workspace__material--one > path:first-child {
+  fill: rgb(70 114 90 / 7%);
+}
+
+.living-workspace__material--two > path:first-child {
+  fill: rgb(23 79 145 / 6%);
+}
+
+.living-workspace__material--outside > path:first-child {
+  fill: rgb(166 111 24 / 7%);
+}
+
+.living-workspace__relationship {
+  fill: none;
+  stroke: var(--color-accent);
+  stroke-width: 1.25;
+  vector-effect: non-scaling-stroke;
+  opacity: 0;
+  stroke-dasharray: 130;
+  stroke-dashoffset: 130;
+  animation: living-workspace-relationship 1.35s cubic-bezier(0.32, 0, 0.22, 1) 1.65s forwards;
+}
+
+.living-workspace__focus {
+  opacity: 0;
+  animation: living-workspace-focus 1.1s ease 2.25s forwards;
+}
+
+.living-workspace__focus-ring {
+  fill: var(--color-canvas);
+  stroke: var(--color-orion);
+  stroke-width: 1;
+  vector-effect: non-scaling-stroke;
+}
+
+.living-workspace__focus-point {
+  fill: var(--color-orion);
+}
+
+.living-workspace__open-mark {
+  fill: none;
+  stroke: var(--color-orion);
+  stroke-width: 1;
+  vector-effect: non-scaling-stroke;
+  opacity: 0;
+  animation: living-workspace-rest 1.2s ease 4.8s forwards;
+}
+
+@keyframes living-workspace-material {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes living-workspace-relationship {
+  to {
+    opacity: 0.72;
+    stroke-dashoffset: 0;
+  }
+}
+
+@keyframes living-workspace-focus {
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes living-workspace-boundary {
+  to {
+    opacity: 0.68;
+    stroke-dashoffset: 0;
+  }
+}
+
+@keyframes living-workspace-rest {
+  to {
+    opacity: 0.8;
+  }
 }
 
 .home-answer {
@@ -849,8 +925,8 @@
     padding-block: 5.5rem;
   }
 
-  .orientation-field {
-    width: min(78vw, 25rem);
+  .living-workspace {
+    width: min(86vw, 28rem);
     margin-top: 1rem;
   }
 
@@ -986,6 +1062,32 @@
   .public-link--primary,
   .featured-entrance {
     transition: none;
+  }
+
+  .living-workspace__question,
+  .living-workspace__material,
+  .living-workspace__relationship,
+  .living-workspace__focus,
+  .living-workspace__boundary,
+  .living-workspace__open-mark {
+    animation: none;
+  }
+
+  .living-workspace__question,
+  .living-workspace__material,
+  .living-workspace__focus {
+    opacity: 1;
+    transform: none;
+  }
+
+  .living-workspace__relationship,
+  .living-workspace__boundary {
+    opacity: 0.68;
+    stroke-dashoffset: 0;
+  }
+
+  .living-workspace__open-mark {
+    opacity: 0.8;
   }
 }
 
@@ -2604,6 +2706,56 @@ a.case-card:hover {
   padding: clamp(4rem, 9vw, 8rem) 0;
 }
 
+.guide-use,
+.guide-session {
+  padding: clamp(3rem, 7vw, 6rem) 0;
+  border-top: 1px solid var(--color-line);
+}
+
+.guide-use__columns {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  margin-top: 2rem;
+  border: 1px solid var(--color-line);
+}
+
+.guide-use__columns > section {
+  padding: clamp(1.5rem, 4vw, 2.5rem);
+}
+
+.guide-use__columns > section + section {
+  border-left: 1px solid var(--color-line);
+}
+
+.guide-use h3,
+.guide-session h2 {
+  margin: 0.75rem 0 1.25rem;
+  font-family: var(--font-display);
+  font-size: clamp(2rem, 4vw, 3.5rem);
+  font-weight: 400;
+  letter-spacing: -0.03em;
+  line-height: 1;
+}
+
+.guide-use ul {
+  margin: 1.25rem 0 0;
+  padding-left: 1.2rem;
+}
+
+.guide-use li + li {
+  margin-top: 0.55rem;
+}
+
+.guide-session {
+  max-width: 52rem;
+}
+
+.guide-rule {
+  margin-top: 2rem;
+  padding-left: 1rem;
+  border-left: 2px solid var(--color-accent);
+}
+
 .ecosystem-guide {
   padding: clamp(3rem, 7vw, 6rem) 0;
   border-top: 1px solid var(--color-line);
@@ -2699,6 +2851,10 @@ a.case-card:hover {
 }
 
 @media (max-width: 800px) {
+  .visitor-guide-page .public-page-intro h1 {
+    font-size: clamp(2rem, 10.5vw, 3rem);
+  }
+
   .atlas-layout,
   .library-paths,
   .about-contribution {
@@ -2707,6 +2863,15 @@ a.case-card:hover {
 
   .ecosystem-guide ol {
     grid-template-columns: 1fr 1fr;
+  }
+
+  .guide-use__columns {
+    grid-template-columns: 1fr;
+  }
+
+  .guide-use__columns > section + section {
+    border-top: 1px solid var(--color-line);
+    border-left: 0;
   }
 
   .ecosystem-guide li + li {

@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { LivingWorkspaceHero } from "@/components/illustrations/LivingWorkspaceHero";
 
 const orientationGates = [
   {
@@ -89,16 +90,7 @@ export function LandingScreen() {
             </Link>
           </div>
         </div>
-        <div className="orientation-field" aria-hidden="true">
-          <span className="orientation-field__orbit orientation-field__orbit--one" />
-          <span className="orientation-field__orbit orientation-field__orbit--two" />
-          <span className="orientation-field__axis orientation-field__axis--one" />
-          <span className="orientation-field__axis orientation-field__axis--two" />
-          <span className="orientation-field__point orientation-field__point--one" />
-          <span className="orientation-field__point orientation-field__point--two" />
-          <span className="orientation-field__point orientation-field__point--three" />
-          <span className="orientation-field__center">✦</span>
-        </div>
+        <LivingWorkspaceHero />
       </section>
 
       <section className="home-answer" aria-labelledby="what-title">

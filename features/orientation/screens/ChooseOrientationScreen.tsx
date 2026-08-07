@@ -1,6 +1,7 @@
 "use client";
 
 import { useRouter } from "next/navigation";
+import Link from "next/link";
 import { PageIntro } from "@/components/ui/PageIntro";
 import { orientationModes } from "@/features/orientation/constants";
 import { useAlphaJourney } from "@/hooks/use-alpha-journey";
@@ -79,7 +80,7 @@ export function ChooseOrientationScreen() {
       </div>
 
       <p className="later-modes__note">
-        Additional orientation modes remain outside the bounded Phase II release.
+        Additional orientation modes remain outside the bounded Phase II release. Unsure whether this Workspace fits your question? <Link href="/visitor-guide">Read the Visitor Guide <span aria-hidden="true">→</span></Link>
       </p>
     </section>
   );
