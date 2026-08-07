@@ -59,7 +59,7 @@ export function OrientationSessionScreen() {
         <p className="eyebrow">No submitted request</p>
         <h1 id="no-request-title">Return to confirmation.</h1>
         <p>The Laboratory has no Human-confirmed request to execute.</p>
-        <button className="action action--primary" type="button" onClick={() => router.push(alphaRoutes.confirmation)}>Open confirmation</button>
+        <button className="action action--primary" type="button" onClick={() => router.push(alphaRoutes.choose)}>Open the Phase II Workspace</button>
       </section>
     );
   }
@@ -98,7 +98,7 @@ export function OrientationSessionScreen() {
   if (outcome.kind === "runtime_error") {
     return <div className="page page--session"><RuntimeErrorView error={outcome.error} onRest={returnToRest} /></div>;
   }
-  return <div className="page page--session"><ReportView report={outcome.report} evidence={outcome.evidence} continuations={outcome.continuations} /></div>;
+  return <div className="page page--session"><ReportView report={outcome.report} evidence={outcome.evidence} continuations={outcome.continuations} onRest={returnToRest} /></div>;
 }
 
 function OrientationLoading({ phase, objectTitle, intention }: { readonly phase: ExecutionPhase; readonly objectTitle: string; readonly intention: string }) {

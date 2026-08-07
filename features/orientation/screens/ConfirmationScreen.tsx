@@ -3,12 +3,26 @@
 import { useRouter } from "next/navigation";
 import { PageIntro } from "@/components/ui/PageIntro";
 import { MaterialFolio } from "@/features/orientation/components/MaterialFolio";
+import { validateRequest } from "@/features/orientation/state";
 import { useAlphaJourney } from "@/hooks/use-alpha-journey";
 import { alphaRoutes } from "@/lib/routes";
 
 export function ConfirmationScreen() {
   const router = useRouter();
-  const { dispatch } = useAlphaJourney();
+  const { state, dispatch } = useAlphaJourney();
+
+  if (state.step !== "confirmation" || !validateRequest(state).valid) {
+    return (
+      <section className="page page--focused failure-boundary" aria-labelledby="no-confirmation-title">
+        <p className="eyebrow">No prepared request</p>
+        <h1 id="no-confirmation-title">Return to the Phase II Workspace.</h1>
+        <p>Confirmation is available only after a Human-held session reaches Rest and explicitly prepares the bounded ORION request.</p>
+        <button className="action action--primary" type="button" onClick={() => router.push(alphaRoutes.choose)}>
+          Open the Phase II Workspace
+        </button>
+      </section>
+    );
+  }
 
   function editRequest() {
     dispatch({ type: "RESUME_SESSION", operation: "attend" });

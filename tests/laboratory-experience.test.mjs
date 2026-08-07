@@ -38,8 +38,8 @@ test("presents source references as one bounded part of Object Selection", async
   assert.match(html, /not read or uploaded/);
 });
 
-test("keeps one Workspace composition from Wonder through confirmation", async () => {
-  for (const path of ["/wonder", "/object", "/request", "/confirmation"]) {
+test("keeps one Workspace composition across active and guarded compatibility routes", async () => {
+  for (const path of ["/wonder", "/object", "/request"]) {
     const response = await render(path);
     assert.equal(response.status, 200);
     const html = await response.text();
@@ -50,6 +50,14 @@ test("keeps one Workspace composition from Wonder through confirmation", async (
     assert.match(html, /Working reflection/);
     assert.doesNotMatch(html, /Alpha journey progress/);
   }
+
+  const confirmation = await render("/confirmation");
+  assert.equal(confirmation.status, 200);
+  const confirmationHtml = await confirmation.text();
+  assert.match(confirmationHtml, /aria-label="Orientation workspace"/);
+  assert.match(confirmationHtml, /No prepared request/);
+  assert.match(confirmationHtml, /Open the Phase II Workspace/);
+  assert.doesNotMatch(confirmationHtml, /Alpha journey progress/);
 });
 
 test("keeps the Question Anchor, Human reflection, uncertainty, and STOP boundary explicit", async () => {

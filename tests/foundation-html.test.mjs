@@ -147,20 +147,20 @@ test("renders a structured Request Editor with immediate local validation", asyn
   assert.doesNotMatch(html, /prompt field|message history|Begin Orientation/i);
 });
 
-test("renders Human confirmation as the execution boundary", async () => {
+test("guards direct confirmation while preserving the explicit Human boundary", async () => {
   const response = await render("/confirmation");
   assert.equal(response.status, 200);
   const html = await response.text();
 
-  assert.match(html, /Confirm what you are preparing\./);
-  assert.match(html, /Material folio/);
-  assert.match(html, /Human decision/);
-  assert.match(html, /public Gateway/);
-  assert.match(html, /Version/);
-  assert.match(html, /Wonder note/);
-  assert.match(html, /Begin Orientation/);
-  const visibleDocument = html.split("<body>")[1].split('<script id="_R_">')[0];
-  assert.doesNotMatch(visibleDocument, /Prepare Orientation Request|JSON|stack trace|provider/i);
+  assert.match(html, /No prepared request/);
+  assert.match(html, /Return to the Phase II Workspace/);
+  assert.match(html, /only after a Human-held session reaches Rest/);
+
+  const confirmationSource = await readFile(new URL("../features/orientation/screens/ConfirmationScreen.tsx", import.meta.url), "utf8");
+  assert.match(confirmationSource, /Confirm what you are preparing/);
+  assert.match(confirmationSource, /Human decision/);
+  assert.match(confirmationSource, /Begin Orientation/);
+  assert.doesNotMatch(confirmationSource, /Prepare Orientation Request|JSON|stack trace|provider/i);
 });
 
 test("renders the live session boundary without private implementation details", async () => {
@@ -169,6 +169,7 @@ test("renders the live session boundary without private implementation details",
   const html = await response.text();
   assert.match(html, /No submitted request/);
   assert.match(html, /Return to confirmation/);
+  assert.match(html, /Open the Phase II Workspace/);
 
   const reportSource = await readFile(new URL("../features/orientation/components/ReportView.tsx", import.meta.url), "utf8");
   assert.match(reportSource, /Orientation is blocked at the evidence boundary/);
@@ -177,6 +178,8 @@ test("renders the live session boundary without private implementation details",
   assert.match(reportSource, /Uncertainties/);
   assert.match(reportSource, /Confidence/);
   assert.match(reportSource, /Validation/);
+  assert.match(reportSource, /Return to Working Session Record/);
+  assert.match(reportSource, /onRest/);
   assert.doesNotMatch(reportSource, /stack|provider|prompt|reasoning trace/i);
 
   const boundarySource = await readFile(new URL("../features/orientation/components/BoundaryFailureView.tsx", import.meta.url), "utf8");

@@ -3,7 +3,7 @@ import { OrionBoundarySummary } from "@/features/orientation/components/OrionBou
 import { PublicValueView } from "@/features/orientation/components/PublicValueView";
 import type { ContinuationOptionV1, EvidenceReferenceV1, OrientationReportV1 } from "@/packages/orion-gateway/src/index";
 
-export function ReportView({ report, evidence, continuations }: { readonly report: OrientationReportV1; readonly evidence: readonly EvidenceReferenceV1[]; readonly continuations: readonly ContinuationOptionV1[] }) {
+export function ReportView({ report, evidence, continuations, onRest }: { readonly report: OrientationReportV1; readonly evidence: readonly EvidenceReferenceV1[]; readonly continuations: readonly ContinuationOptionV1[]; readonly onRest: () => void }) {
   return (
     <div className="report-view">
       <header className="report-header">
@@ -48,6 +48,12 @@ export function ReportView({ report, evidence, continuations }: { readonly repor
           </article>
         ))}
       </section>
+
+      <div className="confirmation-actions">
+        <button className="action action--primary" type="button" onClick={onRest}>
+          Return to Working Session Record
+        </button>
+      </div>
     </div>
   );
 }
