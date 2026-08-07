@@ -90,9 +90,9 @@ export default function ExplorePage() {
           </ul>
         </article>
         <article className="random-discovery" id="discovery">
-          <p className="public-kicker">Random discovery</p>
+          <p className="public-kicker">Featured continuation</p>
           <h2>Leave room for surprise.</h2>
-          <p>One reviewed case at a time. Enough context to decide. Never an endless feed.</p>
+          <p>One reviewed case with enough context to decide whether to continue. Never an endless feed.</p>
           <Link href="/cases/plate-tectonics">Discover Plate Tectonics <span aria-hidden="true">→</span></Link>
         </article>
       </section>

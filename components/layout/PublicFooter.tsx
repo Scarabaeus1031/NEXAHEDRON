@@ -17,7 +17,7 @@ export function PublicFooter() {
         <a href="https://github.com/Scarabaeus1031/NEXAHEDRON/security/policy">Security</a>
         <a href="https://github.com/Scarabaeus1031/NEXAHEDRON">Open source</a>
       </nav>
-      <small>© Haptikdesign GmbH · NEXAHEDRON Version 1 public research demonstrator</small>
+      <small>© Haptikdesign GmbH · NEXAHEDRON Phase II bounded public Workspace</small>
     </footer>
   );
 }

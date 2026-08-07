@@ -24,7 +24,7 @@ test("Explore remains a contextual continuation beyond the primary Cases entranc
     "Bridges",
     "Browse by question",
     "Browse by evidence",
-    "Random discovery",
+    "Featured continuation",
   ]) {
     assert.match(html, new RegExp(text));
   }

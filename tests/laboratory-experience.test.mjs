@@ -34,7 +34,7 @@ test("presents source references as one bounded part of Object Selection", async
   assert.match(html, /reference remains with this local folio/);
   assert.match(html, /Material folio/);
   assert.match(html, /Human-held · local/);
-  assert.match(html, /No upload occurs/);
+  assert.match(html, /not read or uploaded/);
 });
 
 test("keeps one Workspace composition from Wonder through confirmation", async () => {

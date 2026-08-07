@@ -240,7 +240,7 @@ export function OrientationWorkspaceScreen() {
                 onChange={(event) => update({ url: event.target.value })}
               />
             </Field>
-            <Field id="workspace-object-file" label="Local file" optional hint="The filename is held locally; no upload occurs.">
+            <Field id="workspace-object-file" label="Local file reference" optional hint="Only the filename is held locally. The file is not read or uploaded.">
               <input id="workspace-object-file" type="file" onChange={chooseFile} />
             </Field>
           </div>
@@ -435,7 +435,7 @@ export function OrientationWorkspaceScreen() {
         <div className="rest-sheet__mark" aria-hidden="true">✦</div>
         <div>
           <p className="eyebrow">Working Session Record · Rest View</p>
-          <h3 id="rest-title">You can Rest with the work visible in this browser session.</h3>
+          <h3 id="rest-title">This Human-held session is complete at Rest.</h3>
           <p>
             The session has a place, a relationship, a boundary, a turn, and
             your reflection. Its uncertainty remains visible.
@@ -462,7 +462,7 @@ export function OrientationWorkspaceScreen() {
         <div className="continuation-horizon">
           <div>
             <span>Continuation Horizon</span>
-            <p>Rest here, revise one operation, or prepare the bounded request for ORION.</p>
+            <p>Keep the completed session at Rest, revise one operation, or optionally prepare the bounded request for ORION.</p>
           </div>
           <div>
             <button

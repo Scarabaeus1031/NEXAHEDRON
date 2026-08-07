@@ -43,6 +43,19 @@ Orientation Record, a complete production ORION service,
 Library evidence integration, persistence, accounts or automatic
 interpretation.
 
+## Phase II public capability
+
+Phase II is the bounded public Workspace built on this Version 1 source
+baseline. A Human can bring one question and one declared material, name what
+deserves attention, state a relationship, set boundaries, preserve
+uncertainty, consider another position, reflect and stop at Rest. The Working
+Session Record remains transient and Human-held.
+
+Phase II does not add a general Compare operator, two-material comparison,
+Science Lab integration, Comparison Cards, evidence authority, persistence or
+automatic interpretation. ORION remains an optional, separately confirmed
+boundary after Rest.
+
 **Current public boundary:** the deployed preview is built around a Human-held
 Workspace. Its explicit confirmation boundary can submit to a public Gateway.
 The certified ORION Version 1 (ORION V1) Core, compatible Runtime, Gateway reachability, and an
@@ -53,7 +66,7 @@ proves it. There is no production evidence adapter.
 
 ## Historical Alpha integration record
 
-The following section records an earlier Alpha integration path. It is preserved for traceability and does not redefine the frozen public Version 1 claim:
+The following section records an earlier Alpha integration path. It is preserved for traceability and does not redefine the frozen public Version 1 source claim or the bounded Phase II Workspace:
 
 1. Landing
 2. Choose Orientation

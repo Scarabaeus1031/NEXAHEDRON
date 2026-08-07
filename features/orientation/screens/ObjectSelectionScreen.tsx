@@ -104,7 +104,7 @@ export function ObjectSelectionScreen() {
                 />
               </Field>
 
-              <Field id="object-file" label="Local file" optional hint="The file name is represented locally. No upload occurs.">
+              <Field id="object-file" label="Local file reference" optional hint="Only the filename is held locally. The file is not read or uploaded.">
                 <input id="object-file" name="objectFile" type="file" onChange={chooseFile} aria-describedby="object-file-hint" />
               </Field>
             </section>

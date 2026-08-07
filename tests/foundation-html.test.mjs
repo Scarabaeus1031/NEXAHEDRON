@@ -22,7 +22,7 @@ test("renders the public homepage as a bounded research-demonstrator entrance", 
   assert.match(html, /<main id="main-content"/);
   assert.match(html, /Skip to main content/);
   assert.match(html, /Can a bounded process help a Human find their bearings\?/);
-  assert.match(html, /Version 1 · Public Development Preview/);
+  assert.match(html, /Phase II · Bounded Public Workspace/);
   assert.match(html, /NEXAHEDRON makes that research question public/);
   assert.match(html, /What is this\?/);
   assert.match(html, /Why does it exist\?/);
@@ -115,11 +115,11 @@ test("renders Object Selection without crossing the upload boundary", async () =
   assert.match(html, /Object title/);
   assert.match(html, /Object type/);
   assert.match(html, /URL/);
-  assert.match(html, /Local file/);
+  assert.match(html, /Local file reference/);
   assert.match(html, /Material folio/);
   assert.match(html, /Human-held · local/);
   assert.match(html, /Continue/);
-  assert.match(html, /No upload occurs/);
+  assert.match(html, /not read or uploaded/);
   assert.doesNotMatch(html, /Preview/);
 });
 

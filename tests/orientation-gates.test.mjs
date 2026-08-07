@@ -20,7 +20,7 @@ test("offers six Human intentions that lead to existing editorial experiences", 
 
   assert.match(html, /Choose your way in/);
   assert.match(html, /Ways to begin orientation/);
-  const narrativeOrder = ["Wonder", "Verify", "Learn", "Connect", "Compare", "Explore"];
+  const narrativeOrder = ["Wonder", "Verify", "Learn", "Connect", "Turn", "Explore"];
   for (const gate of narrativeOrder) {
     assert.match(html, new RegExp(`>${gate}<`));
   }

@@ -33,7 +33,7 @@ export default function AboutPage() {
         <div>
           <p className="public-kicker">The deterministic Core</p>
           <h2 id="about-orion">ORION makes structure inspectable.</h2>
-          <p>It creates certified structural orientation from bounded material. Its results are deterministic, traceable, and open to review. It does not decide what the material means or what a Human should do.</p>
+          <p>The ORION Version 1 Certified Core defines a bounded deterministic process. Certification applies to that Core, not automatically to every system or result that uses it. ORION does not decide what the material means or what a Human should do.</p>
         </div>
       </section>
 

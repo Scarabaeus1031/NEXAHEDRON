@@ -34,11 +34,11 @@ const orientationGates = [
     href: "/explore#bridges",
   },
   {
-    title: "Compare",
+    title: "Turn",
     kind: "compare",
-    intention: "How is it different?",
-    invitation: "Place ideas beside each other.",
-    action: "Compare visible relationships",
+    intention: "What changes from another position?",
+    invitation: "Change scale, reference, representation, or point of view.",
+    action: "Consider another position",
     href: "/cases/plate-tectonics",
   },
   {
@@ -73,7 +73,7 @@ export function LandingScreen() {
       <section className="public-hero" aria-labelledby="landing-title">
         <div className="public-hero__copy">
           <p className="public-kicker">Public Human-facing research demonstrator</p>
-          <p className="public-release-status">Version 1 · Public Development Preview</p>
+          <p className="public-release-status">Phase II · Bounded Public Workspace</p>
           <h1 id="landing-title">Can a bounded process help a Human find their bearings?</h1>
           <p className="public-hero__lead">
             NEXAHEDRON makes that research question public. Explore a
