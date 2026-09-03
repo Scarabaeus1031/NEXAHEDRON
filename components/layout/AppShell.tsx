@@ -35,7 +35,7 @@ export function AppShell({ children }: { readonly children: ReactNode }) {
     "/confirmation",
     "/orientation",
   ].includes(pathname);
-  const isExperimentEntry = pathname === "/orient";
+  const isExperimentEntry = pathname === "/orient" || pathname === "/the-eye";
 
   function returnToLanding() {
     dispatch({ type: "RESET" });
@@ -69,6 +69,9 @@ export function AppShell({ children }: { readonly children: ReactNode }) {
             <Link className="header-link" href={alphaRoutes.choose}>
               Orientation modes
             </Link>
+            {pathname !== "/the-eye" ? (
+              <Link className="header-link" href="/the-eye">THE EYE results</Link>
+            ) : null}
           </header>
           {isWorkspace ? (
             <WorkspaceTrace pathname={pathname} />

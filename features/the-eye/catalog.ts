@@ -1,0 +1,59 @@
+export const THE_EYE_DEMOS = {
+  "a3-pass-exact-id": {
+    label: "A3 · PASS Exact ID",
+    classification: "SYNTHETIC_NON_SCIENTIFIC",
+    result: "a3/canonical_outputs/DEMO_PASS_EXACT_ID/canonical_result.json",
+    runtime: "a3/canonical_outputs/DEMO_PASS_EXACT_ID/runtime_summary.json",
+    report: "a3/canonical_outputs/DEMO_PASS_EXACT_ID/report.md",
+    declaration: "a3/demo_families/DEMO_PASS_EXACT_ID/declaration.json",
+    receipt: "a3/receipt_examples/valid_receipt.json",
+    invalidReceipt: "a3/receipt_examples/tampered_receipt.json",
+  },
+  "a3-fail-explicit-mapping": {
+    label: "A3 · FAIL Explicit Mapping",
+    classification: "SYNTHETIC_NON_SCIENTIFIC",
+    result: "a3/canonical_outputs/DEMO_FAIL_EXPLICIT_MAPPING/canonical_result.json",
+    runtime: "a3/canonical_outputs/DEMO_FAIL_EXPLICIT_MAPPING/runtime_summary.json",
+    report: "a3/canonical_outputs/DEMO_FAIL_EXPLICIT_MAPPING/report.md",
+    declaration: "a3/demo_families/DEMO_FAIL_EXPLICIT_MAPPING/declaration.json",
+  },
+  "a3-hold-unavailable": {
+    label: "A3 · HOLD Unavailable",
+    classification: "SYNTHETIC_NON_SCIENTIFIC",
+    result: "a3/canonical_outputs/DEMO_HOLD_UNAVAILABLE/canonical_result.json",
+    runtime: "a3/canonical_outputs/DEMO_HOLD_UNAVAILABLE/runtime_summary.json",
+    report: "a3/canonical_outputs/DEMO_HOLD_UNAVAILABLE/report.md",
+    declaration: "a3/demo_families/DEMO_HOLD_UNAVAILABLE/declaration.json",
+  },
+  "a3-input-rejected": {
+    label: "A3 · Input Rejected",
+    classification: "SYNTHETIC_NON_SCIENTIFIC",
+    runtime: "a3/canonical_outputs/DEMO_INPUT_REJECTED/runtime_summary.json",
+    report: "a3/canonical_outputs/DEMO_INPUT_REJECTED/report.md",
+    diagnostic: "a3/canonical_outputs/DEMO_INPUT_REJECTED/diagnostic.json",
+  },
+  "a4-kernel-current-repeat": {
+    label: "A4 · Kernel Current Repeat",
+    classification: "SOFTWARE_STRUCTURE_REPEATABILITY_ONLY",
+    result: "a4/demonstrations/KERNEL-ADAPTER-02_REPEATABILITY/downstream_a2/canonical_result.json",
+    runtime: "a4/demonstrations/KERNEL-ADAPTER-02_REPEATABILITY/downstream_a2/runtime_summary.json",
+    report: "a4/demonstrations/KERNEL-ADAPTER-02_REPEATABILITY/downstream_a2/report.md",
+    declaration: "a4/demonstrations/KERNEL-ADAPTER-02_REPEATABILITY/declaration.json",
+    provenance: "a4/demonstrations/KERNEL-ADAPTER-02_REPEATABILITY/extraction_a/provenance_sidecar.json",
+  },
+  "a4-kernel-synthetic-change": {
+    label: "A4 · Kernel Synthetic Change",
+    classification: "SYNTHETIC_STRUCTURAL_CHANGE_CONTROL",
+    result: "a4/demonstrations/KERNEL-ADAPTER-03_SYNTHETIC_CHANGE_CONTROL/downstream_a2/canonical_result.json",
+    runtime: "a4/demonstrations/KERNEL-ADAPTER-03_SYNTHETIC_CHANGE_CONTROL/downstream_a2/runtime_summary.json",
+    report: "a4/demonstrations/KERNEL-ADAPTER-03_SYNTHETIC_CHANGE_CONTROL/downstream_a2/report.md",
+    declaration: "a4/demonstrations/KERNEL-ADAPTER-03_SYNTHETIC_CHANGE_CONTROL/declaration.json",
+    provenance: "a4/demonstrations/KERNEL-ADAPTER-03_SYNTHETIC_CHANGE_CONTROL/snapshot_a_output/provenance_sidecar.json",
+  },
+} as const;
+
+export type TheEyeDemoId = keyof typeof THE_EYE_DEMOS;
+export const THE_EYE_DEMO_IDS = Object.keys(THE_EYE_DEMOS) as TheEyeDemoId[];
+export function isTheEyeDemoId(value: string): value is TheEyeDemoId {
+  return Object.hasOwn(THE_EYE_DEMOS, value);
+}

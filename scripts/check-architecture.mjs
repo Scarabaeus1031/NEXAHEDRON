@@ -53,7 +53,11 @@ for (const sourceRoot of ["app", "components", "features", "hooks", "lib", "type
   for (const path of await sourceFiles(sourceDirectory)) {
     const source = await readFile(path, "utf8");
     const displayPath = relative(rootPath, path);
-    if (displayPath !== "app/api/orientation/route.ts") {
+    const authorizedTransportBoundaries = new Set([
+      "app/api/orientation/route.ts",
+      "features/the-eye/TheEyeResultView.tsx",
+    ]);
+    if (!authorizedTransportBoundaries.has(displayPath)) {
       assert.doesNotMatch(source, /\bfetch\s*\(|axios|XMLHttpRequest/i, displayPath);
     }
     assert.doesNotMatch(source, /laboratory-server|full-round-trip\.json|orientation-sessions/i, displayPath);
