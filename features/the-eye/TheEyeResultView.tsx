@@ -37,11 +37,11 @@ function IlauColumn({ letter, title, entries }: { letter: string; title: string;
   </section>;
 }
 
-function VerifiedResult({ projection, receiptState, onReceipt }: { projection: ResultProjection; receiptState: TransportEnvelope | null; onReceipt: (variant: "valid" | "invalid") => void }) {
+function VerifiedResult({ projection, receiptState, onReceipt, verificationStage }: { projection: ResultProjection; receiptState: TransportEnvelope | null; onReceipt: (variant: "valid" | "invalid") => void; verificationStage?: TransportEnvelope["verificationStage"] }) {
   const p = projection;
   return <>
     <section className={styles.outcome} aria-labelledby="outcome-title">
-      <div><p className={styles.eyebrow}>Machine result · A2 verified</p><h2 id="outcome-title">{p.outcome.decision}</h2></div>
+      <div><p className={styles.eyebrow}>{verificationStage === "VERIFIED_BEFORE_PACKAGING" ? "Curated · verified before packaging" : "Local · directly verified by A2"}</p><h2 id="outcome-title">{p.outcome.decision}</h2></div>
       <dl><Pair label="CLI exit" value={p.exitCode} /><Pair label="Evidence stage" value={p.outcome.evidenceStage} /><Pair label="Mechanism status" value={p.outcome.mechanismStatus} /></dl>
       <p className={styles.mechanism}>PASS DOES NOT ESTABLISH A MECHANISM</p>
     </section>
@@ -105,10 +105,10 @@ export function TheEyeResultView() {
   function stop() { setSelected(""); setReceiptState(null); setEnvelope({ schema: "nexah.the_eye.local_view/1.0", state: "STOPPED_BY_HUMAN", reasonCode: "HUMAN_STOP" }); }
 
   return <section className={styles.page} aria-labelledby="the-eye-title">
-    <header className={styles.hero}><div><p className={styles.eyebrow}>Local result view · verified artifacts only</p><h1 id="the-eye-title">THE EYE</h1><p>Inspect one canonical comparison at a time. A2 verifies; NEXAHEDRON presents; the Human decides.</p></div><button className={styles.stop} type="button" onClick={stop}>STOP</button></header>
+    <header className={styles.hero}><div><p className={styles.eyebrow}>Result view · sealed artifacts only</p><h1 id="the-eye-title">THE EYE</h1><p>Inspect one sealed comparison at a time. A2 verifies locally or before packaging; NEXAHEDRON presents; the Human decides.</p></div><button className={styles.stop} type="button" onClick={stop}>STOP</button></header>
     <nav className={styles.selector} aria-label="THE EYE demonstration results">{THE_EYE_DEMO_IDS.map((id) => <button key={id} type="button" aria-pressed={selected === id} onClick={() => selectDemo(id)}>{THE_EYE_DEMOS[id].label}</button>)}</nav>
     <Status state={envelope.state} reason={envelope.reasonCode} />
-    {envelope.projection ? <VerifiedResult projection={envelope.projection} receiptState={receiptState} onReceipt={verifyReceipt} /> : <section className={styles.empty} aria-labelledby="current-state-title"><p className={styles.eyebrow}>Current view state</p><h2 id="current-state-title">{envelope.state}</h2><p>{envelope.state === "NO_RESULT_SELECTED" ? "Choose one of six fixed local demonstrations. No directory browsing or arbitrary path input is available." : envelope.state === "INPUT_REJECTED" ? `A2 rejected the inputs before producing a result partition. CLI exit ${envelope.runtime?.exit_code ?? 30}.` : envelope.state === "STOPPED_BY_HUMAN" ? "The local review stopped. No receipt was created." : `Closed diagnostic: ${envelope.reasonCode}`}</p></section>}
+    {envelope.projection ? <VerifiedResult projection={envelope.projection} receiptState={receiptState} onReceipt={verifyReceipt} verificationStage={envelope.verificationStage} /> : <section className={styles.empty} aria-labelledby="current-state-title"><p className={styles.eyebrow}>Current view state</p><h2 id="current-state-title">{envelope.state}</h2><p>{envelope.state === "NO_RESULT_SELECTED" ? "Choose one of six fixed demonstrations. No directory browsing or arbitrary path input is available." : envelope.state === "INPUT_REJECTED" ? `A2 rejected the inputs before producing a result partition. CLI exit ${envelope.runtime?.exit_code ?? 30}.` : envelope.state === "STOPPED_BY_HUMAN" ? "The local review stopped. No receipt was created." : `Closed diagnostic: ${envelope.reasonCode}`}</p></section>}
     <aside className={styles.stateIndex} aria-label="Implemented state contract"><span>Implemented state contract</span><p>{ALL_STATES.join(" · ")}</p></aside>
   </section>;
 }

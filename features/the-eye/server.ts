@@ -3,14 +3,10 @@ import { isAbsolute, relative, resolve, sep } from "node:path";
 import { spawnSync } from "node:child_process";
 import { THE_EYE_DEMOS, isTheEyeDemoId, type TheEyeDemoId } from "./catalog.ts";
 import type { ResultProjection, TheEyeViewState, TransportEnvelope } from "./types.ts";
+import { ArtifactBoundaryError, THE_EYE_MAX_ARTIFACT_BYTES } from "./boundary.ts";
 
-export const THE_EYE_MAX_ARTIFACT_BYTES = 2 * 1024 * 1024;
+export { ArtifactBoundaryError, THE_EYE_MAX_ARTIFACT_BYTES } from "./boundary.ts";
 export const THE_EYE_ALLOWED_EXTENSIONS = new Set([".json", ".md"]);
-
-export class ArtifactBoundaryError extends Error {
-  readonly code: string;
-  constructor(code: string, message: string) { super(message); this.code = code; }
-}
 
 type ComparisonResult = {
   profile: string; schema_version: string; result_id: string; canonical_result_sha256: string;

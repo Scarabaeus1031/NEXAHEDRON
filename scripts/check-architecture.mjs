@@ -91,4 +91,25 @@ const consumerBoundary = await readFile(new URL("../packages/orion-gateway/src/i
 assert.match(consumerBoundary, /\.\/generated\/orion-v1/);
 assert.doesNotMatch(consumerBoundary, /interface\s+(?:OrientationRequest|OrientationReport|ClarificationResult|ContinuationOption|EvidenceReference|RuntimeError)\b/);
 
+const eyeRuntime = await readFile(new URL("../features/the-eye/runtime.ts", import.meta.url), "utf8");
+assert.match(eyeRuntime, /LOCAL_VERIFIED/);
+assert.match(eyeRuntime, /CURATED_BUNDLED/);
+assert.match(eyeRuntime, /RUNTIME_MODE_MISSING/);
+assert.match(eyeRuntime, /INVALID_RUNTIME_MODE/);
+
+const curatedServer = await readFile(new URL("../features/the-eye/curated-server.ts", import.meta.url), "utf8");
+assert.doesNotMatch(curatedServer, /node:(?:fs|path|child_process)|spawn|execSync|fetch\s*\(/);
+assert.doesNotMatch(curatedServer, /import\([^"']/);
+
+const curatedManifest = JSON.parse(await readFile(new URL("../features/the-eye/curated/manifest.json", import.meta.url), "utf8"));
+assert.equal(curatedManifest.demonstrations.length, 6);
+assert.equal(new Set(curatedManifest.demonstrations.map((demo) => demo.source_demonstration_id)).size, 6);
+assert.equal(curatedManifest.mechanism, "NOT_ESTABLISHED");
+assert.equal(curatedManifest.scientific_validity, "NOT_EVALUATED");
+
+for (const route of ["results", "receipts", "exports"]) {
+  const source = await readFile(new URL(`../app/api/the-eye/${route}/route.ts`, import.meta.url), "utf8");
+  assert.match(source, /features\/the-eye\/runtime/);
+}
+
 console.log("NEXAHEDRON live ORION integration boundary checks passed.");

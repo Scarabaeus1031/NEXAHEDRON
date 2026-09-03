@@ -1,11 +1,12 @@
-import { ArtifactBoundaryError, exportDemoArtifact } from "@/features/the-eye/server";
+import { ArtifactBoundaryError } from "@/features/the-eye/boundary";
+import { exportRuntimeArtifact } from "@/features/the-eye/runtime";
 
 export const dynamic = "force-dynamic";
 export async function GET(request: Request) {
   const query = new URL(request.url).searchParams;
   const kind = query.get("kind") ?? "";
   try {
-    const artifact = await exportDemoArtifact(query.get("demo") ?? "", kind);
+    const artifact = await exportRuntimeArtifact(query.get("demo") ?? "", kind);
     const type = kind === "report" ? "text/markdown; charset=utf-8" : "application/json; charset=utf-8";
     return new Response(artifact.bytes, { headers: { "content-type": type, "content-disposition": `attachment; filename=the-eye-${kind}.${kind === "report" ? "md" : "json"}`, "cache-control": "no-store" } });
   } catch (error) {

@@ -1,0 +1,1 @@
+{"schema":"nexah.the_eye.local_view/1.0","demoId":"a3-input-rejected","state":"INPUT_REJECTED","reasonCode":"INPUT_REJECTED","runtime":{"exit_code":30,"outcome":"INPUT_REJECTED","result_path":null,"result_sha256":null,"schema_id":"nexah.the_eye.runtime_summary","schema_version":"1.1"},"runtimeMode":"CURATED_BUNDLED","verificationStage":"VERIFIED_BEFORE_PACKAGING"}

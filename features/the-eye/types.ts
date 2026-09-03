@@ -30,9 +30,13 @@ export type ResultProjection = {
 
 export type TransportEnvelope = {
   schema: "nexah.the_eye.local_view/1.0";
+  runtimeMode?: "LOCAL_VERIFIED" | "CURATED_BUNDLED";
+  verificationStage?: "VERIFIED_DURING_THIS_LOCAL_REQUEST" | "VERIFIED_BEFORE_PACKAGING";
   demoId?: string;
   state: TheEyeViewState;
   reasonCode: string;
   projection?: ResultProjection;
   runtime?: { outcome: string; exit_code: number; result_sha256: string | null };
 };
+
+export type TheEyeRuntimeMode = "LOCAL_VERIFIED" | "CURATED_BUNDLED";
