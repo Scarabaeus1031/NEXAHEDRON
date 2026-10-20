@@ -13,37 +13,30 @@ async function render(path = "/") {
   );
 }
 
-test("renders the public homepage as a bounded research-demonstrator entrance", async () => {
+test("renders the public homepage as the bounded A0 Human View entrance", async () => {
   const response = await render();
   assert.equal(response.status, 200);
   const html = await response.text();
+  const sourceHome = await readFile(new URL("../public/a0-human/start/index.html", import.meta.url), "utf8");
+  const publicNavigation = await readFile(new URL("../public/a0-human/start/nexahedron-public-navigation.js", import.meta.url), "utf8");
 
-  assert.match(html, /<title>NEXAHEDRON — Orientation Research Demonstrator<\/title>/);
-  assert.match(html, /<main id="main-content"/);
-  assert.match(html, /Skip to main content/);
-  assert.match(html, /Can a bounded process help a Human find their bearings\?/);
-  assert.match(html, /Phase II · Bounded Public Workspace/);
-  assert.match(html, /NEXAHEDRON makes that research question public/);
-  assert.match(html, /A question held on an open working surface/);
-  assert.match(html, /deliberately incomplete boundary/);
-  assert.match(html, /What is this\?/);
-  assert.match(html, /Why does it exist\?/);
-  assert.match(html, /Where can I begin\?/);
-  assert.match(html, /Enter through a case/);
-  assert.match(html, /Primary navigation/);
-  for (const destination of ["Home", "Cases", "Reference Cases", "About", "Visitor Guide", "GitHub"]) {
-    assert.match(html, new RegExp(destination));
+  assert.match(html, /<title>NEXAHEDRON — A0 Human View<\/title>/);
+  assert.match(html, /class="a0-source-home-shell" id="main-content"/);
+  assert.match(html, /class="a0-source-home-frame"/);
+  assert.match(html, /src="\/a0-human\/start\/index\.html"/);
+  assert.match(sourceHome, /Welche Reise brauchst du gerade\?/);
+  assert.equal((sourceHome.match(/class="entry-route(?: |")/g) ?? []).length, 3);
+  assert.match(sourceHome, /A0 weiter erkunden · Wege und Werkzeuge/);
+  assert.doesNotMatch(sourceHome, /<h2 id="wegweiser-title">Wo beginne ich\?<\/h2>/);
+  assert.match(sourceHome, /Eine Stimme wird zum Record\./);
+  assert.match(sourceHome, /Acht Kapitel verfolgen den Weg eines Ergebnisses\./);
+  assert.match(sourceHome, /nexahedron-public-navigation\.js/);
+  for (const destination of ["Human", "Science", "Builder", "Übersicht", "About"]) {
+    assert.match(publicNavigation, new RegExp(destination));
   }
-  const primaryNavigation = html.slice(
-    html.indexOf('aria-label="Primary navigation"'),
-    html.indexOf("</nav>", html.indexOf('aria-label="Primary navigation"')),
-  );
-  assert.doesNotMatch(primaryNavigation, /href="\/explore"/);
-  const visibleDocument = html
-    .split("<body>")[1]
-    .split('<script id="_R_">')[0];
-  assert.doesNotMatch(visibleDocument, /\bAI\b|assistant|chat interface/i);
-  assert.match(visibleDocument, /ORION is optional/);
+  assert.match(publicNavigation, /https:\/\/nexah\.de\//);
+  assert.match(publicNavigation, /https:\/\/scarabaeus1033\.net\//);
+  assert.doesNotMatch(publicNavigation, /Desk|Mission Control|NSN|Research Backlog/i);
 });
 
 test("renders the Version 1 visitor guide as the local demonstrator orientation layer", async () => {
@@ -52,8 +45,8 @@ test("renders the Version 1 visitor guide as the local demonstrator orientation 
   const html = await response.text();
 
   assert.match(html, /<title>Visitor Guide — NEXAHEDRON<\/title>/);
-  assert.match(html, /When should I use NEXAHEDRON\?/);
-  assert.match(html, /Human Orientation Workspace/);
+  assert.match(html, /When should I enter the A0 Human View\?/);
+  assert.match(html, /A0 Human View/);
   assert.match(html, /Good for/);
   assert.match(html, /Not designed for/);
   assert.match(html, /Rest is already a complete outcome/);
@@ -63,7 +56,7 @@ test("renders the Version 1 visitor guide as the local demonstrator orientation 
     assert.match(html, new RegExp(place));
   }
   assert.match(html, /You are here/);
-  assert.match(html, /Try the live experiment/);
+  assert.match(html, /Enter the Human View/);
   assert.match(html, /Working Session Record/);
   assert.match(html, /Reloading or closing the page loses/);
 });
@@ -202,6 +195,7 @@ test("renders the live session boundary without private implementation details",
 test("defines visible focus, responsive layout and reduced motion", async () => {
   const css = await readFile(new URL("../app/globals.css", import.meta.url), "utf8");
   const publicCss = await readFile(new URL("../styles/public-experience.css", import.meta.url), "utf8");
+  const humanCss = await readFile(new URL("../styles/a0-human-view.css", import.meta.url), "utf8");
   assert.match(css, /:focus-visible/);
   assert.match(css, /prefers-reduced-motion:\s*reduce/);
   assert.match(css, /min-width:\s*280px/);
@@ -211,4 +205,6 @@ test("defines visible focus, responsive layout and reduced motion", async () => 
   assert.match(publicCss, /\.public-navigation a\s*\{[^}]*min-height:\s*2\.75rem/s);
   assert.match(publicCss, /prefers-reduced-motion:\s*reduce[\s\S]*\.living-workspace__question[\s\S]*animation:\s*none/);
   assert.doesNotMatch(publicCss, /\.living-workspace[^}]*animation:[^;]*infinite/s);
+  assert.match(humanCss, /prefers-reduced-motion:\s*reduce/);
+  assert.match(humanCss, /@media\s*\(max-width:\s*620px\)/);
 });

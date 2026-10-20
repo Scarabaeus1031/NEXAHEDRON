@@ -5,19 +5,17 @@ export function PublicFooter() {
     <footer className="public-footer">
       <p>
         <span><i aria-hidden="true">✦</i> NEXAHEDRON</span>
-        A public experiment in Human orientation.
+        The A0 Human View by NEXAH.
       </p>
       <nav aria-label="Footer navigation">
-        <a href="https://nexah.de/visitor-guide/">Ecosystem map</a>
-        <Link href="/about">About</Link>
+        <a href="https://nexah.de/about/">NEXAH method &amp; science</a>
+        <a href="https://scarabaeus1033.net/">Scarabæus workshop</a>
         <Link href="/contact">Contact</Link>
         <Link href="/accessibility">Accessibility</Link>
         <Link href="/privacy">Privacy</Link>
         <Link href="/imprint">Imprint</Link>
-        <a href="https://github.com/Scarabaeus1031/NEXAHEDRON/security/policy">Security</a>
-        <a href="https://github.com/Scarabaeus1031/NEXAHEDRON">Open source</a>
       </nav>
-      <small>© Haptikdesign GmbH · NEXAHEDRON Phase II bounded public Workspace</small>
+      <small>© Haptikdesign GmbH · source-bound instruments · Human judgment remains Human</small>
     </footer>
   );
 }

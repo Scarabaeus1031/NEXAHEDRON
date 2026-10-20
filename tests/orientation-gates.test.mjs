@@ -13,34 +13,15 @@ async function render(path) {
   );
 }
 
-test("offers six Human intentions that lead to existing editorial experiences", async () => {
-  const response = await render("/");
-  assert.equal(response.status, 200);
-  const html = await response.text();
+test("preserves the earlier landing engine outside the public front door", async () => {
+  const legacySource = await readFile(new URL("../features/orientation/screens/LandingScreen.tsx", import.meta.url), "utf8");
+  const publicRoute = await readFile(new URL("../app/page.tsx", import.meta.url), "utf8");
 
-  assert.match(html, /Choose your way in/);
-  assert.match(html, /Ways to begin orientation/);
-  const narrativeOrder = ["Wonder", "Verify", "Learn", "Connect", "Turn", "Explore"];
-  for (const gate of narrativeOrder) {
-    assert.match(html, new RegExp(`>${gate}<`));
-  }
-  const gatesHtml = html.slice(html.indexOf('class="orientation-gates"'), html.indexOf('class="featured-entrance"'));
-  const positions = narrativeOrder.map((gate) => gatesHtml.indexOf(`>${gate}<`));
-  assert.deepEqual(positions, [...positions].sort((left, right) => left - right));
-  for (const destination of [
-    "/explore#discovery",
-    "/cases/plate-tectonics",
-    "/explore#bridges",
-    "/cases/what-is-evidence",
-    "/library",
-  ]) {
-    assert.match(html, new RegExp(`href="${destination}"`));
-  }
-
-  assert.doesNotMatch(html, /role="tab"|role="button"/);
-  for (const kind of ["wonder", "verify", "learn", "connect", "compare", "explore"]) {
-    assert.match(html, new RegExp(`orientation-gate__figure--${kind}`));
-  }
+  assert.match(legacySource, /export function LandingScreen/);
+  assert.match(legacySource, /href="\/orient"/);
+  assert.match(legacySource, /Reference cases remain available/);
+  assert.doesNotMatch(publicRoute, /LandingScreen/);
+  assert.match(publicRoute, /\/a0-human\/start\/index\.html/);
 });
 
 test("distinguishes Gate composition without animation", async () => {

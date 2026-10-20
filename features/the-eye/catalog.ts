@@ -1,6 +1,9 @@
 export const THE_EYE_DEMOS = {
   "a3-pass-exact-id": {
     label: "A3 · PASS Exact ID",
+    displayTitle: "PASS · Exact ID",
+    description: "Start here: two sealed structures retain every declared relation under exact identity alignment.",
+    recommended: true,
     classification: "SYNTHETIC_NON_SCIENTIFIC",
     result: "a3/canonical_outputs/DEMO_PASS_EXACT_ID/canonical_result.json",
     runtime: "a3/canonical_outputs/DEMO_PASS_EXACT_ID/runtime_summary.json",
@@ -11,6 +14,9 @@ export const THE_EYE_DEMOS = {
   },
   "a3-fail-explicit-mapping": {
     label: "A3 · FAIL Explicit Mapping",
+    displayTitle: "FAIL · Explicit Mapping",
+    description: "Shows a declared mapping where lost, added and residual relations produce a FAIL result.",
+    recommended: false,
     classification: "SYNTHETIC_NON_SCIENTIFIC",
     result: "a3/canonical_outputs/DEMO_FAIL_EXPLICIT_MAPPING/canonical_result.json",
     runtime: "a3/canonical_outputs/DEMO_FAIL_EXPLICIT_MAPPING/runtime_summary.json",
@@ -19,6 +25,9 @@ export const THE_EYE_DEMOS = {
   },
   "a3-hold-unavailable": {
     label: "A3 · HOLD Unavailable",
+    displayTitle: "HOLD · Unavailable",
+    description: "Shows how missing required information remains visible and pauses the declared comparison.",
+    recommended: false,
     classification: "SYNTHETIC_NON_SCIENTIFIC",
     result: "a3/canonical_outputs/DEMO_HOLD_UNAVAILABLE/canonical_result.json",
     runtime: "a3/canonical_outputs/DEMO_HOLD_UNAVAILABLE/runtime_summary.json",
@@ -27,6 +36,9 @@ export const THE_EYE_DEMOS = {
   },
   "a3-input-rejected": {
     label: "A3 · Input Rejected",
+    displayTitle: "INPUT REJECTED",
+    description: "Shows an input stopped before A2 produced any result partition.",
+    recommended: false,
     classification: "SYNTHETIC_NON_SCIENTIFIC",
     runtime: "a3/canonical_outputs/DEMO_INPUT_REJECTED/runtime_summary.json",
     report: "a3/canonical_outputs/DEMO_INPUT_REJECTED/report.md",
@@ -34,6 +46,9 @@ export const THE_EYE_DEMOS = {
   },
   "a4-kernel-current-repeat": {
     label: "A4 · Kernel Current Repeat",
+    displayTitle: "Kernel · Current Repeat",
+    description: "Shows a repeat comparison of two sealed records produced from the same Kernel snapshot.",
+    recommended: false,
     classification: "SOFTWARE_STRUCTURE_REPEATABILITY_ONLY",
     result: "a4/demonstrations/KERNEL-ADAPTER-02_REPEATABILITY/downstream_a2/canonical_result.json",
     runtime: "a4/demonstrations/KERNEL-ADAPTER-02_REPEATABILITY/downstream_a2/runtime_summary.json",
@@ -43,6 +58,9 @@ export const THE_EYE_DEMOS = {
   },
   "a4-kernel-synthetic-change": {
     label: "A4 · Kernel Synthetic Change",
+    displayTitle: "Kernel · Synthetic Change",
+    description: "Shows a controlled synthetic relation change without making a scientific claim.",
+    recommended: false,
     classification: "SYNTHETIC_STRUCTURAL_CHANGE_CONTROL",
     result: "a4/demonstrations/KERNEL-ADAPTER-03_SYNTHETIC_CHANGE_CONTROL/downstream_a2/canonical_result.json",
     runtime: "a4/demonstrations/KERNEL-ADAPTER-03_SYNTHETIC_CHANGE_CONTROL/downstream_a2/runtime_summary.json",

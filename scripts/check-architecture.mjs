@@ -35,7 +35,6 @@ for (const sourceRoot of ["app", "apps", "components", "features", "hooks", "lib
 }
 
 const routeScreens = new Map([
-  ["app/page.tsx", "LandingScreen"],
   ["app/orient/page.tsx", "ChooseOrientationScreen"],
   ["app/wonder/page.tsx", "WonderScreen"],
   ["app/object/page.tsx", "ObjectSelectionScreen"],
@@ -43,6 +42,10 @@ const routeScreens = new Map([
   ["app/confirmation/page.tsx", "ConfirmationScreen"],
   ["app/orientation/page.tsx", "OrientationSessionScreen"],
 ]);
+
+const homeRoute = await readFile(new URL("../app/page.tsx", import.meta.url), "utf8");
+assert.match(homeRoute, /\/a0-human\/start\/index\.html/, "app/page.tsx");
+
 for (const [path, screen] of routeScreens) {
   const source = await readFile(new URL(`../${path}`, import.meta.url), "utf8");
   assert.match(source, new RegExp(`features/orientation/screens/${screen}`), path);

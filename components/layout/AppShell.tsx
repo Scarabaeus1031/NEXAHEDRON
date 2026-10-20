@@ -17,8 +17,11 @@ export function AppShell({ children }: { readonly children: ReactNode }) {
   const router = useRouter();
   const { state, dispatch } = useAlphaJourney();
 
+  if (pathname === "/") {
+    return <main className="a0-source-home-shell" id="main-content">{children}</main>;
+  }
+
   const isPublicExperience =
-    pathname === "/" ||
     pathname.startsWith("/explore") ||
     pathname.startsWith("/cases") ||
     pathname.startsWith("/library") ||
@@ -36,6 +39,9 @@ export function AppShell({ children }: { readonly children: ReactNode }) {
     "/orientation",
   ].includes(pathname);
   const isExperimentEntry = pathname === "/orient" || pathname === "/the-eye";
+  const shellClassName = isPublicExperience
+    ? `site-shell site-shell--public${pathname === "/" ? " site-shell--a0" : ""}`
+    : "site-shell";
 
   function returnToLanding() {
     dispatch({ type: "RESET" });
@@ -43,7 +49,7 @@ export function AppShell({ children }: { readonly children: ReactNode }) {
   }
 
   return (
-    <div className={isPublicExperience ? "site-shell site-shell--public" : "site-shell"}>
+    <div className={shellClassName}>
       <a className="skip-link" href="#main-content">
         Skip to main content
       </a>
@@ -63,7 +69,7 @@ export function AppShell({ children }: { readonly children: ReactNode }) {
               </span>
               <span className="brand__copy">
                 <span className="brand__name">NEXAHEDRON</span>
-                <span className="brand__descriptor">Human Orientation Workspace</span>
+                <span className="brand__descriptor">A0 Human View</span>
               </span>
             </button>
             <Link className="header-link" href={alphaRoutes.choose}>

@@ -19,7 +19,11 @@ const expected = {
   "a4-kernel-synthetic-change": ["VERIFIED_FAIL", "FAIL", 10, 1, 1, 0, 0, 1],
 };
 
-test("catalog exposes exactly six demonstration families", () => assert.deepEqual(THE_EYE_DEMO_IDS, Object.keys(expected)));
+test("catalog exposes exactly six demonstration families", () => {
+  assert.deepEqual(THE_EYE_DEMO_IDS, Object.keys(expected));
+  assert.deepEqual(THE_EYE_DEMO_IDS.map((id) => THE_EYE_DEMOS[id].displayTitle), ["PASS · Exact ID", "FAIL · Explicit Mapping", "HOLD · Unavailable", "INPUT REJECTED", "Kernel · Current Repeat", "Kernel · Synthetic Change"]);
+  assert.deepEqual(THE_EYE_DEMO_IDS.filter((id) => THE_EYE_DEMOS[id].recommended), ["a3-pass-exact-id"]);
+});
 for (const id of THE_EYE_DEMO_IDS) {
   test(`actual server boundary verifies ${id}`, async () => {
     const envelope = await loadDemo(id, artifactRoot);
@@ -104,6 +108,7 @@ test("the page declares every required view state", async () => {
 test("the page renders four named ILAU sections and zero counts", async () => {
   const source = await readFile(new URL("../features/the-eye/TheEyeResultView.tsx", import.meta.url), "utf8");
   for (const title of ["Invariant","Lost","Added","Unavailable","0 entries","Residual count: 0"]) assert.match(source, new RegExp(title));
+  for (const definition of ["remained the same under the declared comparison", "expected relation not observed", "observed relation not expected", "could not be evaluated from the required information"]) assert.match(source, new RegExp(definition));
 });
 test("mechanism status is visibly separate and uses exact nonclaim", async () => {
   const source = await readFile(new URL("../features/the-eye/TheEyeResultView.tsx", import.meta.url), "utf8");
@@ -116,6 +121,7 @@ test("Human decision has a disabled unselected option", async () => {
 test("STOP clears selection and creates no receipt", async () => {
   const source = await readFile(new URL("../features/the-eye/TheEyeResultView.tsx", import.meta.url), "utf8");
   assert.match(source, /function stop\(\).*setSelected\(""\).*setReceiptState\(null\)/s); assert.match(source, /No receipt was created/);
+  assert.match(source, /STOP returns control to the Human/); assert.match(source, /does not rewrite, approve or invalidate a machine result/);
 });
 test("status uses accessible live announcement", async () => {
   const source = await readFile(new URL("../features/the-eye/TheEyeResultView.tsx", import.meta.url), "utf8");
@@ -136,7 +142,7 @@ test("UI contains no comparison or hash implementation", async () => {
 });
 test("responsive and reduced-motion CSS are present", async () => {
   const css = await readFile(new URL("../features/the-eye/TheEyeResultView.module.css", import.meta.url), "utf8");
-  assert.match(css, /@media\(max-width:800px\)/); assert.match(css, /prefers-reduced-motion/);
+  assert.match(css, /@media\(max-width:900px\)/); assert.match(css, /@media\(max-width:620px\)/); assert.match(css, /prefers-reduced-motion/); assert.match(css, /focus-visible/);
 });
 test("the route is explicitly non-indexable", async () => {
   const page = await readFile(new URL("../app/the-eye/page.tsx", import.meta.url), "utf8");

@@ -15,7 +15,8 @@ NEXAHEDRON Alpha. It does not alter that architecture.
 | faithful Human language | LYRA | no independent NEXAHEDRON implementation |
 | evidence and editorial authority | Library or named source authority | no independent NEXAHEDRON Library authority, adapter or writes |
 | intention, meaning, Reflection and decisions | Human | captured, preserved and explicitly confirmed |
-| demonstrator experience, local session flow and presentation | NEXAHEDRON | implemented here; no general product authority |
+| public A0 Human Book composition and presentation | NEXAHEDRON | source-bound projection only; no research, Navigator or publication authority |
+| preserved local session engines | NEXAHEDRON | Builder backlog; not part of the public front-door navigation |
 
 The current Rest View is a transient Human-held Working Session Record. It is
 not the immutable, reviewed Orientation Record described by RFC-0011. ORION

@@ -5,7 +5,9 @@
 - Public role: Human-facing research demonstrator and bounded experiment
 - ORION dependency: verified external dependency; certification authority
   remains in ORION
-- Executable mode: Understand only
+- Public front door: source-bound projection of the existing A0 start page,
+  with the five-chapter Human Book as its primary Human experience
+- Preserved Builder engine: Understand only
 
 NEXAHEDRON is a modular research-demonstrator application. It owns presentation,
 interaction, in-memory session state and transport adaptation. It does not own
@@ -13,10 +15,19 @@ orientation behavior, evidence authority or ORION validation.
 
 ## Current surfaces
 
+- `app/page.tsx` presents the source-bound A0 start projection as the public
+  root without rebuilding its reading structure.
+- `features/a0-human/` preserves the earlier React composition; it is no longer
+  the public root.
+- `public/a0-human/` contains the integrity-manifested deployment bundle.
+  Presentation-only transforms replace internal navigation with the public
+  NEXAHEDRON, NEXAH and Scarabæus bridges; they create no new research or
+  Navigator identity.
 - `app/` owns routes, root composition and the same-origin
   `POST /api/orientation` proxy.
 - `features/orientation/` owns Human interaction, local state, request mapping
-  and direct presentation of public outcomes.
+  and direct presentation of public outcomes. It is preserved as a Builder
+  engine and is not part of the public front-door navigation.
 - `packages/orion-gateway/` is the sole browser consumer seam. Its public
   contract declarations are generated from the verified ORION models.
 - `services/orion_transport/` is the NEXAHEDRON-owned HTTP adapter around the
@@ -24,6 +35,12 @@ orientation behavior, evidence authority or ORION validation.
 - `scripts/verify-orion-dependency.mjs` verifies the ORION Git revision and
   canonical-content fingerprint before execution.
 - `packages/design-system/` and `app/globals.css` own the visual language.
+
+The public header exposes only the Human Book, its chapter/Return anchors and
+the external NEXAH and Scarabæus doors. Desk, Science Navigator, Mission
+Control, Builder logs and the preserved engine routes are excluded from this
+navigation. Their source remains available for governed future work under
+[`../NEXAHEDRON_BUILDER_BACKLOG.md`](../NEXAHEDRON_BUILDER_BACKLOG.md).
 
 ## Execution boundary
 

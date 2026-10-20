@@ -142,22 +142,22 @@ test("the stable library route presents a bounded local Reference Case map", asy
   assert.match(html, /not the canonical NEXAH Library/);
 });
 
-test("About introduces Orientation without exposing internal architecture", async () => {
+test("About positions the A0 Human View without exposing internal architecture", async () => {
   const response = await render("/about");
   assert.equal(response.status, 200);
   const html = await response.text();
 
-  assert.match(html, /Information already exists\. Orientation is what is missing\./);
-  assert.match(html, /NEXAH is a place for orientation\./);
-  assert.match(html, /ORION makes structure inspectable\./);
-  assert.match(html, /One person\. One question\. One bounded experiment\./);
-  assert.match(html, /Finding is not the same as understanding\./);
+  assert.match(html, /NEXAHEDRON is the A0 Human View\./);
+  assert.match(html, /A0 belongs to NEXAH\./);
+  assert.match(html, /Place\. Attend\. Turn\. Return\./);
+  assert.match(html, /One person\. One question\. No hidden interpretation\./);
+  assert.match(html, /A change of view changes what becomes available\./);
   assert.match(html, /Human first/);
   assert.match(html, /Evidence before certainty/);
-  const beginCase = html.indexOf("Begin with a Curated Reference Case");
-  const bringQuestion = html.indexOf("Try the live experiment");
+  const bringQuestion = html.indexOf("Enter the A0 Human View");
+  const openNexah = html.indexOf("Open NEXAH method and science");
   const inspectImplementation = html.indexOf("Inspect the reference implementation");
-  assert.ok(beginCase < bringQuestion && bringQuestion < inspectImplementation);
+  assert.ok(bringQuestion < openNexah && openNexah < inspectImplementation);
   const visibleDocument = html.split("<body>")[1].split('<script id="_R_">')[0];
   assert.doesNotMatch(visibleDocument, /Gateway|Runtime|public contract|provider/i);
 });

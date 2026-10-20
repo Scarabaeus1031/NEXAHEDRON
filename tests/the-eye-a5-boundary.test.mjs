@@ -19,6 +19,10 @@ test("/the-eye renders within the existing shell without private paths", async (
   assert.equal(response.status, 200);
   const html = await response.text();
   assert.match(html, /THE EYE/); assert.match(html, /NO_RESULT_SELECTED/); assert.match(html, /STOP/);
+  assert.match(html, /Choose a sealed demonstration to begin/);
+  assert.match(html, /WORKSPACE-PRIVATE STAGING/i); assert.match(html, /PUBLIC RELEASE NOT ACTIVE/i);
+  assert.match(html, /Recommended first/); assert.match(html, /PASS · Exact ID/);
+  assert.doesNotMatch(html, /type="file"|name="path"/i);
   assert.doesNotMatch(html, /\/Users\/|\/private\/tmp/);
   assert.doesNotMatch(html, /Alpha journey progress/);
 });

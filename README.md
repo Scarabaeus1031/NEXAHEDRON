@@ -1,14 +1,27 @@
-# NEXAHEDRON — Public Human-facing Research Demonstrator
+# NEXAHEDRON — A0 Human View
 
-NEXAHEDRON is a public Human-facing research demonstrator and bounded
-experiment within the NEXAH Orientation Ecosystem. A visitor can inspect
-Human-/editorial-authored Curated Reference Cases or bring one real question
-into the Live Bounded Experiment. The current Rest output is a transient,
-Human-held Working Session Record stored only in browser memory.
+NEXAHEDRON is the public Human-facing view of A0 within the NEXAH Orientation
+Ecosystem. Its front door is a source-bound public projection of the existing
+A0 start page. From there, the Human Book opens five playable chapters for
+rotating a body, comparing views, changing a fold, exploring a fractal and
+playing a bounded world. The Human Return keeps visible what a view preserves,
+loses, adds or leaves unavailable.
 
-**Public path:** [NEXAH Visitor Guide](https://nexah.de/visitor-guide/) →
-[NEXAHEDRON](https://nexahedron.com) → Curated Reference Case or Live Bounded
-Experiment → Rest View
+**Public path:** [NEXAHEDRON A0 Human View](https://nexahedron.com) → choose an
+A0 entrance → read, turn, compare, change or play → Human Return. Method,
+Science and source boundaries return outward to
+[NEXAH](https://nexah.de/); workshop and Builder return outward to
+[Scarabæus 1033](https://scarabaeus1033.net/).
+
+A0's method, scientific context, source records and claim boundaries remain
+with NEXAH. NEXAHEDRON owns the bounded public experience; it does not expose a
+private research workspace or create scientific authority of its own. The A0
+Research Desk, Research Backlog, Science Navigator / NSN, Mission Control and
+Builder logs are excluded from public NEXAHEDRON navigation.
+
+The former Orientation Workspace, ORION consumer path, Guided Orientation,
+THE EYE and Reference Case engines are preserved without a public navigation
+role in the [NEXAHEDRON Builder Backlog](docs/NEXAHEDRON_BUILDER_BACKLOG.md).
 
 The repository also serves as a subordinate technical reference implementation
 for its interaction and transport-consumer boundaries. That description does

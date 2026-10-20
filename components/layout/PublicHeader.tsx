@@ -1,46 +1,24 @@
 import Link from "next/link";
 
-const navigation = [
-  { href: "/", label: "Home" },
-  { href: "/library", label: "Reference Cases" },
-  { href: "/about", label: "About" },
-  { href: "/visitor-guide", label: "Visitor Guide" },
-] as const;
-
 export function PublicHeader({ pathname }: { readonly pathname: string }) {
+  const isHome = pathname === "/";
+
   return (
     <header className="public-header">
       <Link className="public-brand" href="/" aria-label="NEXAHEDRON, home">
         <span className="public-brand__mark" aria-hidden="true">✦</span>
         <span className="public-brand__copy">
           <span className="public-brand__name">NEXAHEDRON</span>
-          <span className="public-brand__descriptor">Research Demonstrator</span>
+          <span className="public-brand__descriptor">A0 Human View</span>
         </span>
       </Link>
       <nav className="public-navigation" aria-label="Primary navigation">
-        {navigation.map((item) => {
-          const isCurrent =
-            item.href === "/" ? pathname === "/" : pathname.startsWith(item.href);
-
-          return (
-            <Link
-              href={item.href}
-              key={item.href}
-              aria-current={isCurrent ? "page" : undefined}
-            >
-              {item.label}
-            </Link>
-          );
-        })}
-        <Link className="public-navigation__inquiry" href="/orient">
-          Live Experiment <span aria-hidden="true">→</span>
-        </Link>
-        <a
-          href="https://github.com/Scarabaeus1031/NEXAHEDRON"
-          rel="noreferrer"
-          target="_blank"
-        >
-          GitHub<span className="sr-only"> (opens in a new tab)</span>
+        <Link href="/" aria-current={isHome ? "page" : undefined}>Human View</Link>
+        <Link href="/#a0-instrument">Kapitel</Link>
+        <Link href="/#a0-return">Return</Link>
+        <a href="https://nexah.de/about/">NEXAH <span aria-hidden="true">↗</span></a>
+        <a className="public-navigation__inquiry" href="https://scarabaeus1033.net/">
+          Scarabæus <span aria-hidden="true">↗</span>
         </a>
       </nav>
     </header>

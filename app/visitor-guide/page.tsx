@@ -44,8 +44,8 @@ export default function VisitorGuidePage() {
     <article className="public-page visitor-guide-page">
       <header className="public-page-intro">
         <p className="public-kicker">Visitor Guide</p>
-        <h1>When should I use NEXAHEDRON?</h1>
-        <p>NEXAHEDRON is a <strong>Human Orientation Workspace</strong>. It is designed to help you think through a question deliberately—not to answer it for you.</p>
+        <h1>When should I enter the A0 Human View?</h1>
+        <p>NEXAHEDRON is the <strong>A0 Human View</strong>. It is designed to help you place and turn a question deliberately—not to answer it for you.</p>
         <p>If you already know exactly what you need, you probably do not need NEXAHEDRON. If you are trying to understand a question more clearly, it may help.</p>
       </header>
 
@@ -97,7 +97,7 @@ export default function VisitorGuidePage() {
         <p className="public-kicker">One live bounded experiment</p>
         <h2 id="begin-guide-title">Bring one question. Stop when Rest is enough.</h2>
         <p>The Workspace keeps your Human-authored question, material, fragments, relationships, uncertainty and reflection visible in browser memory only. Reloading or closing the page loses that Working Session Record. After explicit confirmation the public Gateway may contact a compatible ORION Runtime; Gateway reachability is not a successful ORION result, and no Runtime version or certified Core execution is claimed unless the returned public contract proves it.</p>
-        <div><Link className="public-link public-link--primary" href="/orient">Try the live experiment <span aria-hidden="true">→</span></Link><Link className="public-link public-link--text" href="/cases">See a Curated Reference Case <span aria-hidden="true">→</span></Link></div>
+        <div><Link className="public-link public-link--primary" href="/orient">Enter the Human View <span aria-hidden="true">→</span></Link><Link className="public-link public-link--text" href="/cases">See a Curated Reference Case <span aria-hidden="true">→</span></Link></div>
       </section>
     </article>
   );

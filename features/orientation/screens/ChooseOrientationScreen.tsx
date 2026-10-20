@@ -44,6 +44,23 @@ export function ChooseOrientationScreen() {
         </p>
       </aside>
 
+      <aside className="experiment-agreement" aria-labelledby="guided-orientation-entry-title">
+        <div>
+          <p className="eyebrow">Local guided path · PATH A</p>
+          <h2 id="guided-orientation-entry-title">Guide me with questions</h2>
+        </div>
+        <p>
+          Bring one open question or a direction to test. A deterministic sequence
+          arranges only what you confirm and returns a transient Terrain Map at Rest.
+        </p>
+        <p className="experiment-agreement__path">
+          Not an answer · no AI · no external evidence · no ORION or Gateway call
+        </p>
+        <Link className="text-action" href="/guided">
+          Open Guided Orientation <span aria-hidden="true">→</span>
+        </Link>
+      </aside>
+
       <div className="laboratory-entrances" aria-label="Available ways to begin">
         <article className="laboratory-entrance laboratory-entrance--wonder">
           <div className="laboratory-entrance__figure" aria-hidden="true">

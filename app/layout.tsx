@@ -3,16 +3,17 @@ import { AppShell } from "@/components/layout/AppShell";
 import { AlphaJourneyProvider } from "@/features/orientation/provider";
 import "./globals.css";
 import "../styles/public-experience.css";
+import "../styles/a0-human-view.css";
 import "../styles/laboratory-experience.css";
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://nexahedron.com"),
   applicationName: "NEXAHEDRON",
   title: {
-    default: "NEXAHEDRON — Orientation Research Demonstrator",
+    default: "NEXAHEDRON — A0 Human View",
     template: "%s — NEXAHEDRON",
   },
-  description: "A public Human-facing research demonstrator for one bounded experiment in orientation.",
+  description: "The Human-facing A0 entrance: read, turn, compare, change, play and return with the difference visible.",
   alternates: { canonical: "/" },
   authors: [{ name: "Haptikdesign GmbH", url: "https://nexah.de" }],
   creator: "Haptikdesign GmbH",
@@ -20,14 +21,14 @@ export const metadata: Metadata = {
   robots: { index: true, follow: true },
   icons: { icon: "/icon.svg" },
   openGraph: {
-    title: "NEXAHEDRON — Orientation Research Demonstrator",
-    description: "A public Human-facing research demonstrator for one bounded experiment in orientation.",
-    images: [{ url: "/og.png", width: 1734, height: 909, alt: "NEXAHEDRON — Orientation Research Demonstrator" }],
+    title: "NEXAHEDRON — A0 Human View",
+    description: "A source-bound A0 entrance for reading, turning, comparing, changing, playing and returning.",
+    images: [{ url: "/og.png", width: 1734, height: 909, alt: "NEXAHEDRON — A0 Human View" }],
   },
   twitter: {
     card: "summary_large_image",
-    title: "NEXAHEDRON — Orientation Research Demonstrator",
-    description: "A public Human-facing research demonstrator for one bounded experiment in orientation.",
+    title: "NEXAHEDRON — A0 Human View",
+    description: "A source-bound A0 entrance for reading, turning, comparing, changing, playing and returning.",
     images: ["/og.png"],
   },
 };
@@ -38,7 +39,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+    <html lang="de">
       <body>
         <AlphaJourneyProvider>
           <AppShell>{children}</AppShell>

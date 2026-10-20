@@ -1,4 +1,5 @@
 import assert from "node:assert/strict";
+import { readFile } from "node:fs/promises";
 import test from "node:test";
 
 async function render(path) {
@@ -12,47 +13,41 @@ async function render(path) {
   );
 }
 
-test("makes the Live Bounded Experiment the primary public action", async () => {
+test("makes the source-bound A0 Human Book the primary public action", async () => {
   const response = await render("/");
   assert.equal(response.status, 200);
   const html = await response.text();
-  assert.match(html, /Try the live experiment/);
-  assert.match(html, /Live Experiment/);
-  assert.ok((html.match(/href="\/orient"/g) ?? []).length >= 3);
-  assert.match(html, /Live Bounded Experiment/);
-  assert.match(html, /Bring what you have/);
-  assert.match(html, /Orientation begins with something you bring/);
-  assert.match(html, /memory only · Rest is a valid ending · ORION is optional/);
+  const sourceHome = await readFile(new URL("../public/a0-human/start/index.html", import.meta.url), "utf8");
+  const publicNavigation = await readFile(new URL("../public/a0-human/start/nexahedron-public-navigation.js", import.meta.url), "utf8");
+  assert.match(html, /\/a0-human\/start\/index\.html/);
+  assert.doesNotMatch(html, /href="\/orient"/);
+  assert.match(html, /A0 Human View/);
+  assert.match(sourceHome, /Welche Reise brauchst du gerade\?/);
+  assert.match(sourceHome, /A0 weiter erkunden · Wege und Werkzeuge/);
+  assert.match(publicNavigation, /https:\/\/nexah\.de\//);
+  assert.match(publicNavigation, /https:\/\/scarabaeus1033\.net\//);
 });
 
-test("communicates possible starting material without simulating new workflows", async () => {
+test("communicates the bounded A0 movement without simulating new workflows", async () => {
   const response = await render("/");
   assert.equal(response.status, 200);
   const html = await response.text();
-  const visibleDocument = html.split("<body>")[1]?.split('<script id="_R_">')[0] ?? html;
+  const sourceHome = await readFile(new URL("../public/a0-human/start/index.html", import.meta.url), "utf8");
+  const humanBook = await readFile(new URL("../public/a0-human/instruments/A0_NEXAH_APERTURE_JOURNEY.html", import.meta.url), "utf8");
 
-  for (const startingPoint of [
-    "a question",
-    "an article",
-    "a research paper",
-    "a claim",
-    "a source",
-    "a relationship",
-    "an observation",
-    "a map",
-    "a dataset",
-    "an uncertainty",
-  ]) {
-    assert.match(html, new RegExp(`>${startingPoint}<`));
+  for (const step of ["Körper drehen", "Anders sehen", "Eine Lücke finden", "Eine Welt verändern", "Spielen &amp; zurückkehren"]) {
+    assert.match(humanBook, new RegExp(step));
   }
-  assert.doesNotMatch(visibleDocument, /chat interface|AI assistant|upload now/i);
+  assert.match(sourceHome, /Human route/);
+  assert.match(sourceHome, /Science route/);
+  assert.match(sourceHome, /Builder route/);
+  assert.match(html, /a0-source-home-frame/);
 });
 
-test("keeps the Live Experiment entrance visible across public pages", async () => {
-  for (const path of ["/explore", "/cases", "/library", "/about"]) {
-    const response = await render(path);
-    assert.equal(response.status, 200);
-    const html = await response.text();
-    assert.match(html, /href="\/orient"[^>]*>Live Experiment/);
-  }
+test("keeps legacy engines out of the public header", async () => {
+  const response = await render("/");
+  assert.equal(response.status, 200);
+  const publicNavigation = await readFile(new URL("../public/a0-human/start/nexahedron-public-navigation.js", import.meta.url), "utf8");
+  assert.doesNotMatch(publicNavigation, /\/(?:explore|cases|library|visitor-guide|orient|the-eye)(?:[\/#"])/);
+  assert.doesNotMatch(publicNavigation, /Desk|Mission Control|NSN/i);
 });
