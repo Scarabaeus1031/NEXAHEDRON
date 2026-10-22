@@ -23,7 +23,10 @@ test("makes the source-bound A0 Human Book the primary public action", async () 
   assert.doesNotMatch(html, /href="\/orient"/);
   assert.match(html, /A0 Human View/);
   assert.match(sourceHome, /Welche Reise brauchst du gerade\?/);
-  assert.match(sourceHome, /A0 weiter erkunden · Wege und Werkzeuge/);
+  assert.match(sourceHome, /<h2 id="wegweiser-title">Wo beginne ich\?<\/h2>/);
+  assert.match(sourceHome, /Pentagon Body Player · 3D/);
+  assert.doesNotMatch(sourceHome, /href="A0_RESEARCH_DESK\.html/);
+  assert.doesNotMatch(sourceHome, /SCIENCE_LAB\/NAVIGATION\/APP/);
   assert.match(publicNavigation, /https:\/\/nexah\.de\//);
   assert.match(publicNavigation, /https:\/\/scarabaeus1033\.net\//);
   assert.match(publicNavigation, /brand\.href = a0StartUrl\.href/);

@@ -26,8 +26,10 @@ test("renders the public homepage as the bounded A0 Human View entrance", async 
   assert.match(html, /src="\/a0-human\/start\/index\.html"/);
   assert.match(sourceHome, /Welche Reise brauchst du gerade\?/);
   assert.equal((sourceHome.match(/class="entry-route(?: |")/g) ?? []).length, 3);
-  assert.match(sourceHome, /A0 weiter erkunden · Wege und Werkzeuge/);
-  assert.doesNotMatch(sourceHome, /<h2 id="wegweiser-title">Wo beginne ich\?<\/h2>/);
+  assert.match(sourceHome, /<h2 id="wegweiser-title">Wo beginne ich\?<\/h2>/);
+  assert.match(sourceHome, /Grid → Operator → Anwendung/);
+  assert.doesNotMatch(sourceHome, /href="A0_RESEARCH_DESK\.html/);
+  assert.doesNotMatch(sourceHome, /SCIENCE_LAB\/NAVIGATION\/APP/);
   assert.match(sourceHome, /Eine Stimme wird zum Record\./);
   assert.match(sourceHome, /Acht Kapitel verfolgen den Weg eines Ergebnisses\./);
   assert.match(sourceHome, /nexahedron-public-navigation\.js/);
