@@ -27,8 +27,9 @@ test("makes the source-bound A0 Human Book the primary public action", async () 
   assert.match(sourceHome, /Pentagon Body Player · 3D/);
   assert.doesNotMatch(sourceHome, /href="A0_RESEARCH_DESK\.html/);
   assert.doesNotMatch(sourceHome, /SCIENCE_LAB\/NAVIGATION\/APP/);
-  assert.match(publicNavigation, /https:\/\/nexah\.de\//);
-  assert.match(publicNavigation, /https:\/\/scarabaeus1033\.net\//);
+  assert.match(publicNavigation, /A0_SCIENTIFIC_POSITION_REPORT\.html/);
+  assert.match(publicNavigation, /A0_MATHEMATICAL_JOINTS\.html/);
+  assert.match(publicNavigation, /https:\/\/www\.scarabaeus1033\.net\//);
   assert.match(publicNavigation, /brand\.href = a0StartUrl\.href/);
   assert.match(publicNavigation, /new URL\("\.\/", currentScriptUrl\)/);
   assert.doesNotMatch(publicNavigation, /brand\.href = "\/"/);

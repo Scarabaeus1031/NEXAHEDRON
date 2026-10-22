@@ -33,11 +33,13 @@ test("renders the public homepage as the bounded A0 Human View entrance", async 
   assert.match(sourceHome, /Eine Stimme wird zum Record\./);
   assert.match(sourceHome, /Acht Kapitel verfolgen den Weg eines Ergebnisses\./);
   assert.match(sourceHome, /nexahedron-public-navigation\.js/);
-  for (const destination of ["Human", "Science", "Builder", "Übersicht", "About"]) {
+  for (const destination of ["Human", "Science", "Builder", "Werkbank", "Übersicht"]) {
     assert.match(publicNavigation, new RegExp(destination));
   }
-  assert.match(publicNavigation, /https:\/\/nexah\.de\//);
-  assert.match(publicNavigation, /https:\/\/scarabaeus1033\.net\//);
+  assert.match(publicNavigation, /A0_SCIENTIFIC_POSITION_REPORT\.html/);
+  assert.match(publicNavigation, /A0_MATHEMATICAL_JOINTS\.html/);
+  assert.match(publicNavigation, /https:\/\/www\.scarabaeus1033\.net\//);
+  assert.match(publicNavigation, /class=\"a0-public-scarab\"/);
   assert.doesNotMatch(publicNavigation, /Desk|Mission Control|NSN|Research Backlog/i);
 });
 
