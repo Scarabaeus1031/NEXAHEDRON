@@ -39,7 +39,7 @@ test("renders the public homepage as the bounded A0 Human View entrance", async 
   assert.match(publicNavigation, /A0_SCIENTIFIC_POSITION_REPORT\.html/);
   assert.match(publicNavigation, /A0_MATHEMATICAL_JOINTS\.html/);
   assert.match(publicNavigation, /https:\/\/www\.scarabaeus1033\.net\//);
-  assert.match(publicNavigation, /class=\"a0-public-scarab\"/);
+  assert.match(publicNavigation, /Scarabæus 1033 · Werkstatt öffnen/);
   assert.doesNotMatch(publicNavigation, /Desk|Mission Control|NSN|Research Backlog/i);
 });
 

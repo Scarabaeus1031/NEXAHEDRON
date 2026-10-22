@@ -47,6 +47,9 @@ for (const path of await walk(bundleRoot)) {
 
 for (const path of (await walk(bundleRoot)).filter((candidate) => candidate.endsWith(".html"))) {
   const source = await readFile(path, "utf8");
+  for (const token of ["A0_RESEARCH_DESK.html", "A0_RESEARCH_BACKLOG.html", "A0_BUILDER_LOG.html", "A0_LABORATORY.html", "SCIENCE_LAB/NAVIGATION", "NEXAH-Mission-Control"]) {
+    if (source.includes(token)) failures.push(`private route in public HTML: ${relative(bundleRoot, path)} -> ${token}`);
+  }
   const references = [
     ...source.matchAll(/<script\b[^>]*\bsrc=["']([^"']+)["']/gi),
     ...source.matchAll(/<link\b(?=[^>]*\brel=["']stylesheet["'])[^>]*\bhref=["']([^"']+)["']/gi),
@@ -65,6 +68,11 @@ for (const path of (await walk(bundleRoot)).filter((candidate) => candidate.ends
       failures.push(`missing runtime reference: ${relative(bundleRoot, path)} -> ${reference}`);
     }
   }
+}
+
+for (const path of (await walk(bundleRoot)).filter((candidate) => /\.(?:css|csv|html|js|json|md|mjs|svg)$/i.test(candidate))) {
+  const source = await readFile(path, "utf8");
+  if (source.includes("/Users/tho2020/")) failures.push(`absolute private path in bundle: ${relative(bundleRoot, path)}`);
 }
 
 const publicNavigation = await Promise.all([
@@ -87,7 +95,7 @@ for (const token of forbidden) {
 }
 
 if (manifest.source_identity !== "BOOK-A0_NEXAH_APERTURE_JOURNEY") failures.push("unexpected source identity");
-if (manifest.authority !== "LOCAL_BUILD_ONLY_NOT_PUBLICATION_AUTHORIZED") failures.push("unexpected authority state");
+if (manifest.authority !== "PUBLICATION_AUTHORIZED_BY_HUMAN_OWNER_2026-10-22") failures.push("unexpected authority state");
 
 if (failures.length) {
   console.error(JSON.stringify({ status: "FAIL", failures }, null, 2));
@@ -100,5 +108,5 @@ console.log(JSON.stringify({
   files: manifest.files.length,
   transformed_files: manifest.files.filter((entry) => entry.treatment === "PUBLIC_PRESENTATION_TRANSFORM").length,
   navigator_identity_effect: "ZERO",
-  publication_authorized: false,
+  publication_authorized: true,
 }, null, 2));

@@ -38,6 +38,7 @@
     "check:docs": "node scripts/check-documentation.mjs",
     "check:architecture": "node scripts/check-architecture.mjs",
     "check:a0-human": "node scripts/verify-a0-human-bundle.mjs",
+    "sync:a0-public": "node scripts/sync-a0-public-site.mjs && node scripts/build-a0-human-source-manifest.mjs",
     "test": "npm run build && node --experimental-strip-types --test tests/*.test.mjs && node scripts/test-orion-integration.mjs",
     "test:a6-1": "node --experimental-strip-types --test tests/the-eye-a6-1.test.mjs",
     "lint": "eslint . --ignore-pattern dist --ignore-pattern .next --ignore-pattern public/a0-human"

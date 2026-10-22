@@ -14,21 +14,23 @@ const a0BookRoot = resolve(
 const manifestPath = resolve(bundleRoot, "SOURCE_MANIFEST.json");
 
 const transformed = new Set([
-  "start/index.html",
-  "start/a0-context-navigation.css",
-  "start/a0-context-navigation.js",
   "start/nexahedron-public-navigation.js",
   "instruments/A0_NEXAH_APERTURE_JOURNEY.html",
   "instruments/A0_TESSAREC_BLUE_BODY_LAB.html",
   "instruments/A0_BLUE_PINK_DODECA_CELL_RETURN.html",
   "instruments/A0_GAME_OF_WORLDS_PLAY.html",
-  "instruments/a0-human-instrument-focus.js",
-  "instruments/assets/game-of-worlds-play/index.html",
-  "instruments/assets/game-of-worlds-play/three-domain-transition-test/index.html",
-  "instruments/assets/game-of-worlds-play/numbers/index.html",
 ]);
 
 const externalSources = new Map([
+  ["start/assets/external/e8-axis08-core.js", "30 SCIENCE LAB/NEXAH-Science-Lab/SCIENCE_LAB/CASE_STUDIES/E8_DEMOS_INTERACTIVE_ORIENTATION_2026-09-21/REPAIR_R1/e8_axis08_core.js"],
+  ["start/assets/external/breath-model.js", "30 SCIENCE LAB/NEXAH-Science-Lab/SCIENCE_LAB/CASE_STUDIES/NEXAH_CON_DAO_JANUS_BREATH_SEQUENCER_2026-10-06/breath-model.js"],
+  ["start/assets/external/nexah-profiles.js", "30 SCIENCE LAB/NEXAH-Science-Lab/SCIENCE_LAB/RUNTIME/NEXAH_COMMON_RUNTIME_ADAPTER_V0_1/nexah-profiles.js"],
+  ["start/assets/external/cylinder-engine.js", "10 NEXAH CORE/NEXAH/APPLICATIONS/game4life_plus1/cylinder-engine.js"],
+  ["start/assets/external/temporal-z-cylinder.js", "10 NEXAH CORE/NEXAH/APPLICATIONS/game4life_plus1/temporal-z-cylinder.js"],
+  ["start/assets/external/domain-engine.js", "10 NEXAH CORE/NEXAH/APPLICATIONS/game4life_plus1/three-domain-transition-test/domain-engine.js"],
+  ["start/assets/external/three.min.js", "10 NEXAH CORE/NEXAH/APPLICATIONS/game4life_plus1/vendor/three-0.147.0/three.min.js"],
+  ["start/assets/external/OrbitControls.js", "10 NEXAH CORE/NEXAH/APPLICATIONS/game4life_plus1/vendor/three-0.147.0/OrbitControls.js"],
+  ["start/assets/external/GLTFExporter.js", "10 NEXAH CORE/NEXAH/APPLICATIONS/game4life_plus1/vendor/three-0.147.0/GLTFExporter.js"],
   [
     "instruments/assets/e8-axis08-core.js",
     "30 SCIENCE LAB/NEXAH-Science-Lab/SCIENCE_LAB/CASE_STUDIES/E8_DEMOS_INTERACTIVE_ORIENTATION_2026-09-21/REPAIR_R1/e8_axis08_core.js",
@@ -82,12 +84,14 @@ for (const targetPath of await walk(bundleRoot)) {
     readFile(targetPath),
     readFile(sourcePath),
   ]);
+  const sourceHash = sha256(sourceBytes);
+  const bundleHash = sha256(targetBytes);
   files.push({
     bundle_path: bundlePath,
     source_path: relative(ecosystemRoot, sourcePath),
-    source_sha256: sha256(sourceBytes),
-    bundle_sha256: sha256(targetBytes),
-    treatment: transformed.has(bundlePath) || (bundlePath.startsWith("start/") && bundlePath.endsWith(".html"))
+    source_sha256: sourceHash,
+    bundle_sha256: bundleHash,
+    treatment: transformed.has(bundlePath) || sourceHash !== bundleHash
       ? "PUBLIC_PRESENTATION_TRANSFORM"
       : "BYTE_COPY",
   });
@@ -96,12 +100,12 @@ for (const targetPath of await walk(bundleRoot)) {
 const manifest = {
   schema_id: "nexahedron.a0-human.source-manifest",
   schema_version: "1.0",
-  date: "2026-10-19",
-  decision: "D-073",
+  date: "2026-10-22",
+  decision: "D-073_D-074_PLUS_EXPLICIT_HUMAN_OWNER_RELEASE_2026-10-22",
   source_identity: "BOOK-A0_NEXAH_APERTURE_JOURNEY",
   public_entry_source: "A0_BOOK/index.html",
-  projection_role: "NEXAHEDRON_PUBLIC_A0_START_WITH_ECOSYSTEM_BRIDGES",
-  authority: "LOCAL_BUILD_ONLY_NOT_PUBLICATION_AUTHORIZED",
+  projection_role: "NEXAHEDRON_PUBLIC_CURRENT_A0_SITE_WITH_PRIVATE_BOUNDARIES_REMOVED",
+  authority: "PUBLICATION_AUTHORIZED_BY_HUMAN_OWNER_2026-10-22",
   claim_ceiling: "HUMAN_FACING_ORIENTATION_INSTRUMENT_NOT_SCIENTIFIC_EVIDENCE_OR_GENERAL_THEORY",
   deny_by_default: [
     "A0_RESEARCH_DESK",
@@ -109,7 +113,10 @@ const manifest = {
     "SCIENCE_NAVIGATOR_NSN",
     "MISSION_CONTROL",
     "A0_BUILDER_LOGS",
-    "NON_ALLOWLISTED_A0_BOOK_SURFACES",
+    "A0_LABORATORY",
+    "A0_ASSET_INDEX",
+    "NEXAH_C_CONNECT",
+    "DRAFTS",
   ],
   files,
 };

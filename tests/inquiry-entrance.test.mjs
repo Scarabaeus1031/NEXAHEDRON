@@ -30,9 +30,8 @@ test("makes the source-bound A0 Human Book the primary public action", async () 
   assert.match(publicNavigation, /A0_SCIENTIFIC_POSITION_REPORT\.html/);
   assert.match(publicNavigation, /A0_MATHEMATICAL_JOINTS\.html/);
   assert.match(publicNavigation, /https:\/\/www\.scarabaeus1033\.net\//);
-  assert.match(publicNavigation, /brand\.href = a0StartUrl\.href/);
-  assert.match(publicNavigation, /new URL\("\.\/", currentScriptUrl\)/);
-  assert.doesNotMatch(publicNavigation, /brand\.href = "\/"/);
+  assert.match(publicNavigation, /current A0 interface remains the visual source/);
+  assert.match(publicNavigation, /A0_WERKBANK\.html/);
 });
 
 test("communicates the bounded A0 movement without simulating new workflows", async () => {
@@ -40,9 +39,9 @@ test("communicates the bounded A0 movement without simulating new workflows", as
   assert.equal(response.status, 200);
   const html = await response.text();
   const sourceHome = await readFile(new URL("../public/a0-human/start/index.html", import.meta.url), "utf8");
-  const humanBook = await readFile(new URL("../public/a0-human/instruments/A0_NEXAH_APERTURE_JOURNEY.html", import.meta.url), "utf8");
+  const humanBook = await readFile(new URL("../public/a0-human/start/A0_NEXAH_APERTURE_JOURNEY.html", import.meta.url), "utf8");
 
-  for (const step of ["Körper drehen", "Anders sehen", "Eine Lücke finden", "Eine Welt verändern", "Spielen &amp; zurückkehren"]) {
+  for (const step of ["RAINBOW LIGHT", "ONE PULSE", "THE LIVING INTERIOR", "THE WONDER OPERATOR"]) {
     assert.match(humanBook, new RegExp(step));
   }
   assert.match(sourceHome, /Human route/);
