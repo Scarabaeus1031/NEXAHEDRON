@@ -5,10 +5,17 @@ import { fileURLToPath } from "node:url";
 
 const here = dirname(fileURLToPath(import.meta.url));
 const repositoryRoot = resolve(here, "..");
-const bundleRoot = resolve(repositoryRoot, "public/a0-human");
+const bundleRoot = process.env.A0_PUBLIC_BUNDLE_ROOT
+  ? resolve(process.env.A0_PUBLIC_BUNDLE_ROOT)
+  : resolve(repositoryRoot, "public/a0-human");
 const manifestPath = resolve(bundleRoot, "SOURCE_MANIFEST.json");
 const manifest = JSON.parse(await readFile(manifestPath, "utf8"));
 const failures = [];
+const dynamicAnchors = new Map([
+  ["start/A0_GAME_OF_WORLDS_PLAY.html", new Set(["pulse", "life", "domains", "numbers", "control-room", "generation-weave"])],
+  ["start/assets/game-of-worlds-play/three-domain-transition-test/index.html", new Set(["domains", "atlas", "blue-body", "fibonacci"])],
+  ["start/A0_BLUE_PINK_DODECA_CELL_RETURN.html", new Set(["cell-machine"])],
+]);
 
 function sha256(bytes) {
   return createHash("sha256").update(bytes).digest("hex");
@@ -45,34 +52,55 @@ for (const path of await walk(bundleRoot)) {
   if (!declared.has(bundlePath)) failures.push(`undeclared bundle file: ${bundlePath}`);
 }
 
-for (const path of (await walk(bundleRoot)).filter((candidate) => candidate.endsWith(".html"))) {
+const bundleFiles = await walk(bundleRoot);
+for (const path of bundleFiles.filter((candidate) => candidate.endsWith(".html"))) {
   const source = await readFile(path, "utf8");
   for (const token of ["A0_RESEARCH_DESK.html", "A0_RESEARCH_BACKLOG.html", "A0_BUILDER_LOG.html", "A0_LABORATORY.html", "SCIENCE_LAB/NAVIGATION", "NEXAH-Mission-Control"]) {
     if (source.includes(token)) failures.push(`private route in public HTML: ${relative(bundleRoot, path)} -> ${token}`);
   }
-  const references = [
+  const runtimeReferences = [
     ...source.matchAll(/<script\b[^>]*\bsrc=["']([^"']+)["']/gi),
     ...source.matchAll(/<link\b(?=[^>]*\brel=["']stylesheet["'])[^>]*\bhref=["']([^"']+)["']/gi),
   ].map((match) => match[1]);
-  for (const reference of references) {
+  const navigationReferences = [
+    ...source.matchAll(/<a\b[^>]*\bhref=["']([^"']+)["']/gi),
+  ].map((match) => match[1]);
+  for (const reference of [...runtimeReferences, ...navigationReferences]) {
     if (/^(?:https?:|data:|\/\/)/i.test(reference)) continue;
-    const cleanReference = decodeURIComponent(reference.split(/[?#]/, 1)[0]);
+    if (/^(?:mailto:|tel:|javascript:|#)/i.test(reference)) continue;
+    if (reference.includes("${")) continue;
+    const [rawPath, fragment = ""] = reference.split("#", 2);
+    const cleanReference = decodeURIComponent(rawPath.split("?", 1)[0]);
+    if (!cleanReference) continue;
     const resolvedReference = resolve(dirname(path), cleanReference);
     if (!resolvedReference.startsWith(`${bundleRoot}/`)) {
-      failures.push(`runtime reference escapes bundle: ${relative(bundleRoot, path)} -> ${reference}`);
+      failures.push(`public reference escapes bundle: ${relative(bundleRoot, path)} -> ${reference}`);
       continue;
     }
     try {
       await access(resolvedReference);
     } catch {
-      failures.push(`missing runtime reference: ${relative(bundleRoot, path)} -> ${reference}`);
+      failures.push(`missing public reference: ${relative(bundleRoot, path)} -> ${reference}`);
+      continue;
+    }
+    if (fragment && resolvedReference.endsWith(".html")) {
+      const target = await readFile(resolvedReference, "utf8");
+      const escaped = fragment.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+      const targetBundlePath = relative(bundleRoot, resolvedReference).replaceAll("\\", "/");
+      const allowedDynamic = dynamicAnchors.get(targetBundlePath)?.has(fragment);
+      if (!allowedDynamic && !new RegExp(`(?:id|name)=["']${escaped}["']`, "i").test(target)) {
+        failures.push(`missing public anchor: ${relative(bundleRoot, path)} -> ${reference}`);
+      }
     }
   }
 }
 
-for (const path of (await walk(bundleRoot)).filter((candidate) => /\.(?:css|csv|html|js|json|md|mjs|svg)$/i.test(candidate))) {
+for (const path of bundleFiles.filter((candidate) => /\.(?:css|csv|html|js|json|md|mjs|svg)$/i.test(candidate))) {
   const source = await readFile(path, "utf8");
   if (source.includes("/Users/tho2020/")) failures.push(`absolute private path in bundle: ${relative(bundleRoot, path)}`);
+  if (/(?:\.\.\/)+(?:SCIENCE_LAB|10(?:%20| )NEXAH(?:%20| )CORE|20(?:%20| )EXPERIENCE(?:%20| )PRODUCTION|30(?:%20| )SCIENCE(?:%20| )LAB|00%20EXECUTIVE|Desktop(?:%20| )LOCAL|00_INCOMING)\//.test(source)) {
+    failures.push(`unprojected source-tree route: ${relative(bundleRoot, path)}`);
+  }
 }
 
 const publicNavigation = await Promise.all([

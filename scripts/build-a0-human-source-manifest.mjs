@@ -6,7 +6,9 @@ import { fileURLToPath } from "node:url";
 const here = dirname(fileURLToPath(import.meta.url));
 const repositoryRoot = resolve(here, "..");
 const ecosystemRoot = resolve(repositoryRoot, "../..");
-const bundleRoot = resolve(repositoryRoot, "public/a0-human");
+const bundleRoot = process.env.A0_PUBLIC_BUNDLE_ROOT
+  ? resolve(process.env.A0_PUBLIC_BUNDLE_ROOT)
+  : resolve(repositoryRoot, "public/a0-human");
 const a0BookRoot = resolve(
   ecosystemRoot,
   "30 SCIENCE LAB/NEXAH-Science-Lab/RESEARCH_PROGRAM_B_MATHEMATICAL_FOUNDATIONS/AXIOM0_QMODE_ORIENTATION_TO_MEASUREMENT_FOUNDATION_PACKAGE_2026-10-01/A0_BOOK",
