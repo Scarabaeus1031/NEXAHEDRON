@@ -117,7 +117,6 @@ const manifest = {
     "A0_BUILDER_LOGS",
     "A0_LABORATORY",
     "A0_ASSET_INDEX",
-    "NEXAH_C_CONNECT",
     "DRAFTS",
   ],
   files,

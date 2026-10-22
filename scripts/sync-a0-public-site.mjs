@@ -40,7 +40,6 @@ const privatePages = new Set([
   "A0_LABORATORY.html",
   "A0_RESEARCH_BACKLOG.html",
   "A0_RESEARCH_DESK.html",
-  "NEXAH_C_CONNECT.html",
 ]);
 
 const privateDestinations = new Map([
@@ -50,7 +49,6 @@ const privateDestinations = new Map([
   ["A0_LABORATORY.html", "A0_SCIENCE.html"],
   ["A0_ASSET_INDEX.html", "A0_WERKBANK.html"],
   ["A0_CURSOR_HANDOFF_CLICKDUMMY.html", "A0_WERKBANK.html"],
-  ["NEXAH_C_CONNECT.html", "index.html"],
 ]);
 
 const skippedDirectories = new Set(["DRAFTS", "public"]);
@@ -179,14 +177,23 @@ function sanitizeText(text, sourcePath, targetPath) {
 
   if (sourcePath.endsWith("a0-context-navigation.js")) {
     output = output
-      .replace('<a href="NEXAH_C_CONNECT.html">C · Connect</a>', "")
-      .replace('<a href="index.html">C · Connect</a>', "")
       .replace(/\s*const internalMenu = document\.createElement\("details"\);[\s\S]*?overviewBody\.append\(internalMenu\);/, "")
       .replace("Übersicht · Bereiche, Seiteninhalt und interne Arbeitsseiten", "Übersicht · Bereiche, Seiteninhalt und öffentliche Wege");
   }
 
   if (sourcePath.endsWith("a0-public-arkade-index.html")) {
     output = output.replaceAll(/(["'])book\//g, "$1");
+  }
+
+  if (sourcePath.endsWith("NEXAH_C_CONNECT.html")) {
+    output = output
+      .replaceAll("info@nexah.de", "contact@nexah.de")
+      .replace(
+        "Der lokale Navigator und Asset Index bleiben die präziseren Instrumente für Herkunft, aktuelle Records und A0-Artefakte.",
+        "Die öffentliche Science-Einordnung und Werkbank halten Herkunft, aktuelle Records und A0-Artefakte nachvollziehbar.",
+      )
+      .replace("<strong>A0 Asset Index</strong>", "<strong>Werkbank</strong>")
+      .replace("vorhandene öffentliche Türen und lokale Arbeitsräume", "vorhandene öffentliche Türen und begrenzte Werkstattwege");
   }
 
   output = output.replaceAll(/book\/a0-arkade\.css/g, "a0-arkade.css");

@@ -111,6 +111,9 @@ const publicNavigation = await Promise.all([
   "public/a0-human/start/nexahedron-public-navigation.js",
 ].map((path) => readFile(resolve(repositoryRoot, path), "utf8")));
 
+if (!declared.has("start/NEXAH_C_CONNECT.html")) failures.push("missing public C Connect page");
+if (!publicNavigation.at(-1)?.includes("NEXAH_C_CONNECT.html")) failures.push("missing public C Connect navigation route");
+
 const forbidden = [
   "A0_RESEARCH_DESK",
   "A0_RESEARCH_BACKLOG",
