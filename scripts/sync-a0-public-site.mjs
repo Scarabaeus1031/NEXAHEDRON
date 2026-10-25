@@ -36,6 +36,7 @@ const externalSources = new Map([
 const privatePages = new Set([
   "A0_ASSET_INDEX.html",
   "A0_BUILDER_LOG.html",
+  "A0_CROWN_SHADOW_CONTACT_BENCH.html",
   "A0_CURSOR_HANDOFF_CLICKDUMMY.html",
   "A0_LABORATORY.html",
   "A0_RESEARCH_BACKLOG.html",
@@ -46,6 +47,7 @@ const privateDestinations = new Map([
   ["A0_RESEARCH_DESK.html", "A0_SCIENCE.html"],
   ["A0_RESEARCH_BACKLOG.html", "A0_SCIENTIFIC_POSITION_REPORT.html"],
   ["A0_BUILDER_LOG.html", "A0_WERKBANK.html"],
+  ["A0_CROWN_SHADOW_CONTACT_BENCH.html", "A0_WERKBANK.html"],
   ["A0_LABORATORY.html", "A0_SCIENCE.html"],
   ["A0_ASSET_INDEX.html", "A0_WERKBANK.html"],
   ["A0_CURSOR_HANDOFF_CLICKDUMMY.html", "A0_WERKBANK.html"],
@@ -126,6 +128,7 @@ function sanitizeText(text, sourcePath, targetPath) {
 
   output = output
     .replaceAll(/DRAFTS\/A0_HUMAN_BOOK_DRAFT\.html(?:#[A-Za-z0-9_-]+)?/g, "A0_NEXAH_APERTURE_JOURNEY.html#human-view")
+    .replaceAll('data-public-src="../previews/', 'data-public-src="../../previews/')
     .replaceAll("a0-application-demonstrator-suite.js?rev=20261018-app-suite-r1", "a0-application-demonstrator-suite.js?rev=20261022-public-r1")
     .replaceAll(/DRAFTS\/A0_FAMILY_NAVIGATOR_DEMO\.html(?:#[A-Za-z0-9_-]+)?/g, "A0_FAMILY_CONNECTION_ATLAS.html")
     .replaceAll(/assets\/a0-nsn-[A-Za-z0-9_.-]+\.json(?:#[^\"'\s<]*)?/g, "A0_SCIENTIFIC_POSITION_REPORT.html")

@@ -55,7 +55,7 @@ for (const path of await walk(bundleRoot)) {
 const bundleFiles = await walk(bundleRoot);
 for (const path of bundleFiles.filter((candidate) => candidate.endsWith(".html"))) {
   const source = await readFile(path, "utf8");
-  for (const token of ["A0_RESEARCH_DESK.html", "A0_RESEARCH_BACKLOG.html", "A0_BUILDER_LOG.html", "A0_LABORATORY.html", "SCIENCE_LAB/NAVIGATION", "NEXAH-Mission-Control"]) {
+  for (const token of ["A0_RESEARCH_DESK.html", "A0_RESEARCH_BACKLOG.html", "A0_BUILDER_LOG.html", "A0_CROWN_SHADOW_CONTACT_BENCH.html", "A0_LABORATORY.html", "SCIENCE_LAB/NAVIGATION", "NEXAH-Mission-Control"]) {
     if (source.includes(token)) failures.push(`private route in public HTML: ${relative(bundleRoot, path)} -> ${token}`);
   }
   const runtimeReferences = [
@@ -111,6 +111,21 @@ const publicNavigation = await Promise.all([
   "public/a0-human/start/nexahedron-public-navigation.js",
 ].map((path) => readFile(resolve(repositoryRoot, path), "utf8")));
 
+const [seamChapter, lifePage, jointPage] = await Promise.all([
+  "start/03_THREE_POSITIONS_SEAM_RETURN.html",
+  "start/A0_GAME_4_LIFE_PLUS_1.html",
+  "start/A0_JOINT_APPLICATION_DEMONSTRATOR.html",
+].map((path) => readFile(resolve(bundleRoot, path), "utf8")));
+if (/A0_SCIENTIFIC_POSITION_REPORT\.html\s+REST\s+CHemest/i.test(seamChapter)) {
+  failures.push("partial public rewrite left a broken seam-source image path");
+}
+if (!lifePage.includes('data-public-src="../../previews/numbers-return-20261019/book/assets/game-of-worlds-play/index.html')) {
+  failures.push("GAME 4 LIFE public bridge does not resolve from a0-human/start to the deployed preview");
+}
+if (!jointPage.includes("j.file.endsWith('.html')?j.file:'../'+j.file")) {
+  failures.push("joint source buttons do not distinguish public HTML fallbacks from local source records");
+}
+
 if (!declared.has("start/NEXAH_C_CONNECT.html")) failures.push("missing public C Connect page");
 if (!publicNavigation.at(-1)?.includes("NEXAH_C_CONNECT.html")) failures.push("missing public C Connect navigation route");
 
@@ -120,6 +135,7 @@ const forbidden = [
   "SCIENCE_LAB/NAVIGATION",
   "NEXAH-Mission-Control",
   "A0_BUILDER_LOG",
+  "A0_CROWN_SHADOW_CONTACT_BENCH",
 ];
 for (const token of forbidden) {
   if (publicNavigation.some((source) => source.includes(token))) failures.push(`forbidden public-navigation token: ${token}`);
