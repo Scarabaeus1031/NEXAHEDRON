@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { usePathname, useRouter } from "next/navigation";
+import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import type { ReactNode } from "react";
 import { JourneyProgress } from "@/components/layout/JourneyProgress";
 import { PublicFooter } from "@/components/layout/PublicFooter";
@@ -15,10 +15,66 @@ import { alphaRoutes } from "@/lib/routes";
 export function AppShell({ children }: { readonly children: ReactNode }) {
   const pathname = usePathname();
   const router = useRouter();
+  const searchParams = useSearchParams();
   const { state, dispatch } = useAlphaJourney();
 
   if (pathname === "/") {
-    return <main className="a0-source-home-shell" id="main-content">{children}</main>;
+    const activeView = searchParams.get("view") ?? "foyer";
+    const activeDescriptor = {
+      human: "A0 Human View",
+      arcade: "Arcade",
+      club: "O·PIUM Club",
+      connect: "C Connect",
+    }[activeView];
+    const connectPortal = (
+      <Link
+        className="a0-source-host-dot"
+        href="/?view=connect"
+        aria-current={activeView === "connect" ? "page" : undefined}
+        aria-label="C Connect · all doors open"
+        title="C Connect · all doors open"
+      >
+        <span aria-hidden="true" />
+      </Link>
+    );
+
+    return (
+      <div className="a0-source-home-shell">
+        <a className="skip-link" href="#main-content">Skip to A0 Human View</a>
+        <header className="a0-source-host-header" data-active-view={activeView}>
+          <Link className="a0-source-host-brand" href="/" aria-label={activeDescriptor ? `NEXAHEDRON, ${activeDescriptor} home` : "NEXAHEDRON home"}>
+            <span aria-hidden="true">✦</span>
+            <strong>NEXAHEDRON</strong>
+            {activeDescriptor ? <small>{activeDescriptor}</small> : null}
+          </Link>
+          <nav className="a0-source-host-nav" aria-label="NEXAHEDRON Flagships">
+            <Link data-route="human" href="/?view=human" aria-current={activeView === "human" ? "page" : undefined}>Human View</Link>
+            {activeView === "human" ? connectPortal : null}
+            <Link data-route="arcade" href="/?view=arcade" aria-current={activeView === "arcade" ? "page" : undefined}>Arcade</Link>
+            {activeView === "arcade" ? connectPortal : null}
+            <Link data-route="club" href="/?view=club" aria-current={activeView === "club" ? "page" : undefined}>Club</Link>
+            {activeView === "club" ? connectPortal : null}
+            <Link href="/about">To NEXAH</Link>
+            {activeView === "foyer" || activeView === "connect" ? connectPortal : null}
+            <span className="a0-source-host-portals" aria-label="Connected NEXAH places">
+              <a
+                className="a0-source-host-scarab"
+                href="https://www.scarabaeus1033.net/"
+                aria-label="Scarabæus 1033 · Builder and workshop"
+                title="Scarabæus 1033 · Builder and workshop"
+              >
+                <svg aria-hidden="true" viewBox="0 0 32 32">
+                  <path d="M11 10.5c1.2-2.2 2.8-3.3 5-3.3s3.8 1.1 5 3.3M16 7.2V3.8M12.4 6.3 10 3.7M19.6 6.3 22 3.7M9.5 13.2 5 10.8M22.5 13.2l4.5-2.4M9 18.2H4.5M23 18.2h4.5M10.2 23.2 6.5 27M21.8 23.2l3.7 3.8" />
+                  <path d="M9.2 15.4c0-4.1 3-6.7 6.8-6.7s6.8 2.6 6.8 6.7v4.8c0 4.6-3 7.8-6.8 7.8s-6.8-3.2-6.8-7.8Z" />
+                  <path d="M16 9v18.5M9.5 17.5h13" />
+                </svg>
+              </a>
+            </span>
+          </nav>
+        </header>
+        <main className="a0-source-home-main" id="main-content">{children}</main>
+      </div>
+    );
   }
 
   const isPublicExperience =
@@ -40,7 +96,7 @@ export function AppShell({ children }: { readonly children: ReactNode }) {
   ].includes(pathname);
   const isExperimentEntry = pathname === "/orient" || pathname === "/the-eye";
   const shellClassName = isPublicExperience
-    ? `site-shell site-shell--public${pathname === "/" ? " site-shell--a0" : ""}`
+    ? `site-shell site-shell--public${pathname === "/about" ? " site-shell--nexah-threshold" : ""}`
     : "site-shell";
 
   function returnToLanding() {

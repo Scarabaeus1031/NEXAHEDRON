@@ -1,88 +1,125 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import Link from "next/link";
-import { PublicPageIntro } from "@/features/library/components/PublicPageIntro";
 
 export const metadata: Metadata = {
-  title: "About",
-  description: "NEXAHEDRON is the A0 Human View: a bounded, browser-local orientation instrument by NEXAH.",
+  title: "From NEXAHEDRON to NEXAH",
+  description: "Cross from the A0 Human View into the wider NEXAH method, visitor guide and public science context.",
   alternates: { canonical: "/about" },
 };
 
+const nexahDoors = [
+  {
+    index: "01",
+    eyebrow: "Begin with the field",
+    title: "Visitor Guide",
+    copy: "Meet the larger NEXAH landscape and choose where you want to enter.",
+    href: "https://nexah.de/visitor-guide/",
+    action: "Open at nexah.de",
+  },
+  {
+    index: "02",
+    eyebrow: "Understand the practice",
+    title: "Method & context",
+    copy: "Read how Human judgment, sources, apertures and explicit return belong together.",
+    href: "https://nexah.de/about/",
+    action: "Continue to NEXAH",
+  },
+  {
+    index: "03",
+    eyebrow: "Inspect the record",
+    title: "Science Lab",
+    copy: "See public research records, limits and source-bound work without entering private control surfaces.",
+    href: "https://github.com/Scarabaeus1031/NEXAH-Science-Lab",
+    action: "Open the public source",
+  },
+] as const;
+
 export default function AboutPage() {
   return (
-    <article className="public-page about-page">
-      <PublicPageIntro eyebrow="About" title="NEXAHEDRON is the A0 Human View.">
-        <p>
-          It gives one Human question a visible place, lets a person consider
-          another position and keeps boundaries and unresolved difference in
-          view. It does not supply meaning or decide what comes next.
-        </p>
-      </PublicPageIntro>
-
-      <section className="about-statement" aria-labelledby="about-nexah">
-        <p className="home-answer__index">01</p>
-        <div>
-          <p className="public-kicker">The source relationship</p>
-          <h2 id="about-nexah">A0 belongs to NEXAH.</h2>
-          <p>NEXAH holds the method, scientific context, source records and claim boundaries. NEXAHEDRON presents one bounded Human-facing experience of that work.</p>
-          <p><a href="https://nexah.de/about/">Understand the method and science at nexah.de <span aria-hidden="true">↗</span></a></p>
-        </div>
-      </section>
-
-      <section className="about-statement" aria-labelledby="about-orion">
-        <p className="home-answer__index">02</p>
-        <div>
-          <p className="public-kicker">The Human-facing instrument</p>
-          <h2 id="about-orion">Place. Attend. Turn. Return.</h2>
-          <p>The Human View holds a question, material, relationships, boundaries and reflection on one visible surface. Its working state remains in the current browser session.</p>
-        </div>
-      </section>
-
-      <section className="about-statement" aria-labelledby="about-nexahedron">
-        <p className="home-answer__index">03</p>
-        <div>
-          <p className="public-kicker">The execution boundary</p>
-          <h2 id="about-nexahedron">One person. One question. No hidden interpretation.</h2>
-          <p>NEXAHEDRON preserves the existing bounded session machine. ORION remains an optional, separately confirmed boundary after Rest. No private research surface, persistent profile or automatic judgment enters the Human View.</p>
-        </div>
-      </section>
-
-      <section className="about-statement" aria-labelledby="about-purpose">
-        <p className="home-answer__index">04</p>
-        <div>
-          <p className="public-kicker">Why another view?</p>
-          <h2 id="about-purpose">A change of view changes what becomes available.</h2>
-          <p>The Human View helps distinguish what a representation preserves, loses, adds or leaves unavailable. Those distinctions support orientation; they are not conclusions about the world.</p>
-        </div>
-      </section>
-
-      <section className="about-principles" aria-labelledby="principles-title">
-        <div className="section-heading">
-          <div>
-            <p className="public-kicker">What guides this place</p>
-            <h2 id="principles-title">A few durable principles.</h2>
+    <article className="public-page about-page about-threshold-page">
+      <section className="about-threshold-hero" aria-labelledby="about-threshold-title">
+        <div className="about-threshold-hero__copy">
+          <p className="public-kicker">NEXAHEDRON → NEXAH</p>
+          <h1 id="about-threshold-title">Experience the world.<br /><em>Then meet the method.</em></h1>
+          <p>NEXAHEDRON is the A0 Human View: one bounded place to enter, look, turn and return. NEXAH is the wider practice behind it—the method, source landscape and public scientific context.</p>
+          <div className="about-threshold-actions">
+            <a className="about-threshold-actions__primary" href="#crossing">Cross to NEXAH <span aria-hidden="true">↓</span></a>
+            <Link href="/">Return to A0 World <span aria-hidden="true">↗</span></Link>
           </div>
         </div>
-        <div className="principle-list">
-          <article><span>01</span><h3>Human first</h3><p>Intention, judgment, meaning, and the decision to continue remain Human.</p></article>
-          <article><span>02</span><h3>Evidence before certainty</h3><p>Sources, limitations, disagreement, and unknowns remain visible.</p></article>
-          <article><span>03</span><h3>Boundaries create trust</h3><p>A tool should never borrow authority it does not have.</p></article>
-          <article><span>04</span><h3>Build slowly</h3><p>One dependable path matters more than many paths that only appear complete.</p></article>
+        <div className="about-threshold-orbit" aria-hidden="true">
+          <span className="about-threshold-orbit__outer" />
+          <span className="about-threshold-orbit__inner" />
+          <i>✦</i>
+          <small>ONE VIEW<br />WIDER FIELD</small>
+        </div>
+        <div className="about-threshold-route" aria-label="Route from NEXAHEDRON to NEXAH">
+          <span>NEXAHEDRON<br /><small>A0 Human View</small></span>
+          <i aria-hidden="true" />
+          <span>NEXAH<br /><small>Method · sources · science</small></span>
         </div>
       </section>
 
-      <section className="about-contribution" aria-labelledby="contribution-title">
+      <section className="about-crossing" id="crossing" aria-labelledby="about-crossing-title">
         <div>
-          <p className="public-kicker">Help Orientation grow</p>
-          <h2 id="contribution-title">Contribution begins with attention.</h2>
-          <p>Review a case. Inspect its evidence. Name a missing boundary. Propose a clearer connection. Teach with it. Translate it. Make it more accessible.</p>
+          <p className="public-kicker">The threshold</p>
+          <h2 id="about-crossing-title">The room ends.<br />The field opens.</h2>
         </div>
-        <div className="about-contribution__actions">
-          <Link href="/orient">Enter the A0 Human View <span aria-hidden="true">→</span></Link>
-          <Link href="/visitor-guide">Read the boundary guide <span aria-hidden="true">→</span></Link>
-          <a href="https://nexah.de/about/">Open NEXAH method and science <span aria-hidden="true">↗</span></a>
-          <a href="https://github.com/Scarabaeus1031/NEXAHEDRON">Inspect the reference implementation <span aria-hidden="true">↗</span></a>
+        <p>This is not a change of ownership or a second system. It is a change of scale. The experience remains NEXAHEDRON; the questions, sources and method return to the wider NEXAH context.</p>
+      </section>
+
+      <section className="about-roles" aria-label="NEXAH and Scarabæus destinations">
+        <article>
+          <span>THERE · ORIENTATION</span>
+          <h2>NEXAH</h2>
+          <p>Holds the wider method, its public explanation and the paths toward sources, science and further work.</p>
+          <a href="https://nexah.de/">Enter nexah.de <span aria-hidden="true">↗</span></a>
+        </article>
+        <article className="about-roles__scarabaeus">
+          <span>ELSEWHERE · WORKSHOP</span>
+          <Image src="/images/scarabaeus-1033.webp" alt="" aria-hidden="true" width={1024} height={1024} />
+          <h2>SCARABÆUS <em>1033</em></h2>
+          <p>The darker visual workshop of the same field—where symbols, images and speculative forms can exist before they enter explanation, research or application.</p>
+          <a href="https://www.scarabaeus1033.net/">Enter the visual codex <span aria-hidden="true">↗</span></a>
+        </article>
+        <span className="about-roles__joint" aria-hidden="true">✦</span>
+      </section>
+
+      <section className="about-nexah-doors" id="nexah-field" aria-labelledby="about-nexah-doors-title">
+        <div className="about-nexah-clock" aria-hidden="true">
+          <span className="about-nexah-clock__ring about-nexah-clock__ring--outer" />
+          <span className="about-nexah-clock__ring about-nexah-clock__ring--inner" />
+          <span className="about-nexah-clock__axis about-nexah-clock__axis--x" />
+          <span className="about-nexah-clock__axis about-nexah-clock__axis--y" />
+          <i>✦</i>
         </div>
+        <header>
+          <div>
+            <p className="public-kicker">Three doors into NEXAH</p>
+            <h2 id="about-nexah-doors-title">Choose what you need next.</h2>
+          </div>
+          <p>No single door claims to be the whole. Each opens a different public view and keeps its source visible.</p>
+        </header>
+        <div>
+          {nexahDoors.map((door) => (
+            <a href={door.href} key={door.title}>
+              <small>{door.index} · {door.eyebrow}</small>
+              <h3>{door.title}</h3>
+              <p>{door.copy}</p>
+              <strong>{door.action} <span aria-hidden="true">↗</span></strong>
+            </a>
+          ))}
+        </div>
+      </section>
+
+      <section className="about-return" id="return-to-nexahedron" aria-label="Return to NEXAHEDRON">
+        <div>
+          <span>RETURN · NEXAHEDRON</span>
+          <h2>Back to the Human View.</h2>
+        </div>
+        <p>You can return to the A0 Human View without losing the distinction between experience and source.</p>
+        <Link href="/">Return to NEXAHEDRON <span aria-hidden="true">↗</span></Link>
       </section>
     </article>
   );

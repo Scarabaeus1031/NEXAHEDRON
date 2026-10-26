@@ -41,9 +41,19 @@ test("communicates the bounded A0 movement without simulating new workflows", as
   const sourceHome = await readFile(new URL("../public/a0-human/start/index.html", import.meta.url), "utf8");
   const humanBook = await readFile(new URL("../public/a0-human/start/A0_NEXAH_APERTURE_JOURNEY.html", import.meta.url), "utf8");
 
-  for (const step of ["RAINBOW LIGHT", "ONE PULSE", "THE LIVING INTERIOR", "THE WONDER OPERATOR"]) {
+  for (const step of ["RAINBOW LIGHT", "SEEING LIGHT", "UNDERSTANDING LIGHT", "Black Sun / Big Moon", "ONE PULSE", "THE LIVING INTERIOR", "THE WONDER OPERATOR"]) {
     assert.match(humanBook, new RegExp(step));
   }
+  assert.match(humanBook, /A0_RAINBOW_PURPLE_RAIN\.html#prism/);
+  assert.match(humanBook, /A0_NEWTON_GOETHE_OBSERVER_LENS\.html#lens/);
+  assert.match(humanBook, /A0_BLACK_SUN_BIG_MOON\.html#eclipse/);
+  assert.match(humanBook, /href="#light-crossroads">WÄHLE, WIE DU MIT LICHT WEITERGEHST/);
+  assert.doesNotMatch(humanBook, /href="#look-again-room">MIT DEMSELBEN CARRIER WEITER/);
+  assert.match(humanBook, /03 CURATED CONTINUATIONS/);
+  assert.match(humanBook, /id="humanExperienceWindow" role="dialog"/);
+  assert.match(humanBook, /data-experience-window/);
+  assert.match(humanBook, /CLOSE &amp; RETURN/);
+  assert.doesNotMatch(humanBook, /href="a0-public-arkade-index\.html#arkade"/);
   assert.match(sourceHome, /Human route/);
   assert.match(sourceHome, /Science route/);
   assert.match(sourceHome, /Builder route/);

@@ -147,17 +147,19 @@ test("About positions the A0 Human View without exposing internal architecture",
   assert.equal(response.status, 200);
   const html = await response.text();
 
-  assert.match(html, /NEXAHEDRON is the A0 Human View\./);
-  assert.match(html, /A0 belongs to NEXAH\./);
-  assert.match(html, /Place\. Attend\. Turn\. Return\./);
-  assert.match(html, /One person\. One question\. No hidden interpretation\./);
-  assert.match(html, /A change of view changes what becomes available\./);
-  assert.match(html, /Human first/);
-  assert.match(html, /Evidence before certainty/);
-  const bringQuestion = html.indexOf("Enter the A0 Human View");
-  const openNexah = html.indexOf("Open NEXAH method and science");
-  const inspectImplementation = html.indexOf("Inspect the reference implementation");
-  assert.ok(bringQuestion < openNexah && openNexah < inspectImplementation);
+  assert.match(html, /Experience the world\./);
+  assert.match(html, /Then meet the method\./);
+  assert.match(html, /The room ends\./);
+  assert.match(html, /The field opens\./);
+  assert.match(html, /THERE · ORIENTATION/);
+  assert.match(html, /ELSEWHERE · WORKSHOP/);
+  assert.match(html, /SCARABÆUS/);
+  assert.match(html, /Three doors into NEXAH/);
+  for (const door of ["Visitor Guide", "Method &amp; context", "Science Lab"]) {
+    assert.match(html, new RegExp(door));
+  }
+  assert.match(html, /https:\/\/nexah\.de\/visitor-guide\//);
+  assert.match(html, /Return to NEXAHEDRON/);
   const visibleDocument = html.split("<body>")[1].split('<script id="_R_">')[0];
   assert.doesNotMatch(visibleDocument, /Gateway|Runtime|public contract|provider/i);
 });

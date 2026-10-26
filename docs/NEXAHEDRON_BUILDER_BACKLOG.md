@@ -50,8 +50,46 @@ The later clamp report and prime/φ comparison material remain local until this
 gate explicitly selects them. A missing public route is not treated as missing
 repository custody.
 
+### Current-cut disposition · 26 October 2026
+
+`M-PUB01-A0-01` is **closed for the present NEXAHEDRON release cut**. The
+Contact Bench, its GLBs, the D1–D2 clamp return and the 3°/111°/333° comparator
+remain preserved source candidates and were not silently added to the Human
+View. The existing allowlist is the release boundary.
+
+- all `262` untracked Finder-style numbered copies were moved, not deleted, to
+  the external local quarantine `NEXAHEDRON_RELEASE_QUARANTINE_2026-10-26`;
+- `257` copies were byte-identical to their canonical filename and `5` retained
+  an older differing work state; all remain recoverable in quarantine;
+- `SOURCE_MANIFEST.json` now binds `763` public files, including `212` declared
+  presentation transforms;
+- `npm run check:a0-human`: `PASS`;
+- the only same-origin shell escape is the explicitly allowlisted public route
+  `/about#crossing`;
+- the denied private Desk, Backlog, Navigator, Mission Control and Builder-log
+  routes remain absent.
+
+This is release hygiene and custody, not a new Finding, Paper state,
+mathematical relation or Science-Desk change.
+
 ## Re-entry gate
 
 Any backlog item needs one exact future task, owner, user value, boundary,
 verification plan and explicit activation decision. Items are not combined
 merely because they already exist in the same repository.
+
+## Presentation return · 26 October 2026
+
+`PRESENTATION_ACCESSIBILITY_RETURN / NO_NEW_FINDING`
+
+The local Human-facing shell now identifies the active existing room on both
+sides of the header, moves the existing C Connect orb beside that room and
+keeps the Scarabæus workshop mark separate. The Human route retains its own
+stage line and ends with an explicit stop/return after the three curated
+doors. Reduced Motion preserves the marker without pulsing.
+
+This closes no preserved engine item and activates no re-entry gate. It is not
+a Finding, mathematical relation, Paper claim, Human-utility result, release
+or deployment. The Science Desk, Findings/Paper Workspace and Mathfield remain
+unchanged. The detailed source-bound receipt remains with the Builder Public
+Desk in `PUBLIC_NEXAHEDRON_HUMAN_READING_2026-10-25.md`.

@@ -22,21 +22,21 @@
     {
       "bundle_path": "instruments/A0_BLUE_PINK_DODECA_CELL_RETURN.html",
       "source_path": "30 SCIENCE LAB/NEXAH-Science-Lab/RESEARCH_PROGRAM_B_MATHEMATICAL_FOUNDATIONS/AXIOM0_QMODE_ORIENTATION_TO_MEASUREMENT_FOUNDATION_PACKAGE_2026-10-01/A0_BOOK/A0_BLUE_PINK_DODECA_CELL_RETURN.html",
-      "source_sha256": "2e1b6c37b843da925b4ac3918d9930544617512b93129fc423f5daccb4aa9328",
+      "source_sha256": "f8ca6a1c9ccd9297ee7927ead5218fff8b2ada2adcd6e3dd528a689f8c1dd2b4",
       "bundle_sha256": "b7b5f1b5ad764f588a99ecb831b64d5370cc71df8f838e0e48fbe55eb67ff76e",
       "treatment": "PUBLIC_PRESENTATION_TRANSFORM"
     },
     {
       "bundle_path": "instruments/A0_GAME_OF_WORLDS_PLAY.html",
       "source_path": "30 SCIENCE LAB/NEXAH-Science-Lab/RESEARCH_PROGRAM_B_MATHEMATICAL_FOUNDATIONS/AXIOM0_QMODE_ORIENTATION_TO_MEASUREMENT_FOUNDATION_PACKAGE_2026-10-01/A0_BOOK/A0_GAME_OF_WORLDS_PLAY.html",
-      "source_sha256": "5452b4e44a4b0b06cedb056663506d276e3495e68f0c5f97250f34a21434e324",
+      "source_sha256": "2c08ab41d3b1beb286d54a72820c6d381a89331159d262de5019c43a2d13277a",
       "bundle_sha256": "409ca8bd4e1e1d84ddb00348dbf167348c216e0d4e2c7eb5c781523da4669e09",
       "treatment": "PUBLIC_PRESENTATION_TRANSFORM"
     },
     {
       "bundle_path": "instruments/A0_NEXAH_APERTURE_JOURNEY.html",
       "source_path": "30 SCIENCE LAB/NEXAH-Science-Lab/RESEARCH_PROGRAM_B_MATHEMATICAL_FOUNDATIONS/AXIOM0_QMODE_ORIENTATION_TO_MEASUREMENT_FOUNDATION_PACKAGE_2026-10-01/A0_BOOK/A0_NEXAH_APERTURE_JOURNEY.html",
-      "source_sha256": "23d7f4af9398005a1d678f17fa6d694ee9ba9643e82c9476ac890b5634613759",
+      "source_sha256": "5204438a1823a71a1c126299b7b7acf1f2e27d0e919cd9f7c213d5769ff77856",
       "bundle_sha256": "f447f58b16f2a4d52a6f9e5d68f1b54f3566e4c93ddeb4eaa99c686a2225d6e1",
       "treatment": "PUBLIC_PRESENTATION_TRANSFORM"
     },
@@ -120,7 +120,7 @@
     {
       "bundle_path": "start/A0_AXIS08_FOLD_RETURN_SEQUENCER.html",
       "source_path": "30 SCIENCE LAB/NEXAH-Science-Lab/RESEARCH_PROGRAM_B_MATHEMATICAL_FOUNDATIONS/AXIOM0_QMODE_ORIENTATION_TO_MEASUREMENT_FOUNDATION_PACKAGE_2026-10-01/A0_BOOK/A0_AXIS08_FOLD_RETURN_SEQUENCER.html",
-      "source_sha256": "138e95aedea77ab6bcf5c8a65f0992dde1483e91fca15de7264d7420edb82b91",
+      "source_sha256": "012effbf5b8183fb69ad0fb9f7d00112888974bef5e35c20a759b61c1707ce7e",
       "bundle_sha256": "c8a8078a6054f144794fd77d51df63687d22640e95e8c4dc47534307daa102b8",
       "treatment": "PUBLIC_PRESENTATION_TRANSFORM"
     },
@@ -162,7 +162,7 @@
     {
       "bundle_path": "start/A0_BLUE_PINK_DODECA_CELL_RETURN.html",
       "source_path": "30 SCIENCE LAB/NEXAH-Science-Lab/RESEARCH_PROGRAM_B_MATHEMATICAL_FOUNDATIONS/AXIOM0_QMODE_ORIENTATION_TO_MEASUREMENT_FOUNDATION_PACKAGE_2026-10-01/A0_BOOK/A0_BLUE_PINK_DODECA_CELL_RETURN.html",
-      "source_sha256": "2e1b6c37b843da925b4ac3918d9930544617512b93129fc423f5daccb4aa9328",
+      "source_sha256": "f8ca6a1c9ccd9297ee7927ead5218fff8b2ada2adcd6e3dd528a689f8c1dd2b4",
       "bundle_sha256": "333d84a1c1b130fbec86e1b42c46bc729642b8317c4672cfb0e123d1dec2376b",
       "treatment": "PUBLIC_PRESENTATION_TRANSFORM"
     },
@@ -211,7 +211,7 @@
     {
       "bundle_path": "start/A0_GAME_OF_WORLDS_PLAY.html",
       "source_path": "30 SCIENCE LAB/NEXAH-Science-Lab/RESEARCH_PROGRAM_B_MATHEMATICAL_FOUNDATIONS/AXIOM0_QMODE_ORIENTATION_TO_MEASUREMENT_FOUNDATION_PACKAGE_2026-10-01/A0_BOOK/A0_GAME_OF_WORLDS_PLAY.html",
-      "source_sha256": "5452b4e44a4b0b06cedb056663506d276e3495e68f0c5f97250f34a21434e324",
+      "source_sha256": "2c08ab41d3b1beb286d54a72820c6d381a89331159d262de5019c43a2d13277a",
       "bundle_sha256": "39c4ce3bda9ad72a5a46ec1220a837aae41cc49454d5d5bcb65527b1c9503207",
       "treatment": "PUBLIC_PRESENTATION_TRANSFORM"
     },
@@ -225,7 +225,7 @@
     {
       "bundle_path": "start/A0_IOTA_BRIDGE_DEMONSTRATOR.html",
       "source_path": "30 SCIENCE LAB/NEXAH-Science-Lab/RESEARCH_PROGRAM_B_MATHEMATICAL_FOUNDATIONS/AXIOM0_QMODE_ORIENTATION_TO_MEASUREMENT_FOUNDATION_PACKAGE_2026-10-01/A0_BOOK/A0_IOTA_BRIDGE_DEMONSTRATOR.html",
-      "source_sha256": "4eb48e660547e87f6157d0b9822762808fac33d7a28c96bee1a9f6189032739e",
+      "source_sha256": "0c64177a640573fd96913800a3d7bc3d1e605706abb73c00cd019bf5bce1c13f",
       "bundle_sha256": "b7ec3ae6dd322b91ccae51b6dcdbe87d4fc59ee3c01becbf65546716c53282ad",
       "treatment": "PUBLIC_PRESENTATION_TRANSFORM"
     },
@@ -253,8 +253,8 @@
     {
       "bundle_path": "start/A0_LOOK_AGAIN_PLAY.html",
       "source_path": "30 SCIENCE LAB/NEXAH-Science-Lab/RESEARCH_PROGRAM_B_MATHEMATICAL_FOUNDATIONS/AXIOM0_QMODE_ORIENTATION_TO_MEASUREMENT_FOUNDATION_PACKAGE_2026-10-01/A0_BOOK/A0_LOOK_AGAIN_PLAY.html",
-      "source_sha256": "af181c1c89f4b9317ac8f3352385bdce4ebccbd2c03a888728a1769e3b8312ae",
-      "bundle_sha256": "23749ffd6da28cc7d8bbd80a9b762db095276584e1257132e526de3337867bf5",
+      "source_sha256": "6ac6c1284a506652b34a042961e47b0ac19d17fb11d1972c1289ad976c0de827",
+      "bundle_sha256": "eec0ae28284de3a180a2a0f2c1b3b77f7815e47e37e7ba10f2265e068a3ca659",
       "treatment": "PUBLIC_PRESENTATION_TRANSFORM"
     },
     {
@@ -295,8 +295,8 @@
     {
       "bundle_path": "start/A0_NEXAH_APERTURE_JOURNEY.html",
       "source_path": "30 SCIENCE LAB/NEXAH-Science-Lab/RESEARCH_PROGRAM_B_MATHEMATICAL_FOUNDATIONS/AXIOM0_QMODE_ORIENTATION_TO_MEASUREMENT_FOUNDATION_PACKAGE_2026-10-01/A0_BOOK/A0_NEXAH_APERTURE_JOURNEY.html",
-      "source_sha256": "23d7f4af9398005a1d678f17fa6d694ee9ba9643e82c9476ac890b5634613759",
-      "bundle_sha256": "fdffcf22cdefc22b5c719e011dd7b5407554bc68bbfc15192470f8d8c847fc7b",
+      "source_sha256": "5204438a1823a71a1c126299b7b7acf1f2e27d0e919cd9f7c213d5769ff77856",
+      "bundle_sha256": "1252f080bbe638a10a6426ff76dd6dc93f6effda26210e51763fb33203b05b0d",
       "treatment": "PUBLIC_PRESENTATION_TRANSFORM"
     },
     {
@@ -316,7 +316,7 @@
     {
       "bundle_path": "start/A0_NUMBERMAGICK_GRID_RESEARCH.html",
       "source_path": "30 SCIENCE LAB/NEXAH-Science-Lab/RESEARCH_PROGRAM_B_MATHEMATICAL_FOUNDATIONS/AXIOM0_QMODE_ORIENTATION_TO_MEASUREMENT_FOUNDATION_PACKAGE_2026-10-01/A0_BOOK/A0_NUMBERMAGICK_GRID_RESEARCH.html",
-      "source_sha256": "933add5c43612c5b6c4176c2b5814125c0893ba7ca457cb8de08c1fef24a53d3",
+      "source_sha256": "6aabecc03aedf1c73e839ecc854b78a5fa71fcd781faf82cdbdf9d0436ebf578",
       "bundle_sha256": "78bb193f14ab310c56b2c361230ccfc7858f20361ebb5e817c71f2a75c5a9bf5",
       "treatment": "PUBLIC_PRESENTATION_TRANSFORM"
     },
@@ -337,7 +337,7 @@
     {
       "bundle_path": "start/A0_ORIENTATION_CONTROLLER_BENCH.html",
       "source_path": "30 SCIENCE LAB/NEXAH-Science-Lab/RESEARCH_PROGRAM_B_MATHEMATICAL_FOUNDATIONS/AXIOM0_QMODE_ORIENTATION_TO_MEASUREMENT_FOUNDATION_PACKAGE_2026-10-01/A0_BOOK/A0_ORIENTATION_CONTROLLER_BENCH.html",
-      "source_sha256": "3c6b06de5d27e80a86f2932f2e8ee2bc8a2d9cd1bbe6d55740e0013f9ba16179",
+      "source_sha256": "af077a06195d3a320cf2811697c8a07a0623b23f6730441448db485e303b07bf",
       "bundle_sha256": "7f6cff2e19081fc40db9326e0bb4d96d24277e08facb18c4285e70e13c45aef6",
       "treatment": "PUBLIC_PRESENTATION_TRANSFORM"
     },
@@ -471,7 +471,7 @@
       "bundle_path": "start/NEXAH_C_CONNECT.html",
       "source_path": "30 SCIENCE LAB/NEXAH-Science-Lab/RESEARCH_PROGRAM_B_MATHEMATICAL_FOUNDATIONS/AXIOM0_QMODE_ORIENTATION_TO_MEASUREMENT_FOUNDATION_PACKAGE_2026-10-01/A0_BOOK/NEXAH_C_CONNECT.html",
       "source_sha256": "9a6a4e8b5ab0f3ff57b159a8a0c310231297086337b199ef7a4f97cedf4979de",
-      "bundle_sha256": "86b286290aa88e530d31db2c1673a7309b7f8b9384523db0639d43c16dd74b00",
+      "bundle_sha256": "9c2981a3bd566e032319471a7c0a23a957f8364f126f3b4fada0976ad7d677d6",
       "treatment": "PUBLIC_PRESENTATION_TRANSFORM"
     },
     {
@@ -1387,16 +1387,16 @@
     {
       "bundle_path": "start/a0-coupled-channel-boundary-view.js",
       "source_path": "30 SCIENCE LAB/NEXAH-Science-Lab/RESEARCH_PROGRAM_B_MATHEMATICAL_FOUNDATIONS/AXIOM0_QMODE_ORIENTATION_TO_MEASUREMENT_FOUNDATION_PACKAGE_2026-10-01/A0_BOOK/a0-coupled-channel-boundary-view.js",
-      "source_sha256": "920ff9121d88c89005c76a7cad2282832cd51c9b6431d6691807a66949fa65cc",
+      "source_sha256": "9e58ecfc7726488f2849bf3c2677f66c5499f8011a6ec2643740b2d2f403e0ce",
       "bundle_sha256": "920ff9121d88c89005c76a7cad2282832cd51c9b6431d6691807a66949fa65cc",
-      "treatment": "BYTE_COPY"
+      "treatment": "PUBLIC_PRESENTATION_TRANSFORM"
     },
     {
       "bundle_path": "start/a0-coupled-channel-boundary.css",
       "source_path": "30 SCIENCE LAB/NEXAH-Science-Lab/RESEARCH_PROGRAM_B_MATHEMATICAL_FOUNDATIONS/AXIOM0_QMODE_ORIENTATION_TO_MEASUREMENT_FOUNDATION_PACKAGE_2026-10-01/A0_BOOK/a0-coupled-channel-boundary.css",
-      "source_sha256": "919f2831cdbe9998351708d5664bc0b5f4c13a93a1f9aaa2332c809a013c8598",
+      "source_sha256": "89451cd3826aae75969cddc4331674cb5749482fe7c41a1d8baa5b2a502b23c8",
       "bundle_sha256": "919f2831cdbe9998351708d5664bc0b5f4c13a93a1f9aaa2332c809a013c8598",
-      "treatment": "BYTE_COPY"
+      "treatment": "PUBLIC_PRESENTATION_TRANSFORM"
     },
     {
       "bundle_path": "start/a0-coupled-window.css",
@@ -1702,9 +1702,9 @@
     {
       "bundle_path": "start/a0-family-record-player.js",
       "source_path": "30 SCIENCE LAB/NEXAH-Science-Lab/RESEARCH_PROGRAM_B_MATHEMATICAL_FOUNDATIONS/AXIOM0_QMODE_ORIENTATION_TO_MEASUREMENT_FOUNDATION_PACKAGE_2026-10-01/A0_BOOK/a0-family-record-player.js",
-      "source_sha256": "c3444cac96d4ab3917eb1e412117c927623f1d0cbc556f5887e6cfbc4bfb4bb8",
+      "source_sha256": "22a65348d8c6ad332fde1a7da93e92be261949fb765559425cea0b996bbc6ae8",
       "bundle_sha256": "c3444cac96d4ab3917eb1e412117c927623f1d0cbc556f5887e6cfbc4bfb4bb8",
-      "treatment": "BYTE_COPY"
+      "treatment": "PUBLIC_PRESENTATION_TRANSFORM"
     },
     {
       "bundle_path": "start/a0-family-row-snapshots.css",
@@ -1807,30 +1807,30 @@
     {
       "bundle_path": "start/a0-game-of-worlds-play-stage.css",
       "source_path": "30 SCIENCE LAB/NEXAH-Science-Lab/RESEARCH_PROGRAM_B_MATHEMATICAL_FOUNDATIONS/AXIOM0_QMODE_ORIENTATION_TO_MEASUREMENT_FOUNDATION_PACKAGE_2026-10-01/A0_BOOK/a0-game-of-worlds-play-stage.css",
-      "source_sha256": "27bed15292cefe864116b335f762128318101d237fc1bc0b0887e4e0f89d0680",
+      "source_sha256": "e60a8a094d972befd78c13e900b65d2d04391829af5d4240b4e4485f0ab126f1",
       "bundle_sha256": "27bed15292cefe864116b335f762128318101d237fc1bc0b0887e4e0f89d0680",
-      "treatment": "BYTE_COPY"
+      "treatment": "PUBLIC_PRESENTATION_TRANSFORM"
     },
     {
       "bundle_path": "start/a0-game-of-worlds-play-stage.js",
       "source_path": "30 SCIENCE LAB/NEXAH-Science-Lab/RESEARCH_PROGRAM_B_MATHEMATICAL_FOUNDATIONS/AXIOM0_QMODE_ORIENTATION_TO_MEASUREMENT_FOUNDATION_PACKAGE_2026-10-01/A0_BOOK/a0-game-of-worlds-play-stage.js",
-      "source_sha256": "b4a023bea97b8bb9256a066aa0654eb94424830187beefc772d9ef623d06caea",
+      "source_sha256": "d140acc1f820e6d5acaf390f5b167b3d8ea79e95ff24c98fd48d799747194c5a",
       "bundle_sha256": "b4a023bea97b8bb9256a066aa0654eb94424830187beefc772d9ef623d06caea",
-      "treatment": "BYTE_COPY"
+      "treatment": "PUBLIC_PRESENTATION_TRANSFORM"
     },
     {
       "bundle_path": "start/a0-game-of-worlds-play.css",
       "source_path": "30 SCIENCE LAB/NEXAH-Science-Lab/RESEARCH_PROGRAM_B_MATHEMATICAL_FOUNDATIONS/AXIOM0_QMODE_ORIENTATION_TO_MEASUREMENT_FOUNDATION_PACKAGE_2026-10-01/A0_BOOK/a0-game-of-worlds-play.css",
-      "source_sha256": "b3b295513e3555aa88815d3491c225fffbd51032f18e1613a36ffa154c47fd07",
+      "source_sha256": "bde8a27227eb944bf2c9cd111a57d46177d651524e39b37b70c266b25fa263bc",
       "bundle_sha256": "b3b295513e3555aa88815d3491c225fffbd51032f18e1613a36ffa154c47fd07",
-      "treatment": "BYTE_COPY"
+      "treatment": "PUBLIC_PRESENTATION_TRANSFORM"
     },
     {
       "bundle_path": "start/a0-game-of-worlds-play.js",
       "source_path": "30 SCIENCE LAB/NEXAH-Science-Lab/RESEARCH_PROGRAM_B_MATHEMATICAL_FOUNDATIONS/AXIOM0_QMODE_ORIENTATION_TO_MEASUREMENT_FOUNDATION_PACKAGE_2026-10-01/A0_BOOK/a0-game-of-worlds-play.js",
-      "source_sha256": "0a1dac3bf2c4b2be763165043ba387d2f8a69da6f495ca45b99522a1eb535eb9",
+      "source_sha256": "5400f3d3fe1dff631f0f286a77660e5619cff245775aedf639c9cd396ba87d99",
       "bundle_sha256": "0a1dac3bf2c4b2be763165043ba387d2f8a69da6f495ca45b99522a1eb535eb9",
-      "treatment": "BYTE_COPY"
+      "treatment": "PUBLIC_PRESENTATION_TRANSFORM"
     },
     {
       "bundle_path": "start/a0-game-of-worlds-ready.css",
@@ -1947,15 +1947,15 @@
     {
       "bundle_path": "start/a0-human-progressive-route.css",
       "source_path": "30 SCIENCE LAB/NEXAH-Science-Lab/RESEARCH_PROGRAM_B_MATHEMATICAL_FOUNDATIONS/AXIOM0_QMODE_ORIENTATION_TO_MEASUREMENT_FOUNDATION_PACKAGE_2026-10-01/A0_BOOK/a0-human-progressive-route.css",
-      "source_sha256": "ac3e2103a35d029b09838f00ff37e2e6e4710b8b0496474c3d82275b35d98522",
-      "bundle_sha256": "ac3e2103a35d029b09838f00ff37e2e6e4710b8b0496474c3d82275b35d98522",
-      "treatment": "BYTE_COPY"
+      "source_sha256": "58ecfad9e94dec83edb3dd7a34b8baa93f06a307bb711d41046df086b4c95edd",
+      "bundle_sha256": "ee1031d9d845e167844ba11566fe90ad30450b5120edd383e3f76ac9d8f7fc99",
+      "treatment": "PUBLIC_PRESENTATION_TRANSFORM"
     },
     {
       "bundle_path": "start/a0-human-progressive-route.js",
       "source_path": "30 SCIENCE LAB/NEXAH-Science-Lab/RESEARCH_PROGRAM_B_MATHEMATICAL_FOUNDATIONS/AXIOM0_QMODE_ORIENTATION_TO_MEASUREMENT_FOUNDATION_PACKAGE_2026-10-01/A0_BOOK/a0-human-progressive-route.js",
-      "source_sha256": "d7c72b71f45ec27b467aec85ed290a3ca201026d844366a1f314d53bafda2239",
-      "bundle_sha256": "d7c72b71f45ec27b467aec85ed290a3ca201026d844366a1f314d53bafda2239",
+      "source_sha256": "1ee57b366a1a047e926bba04423d8328df8440ce1f0e15a8a3ec81bf51e0f46f",
+      "bundle_sha256": "1ee57b366a1a047e926bba04423d8328df8440ce1f0e15a8a3ec81bf51e0f46f",
       "treatment": "BYTE_COPY"
     },
     {
@@ -1968,16 +1968,16 @@
     {
       "bundle_path": "start/a0-iota-2-3-bridge-probe.css",
       "source_path": "30 SCIENCE LAB/NEXAH-Science-Lab/RESEARCH_PROGRAM_B_MATHEMATICAL_FOUNDATIONS/AXIOM0_QMODE_ORIENTATION_TO_MEASUREMENT_FOUNDATION_PACKAGE_2026-10-01/A0_BOOK/a0-iota-2-3-bridge-probe.css",
-      "source_sha256": "b440824f10177617371f6a3defee30b9030d28c8181eaa23f6d96b4bd976931e",
+      "source_sha256": "9c9bdf83c5fe097733de104a1ec8d657eadcb7e3d554a13df0e14a829a07799a",
       "bundle_sha256": "b440824f10177617371f6a3defee30b9030d28c8181eaa23f6d96b4bd976931e",
-      "treatment": "BYTE_COPY"
+      "treatment": "PUBLIC_PRESENTATION_TRANSFORM"
     },
     {
       "bundle_path": "start/a0-iota-2-3-bridge-probe.js",
       "source_path": "30 SCIENCE LAB/NEXAH-Science-Lab/RESEARCH_PROGRAM_B_MATHEMATICAL_FOUNDATIONS/AXIOM0_QMODE_ORIENTATION_TO_MEASUREMENT_FOUNDATION_PACKAGE_2026-10-01/A0_BOOK/a0-iota-2-3-bridge-probe.js",
-      "source_sha256": "aeb71c6817dfd39c6bc7671f935cbfb232b44c0ef674aa8032ef04290ca88ab3",
+      "source_sha256": "86fd36fb6d150ac0982c6fb98a1fa972d6e30f52a2fd13f080c7c6c24789cda7",
       "bundle_sha256": "aeb71c6817dfd39c6bc7671f935cbfb232b44c0ef674aa8032ef04290ca88ab3",
-      "treatment": "BYTE_COPY"
+      "treatment": "PUBLIC_PRESENTATION_TRANSFORM"
     },
     {
       "bundle_path": "start/a0-iota-tower-return-handoff.css",
@@ -2080,15 +2080,15 @@
     {
       "bundle_path": "start/a0-look-again-game.js",
       "source_path": "30 SCIENCE LAB/NEXAH-Science-Lab/RESEARCH_PROGRAM_B_MATHEMATICAL_FOUNDATIONS/AXIOM0_QMODE_ORIENTATION_TO_MEASUREMENT_FOUNDATION_PACKAGE_2026-10-01/A0_BOOK/a0-look-again-game.js",
-      "source_sha256": "86810fb32ff6d355eafd35d6200466c857ddbbf10af5ef47b06b437557ff3270",
-      "bundle_sha256": "86810fb32ff6d355eafd35d6200466c857ddbbf10af5ef47b06b437557ff3270",
+      "source_sha256": "6eccaadbdfbfe4b09b26bfe5b27cdb401230b9c4a3b2f3b3a52b25256d42005f",
+      "bundle_sha256": "6eccaadbdfbfe4b09b26bfe5b27cdb401230b9c4a3b2f3b3a52b25256d42005f",
       "treatment": "BYTE_COPY"
     },
     {
       "bundle_path": "start/a0-look-again-play.css",
       "source_path": "30 SCIENCE LAB/NEXAH-Science-Lab/RESEARCH_PROGRAM_B_MATHEMATICAL_FOUNDATIONS/AXIOM0_QMODE_ORIENTATION_TO_MEASUREMENT_FOUNDATION_PACKAGE_2026-10-01/A0_BOOK/a0-look-again-play.css",
-      "source_sha256": "1dc4215040da4a51c7cea362b20883a907fe3112cae4caa1b3840d2620cfa374",
-      "bundle_sha256": "1dc4215040da4a51c7cea362b20883a907fe3112cae4caa1b3840d2620cfa374",
+      "source_sha256": "22f0d293e1f9171d7863c7deede108b22d2ffa11e6b1ae0a3525b718b508a807",
+      "bundle_sha256": "22f0d293e1f9171d7863c7deede108b22d2ffa11e6b1ae0a3525b718b508a807",
       "treatment": "BYTE_COPY"
     },
     {
@@ -2472,9 +2472,9 @@
     {
       "bundle_path": "start/a0-pascal-thread-views.js",
       "source_path": "30 SCIENCE LAB/NEXAH-Science-Lab/RESEARCH_PROGRAM_B_MATHEMATICAL_FOUNDATIONS/AXIOM0_QMODE_ORIENTATION_TO_MEASUREMENT_FOUNDATION_PACKAGE_2026-10-01/A0_BOOK/a0-pascal-thread-views.js",
-      "source_sha256": "bd47a37d0af8a6ebe9c46a5a0632b410d4680ebe47e3274f151c0b8e27a265ca",
+      "source_sha256": "6e4568068b1320f1ee03ec88464204da2ec42efc57f0ffd88c5354aa2d1de42c",
       "bundle_sha256": "bd47a37d0af8a6ebe9c46a5a0632b410d4680ebe47e3274f151c0b8e27a265ca",
-      "treatment": "BYTE_COPY"
+      "treatment": "PUBLIC_PRESENTATION_TRANSFORM"
     },
     {
       "bundle_path": "start/a0-pentagon-bench-adapter.js",
@@ -2633,9 +2633,9 @@
     {
       "bundle_path": "start/a0-register-janus.js",
       "source_path": "30 SCIENCE LAB/NEXAH-Science-Lab/RESEARCH_PROGRAM_B_MATHEMATICAL_FOUNDATIONS/AXIOM0_QMODE_ORIENTATION_TO_MEASUREMENT_FOUNDATION_PACKAGE_2026-10-01/A0_BOOK/a0-register-janus.js",
-      "source_sha256": "73624d606b587d51a25c49d79b10de36375fc7e12b9056c36d4c76216a2656c5",
+      "source_sha256": "3204e8b5aa76bb2f5ebf4d17536d05c7f33b7f4815c6024801fb91d1a52be2a6",
       "bundle_sha256": "73624d606b587d51a25c49d79b10de36375fc7e12b9056c36d4c76216a2656c5",
-      "treatment": "BYTE_COPY"
+      "treatment": "PUBLIC_PRESENTATION_TRANSFORM"
     },
     {
       "bundle_path": "start/a0-register-overlay.js",
@@ -2647,9 +2647,9 @@
     {
       "bundle_path": "start/a0-relational-generations.js",
       "source_path": "30 SCIENCE LAB/NEXAH-Science-Lab/RESEARCH_PROGRAM_B_MATHEMATICAL_FOUNDATIONS/AXIOM0_QMODE_ORIENTATION_TO_MEASUREMENT_FOUNDATION_PACKAGE_2026-10-01/A0_BOOK/a0-relational-generations.js",
-      "source_sha256": "86a46296d34ddb822b75bac7603cabeb466acc05da2ffeb7db8672e4f48813d0",
+      "source_sha256": "7ea5aef77191d86cec82987d7c84b0aa851410d8f29e521c64cdf35afe7e3e93",
       "bundle_sha256": "86a46296d34ddb822b75bac7603cabeb466acc05da2ffeb7db8672e4f48813d0",
-      "treatment": "BYTE_COPY"
+      "treatment": "PUBLIC_PRESENTATION_TRANSFORM"
     },
     {
       "bundle_path": "start/a0-results-tour.js",
@@ -2913,9 +2913,9 @@
     {
       "bundle_path": "start/a0-three-domain-joint-adapter.js",
       "source_path": "30 SCIENCE LAB/NEXAH-Science-Lab/RESEARCH_PROGRAM_B_MATHEMATICAL_FOUNDATIONS/AXIOM0_QMODE_ORIENTATION_TO_MEASUREMENT_FOUNDATION_PACKAGE_2026-10-01/A0_BOOK/a0-three-domain-joint-adapter.js",
-      "source_sha256": "5095a9d69db7bb5166d9969c8e52d36672d15263fa125fea00192f5f65cfbb00",
+      "source_sha256": "bc92769653eef2cee3ff61e6d5e4058875fd192c3970737de12c5009d9e2ee1b",
       "bundle_sha256": "5095a9d69db7bb5166d9969c8e52d36672d15263fa125fea00192f5f65cfbb00",
-      "treatment": "BYTE_COPY"
+      "treatment": "PUBLIC_PRESENTATION_TRANSFORM"
     },
     {
       "bundle_path": "start/a0-tl-final-pin.css",
@@ -3018,7 +3018,7 @@
     {
       "bundle_path": "start/a0-visual-field-library.js",
       "source_path": "30 SCIENCE LAB/NEXAH-Science-Lab/RESEARCH_PROGRAM_B_MATHEMATICAL_FOUNDATIONS/AXIOM0_QMODE_ORIENTATION_TO_MEASUREMENT_FOUNDATION_PACKAGE_2026-10-01/A0_BOOK/a0-visual-field-library.js",
-      "source_sha256": "d87fbe319a6c58d9187ce1d89a15fe0141c9d75c5a8d4c6d80aa0fa12e8af76c",
+      "source_sha256": "38570c338fe2ff48cbb2ad50f9e8d31c989dd20b4e078fd4f91a9a32706a802a",
       "bundle_sha256": "654012f68f287ac51e816996f951716eb732c62c63c1f8a1dff757fd851fbc8d",
       "treatment": "PUBLIC_PRESENTATION_TRANSFORM"
     },
@@ -3277,9 +3277,9 @@
     {
       "bundle_path": "start/assets/a0-blue-pink-dodeca-cell-return-v1.js",
       "source_path": "30 SCIENCE LAB/NEXAH-Science-Lab/RESEARCH_PROGRAM_B_MATHEMATICAL_FOUNDATIONS/AXIOM0_QMODE_ORIENTATION_TO_MEASUREMENT_FOUNDATION_PACKAGE_2026-10-01/A0_BOOK/assets/a0-blue-pink-dodeca-cell-return-v1.js",
-      "source_sha256": "85fe9997ec695614909738de87eee56130f287cc2ae29c0d25df9f107005d7e5",
+      "source_sha256": "5bee266d3ccff5c7c7a4a254efabf2876433149b1bc8e93019221558836556b7",
       "bundle_sha256": "85fe9997ec695614909738de87eee56130f287cc2ae29c0d25df9f107005d7e5",
-      "treatment": "BYTE_COPY"
+      "treatment": "PUBLIC_PRESENTATION_TRANSFORM"
     },
     {
       "bundle_path": "start/assets/a0-blue-pink-dodeca-cell-return-v1.json",
@@ -3396,14 +3396,14 @@
     {
       "bundle_path": "start/assets/a0-coupled-channel-boundary-v1.js",
       "source_path": "30 SCIENCE LAB/NEXAH-Science-Lab/RESEARCH_PROGRAM_B_MATHEMATICAL_FOUNDATIONS/AXIOM0_QMODE_ORIENTATION_TO_MEASUREMENT_FOUNDATION_PACKAGE_2026-10-01/A0_BOOK/assets/a0-coupled-channel-boundary-v1.js",
-      "source_sha256": "99de6fc6b5b4275027453ec24c533c3a4e753249d2f601da0a9ff0254683c1be",
+      "source_sha256": "2197fcf1cb94e790d3f6d58a7c199c733956a572cedc4a085b7a8db8df00d999",
       "bundle_sha256": "99de6fc6b5b4275027453ec24c533c3a4e753249d2f601da0a9ff0254683c1be",
-      "treatment": "BYTE_COPY"
+      "treatment": "PUBLIC_PRESENTATION_TRANSFORM"
     },
     {
       "bundle_path": "start/assets/a0-coupled-channel-boundary-v1.json",
       "source_path": "30 SCIENCE LAB/NEXAH-Science-Lab/RESEARCH_PROGRAM_B_MATHEMATICAL_FOUNDATIONS/AXIOM0_QMODE_ORIENTATION_TO_MEASUREMENT_FOUNDATION_PACKAGE_2026-10-01/A0_BOOK/assets/a0-coupled-channel-boundary-v1.json",
-      "source_sha256": "f46e0bd34f4a48ccd9dec570ef61a0c7f346f5e04a39a77b30981085c04259a9",
+      "source_sha256": "8f47c54af26f362176f6e20ed7f63cebcc1b1b9c28b22e6cf42ec2a672876b5f",
       "bundle_sha256": "1a33a0d55e584111e6593c9172a74337d46fd4fbed1818fbe2b80a54c6c4dfab",
       "treatment": "PUBLIC_PRESENTATION_TRANSFORM"
     },
@@ -3907,7 +3907,7 @@
     {
       "bundle_path": "start/assets/a0-pascal-thread-views-v1.json",
       "source_path": "30 SCIENCE LAB/NEXAH-Science-Lab/RESEARCH_PROGRAM_B_MATHEMATICAL_FOUNDATIONS/AXIOM0_QMODE_ORIENTATION_TO_MEASUREMENT_FOUNDATION_PACKAGE_2026-10-01/A0_BOOK/assets/a0-pascal-thread-views-v1.json",
-      "source_sha256": "72b78e960cec56de2f45d328b06d3acfe5d63ab2e6538809000a199e9655a17d",
+      "source_sha256": "1523a40623830233863cbd18198d4ea7dec6c88c7e47c851e7538b866280539a",
       "bundle_sha256": "5863bd0ce26e08c6ec2c3cbf597338f4b6c47d225577c857f666be63535e2636",
       "treatment": "PUBLIC_PRESENTATION_TRANSFORM"
     },
@@ -3991,9 +3991,9 @@
     {
       "bundle_path": "start/assets/a0-relational-generations.js",
       "source_path": "30 SCIENCE LAB/NEXAH-Science-Lab/RESEARCH_PROGRAM_B_MATHEMATICAL_FOUNDATIONS/AXIOM0_QMODE_ORIENTATION_TO_MEASUREMENT_FOUNDATION_PACKAGE_2026-10-01/A0_BOOK/assets/a0-relational-generations.js",
-      "source_sha256": "be9244a66b9b11e3ad2239e14e9f204dbe1973fc59dedf13a103d120ef97f12e",
+      "source_sha256": "0732e8ef9ec189fa755f99adaf7d9858757b7fc9894a81cfba9a51b5195253bd",
       "bundle_sha256": "be9244a66b9b11e3ad2239e14e9f204dbe1973fc59dedf13a103d120ef97f12e",
-      "treatment": "BYTE_COPY"
+      "treatment": "PUBLIC_PRESENTATION_TRANSFORM"
     },
     {
       "bundle_path": "start/assets/a0-return-economy-demonstrator-v1.json",
@@ -5287,14 +5287,14 @@
       "bundle_path": "start/nexah-c-connect.css",
       "source_path": "30 SCIENCE LAB/NEXAH-Science-Lab/RESEARCH_PROGRAM_B_MATHEMATICAL_FOUNDATIONS/AXIOM0_QMODE_ORIENTATION_TO_MEASUREMENT_FOUNDATION_PACKAGE_2026-10-01/A0_BOOK/nexah-c-connect.css",
       "source_sha256": "61e88efd37a0064cd689d6adcf246cb52621cbcfb2007f6880042b8d924939df",
-      "bundle_sha256": "61e88efd37a0064cd689d6adcf246cb52621cbcfb2007f6880042b8d924939df",
-      "treatment": "BYTE_COPY"
+      "bundle_sha256": "955637b6e68aad46ec15cb803caa2b72627783d06200eadaef93bd29eccad5dc",
+      "treatment": "PUBLIC_PRESENTATION_TRANSFORM"
     },
     {
       "bundle_path": "start/nexah-c-connect.js",
       "source_path": "30 SCIENCE LAB/NEXAH-Science-Lab/RESEARCH_PROGRAM_B_MATHEMATICAL_FOUNDATIONS/AXIOM0_QMODE_ORIENTATION_TO_MEASUREMENT_FOUNDATION_PACKAGE_2026-10-01/A0_BOOK/nexah-c-connect.js",
       "source_sha256": "c642a748a08e167e9669f61a2cdf866788c788a9e131d877f0c624cd271a2366",
-      "bundle_sha256": "45d936f5f6cebab2cf9fc23dff925feae72ef52e7e36469c02e8e3ae535dfc52",
+      "bundle_sha256": "453f084fcacaf39b79ec5398de12f907afe49181aa917e1ae176f3339c01d2d2",
       "treatment": "PUBLIC_PRESENTATION_TRANSFORM"
     },
     {

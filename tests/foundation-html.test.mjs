@@ -19,13 +19,27 @@ test("renders the public homepage as the bounded A0 Human View entrance", async 
   const html = await response.text();
   const sourceHome = await readFile(new URL("../public/a0-human/start/index.html", import.meta.url), "utf8");
   const publicNavigation = await readFile(new URL("../public/a0-human/start/nexahedron-public-navigation.js", import.meta.url), "utf8");
+  const worldFrame = await readFile(new URL("../components/layout/A0WorldFrame.tsx", import.meta.url), "utf8");
 
   assert.match(html, /<title>NEXAHEDRON — A0 Human View<\/title>/);
-  assert.match(html, /class="a0-source-home-shell" id="main-content"/);
+  assert.match(html, /class="a0-source-home-shell"/);
+  assert.match(html, /class="a0-source-host-header"/);
+  assert.match(html, /class="a0-source-host-nav"/);
+  for (const destination of ["Human View", "Arcade", "Club", "To NEXAH", "C Connect", "Scarabæus 1033"]) {
+    assert.match(html, new RegExp(destination));
+  }
+  assert.match(html, /href="\/\?view=human"/);
+  assert.match(html, /href="\/\?view=arcade"/);
+  assert.match(html, /href="\/\?view=club"/);
+  assert.doesNotMatch(html, />Visitor Guide<\/a>/);
+  assert.match(html, /href="\/\?view=connect"/);
+  assert.doesNotMatch(html, /a0-source-host-science/);
+  assert.match(html, /https:\/\/www\.scarabaeus1033\.net\//);
+  assert.match(html, /class="a0-source-home-main" id="main-content"/);
   assert.match(html, /class="a0-source-home-frame"/);
   assert.match(html, /src="\/a0-human\/start\/index\.html"/);
   assert.match(sourceHome, /Welche Reise brauchst du gerade\?/);
-  assert.equal((sourceHome.match(/class="entry-route(?: |")/g) ?? []).length, 3);
+  assert.equal((sourceHome.match(/class="entry-route(?: |")/g) ?? []).length, 4);
   assert.match(sourceHome, /<h2 id="wegweiser-title">Wo beginne ich\?<\/h2>/);
   assert.match(sourceHome, /Grid → Operator → Anwendung/);
   assert.doesNotMatch(sourceHome, /href="A0_RESEARCH_DESK\.html/);
@@ -40,7 +54,33 @@ test("renders the public homepage as the bounded A0 Human View entrance", async 
   assert.match(publicNavigation, /A0_MATHEMATICAL_JOINTS\.html/);
   assert.match(publicNavigation, /https:\/\/www\.scarabaeus1033\.net\//);
   assert.match(publicNavigation, /Scarabæus 1033 · Werkstatt öffnen/);
+  assert.match(worldFrame, /dataset\.nexahedronProjection = isFoyer \? "foyer" : "experience"/);
+  assert.match(worldFrame, /Weitere Räume erscheinen erst nach dem Return/);
+  assert.match(worldFrame, /Human View starten →/);
+  assert.match(worldFrame, /#top > :not\(#built-world\)/);
+  assert.match(worldFrame, /\.world-room:not\(\.world-room--human\)/);
+  assert.match(worldFrame, /\.world-plate-return/);
+  assert.match(worldFrame, /body > footer/);
+  assert.match(worldFrame, /\.human-stage-fold--machina/);
+  assert.match(worldFrame, /onLoad=/);
   assert.doesNotMatch(publicNavigation, /Desk|Mission Control|NSN|Research Backlog/i);
+});
+
+test("opens the existing public Connect surface without creating a second shell", async () => {
+  const response = await render("/?view=connect");
+  assert.equal(response.status, 200);
+  const html = await response.text();
+
+  assert.match(html, /class="a0-source-host-header"/);
+  assert.match(html, /src="\/a0-human\/start\/NEXAH_C_CONNECT\.html"/);
+
+  const connect = await readFile(new URL("../public/a0-human/start/NEXAH_C_CONNECT.html", import.meta.url), "utf8");
+  assert.match(connect, /<strong id="readoutTitle">One constellation\.<\/strong>/);
+  assert.match(connect, /DIFFERENT RESPONSIBILITIES · EXPLICIT RETURNS/);
+  assert.equal((connect.match(/data-lens="(?:human|science|builder)"/g) ?? []).length, 3);
+  assert.match(connect, /data-lens-panel="science" hidden/);
+  assert.match(connect, /data-lens-panel="human" hidden/);
+  assert.match(connect, /data-lens-panel="builder" hidden/);
 });
 
 test("renders the Version 1 visitor guide as the local demonstrator orientation layer", async () => {

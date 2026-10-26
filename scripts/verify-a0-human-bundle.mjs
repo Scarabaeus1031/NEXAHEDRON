@@ -16,6 +16,9 @@ const dynamicAnchors = new Map([
   ["start/assets/game-of-worlds-play/three-domain-transition-test/index.html", new Set(["domains", "atlas", "blue-body", "fibonacci"])],
   ["start/A0_BLUE_PINK_DODECA_CELL_RETURN.html", new Set(["cell-machine"])],
 ]);
+const publicShellRoutes = new Set([
+  "/about#crossing",
+]);
 
 function sha256(bytes) {
   return createHash("sha256").update(bytes).digest("hex");
@@ -68,6 +71,7 @@ for (const path of bundleFiles.filter((candidate) => candidate.endsWith(".html")
   for (const reference of [...runtimeReferences, ...navigationReferences]) {
     if (/^(?:https?:|data:|\/\/)/i.test(reference)) continue;
     if (/^(?:mailto:|tel:|javascript:|#)/i.test(reference)) continue;
+    if (publicShellRoutes.has(reference)) continue;
     if (reference.includes("${")) continue;
     const [rawPath, fragment = ""] = reference.split("#", 2);
     const cleanReference = decodeURIComponent(rawPath.split("?", 1)[0]);

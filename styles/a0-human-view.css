@@ -31,9 +31,12 @@
   color: var(--a0-gold);
 }
 
-.site-shell--a0 .public-navigation .public-navigation__inquiry {
-  border-color: var(--a0-blue);
-  color: var(--a0-paper);
+.site-shell--a0 .public-navigation__portals {
+  border-color: var(--a0-line);
+}
+
+.site-shell--a0 .public-navigation .public-navigation__scarab {
+  color: var(--a0-gold);
 }
 
 .site-shell--a0 .public-footer {
