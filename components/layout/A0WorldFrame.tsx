@@ -104,7 +104,7 @@ function NexahedronObject() {
   return <div ref={hostRef} className="nexahedron-showcase-object" />;
 }
 
-function ShowcasePanel({ active, onOpen }: { readonly active: ShowcaseId; readonly onOpen: (id: ShowcaseId) => void }) {
+function ShowcasePanel({ active }: { readonly active: ShowcaseId }) {
   if (active === "books") {
     return (
       <div className="nexahedron-showcase-books">
@@ -145,23 +145,16 @@ function ShowcasePanel({ active, onOpen }: { readonly active: ShowcaseId; readon
 
   if (active === "club") {
     return (
-      <div className="nexahedron-showcase-club">
-        <div className="nexahedron-showcase-club__stage" aria-label="NEXAH Club · rhythmische Human View">
-          <span className="nexahedron-showcase-club__orbit" aria-hidden="true" />
-          <span className="nexahedron-showcase-club__record" aria-hidden="true"><i /></span>
-          <p><small>NEXAH · CLUB</small><strong>Let the relations play.</strong><span>Ein Raum für Rhythmus, Blickwechsel und Begegnung. Keine Bench, kein Atlas, kein wissenschaftliches Bedienpult.</span></p>
-        </div>
-        <div className="nexahedron-showcase-club__choices">
-          <article>
-            <small>01 · CLUB</small>
-            <strong>Im Raum bleiben.</strong>
-            <span>Schauen, hören, bewegen — ohne weitere Werkzeugtiefe.</span>
-          </article>
-          <button type="button" onClick={() => onOpen("record")}>
-            <small>02 · RECORD / CD PLAYER</small>
-            <strong>Eine Spur auflegen.</strong>
-            <span>Zum vorhandenen drehbaren Player wechseln →</span>
-          </button>
+      <div className="nexahedron-showcase-flagship">
+        <iframe
+          loading="lazy"
+          src="/a0-human/start/A0_OPIUM.html"
+          title="NEXAH Club Vorschau"
+        />
+        <div>
+          <small>HUMAN VIEW · CLUB</small>
+          <strong>NEXAH Club</strong>
+          <p>Der vorhandene Einstieg für Rhythmus, Blickwechsel und Begegnung — ohne Bench, Atlas oder wissenschaftliches Bedienpult.</p>
         </div>
       </div>
     );
@@ -178,7 +171,6 @@ function ShowcasePanel({ active, onOpen }: { readonly active: ShowcaseId; readon
         <small>PLAY · THREE WORLDS</small>
         <strong>NEXAH Arcade</strong>
         <p>Ein spielbarer Zugang mit drei verbundenen Welten und einem sichtbaren Return.</p>
-        <Link href="/?view=arcade">Arcade öffnen →</Link>
       </div>
     </div>
   );
@@ -486,7 +478,7 @@ export function A0WorldFrame({ source, title = "NEXAHEDRON · Foyer" }: { readon
                     <button type="button" onClick={closeShowcase} aria-label={`${activeDefinition.title} schließen`}>Schließen ×</button>
                   </div>
                 </header>
-                <ShowcasePanel active={activeWindow} onOpen={openShowcase} />
+                <ShowcasePanel active={activeWindow} />
               </section>
             ) : null}
           </section>
