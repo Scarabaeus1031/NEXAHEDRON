@@ -226,7 +226,8 @@ export function A0WorldFrame({ source, title = "NEXAHEDRON · Foyer" }: { readon
     const document = frame.contentDocument;
     if (!document) return;
 
-    const isFoyer = frame.contentWindow?.location.pathname.endsWith("/index.html") ?? false;
+    const framePath = frame.contentWindow?.location.pathname ?? "";
+    const isFoyer = framePath.endsWith("/index.html") || framePath.endsWith("/a0-human/start/");
     document.documentElement.dataset.nexahedronProjection = isFoyer ? "foyer" : "experience";
 
     if (isFoyer) {
