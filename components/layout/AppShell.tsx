@@ -54,6 +54,7 @@ export function AppShell({ children }: { readonly children: ReactNode }) {
             {activeView === "arcade" ? connectPortal : null}
             <Link data-route="club" href="/?view=club" aria-current={activeView === "club" ? "page" : undefined}>Club</Link>
             {activeView === "club" ? connectPortal : null}
+            <Link href="/about-nexahedron">About NEXAHEDRON</Link>
             <Link href="/about">To NEXAH</Link>
             {activeView === "foyer" || activeView === "connect" ? connectPortal : null}
             <span className="a0-source-host-portals" aria-label="Connected NEXAH places">
@@ -81,6 +82,7 @@ export function AppShell({ children }: { readonly children: ReactNode }) {
     pathname.startsWith("/explore") ||
     pathname.startsWith("/cases") ||
     pathname.startsWith("/library") ||
+    pathname.startsWith("/about-nexahedron") ||
     pathname.startsWith("/about") ||
     pathname.startsWith("/visitor-guide") ||
     pathname.startsWith("/contact") ||
@@ -96,7 +98,7 @@ export function AppShell({ children }: { readonly children: ReactNode }) {
   ].includes(pathname);
   const isExperimentEntry = pathname === "/orient" || pathname === "/the-eye";
   const shellClassName = isPublicExperience
-    ? `site-shell site-shell--public${pathname === "/about" ? " site-shell--nexah-threshold" : ""}`
+    ? `site-shell site-shell--public${pathname === "/about" || pathname === "/about-nexahedron" ? " site-shell--nexah-threshold" : ""}`
     : "site-shell";
 
   function returnToLanding() {

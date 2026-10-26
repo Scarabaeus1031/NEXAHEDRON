@@ -2,6 +2,7 @@ import Link from "next/link";
 
 export function PublicHeader({ pathname }: { readonly pathname: string }) {
   const isHome = pathname === "/";
+  const isAboutNexahedron = pathname === "/about-nexahedron";
   const isAbout = pathname === "/about";
 
   return (
@@ -15,6 +16,7 @@ export function PublicHeader({ pathname }: { readonly pathname: string }) {
       </Link>
       <nav className="public-navigation" aria-label="Primary navigation">
         <Link href="/" aria-current={isHome ? "page" : undefined}>A0 World</Link>
+        <Link href="/about-nexahedron" aria-current={isAboutNexahedron ? "page" : undefined}>About NEXAHEDRON</Link>
         <Link href="/about" aria-current={isAbout ? "page" : undefined}>To NEXAH</Link>
         <span className="public-navigation__portals" aria-label="Connected NEXAH places">
           <Link

@@ -16,7 +16,7 @@ export function A0WorldFrame({ source, title = "NEXAHEDRON · Foyer" }: { readon
       const intro = document.querySelector<HTMLElement>(".world-plate-intro");
       const humanDoor = document.querySelector<HTMLElement>(".world-room--human");
       if (intro) {
-        intro.innerHTML = "<strong>NEXAH ist eine offene, menschenzentrierte Orientierungspraxis: science-led, human-centered, instrument-enabled.</strong> NEXAHEDRON öffnet zuerst einen begrenzten Human-Weg. Weitere Räume erscheinen erst nach dem Return.";
+        intro.innerHTML = "<strong>NEXAHEDRON ist die öffentliche A0 Human View innerhalb von NEXAH.</strong> Hier wird Orientation zuerst als begrenzte Erfahrung begehbar: sehen, spielen, unterscheiden und zurückkehren. NEXAH hält dahinter Methode, Quellen, Science und Library.";
       }
       const doorCopy = humanDoor?.querySelector<HTMLElement>("p");
       const doorAction = humanDoor?.querySelector<HTMLElement>("b");

@@ -163,3 +163,22 @@ test("About positions the A0 Human View without exposing internal architecture",
   const visibleDocument = html.split("<body>")[1].split('<script id="_R_">')[0];
   assert.doesNotMatch(visibleDocument, /Gateway|Runtime|public contract|provider/i);
 });
+
+test("About NEXAHEDRON explains the Human View, its rooms and the return to NEXAH", async () => {
+  const response = await render("/about-nexahedron");
+  assert.equal(response.status, 200);
+  const html = await response.text();
+
+  assert.match(html, /Erst erleben\./);
+  assert.match(html, /Dann einordnen\./);
+  assert.match(html, /Zwei Maßstäbe\./);
+  assert.match(html, /Eine klare Rückbindung\./);
+  for (const room of ["Human View", "Arcade", "Club", "C Connect"]) {
+    assert.match(html, new RegExp(room));
+  }
+  assert.match(html, /LIBRARY · VORGEMERKT/);
+  assert.match(html, /keine behauptete aktive Integration/);
+  assert.match(html, /To NEXAH/);
+  const visibleDocument = html.split("<body>")[1].split('<script id="_R_">')[0];
+  assert.doesNotMatch(visibleDocument, /Library adapter|Gateway|Runtime|public contract|provider/i);
+});

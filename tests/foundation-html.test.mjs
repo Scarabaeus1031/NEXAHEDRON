@@ -25,7 +25,7 @@ test("renders the public homepage as the bounded A0 Human View entrance", async 
   assert.match(html, /class="a0-source-home-shell"/);
   assert.match(html, /class="a0-source-host-header"/);
   assert.match(html, /class="a0-source-host-nav"/);
-  for (const destination of ["Human View", "Arcade", "Club", "To NEXAH", "C Connect", "Scarabæus 1033"]) {
+  for (const destination of ["Human View", "Arcade", "Club", "About NEXAHEDRON", "To NEXAH", "C Connect", "Scarabæus 1033"]) {
     assert.match(html, new RegExp(destination));
   }
   assert.match(html, /href="\/\?view=human"/);
@@ -54,8 +54,12 @@ test("renders the public homepage as the bounded A0 Human View entrance", async 
   assert.match(publicNavigation, /A0_MATHEMATICAL_JOINTS\.html/);
   assert.match(publicNavigation, /https:\/\/www\.scarabaeus1033\.net\//);
   assert.match(publicNavigation, /Scarabæus 1033 · Werkstatt öffnen/);
+  assert.match(publicNavigation, /projection"\) === "nexah-a0"/);
+  assert.match(publicNavigation, /#built-world,body>footer\{display:none!important\}/);
+  assert.match(publicNavigation, /getElementById\("a0-home"\).*scrollIntoView/);
   assert.match(worldFrame, /dataset\.nexahedronProjection = isFoyer \? "foyer" : "experience"/);
-  assert.match(worldFrame, /Weitere Räume erscheinen erst nach dem Return/);
+  assert.match(worldFrame, /NEXAHEDRON ist die öffentliche A0 Human View innerhalb von NEXAH/);
+  assert.match(worldFrame, /NEXAH hält dahinter Methode, Quellen, Science und Library/);
   assert.match(worldFrame, /Human View starten →/);
   assert.match(worldFrame, /#top > :not\(#built-world\)/);
   assert.match(worldFrame, /\.world-room:not\(\.world-room--human\)/);

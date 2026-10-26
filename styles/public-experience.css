@@ -3406,6 +3406,308 @@ a.case-card:hover {
   color: #f4c849;
 }
 
+/* About NEXAHEDRON · the Human View before the wider NEXAH field */
+.about-nexahedron-page {
+  width: 100%;
+  padding: 0;
+  background: #06141d;
+  color: #edf6f7;
+}
+
+.nexahedron-about-hero {
+  position: relative;
+  display: grid;
+  width: 100vw;
+  min-height: calc(100svh - 5.8rem);
+  margin-left: calc(50% - 50vw);
+  padding: clamp(4rem, 9vw, 8rem) max(1.5rem, calc((100vw - 76rem) / 2));
+  grid-template-columns: minmax(0, 1.08fr) minmax(18rem, 0.62fr);
+  gap: clamp(3rem, 9vw, 8rem);
+  align-items: center;
+  overflow: hidden;
+  background:
+    radial-gradient(circle at 79% 43%, rgb(101 222 239 / 10%), transparent 24rem),
+    radial-gradient(circle at 92% 72%, rgb(241 91 170 / 9%), transparent 20rem),
+    linear-gradient(112deg, #06141d 0 56%, #101126 100%);
+}
+
+.nexahedron-about-hero::before,
+.nexahedron-about-hero::after {
+  position: absolute;
+  inset: -20%;
+  content: "";
+  pointer-events: none;
+}
+
+.nexahedron-about-hero::before {
+  background:
+    linear-gradient(124deg, transparent 0 52%, rgb(255 255 255 / 3.5%) 52.3%, transparent 53%),
+    linear-gradient(128deg, transparent 0 55%, rgb(0 0 0 / 32%) 55.4% 61%, transparent 61.4%);
+}
+
+.nexahedron-about-hero::after {
+  background:
+    linear-gradient(rgb(105 180 194 / 4.5%) 1px, transparent 1px),
+    linear-gradient(90deg, rgb(105 180 194 / 4.5%) 1px, transparent 1px);
+  background-size: 5rem 5rem;
+  mask-image: linear-gradient(90deg, black, transparent 76%);
+}
+
+.nexahedron-about-hero > * {
+  position: relative;
+  z-index: 1;
+}
+
+.nexahedron-about-hero .public-kicker,
+.nexahedron-about-rooms .public-kicker,
+.nexahedron-about-next .public-kicker {
+  color: #f15baa;
+}
+
+.nexahedron-about-hero h1 {
+  max-width: 11ch;
+  margin: 1rem 0 2rem;
+  font-family: var(--font-display);
+  font-size: clamp(4rem, 8vw, 7.4rem);
+  font-weight: 400;
+  letter-spacing: -0.065em;
+  line-height: 0.88;
+}
+
+.nexahedron-about-hero h1 em {
+  color: #65deef;
+  font-weight: 400;
+}
+
+.nexahedron-about-hero > div:first-child > p:last-of-type {
+  max-width: 43rem;
+  color: #aebfc6;
+  font-size: clamp(1rem, 1.6vw, 1.2rem);
+  line-height: 1.72;
+}
+
+.nexahedron-about-hero nav {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.8rem;
+  margin-top: 2.2rem;
+}
+
+.nexahedron-about-hero nav a,
+.nexahedron-about-next > a {
+  padding: 0.9rem 1.1rem;
+  border: 1px solid rgb(145 183 197 / 34%);
+  color: #dce9ec;
+  font-size: 0.7rem;
+  font-weight: 750;
+  letter-spacing: 0.08em;
+  text-decoration: none;
+  text-transform: uppercase;
+}
+
+.nexahedron-about-hero nav a:first-child {
+  border-color: #65deef;
+  background: #65deef;
+  color: #07131c;
+}
+
+.nexahedron-about-mark {
+  position: relative;
+  display: grid;
+  width: min(29vw, 24rem);
+  min-width: 18rem;
+  aspect-ratio: 1;
+  place-items: center;
+  justify-self: center;
+}
+
+.nexahedron-about-mark > span {
+  position: absolute;
+  border: 1px solid rgb(101 222 239 / 28%);
+  border-radius: 50%;
+}
+
+.nexahedron-about-mark > span:first-child { inset: 0; }
+.nexahedron-about-mark > span:nth-child(2) { inset: 24%; border-color: rgb(241 91 170 / 44%); }
+.nexahedron-about-mark i { color: #f4c849; font-size: 2rem; font-style: normal; }
+.nexahedron-about-mark small { position: absolute; right: 3%; bottom: 8%; color: #8299a3; font-size: 0.58rem; letter-spacing: 0.16em; line-height: 1.7; }
+
+.nexahedron-about-relation,
+.nexahedron-about-rooms,
+.nexahedron-library-reserve,
+.nexahedron-about-next {
+  width: min(calc(100% - 3rem), 76rem);
+  margin-inline: auto;
+}
+
+.nexahedron-about-relation {
+  padding-block: clamp(6rem, 11vw, 10rem);
+}
+
+.nexahedron-about-relation > header {
+  display: grid;
+  grid-template-columns: 0.7fr 1.3fr;
+  gap: clamp(2rem, 7vw, 7rem);
+  align-items: end;
+  margin-bottom: clamp(3rem, 7vw, 6rem);
+}
+
+.nexahedron-about-relation h2,
+.nexahedron-about-rooms h2,
+.nexahedron-library-reserve h2,
+.nexahedron-about-next h2 {
+  margin: 0.8rem 0 0;
+  font-family: var(--font-display);
+  font-size: clamp(3rem, 6vw, 6rem);
+  font-weight: 400;
+  letter-spacing: -0.055em;
+  line-height: 0.92;
+}
+
+.nexahedron-about-relation > div {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  border: 1px solid rgb(145 183 197 / 25%);
+}
+
+.nexahedron-about-relation article {
+  min-height: 24rem;
+  padding: clamp(2rem, 5vw, 4rem);
+}
+
+.nexahedron-about-relation article + article {
+  border-left: 1px solid rgb(145 183 197 / 25%);
+  background: linear-gradient(130deg, rgb(241 91 170 / 5%), rgb(244 200 73 / 4%));
+}
+
+.nexahedron-about-relation small,
+.nexahedron-library-reserve span {
+  color: #f4c849;
+  font-size: 0.62rem;
+  font-weight: 750;
+  letter-spacing: 0.13em;
+}
+
+.nexahedron-about-relation h3 {
+  margin: 4.5rem 0 1.3rem;
+  font-family: var(--font-display);
+  font-size: clamp(2.8rem, 5vw, 5rem);
+  font-weight: 400;
+  letter-spacing: -0.05em;
+}
+
+.nexahedron-about-relation p,
+.nexahedron-about-rooms header > p,
+.nexahedron-library-reserve p,
+.nexahedron-about-next > p:not(.public-kicker) {
+  color: #a8bbc3;
+  font-size: 1.03rem;
+  line-height: 1.72;
+}
+
+.nexahedron-about-rooms {
+  padding-block: clamp(6rem, 11vw, 10rem);
+  border-top: 1px solid rgb(145 183 197 / 22%);
+}
+
+.nexahedron-about-rooms > header {
+  display: grid;
+  grid-template-columns: 1.15fr 0.85fr;
+  gap: clamp(2rem, 8vw, 8rem);
+  align-items: end;
+  margin-bottom: clamp(3rem, 7vw, 6rem);
+}
+
+.nexahedron-room-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  border-top: 1px solid rgb(145 183 197 / 26%);
+  border-left: 1px solid rgb(145 183 197 / 26%);
+}
+
+.nexahedron-room {
+  display: flex;
+  min-height: 22rem;
+  padding: clamp(2rem, 4vw, 3.4rem);
+  flex-direction: column;
+  border-right: 1px solid rgb(145 183 197 / 26%);
+  border-bottom: 1px solid rgb(145 183 197 / 26%);
+  color: #edf6f7;
+  text-decoration: none;
+  transition: background 180ms ease, border-color 180ms ease;
+}
+
+.nexahedron-room:hover,
+.nexahedron-room:focus-visible { background: rgb(255 255 255 / 3.5%); }
+.nexahedron-room--human { box-shadow: inset 0 3px #65deef; }
+.nexahedron-room--arcade { box-shadow: inset 0 3px #f4c849; }
+.nexahedron-room--club { box-shadow: inset 0 3px #f15baa; }
+.nexahedron-room--connect { box-shadow: inset 0 3px #b793ee; }
+.nexahedron-room small { color: #78919b; font-size: 0.62rem; letter-spacing: 0.14em; }
+.nexahedron-room h3 { margin: auto 0 1rem; font-family: var(--font-display); font-size: clamp(2.5rem, 4vw, 4.2rem); font-weight: 400; letter-spacing: -0.045em; }
+.nexahedron-room p { max-width: 31rem; color: #9fb2ba; line-height: 1.65; }
+.nexahedron-room strong { margin-top: 1.5rem; color: #65deef; font-size: 0.66rem; letter-spacing: 0.09em; text-transform: uppercase; }
+.nexahedron-room--arcade strong { color: #f4c849; }
+.nexahedron-room--club strong { color: #f15baa; }
+.nexahedron-room--connect strong { color: #b793ee; }
+
+.nexahedron-library-reserve {
+  display: grid;
+  padding-block: clamp(5rem, 9vw, 8rem);
+  grid-template-columns: 1fr 1fr;
+  gap: clamp(3rem, 9vw, 9rem);
+  border-top: 1px dashed rgb(244 200 73 / 45%);
+  border-bottom: 1px dashed rgb(244 200 73 / 45%);
+  background: linear-gradient(90deg, rgb(244 200 73 / 2.5%), transparent 48%, rgb(241 91 170 / 2.5%));
+}
+
+.nexahedron-library-reserve h2 {
+  max-width: 12ch;
+  font-size: clamp(2.6rem, 5vw, 4.8rem);
+}
+
+.nexahedron-library-reserve span {
+  display: block;
+  margin-top: 2rem;
+  color: #d6b85e;
+  line-height: 1.7;
+}
+
+.nexahedron-about-next {
+  display: grid;
+  padding-block: clamp(8rem, 14vw, 13rem);
+  justify-items: center;
+  text-align: center;
+}
+
+.nexahedron-about-next h2 { max-width: 14ch; }
+.nexahedron-about-next > p:not(.public-kicker) { max-width: 42rem; margin: 2rem auto 0; }
+.nexahedron-about-next > a { margin-top: 2.2rem; border-color: #f15baa; background: #f15baa; color: #07131c; }
+
+@media (max-width: 800px) {
+  .nexahedron-about-hero,
+  .nexahedron-about-relation > header,
+  .nexahedron-about-rooms > header,
+  .nexahedron-library-reserve {
+    grid-template-columns: 1fr;
+  }
+
+  .nexahedron-about-mark { width: min(70vw, 22rem); }
+  .nexahedron-about-relation > div,
+  .nexahedron-room-grid { grid-template-columns: 1fr; }
+  .nexahedron-about-relation article + article { border-top: 1px solid rgb(145 183 197 / 25%); border-left: 0; }
+}
+
+@media (max-width: 560px) {
+  .nexahedron-about-hero { padding-top: 3.5rem; }
+  .nexahedron-about-hero h1 { font-size: clamp(3.35rem, 17vw, 5rem); }
+  .nexahedron-about-hero nav a { width: 100%; text-align: center; }
+  .nexahedron-about-relation,
+  .nexahedron-about-rooms,
+  .nexahedron-library-reserve,
+  .nexahedron-about-next { width: min(calc(100% - 2rem), 76rem); }
+}
+
 .legal-public-page h1 {
   margin: .5rem 0 1rem;
   font-family: var(--font-display);

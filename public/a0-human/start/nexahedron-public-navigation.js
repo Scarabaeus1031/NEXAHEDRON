@@ -12,8 +12,20 @@
   ];
   const internalSurfacePattern = new RegExp(`A0 (?:Science|Research) ${"D" + "esk"}`, "i");
   const internalSurfaceGlobalPattern = new RegExp(`A0 (?:Science|Research) ${"D" + "esk"}`, "gi");
+  const isNexahA0Projection = new URLSearchParams(window.location.search).get("projection") === "nexah-a0";
+
+  function applyNexahA0Projection() {
+    if (!isNexahA0Projection || document.documentElement.dataset.nexahA0Projection === "true") return;
+    document.documentElement.dataset.nexahA0Projection = "true";
+    const style = document.createElement("style");
+    style.id = "nexahA0ProjectionStyle";
+    style.textContent = "body>header.top,#built-world,body>footer{display:none!important}main#top{padding-top:0!important}#a0-home{scroll-margin-top:0!important}";
+    document.head.append(style);
+    requestAnimationFrame(() => document.getElementById("a0-home")?.scrollIntoView({ block: "start" }));
+  }
 
   function applyPublicBoundary() {
+    applyNexahA0Projection();
     document.querySelectorAll("a[href]").forEach((link) => {
       const raw = link.getAttribute("href") || "";
       const label = (link.textContent || "").trim();

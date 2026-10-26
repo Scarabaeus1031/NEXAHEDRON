@@ -93,3 +93,33 @@ a Finding, mathematical relation, Paper claim, Human-utility result, release
 or deployment. The Science Desk, Findings/Paper Workspace and Mathfield remain
 unchanged. The detailed source-bound receipt remains with the Builder Public
 Desk in `PUBLIC_NEXAHEDRON_HUMAN_READING_2026-10-25.md`.
+
+## About / Human View release-preparation return · 26 October 2026
+
+`M-PUB01 / LOCAL VERIFIED / NOT PUSHED / NOT DEPLOYED`
+
+The existing public shell now includes `/about-nexahedron` immediately before
+`/about` (`To NEXAH`). The page explains NEXAHEDRON as the public A0 Human
+View, names Human View, Arcade, Club and C Connect, and returns to NEXAH for
+method, sources, Science and Library. Library remains visibly marked
+`VORGEMERKT`; no active Library integration is claimed.
+
+The change reuses the existing NEXAHEDRON repository identity and the existing
+Mission Control priority `M-PUB01`. It creates no Navigator identity, relation,
+Study, Finding, Paper state or science promotion.
+
+Release-preparation evidence:
+
+- certified ORION source pin `d34fbb2f99334534f4db89465a29f8bdb16d14d3`
+  and canonical-content fingerprint verified;
+- `npm run check`: PASS;
+- `npm test`: PASS — `198` tests, `175` passed, `23` intentionally skipped,
+  `0` failed; five ORION transport integration tests also passed;
+- `npm run check:a0-human`: PASS — `763` bound files and `212` declared
+  transforms;
+- production privacy scan: PASS — `0` findings;
+- no commit, push, publication or deployment has been performed by this
+  return.
+
+The Builder Desk owns the implementation receipt. Mission Control continues to
+own release currentness and the separate Human Owner push/deployment gate.
