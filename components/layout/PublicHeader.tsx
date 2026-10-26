@@ -2,8 +2,8 @@ import Link from "next/link";
 
 export function PublicHeader({ pathname }: { readonly pathname: string }) {
   const isHome = pathname === "/";
-  const isAboutNexahedron = pathname === "/about-nexahedron";
   const isAbout = pathname === "/about";
+  const isLibrary = pathname === "/library";
 
   return (
     <header className="public-header">
@@ -16,14 +16,14 @@ export function PublicHeader({ pathname }: { readonly pathname: string }) {
       </Link>
       <nav className="public-navigation" aria-label="Primary navigation">
         <Link href="/" aria-current={isHome ? "page" : undefined}>A0 World</Link>
-        <Link href="/about-nexahedron" aria-current={isAboutNexahedron ? "page" : undefined}>About NEXAHEDRON</Link>
+        <Link href="/library" aria-current={isLibrary ? "page" : undefined}>Library</Link>
         <Link href="/about" aria-current={isAbout ? "page" : undefined}>To NEXAH</Link>
         <span className="public-navigation__portals" aria-label="Connected NEXAH places">
           <Link
             className="public-navigation__dot"
-            href="/?view=connect"
-            aria-label="C Connect · all doors open"
-            title="C Connect · all doors open"
+            href="/?view=connect&from=human"
+            aria-label="Human Connect · Frage stellen oder etwas teilen"
+            title="Human Connect · Frage stellen oder etwas teilen"
           ><span aria-hidden="true" /></Link>
           <a
             className="public-navigation__scarab"

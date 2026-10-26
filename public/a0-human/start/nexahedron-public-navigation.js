@@ -14,6 +14,18 @@
   const internalSurfaceGlobalPattern = new RegExp(`A0 (?:Science|Research) ${"D" + "esk"}`, "gi");
   const isNexahA0Projection = new URLSearchParams(window.location.search).get("projection") === "nexah-a0";
 
+  function returnRawSourceToNexahedronEntry() {
+    const isTopLevel = window.top === window.self;
+    const isRawSourceHome = /\/a0-human\/start\/(?:index\.html)?$/.test(window.location.pathname);
+    if (!isNexahA0Projection && isTopLevel && isRawSourceHome) {
+      window.location.replace("/");
+      return true;
+    }
+    return false;
+  }
+
+  if (returnRawSourceToNexahedronEntry()) return;
+
   function applyNexahA0Projection() {
     if (!isNexahA0Projection || document.documentElement.dataset.nexahA0Projection === "true") return;
     document.documentElement.dataset.nexahA0Projection = "true";

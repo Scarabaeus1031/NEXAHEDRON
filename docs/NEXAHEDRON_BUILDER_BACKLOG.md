@@ -123,3 +123,26 @@ Release-preparation evidence:
 
 The Builder Desk owns the implementation receipt. Mission Control continues to
 own release currentness and the separate Human Owner push/deployment gate.
+
+## Parked Human Arcade simplification · 26 October 2026
+
+`M-PUB01-NXH-ARCADE-HUMAN-01 / PARKED / NOT ACTIVE`
+
+The present NEXAHEDRON Human Entry is frozen at the locally reviewed state.
+Further Arcade reduction is recorded as a separate Builder UX task and is not
+part of the current presentation pass.
+
+| Field | Bound disposition |
+|---|---|
+| Existing identity | Reuses the existing NEXAHEDRON Arcade and `M-PUB01`; creates no new route family, Navigator identity, Study or Finding. |
+| Human value | A first-time visitor can enter and play without seeing Builder Bench controls or having to choose between implementation-facing actions. |
+| Proposed scope | Provide a Human View projection of Arcade with the primary play/return path, fewer visible controls and no Bench access. Preserve the full Builder surface at its existing internal route. |
+| Explicitly out of scope | No Arcade mechanics rewrite, no new demonstrator, no deletion of Builder controls, no change to source data or scientific status, and no deployment. |
+| Required UX checks | Normal and narrow width; keyboard and visible focus; Reduced Motion; start/play/return; lossless return to the Human Entry; no route or control that exposes the Builder Bench. |
+| Owner | Builder Desk implementation under Human Owner acceptance; Mission Control retains `M-PUB01` priority and release authority. |
+| Activation gate | One explicit Human Owner instruction to start this exact task after the current Human Entry freeze. |
+| Done when | The Human projection passes the stated UX checks, the Builder route remains intact, and a bounded local return records changed files, tests and open limits. |
+
+Parking this task does not reopen the current release cut, alter the frozen
+Human Entry, authorize a commit or push, or imply that the present Arcade has
+failed technical validation.

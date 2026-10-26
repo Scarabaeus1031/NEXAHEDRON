@@ -1,4 +1,5 @@
 import assert from "node:assert/strict";
+import { readFile } from "node:fs/promises";
 import test from "node:test";
 
 async function render(path) {
@@ -123,13 +124,18 @@ test("Plate Tectonics follows the Curated Reference Case hierarchy", async () =>
   assert.match(html, /Curated Reference Case v1\.0/);
 });
 
-test("the stable library route presents a bounded local Reference Case map", async () => {
+test("the stable library route presents books, film and the bounded local Reference Case map", async () => {
   const response = await render("/library");
   assert.equal(response.status, 200);
   const html = await response.text();
 
   for (const text of [
-    "A local view of the curated collection.",
+    "Read, watch, and follow a question further.",
+    "One field. More than one medium.",
+    "BEYOND INFORMATION",
+    "THE WONDER OPERATOR",
+    "THE OPERATOR’S HANDBOOK",
+    "Framework of Legibility",
     "The first visible terrain.",
     "How to read this view",
     "Open room",
@@ -139,7 +145,8 @@ test("the stable library route presents a bounded local Reference Case map", asy
   ]) {
     assert.match(html, new RegExp(text));
   }
-  assert.match(html, /not the canonical NEXAH Library/);
+  assert.match(html, /publication authority stay with the NEXAH Library/);
+  assert.match(html, /https:\/\/nexah\.de\/media\/framework-of-legibility\.mp4/);
 });
 
 test("About positions the A0 Human View without exposing internal architecture", async () => {
@@ -152,9 +159,14 @@ test("About positions the A0 Human View without exposing internal architecture",
   assert.match(html, /The room ends\./);
   assert.match(html, /The field opens\./);
   assert.match(html, /THERE · ORIENTATION/);
+  assert.match(html, /class="about-roles__field"/);
   assert.match(html, /ELSEWHERE · WORKSHOP/);
   assert.match(html, /SCARABÆUS/);
   assert.match(html, /Three doors into NEXAH/);
+  assert.match(html, /NEXAHEDRON ist die A0 Human View/);
+  assert.match(html, /Dies ist weder ein Wechsel der Zuständigkeit noch ein zweites System/);
+  assert.match(html, /Keine einzelne Tür beansprucht das Ganze/);
+  assert.match(html, /Unterscheidung zwischen Erfahrung und Quelle/);
   for (const door of ["Visitor Guide", "Method &amp; context", "Science Lab"]) {
     assert.match(html, new RegExp(door));
   }
@@ -168,6 +180,7 @@ test("About NEXAHEDRON explains the Human View, its rooms and the return to NEXA
   const response = await render("/about-nexahedron");
   assert.equal(response.status, 200);
   const html = await response.text();
+  const publicHeader = await readFile(new URL("../components/layout/PublicHeader.tsx", import.meta.url), "utf8");
 
   assert.match(html, /Erst erleben\./);
   assert.match(html, /Dann einordnen\./);
@@ -179,6 +192,8 @@ test("About NEXAHEDRON explains the Human View, its rooms and the return to NEXA
   assert.match(html, /LIBRARY · VORGEMERKT/);
   assert.match(html, /keine behauptete aktive Integration/);
   assert.match(html, /To NEXAH/);
+  assert.doesNotMatch(html, /Die Räume verstehen/);
+  assert.doesNotMatch(publicHeader, /href="\/about-nexahedron"/);
   const visibleDocument = html.split("<body>")[1].split('<script id="_R_">')[0];
   assert.doesNotMatch(visibleDocument, /Library adapter|Gateway|Runtime|public contract|provider/i);
 });

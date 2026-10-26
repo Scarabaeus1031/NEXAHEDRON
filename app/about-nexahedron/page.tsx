@@ -51,8 +51,7 @@ export default function AboutNexahedronPage() {
           <h1 id="nexahedron-about-title">Erst erleben.<br /><em>Dann einordnen.</em></h1>
           <p>NEXAHEDRON ist die öffentliche Human View von A0 innerhalb des NEXAH-Orientierungsfeldes. Die Methode wird hier nicht zuerst erklärt, sondern als begrenzte Erfahrung begehbar.</p>
           <nav aria-label="About NEXAHEDRON Einstieg">
-            <a href="#nexahedron-rooms">Die Räume verstehen <span aria-hidden="true">↓</span></a>
-            <Link href="/about">Weiter zu NEXAH <span aria-hidden="true">→</span></Link>
+            <Link href="/about">To NEXAH <span aria-hidden="true">→</span></Link>
           </nav>
         </div>
         <div className="nexahedron-about-mark" aria-hidden="true">

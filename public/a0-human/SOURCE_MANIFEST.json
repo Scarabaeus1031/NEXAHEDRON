@@ -5277,10 +5277,17 @@
       "treatment": "BYTE_COPY"
     },
     {
+      "bundle_path": "start/downloads/A0_PENTAGON_KNICK_APERTURE_INTAKE_2026-10-25/deliverables/glb/NEXAH_Fuenflaschenkrone_Animiert_2026-10-25.glb",
+      "source_path": "30 SCIENCE LAB/NEXAH-Science-Lab/RESEARCH_PROGRAM_B_MATHEMATICAL_FOUNDATIONS/AXIOM0_QMODE_ORIENTATION_TO_MEASUREMENT_FOUNDATION_PACKAGE_2026-10-01/A0_BOOK/downloads/A0_PENTAGON_KNICK_APERTURE_INTAKE_2026-10-25/deliverables/glb/NEXAH_Fuenflaschenkrone_Animiert_2026-10-25.glb",
+      "source_sha256": "24a33c38eb6e95b110e851ed5fe321f19120bf580248fa09b3a4e5c07b33f754",
+      "bundle_sha256": "24a33c38eb6e95b110e851ed5fe321f19120bf580248fa09b3a4e5c07b33f754",
+      "treatment": "BYTE_COPY"
+    },
+    {
       "bundle_path": "start/index.html",
       "source_path": "30 SCIENCE LAB/NEXAH-Science-Lab/RESEARCH_PROGRAM_B_MATHEMATICAL_FOUNDATIONS/AXIOM0_QMODE_ORIENTATION_TO_MEASUREMENT_FOUNDATION_PACKAGE_2026-10-01/A0_BOOK/index.html",
-      "source_sha256": "e614ee07f3789710c269f60843514ac612e0aa26b117a4940f8af0511f20742c",
-      "bundle_sha256": "ff0e816bf2965354a3ec9b6ac661d7edb1efeb624aa92a36c5be81a46adffb42",
+      "source_sha256": "97c88d07d2caeea4fda8cb736a3611f8f9a94117482f148b0ad37181fb053878",
+      "bundle_sha256": "e284057e5e8f596684f02c9513ed5996f51cd1c3e064904b55f6692fe0160598",
       "treatment": "PUBLIC_PRESENTATION_TRANSFORM"
     },
     {
@@ -5300,8 +5307,8 @@
     {
       "bundle_path": "start/nexahedron-public-navigation.js",
       "source_path": "40 EXPERIENCE PRODUCTION/NEXAHEDRON/public/a0-human/start/nexahedron-public-navigation.js",
-      "source_sha256": "4d4b084c6aff7c6befbd364fcf1b0b8e1dbbcc9dcc6b097b1f309a3ab1d03e7f",
-      "bundle_sha256": "4d4b084c6aff7c6befbd364fcf1b0b8e1dbbcc9dcc6b097b1f309a3ab1d03e7f",
+      "source_sha256": "08b8ba507f850d0576f11b9d0eb112a7fac3684ead1b8c2e70c3c1927c5784ef",
+      "bundle_sha256": "08b8ba507f850d0576f11b9d0eb112a7fac3684ead1b8c2e70c3c1927c5784ef",
       "treatment": "PUBLIC_PRESENTATION_TRANSFORM"
     },
     {

@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { PublicPageIntro } from "@/features/library/components/PublicPageIntro";
 import { foundationRooms } from "@/features/library/data";
+import { featuredWorks } from "@/features/library/featured-works";
 
 const atlasPoints = [
   { name: "Earth", className: "atlas-point atlas-point--earth atlas-point--open", available: true },
@@ -14,13 +15,45 @@ const atlasPoints = [
 export default function LibraryPage() {
   return (
     <article className="public-page library-page">
-      <PublicPageIntro eyebrow="Reference Cases" title="A local view of the curated collection.">
+      <PublicPageIntro eyebrow="Library" title="Read, watch, and follow a question further.">
         <p>
-          This read-only surface arranges NEXAHEDRON&apos;s Human- and
-          editorial-authored reference cases. It is not the canonical NEXAH
-          Library and creates no Library authority.
+          This local NEXAHEDRON view brings selected public works, film and
+          reference cases together. It remains a presentation surface: canonical
+          work identity and publication authority stay with the NEXAH Library.
         </p>
       </PublicPageIntro>
+
+      <section className="library-media" aria-labelledby="library-media-title">
+        <div className="section-heading">
+          <div>
+            <p className="public-kicker">Books &amp; film</p>
+            <h2 id="library-media-title">One field. More than one medium.</h2>
+          </div>
+          <p>A book develops an argument across pages. A film connects image, time and sound. Neither replaces the other.</p>
+        </div>
+        <div className="library-media__books" aria-label="Selected works from the NEXAH Library">
+          {featuredWorks.map((work, index) => (
+            <a href={work.href} key={work.href} target="_blank" rel="noopener noreferrer">
+              <small>0{index + 1} · NEXAH LIBRARY ↗</small>
+              <img src={work.cover} alt={`Cover of ${work.title}`} loading="lazy" />
+              <strong>{work.title}</strong>
+              <span>{work.note}</span>
+            </a>
+          ))}
+        </div>
+        <div className="library-media__film">
+          <div>
+            <p className="public-kicker">Film · 2:48 minutes</p>
+            <h3>Framework of Legibility</h3>
+            <p>Image and sound move through rooms, maps, light and shadow — showing how legibility depends on frame, motion and point of view.</p>
+            <small>The film and books are not translations of one another. They open different routes into the same field.</small>
+          </div>
+          <video controls playsInline preload="metadata" poster="https://nexah.de/media/framework-of-legibility-poster.jpg">
+            <source src="https://nexah.de/media/framework-of-legibility.mp4" type="video/mp4" />
+            Your browser cannot play the embedded film. <a href="https://nexah.de/media/framework-of-legibility.mp4">Open the film at NEXAH.</a>
+          </video>
+        </div>
+      </section>
 
       <section className="library-atlas" aria-labelledby="atlas-title">
         <div className="section-heading">
@@ -92,7 +125,7 @@ export default function LibraryPage() {
   );
 }
 export const metadata: Metadata = {
-  title: "Reference Cases",
-  description: "Explore NEXAHEDRON's local read-only collection of Curated Reference Cases.",
+  title: "Library",
+  description: "Selected books, film and read-only reference cases from the NEXAHEDRON Human View.",
   alternates: { canonical: "/library" },
 };

@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Script from "next/script";
 import { AppShell } from "@/components/layout/AppShell";
 import { AlphaJourneyProvider } from "@/features/orientation/provider";
 import "./globals.css";
@@ -10,7 +11,7 @@ export const metadata: Metadata = {
   metadataBase: new URL("https://nexahedron.com"),
   applicationName: "NEXAHEDRON",
   title: {
-    default: "NEXAHEDRON — A0 Human View",
+    default: "NEXAHEDRON — Human View · NEXAH A0",
     template: "%s — NEXAHEDRON",
   },
   description: "The Human-facing A0 entrance: read, turn, compare, change, play and return with the difference visible.",
@@ -21,13 +22,13 @@ export const metadata: Metadata = {
   robots: { index: true, follow: true },
   icons: { icon: "/icon.svg" },
   openGraph: {
-    title: "NEXAHEDRON — A0 Human View",
+    title: "NEXAHEDRON — Human View · NEXAH A0",
     description: "A source-bound A0 entrance for reading, turning, comparing, changing, playing and returning.",
-    images: [{ url: "/og.png", width: 1734, height: 909, alt: "NEXAHEDRON — A0 Human View" }],
+    images: [{ url: "/og.png", width: 1734, height: 909, alt: "NEXAHEDRON — Human View · NEXAH A0" }],
   },
   twitter: {
     card: "summary_large_image",
-    title: "NEXAHEDRON — A0 Human View",
+    title: "NEXAHEDRON — Human View · NEXAH A0",
     description: "A source-bound A0 entrance for reading, turning, comparing, changing, playing and returning.",
     images: ["/og.png"],
   },
@@ -41,6 +42,7 @@ export default function RootLayout({
   return (
     <html lang="de">
       <body>
+        <Script type="module" src="/a0-human/start/assets/vendor/model-viewer.min.js" strategy="afterInteractive" />
         <AlphaJourneyProvider>
           <AppShell>{children}</AppShell>
         </AlphaJourneyProvider>
