@@ -136,12 +136,12 @@ part of the current presentation pass.
 |---|---|
 | Existing identity | Reuses the existing NEXAHEDRON Arcade and `M-PUB01`; creates no new route family, Navigator identity, Study or Finding. |
 | Human value | A first-time visitor can enter and play without seeing Builder Bench controls or having to choose between implementation-facing actions. |
-| Proposed scope | Provide a Human View projection of Arcade with the primary play/return path, fewer visible controls and no Bench access. Preserve the full Builder surface at its existing internal route. |
+| Proposed scope | Provide a Human View projection of Arcade with the primary play/return path, fewer visible controls and no Bench access. Remove the in-window `Arcade öffnen` action: it leaves the embedded Human View and breaks page continuity. Playing and returning must remain inside the current page. Preserve the full Builder surface at its existing internal route. |
 | Explicitly out of scope | No Arcade mechanics rewrite, no new demonstrator, no deletion of Builder controls, no change to source data or scientific status, and no deployment. |
 | Required UX checks | Normal and narrow width; keyboard and visible focus; Reduced Motion; start/play/return; lossless return to the Human Entry; no route or control that exposes the Builder Bench. |
 | Owner | Builder Desk implementation under Human Owner acceptance; Mission Control retains `M-PUB01` priority and release authority. |
 | Activation gate | One explicit Human Owner instruction to start this exact task after the current Human Entry freeze. |
-| Done when | The Human projection passes the stated UX checks, the Builder route remains intact, and a bounded local return records changed files, tests and open limits. |
+| Done when | The Human projection has no control that navigates away to Arcade or Builder, passes the stated UX checks, keeps play and Return in the current page, leaves the Builder route intact, and records changed files, tests and open limits in a bounded local return. |
 
 Parking this task does not reopen the current release cut, alter the frozen
 Human Entry, authorize a commit or push, or imply that the present Arcade has
