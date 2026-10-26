@@ -5,7 +5,8 @@ import test from "node:test";
 import { THE_EYE_DEMO_IDS, THE_EYE_DEMOS } from "../features/the-eye/catalog.ts";
 
 const artifactRoot = process.env.THE_EYE_LOCAL_ARTIFACT_ROOT;
-if (!artifactRoot || !process.env.THE_EYE_A2_VERIFIER) throw new Error("A5 boundary tests require local artifact and verifier configuration");
+const localA5Configured = Boolean(artifactRoot && process.env.THE_EYE_A2_VERIFIER);
+const localA5Test = localA5Configured ? test : test.skip;
 
 async function request(path, init) {
   const workerUrl = new URL("../dist/server/index.js", import.meta.url);
@@ -14,7 +15,7 @@ async function request(path, init) {
   return worker.fetch(new Request(`http://localhost${path}`, init), { ASSETS: { fetch: async () => new Response("Not found", { status: 404 }) } }, { waitUntil() {}, passThroughOnException() {} });
 }
 
-test("/the-eye renders within the existing shell without private paths", async () => {
+localA5Test("/the-eye renders within the existing shell without private paths", async () => {
   const response = await request("/the-eye");
   assert.equal(response.status, 200);
   const html = await response.text();
@@ -28,7 +29,7 @@ test("/the-eye renders within the existing shell without private paths", async (
 });
 
 for (const demoId of THE_EYE_DEMO_IDS) {
-  test(`/api/the-eye/results projects ${demoId} through the compiled boundary`, async () => {
+  localA5Test(`/api/the-eye/results projects ${demoId} through the compiled boundary`, async () => {
     const response = await request(`/api/the-eye/results?demo=${demoId}`);
     assert.ok([200, 422].includes(response.status));
     const envelope = await response.json();
@@ -41,14 +42,14 @@ for (const demoId of THE_EYE_DEMO_IDS) {
   });
 }
 
-test("compiled receipt boundary distinguishes valid and invalid", async () => {
+localA5Test("compiled receipt boundary distinguishes valid and invalid", async () => {
   for (const [variant, expected] of [["valid", "RECEIPT_VALID"], ["invalid", "RECEIPT_INVALID"]]) {
     const response = await request("/api/the-eye/receipts", { method: "POST", headers: { "content-type": "application/json" }, body: JSON.stringify({ demo: "a3-pass-exact-id", variant }) });
     assert.equal((await response.json()).state, expected);
   }
 });
 
-test("compiled export boundary is byte-faithful", async () => {
+localA5Test("compiled export boundary is byte-faithful", async () => {
   const response = await request("/api/the-eye/exports?demo=a3-pass-exact-id&kind=result");
   assert.equal(response.status, 200);
   const original = await readFile(join(artifactRoot, THE_EYE_DEMOS["a3-pass-exact-id"].result));
