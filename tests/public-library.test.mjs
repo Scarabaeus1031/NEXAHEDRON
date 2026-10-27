@@ -147,10 +147,11 @@ test("the stable library route presents books, film and the bounded local Refere
   }
   assert.match(html, /publication authority stay with the NEXAH Library/);
   assert.match(html, /https:\/\/nexah\.de\/media\/framework-of-legibility\.mp4/);
+  assert.match(html, /ARE\.NA ORIGINAL/);
   for (const href of [
-    "https://nexah.de/library/beyond-information/",
-    "https://nexah.de/library/wonder-operator/",
-    "https://nexah.de/library/operators-handbook/",
+    "https://www.are.na/nexah-scarabaeus1031/beyond-information",
+    "https://www.are.na/nexah-scarabaeus1031/the-wonder-operator",
+    "https://www.are.na/nexah-scarabaeus1031/the-operator-s-handbook",
   ]) {
     assert.ok(html.includes(`href="${href}"`), `missing Library link: ${href}`);
   }

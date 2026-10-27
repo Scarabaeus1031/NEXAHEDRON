@@ -34,7 +34,7 @@ export default function LibraryPage() {
         <div className="library-media__books" aria-label="Selected works from the NEXAH Library">
           {featuredWorks.map((work, index) => (
             <a href={work.href} key={work.href} target="_blank" rel="noopener noreferrer">
-              <small>0{index + 1} · NEXAH LIBRARY ↗</small>
+              <small>0{index + 1} · ARE.NA ORIGINAL ↗</small>
               <img src={work.cover} alt={`Cover of ${work.title}`} loading="lazy" />
               <strong>{work.title}</strong>
               <span>{work.note}</span>

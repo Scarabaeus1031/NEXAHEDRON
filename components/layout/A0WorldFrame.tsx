@@ -110,7 +110,7 @@ function ShowcasePanel({ active }: { readonly active: ShowcaseId }) {
       <div className="nexahedron-showcase-books">
         {featuredWorks.map((work, index) => (
           <a href={work.href} key={work.href} target="_blank" rel="noopener noreferrer">
-            <small>0{index + 1} · NEXAH LIBRARY ↗</small>
+            <small>0{index + 1} · ARE.NA ORIGINAL ↗</small>
             <img src={work.cover} alt={`Cover von ${work.title}`} loading="lazy" />
             <strong>{work.title}</strong>
             <span>{work.note}</span>
