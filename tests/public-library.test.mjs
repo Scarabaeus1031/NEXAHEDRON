@@ -147,6 +147,13 @@ test("the stable library route presents books, film and the bounded local Refere
   }
   assert.match(html, /publication authority stay with the NEXAH Library/);
   assert.match(html, /https:\/\/nexah\.de\/media\/framework-of-legibility\.mp4/);
+  for (const href of [
+    "https://nexah.de/library/beyond-information/",
+    "https://nexah.de/library/wonder-operator/",
+    "https://nexah.de/library/operators-handbook/",
+  ]) {
+    assert.ok(html.includes(`href="${href}"`), `missing Library link: ${href}`);
+  }
 });
 
 test("About positions the A0 Human View without exposing internal architecture", async () => {
