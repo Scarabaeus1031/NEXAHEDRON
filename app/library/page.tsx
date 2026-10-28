@@ -48,9 +48,9 @@ export default function LibraryPage() {
             <p>Image and sound move through rooms, maps, light and shadow — showing how legibility depends on frame, motion and point of view.</p>
             <small>The film and books are not translations of one another. They open different routes into the same field.</small>
           </div>
-          <video controls playsInline preload="metadata" poster="https://nexah.de/media/framework-of-legibility-poster.jpg">
-            <source src="https://nexah.de/media/framework-of-legibility.mp4" type="video/mp4" />
-            Your browser cannot play the embedded film. <a href="https://nexah.de/media/framework-of-legibility.mp4">Open the film at NEXAH.</a>
+          <video controls playsInline preload="metadata" poster="/media/framework-of-legibility-poster.jpg">
+            <source src="/media/framework-of-legibility.mp4" type="video/mp4" />
+            Your browser cannot play the embedded film. <a href="/media/framework-of-legibility.mp4">Open the film directly.</a>
           </video>
         </div>
       </section>

@@ -1,5 +1,5 @@
 import assert from "node:assert/strict";
-import { readFile } from "node:fs/promises";
+import { readFile, stat } from "node:fs/promises";
 import test from "node:test";
 
 async function render(path) {
@@ -146,7 +146,14 @@ test("the stable library route presents books, film and the bounded local Refere
     assert.match(html, new RegExp(text));
   }
   assert.match(html, /publication authority stay with the NEXAH Library/);
-  assert.match(html, /https:\/\/nexah\.de\/media\/framework-of-legibility\.mp4/);
+  assert.match(html, /src="\/media\/framework-of-legibility\.mp4"/);
+  assert.match(html, /poster="\/media\/framework-of-legibility-poster\.jpg"/);
+  assert.doesNotMatch(html, /nexah\.de\/media\/framework-of-legibility/);
+
+  const film = await stat(new URL("../public/media/framework-of-legibility.mp4", import.meta.url));
+  const poster = await stat(new URL("../public/media/framework-of-legibility-poster.jpg", import.meta.url));
+  assert.ok(film.size > 1_000_000, "embedded film asset is unexpectedly small");
+  assert.ok(poster.size > 10_000, "film poster asset is unexpectedly small");
   assert.match(html, /ARE\.NA ORIGINAL/);
   for (const href of [
     "https://www.are.na/nexah-scarabaeus1031/beyond-information",

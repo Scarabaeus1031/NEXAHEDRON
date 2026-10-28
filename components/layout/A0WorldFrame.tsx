@@ -125,9 +125,9 @@ function ShowcasePanel({ active }: { readonly active: ShowcaseId }) {
   if (active === "film") {
     return (
       <div className="nexahedron-showcase-film">
-        <video controls playsInline preload="metadata" poster="https://nexah.de/media/framework-of-legibility-poster.jpg">
-          <source src="https://nexah.de/media/framework-of-legibility.mp4" type="video/mp4" />
-          Dein Browser kann den Film nicht abspielen. <a href="https://nexah.de/media/framework-of-legibility.mp4">Film bei NEXAH öffnen.</a>
+        <video controls playsInline preload="metadata" poster="/media/framework-of-legibility-poster.jpg">
+          <source src="/media/framework-of-legibility.mp4" type="video/mp4" />
+          Dein Browser kann den Film nicht abspielen. <a href="/media/framework-of-legibility.mp4">Film direkt öffnen.</a>
         </video>
         <p><strong>Framework of Legibility · 2:48</strong><br />Bild und Ton führen durch Räume, Karten, Licht und Schatten. Der Film ist ein eigener Zugang; keine Übersetzung der Bücher.</p>
       </div>
