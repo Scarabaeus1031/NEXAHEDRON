@@ -4,11 +4,11 @@ import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
 import { featuredWorks } from "@/features/library/featured-works";
 
-type ShowcaseId = "books" | "record" | "film" | "object" | "arcade" | "club";
+type ShowcaseId = "books" | "interior" | "film" | "object" | "arcade" | "club";
 
 const showcaseWindows: readonly { id: ShowcaseId; number: string; label: string; title: string; note: string }[] = [
   { id: "books", number: "01", label: "Lesen", title: "Drei Bücher", note: "Gedanken über mehrere Seiten verfolgen." },
-  { id: "record", number: "02", label: "Hören", title: "Record / Play", note: "Eine flüchtige Stimme wird zur wiederholbaren Spur." },
+  { id: "interior", number: "02", label: "Eintauchen", title: "The Living Interior", note: "Eine Oberfläche öffnet sich. Ein lebendes Feld wird sichtbar." },
   { id: "film", number: "03", label: "Sehen", title: "Kurzfilm", note: "2:48 Minuten aus Bild, Zeit und Ton." },
   { id: "object", number: "04", label: "Anfassen", title: "Ein Objekt", note: "Drehen, Abstand ändern und dieselbe Form neu sehen." },
   { id: "arcade", number: "05", label: "Spielen", title: "Arcade", note: "Drei Welten und ein gemeinsamer Puls." },
@@ -23,45 +23,53 @@ const publicChannels = [
   { href: "https://www.scarabaeus1033.net/", mark: "S", label: "Scarabæus 1033" },
 ] as const;
 
-function NexahedronRecordPlayer() {
-  const hostRef = useRef<HTMLDivElement>(null);
+function NexahedronLivingInterior() {
+  function applyPublicProjection(frame: HTMLIFrameElement) {
+    const document = frame.contentDocument;
+    if (!document) return;
 
-  useEffect(() => {
-    const host = hostRef.current;
-    if (!host) return;
+    document.querySelectorAll<HTMLElement>("header.top, main > :not(.portal), body > footer, .scroll-cue").forEach((element) => {
+      element.hidden = true;
+      element.setAttribute("aria-hidden", "true");
+      element.style.setProperty("display", "none", "important");
+    });
 
-    const viewer = document.createElement("model-viewer");
-    viewer.setAttribute("src", "/a0-human/start/assets/3d/nexah_roedelheim_record_play.glb");
-    viewer.setAttribute("alt", "Interaktives 3D-Modell des Rödelheim Record Play Instruments mit Graph-, Wave- und Fold-Spuren");
-    viewer.setAttribute("camera-controls", "");
-    viewer.setAttribute("rotation-per-second", "10deg");
-    viewer.setAttribute("interaction-prompt", "auto");
-    viewer.setAttribute("touch-action", "none");
-    viewer.setAttribute("loading", "eager");
-    viewer.setAttribute("reveal", "auto");
-    viewer.setAttribute("shadow-intensity", "1");
-    viewer.setAttribute("exposure", "1.05");
+    const previousStyle = document.getElementById("nexahedronLivingInteriorProjection");
+    if (previousStyle) previousStyle.remove();
 
-    const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
-    const applyMotionPreference = () => {
-      if (reducedMotion.matches) viewer.removeAttribute("auto-rotate");
-      else viewer.setAttribute("auto-rotate", "");
-    };
-    applyMotionPreference();
-    reducedMotion.addEventListener("change", applyMotionPreference);
-    host.replaceChildren(viewer);
-
-    return () => {
-      reducedMotion.removeEventListener("change", applyMotionPreference);
-      host.replaceChildren();
-    };
-  }, []);
+    const style = document.createElement("style");
+    style.id = "nexahedronLivingInteriorProjection";
+    style.textContent = `
+      html, body, main { height: 100%; overflow: hidden !important; }
+      header.top,
+      .top.a0-context-ready,
+      body > footer,
+      main > :not(.portal),
+      .scroll-cue { display: none !important; }
+      .portal { min-height: 100% !important; height: 100% !important; }
+      .portal-copy { top: 10% !important; }
+      @media (max-width: 720px) {
+        .portal-copy { top: 8% !important; }
+        .portal h1 { font-size: clamp(3.5rem, 17vw, 5.5rem) !important; }
+        .stage-rail button { min-height: 4.75rem !important; padding: .7rem .45rem !important; }
+      }
+    `;
+    document.head.append(style);
+    frame.contentWindow?.scrollTo({ top: 0, left: 0, behavior: "auto" });
+  }
 
   return (
-    <div className="nexahedron-inline-record">
-      <div ref={hostRef} className="nexahedron-inline-record__stage" />
-      <div className="nexahedron-inline-record__meta">
-        <p><strong>Record / Play</strong><br />Ziehen = drehen · Scrollen/Pinch = zoomen · GLB · 1.0 MB</p>
+    <div className="nexahedron-showcase-flagship nexahedron-showcase-interior">
+      <iframe
+        loading="lazy"
+        onLoad={(event) => applyPublicProjection(event.currentTarget)}
+        src="/a0-human/start/A0_THE_LIVING_INTERIOR.html#passage"
+        title="The Living Interior Vorschau"
+      />
+      <div>
+        <small>HUMAN VIEW · INNER PASSAGE</small>
+        <strong>The Living Interior</strong>
+        <p>Eine Oberfläche öffnet sich. Berühre die fünf Stationen und beobachte, wie aus einer sichtbaren Hülle ein lebendes Feld mit erinnerbarer Spur wird.</p>
       </div>
     </div>
   );
@@ -120,7 +128,7 @@ function ShowcasePanel({ active }: { readonly active: ShowcaseId }) {
     );
   }
 
-  if (active === "record") return <NexahedronRecordPlayer />;
+  if (active === "interior") return <NexahedronLivingInterior />;
 
   if (active === "film") {
     return (
@@ -179,7 +187,7 @@ function ShowcasePanel({ active }: { readonly active: ShowcaseId }) {
 export function A0WorldFrame({ source, title = "NEXAHEDRON · Foyer" }: { readonly source: string; readonly title?: string }) {
   const frameRef = useRef<HTMLIFrameElement>(null);
   const selectorRefs = useRef<Partial<Record<ShowcaseId, HTMLButtonElement | null>>>({});
-  const [activeWindow, setActiveWindow] = useState<ShowcaseId | null>("record");
+  const [activeWindow, setActiveWindow] = useState<ShowcaseId | null>("interior");
   const [isShowcaseExpanded, setIsShowcaseExpanded] = useState(false);
 
   const activeDefinition = showcaseWindows.find((item) => item.id === activeWindow);

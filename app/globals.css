@@ -318,8 +318,8 @@ main:focus {
 }
 
 .a0-source-home-shell[data-active-view="foyer"] .a0-source-home-frame {
-  height: clamp(42rem, calc(100svh - 5.25rem), 48rem);
-  min-height: 42rem;
+  height: clamp(34rem, 72svh, 40rem);
+  min-height: 34rem;
 }
 
 .human-connect {
@@ -1757,8 +1757,8 @@ main:focus {
   }
 
   .a0-source-home-shell[data-active-view="foyer"] .a0-source-home-frame {
-    height: 42rem;
-    min-height: 42rem;
+    height: 36rem;
+    min-height: 36rem;
   }
 
   .nexahedron-showcase-selectors {
