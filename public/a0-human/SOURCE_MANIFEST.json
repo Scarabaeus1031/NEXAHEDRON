@@ -4201,8 +4201,8 @@
     {
       "bundle_path": "start/assets/a0-the-living-interior-v1.js",
       "source_path": "30 SCIENCE LAB/NEXAH-Science-Lab/RESEARCH_PROGRAM_B_MATHEMATICAL_FOUNDATIONS/AXIOM0_QMODE_ORIENTATION_TO_MEASUREMENT_FOUNDATION_PACKAGE_2026-10-01/A0_BOOK/assets/a0-the-living-interior-v1.js",
-      "source_sha256": "b53188cfe13607f29989f4a8b274b5c801d88fa726e49d58b87f97272a428ad4",
-      "bundle_sha256": "b53188cfe13607f29989f4a8b274b5c801d88fa726e49d58b87f97272a428ad4",
+      "source_sha256": "9170cf093698f6eafab20faa4db4208de3a40b6e9f3b0b2545b97a6f9c07df44",
+      "bundle_sha256": "9170cf093698f6eafab20faa4db4208de3a40b6e9f3b0b2545b97a6f9c07df44",
       "treatment": "BYTE_COPY"
     },
     {

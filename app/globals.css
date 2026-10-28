@@ -879,6 +879,20 @@ main:focus {
   background: #02080d;
 }
 
+.nexahedron-showcase-interior__loading {
+  display: grid;
+  width: 100%;
+  height: clamp(28rem, 52vw, 42rem);
+  place-items: center;
+  background: #02080d;
+  color: #7895a3;
+  font-family: var(--font-mono);
+  font-size: 0.62rem;
+  font-weight: 800;
+  letter-spacing: 0.09em;
+  text-transform: uppercase;
+}
+
 .nexahedron-showcase-flagship > div {
   display: grid;
   align-content: start;

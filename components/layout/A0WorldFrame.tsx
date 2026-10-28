@@ -24,6 +24,23 @@ const publicChannels = [
 ] as const;
 
 function NexahedronLivingInterior() {
+  const previewRef = useRef<HTMLDivElement>(null);
+  const [previewReady, setPreviewReady] = useState(false);
+
+  useEffect(() => {
+    const preview = previewRef.current;
+    if (!preview) return;
+
+    const observer = new IntersectionObserver((entries) => {
+      if (!entries.some((entry) => entry.isIntersecting)) return;
+      setPreviewReady(true);
+      observer.disconnect();
+    }, { rootMargin: "120px" });
+
+    observer.observe(preview);
+    return () => observer.disconnect();
+  }, []);
+
   function applyPublicProjection(frame: HTMLIFrameElement) {
     const document = frame.contentDocument;
     if (!document) return;
@@ -55,17 +72,22 @@ function NexahedronLivingInterior() {
       }
     `;
     document.head.append(style);
+
     frame.contentWindow?.scrollTo({ top: 0, left: 0, behavior: "auto" });
   }
 
   return (
-    <div className="nexahedron-showcase-flagship nexahedron-showcase-interior">
-      <iframe
-        loading="lazy"
-        onLoad={(event) => applyPublicProjection(event.currentTarget)}
-        src="/a0-human/start/A0_THE_LIVING_INTERIOR.html#passage"
-        title="The Living Interior Vorschau"
-      />
+    <div className="nexahedron-showcase-flagship nexahedron-showcase-interior" ref={previewRef}>
+      {previewReady ? (
+        <iframe
+          loading="eager"
+          onLoad={(event) => applyPublicProjection(event.currentTarget)}
+          src="/a0-human/start/A0_THE_LIVING_INTERIOR.html#passage"
+          title="The Living Interior Vorschau"
+        />
+      ) : (
+        <div className="nexahedron-showcase-interior__loading" role="status">Living Interior wird geöffnet …</div>
+      )}
       <div>
         <small>HUMAN VIEW · INNER PASSAGE</small>
         <strong>The Living Interior</strong>
