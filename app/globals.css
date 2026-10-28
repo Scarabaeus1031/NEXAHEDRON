@@ -718,6 +718,9 @@ main:focus {
 }
 
 .nexahedron-showcase-window > header {
+  position: sticky;
+  top: 0;
+  z-index: 4;
   display: flex;
   min-height: 5.25rem;
   align-items: center;
@@ -725,13 +728,11 @@ main:focus {
   gap: 2rem;
   padding: 1rem 1.25rem;
   border-bottom: 1px solid rgb(100 217 234 / 28%);
+  background: #06131d;
 }
 
 .nexahedron-showcase-window.is-expanded > header {
   position: sticky;
-  top: 0;
-  z-index: 4;
-  background: #06131d;
 }
 
 .nexahedron-showcase-window__actions {

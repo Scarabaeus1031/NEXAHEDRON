@@ -75,6 +75,50 @@ function NexahedronLivingInterior() {
   );
 }
 
+function NexahedronRecordPlayer() {
+  const hostRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const host = hostRef.current;
+    if (!host) return;
+
+    const viewer = document.createElement("model-viewer");
+    viewer.setAttribute("src", "/a0-human/start/assets/3d/nexah_roedelheim_record_play.glb");
+    viewer.setAttribute("alt", "Interaktives 3D-Modell des Rödelheim Record Play Instruments mit Graph-, Wave- und Fold-Spuren");
+    viewer.setAttribute("camera-controls", "");
+    viewer.setAttribute("rotation-per-second", "10deg");
+    viewer.setAttribute("interaction-prompt", "auto");
+    viewer.setAttribute("touch-action", "none");
+    viewer.setAttribute("loading", "eager");
+    viewer.setAttribute("reveal", "auto");
+    viewer.setAttribute("shadow-intensity", "1");
+    viewer.setAttribute("exposure", "1.05");
+
+    const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
+    const applyMotionPreference = () => {
+      if (reducedMotion.matches) viewer.removeAttribute("auto-rotate");
+      else viewer.setAttribute("auto-rotate", "");
+    };
+    applyMotionPreference();
+    reducedMotion.addEventListener("change", applyMotionPreference);
+    host.replaceChildren(viewer);
+
+    return () => {
+      reducedMotion.removeEventListener("change", applyMotionPreference);
+      host.replaceChildren();
+    };
+  }, []);
+
+  return (
+    <div className="nexahedron-inline-record">
+      <div ref={hostRef} className="nexahedron-inline-record__stage" />
+      <div className="nexahedron-inline-record__meta">
+        <p><strong>Record / Play</strong><br />Ziehen = drehen · Scrollen/Pinch = zoomen · GLB · 1.0 MB</p>
+      </div>
+    </div>
+  );
+}
+
 function NexahedronObject() {
   const hostRef = useRef<HTMLDivElement>(null);
 
@@ -187,7 +231,7 @@ function ShowcasePanel({ active }: { readonly active: ShowcaseId }) {
 export function A0WorldFrame({ source, title = "NEXAHEDRON · Foyer" }: { readonly source: string; readonly title?: string }) {
   const frameRef = useRef<HTMLIFrameElement>(null);
   const selectorRefs = useRef<Partial<Record<ShowcaseId, HTMLButtonElement | null>>>({});
-  const [activeWindow, setActiveWindow] = useState<ShowcaseId | null>("interior");
+  const [activeWindow, setActiveWindow] = useState<ShowcaseId | null>(null);
   const [isShowcaseExpanded, setIsShowcaseExpanded] = useState(false);
 
   const activeDefinition = showcaseWindows.find((item) => item.id === activeWindow);
@@ -195,8 +239,11 @@ export function A0WorldFrame({ source, title = "NEXAHEDRON · Foyer" }: { readon
   function openShowcase(id: ShowcaseId) {
     setIsShowcaseExpanded(false);
     setActiveWindow(id);
-    const behavior = window.matchMedia("(prefers-reduced-motion: reduce)").matches ? "auto" : "smooth";
-    window.requestAnimationFrame(() => document.getElementById("nexahedron-showcase-window")?.scrollIntoView({ behavior, block: "nearest" }));
+    window.requestAnimationFrame(() => {
+      const showcase = document.getElementById("nexahedron-showcase-window");
+      showcase?.scrollTo({ top: 0, left: 0, behavior: "auto" });
+      showcase?.scrollIntoView({ behavior: "auto", block: "start" });
+    });
   }
 
   function closeShowcase() {
@@ -490,6 +537,15 @@ export function A0WorldFrame({ source, title = "NEXAHEDRON · Foyer" }: { readon
                 <ShowcasePanel active={activeWindow} />
               </section>
             ) : null}
+          </section>
+
+          <section className="nexahedron-record-feature" id="record-player" aria-labelledby="record-player-title">
+            <header>
+              <p className="nexahedron-first-contact__eyebrow">00 · ONE MOMENT, ONE RECORD, ONE RETURN</p>
+              <h2 id="record-player-title">Eine Stimme wird zum Record.</h2>
+              <p>Jemand singt. Ein Instrument wählt und speichert eine Spur; später wird daraus wieder Klang. Die Aufnahme bewahrt etwas vom Moment — sie ist nicht der Moment selbst.</p>
+            </header>
+            <NexahedronRecordPlayer />
           </section>
 
           <footer className="nexahedron-first-contact__entry" id="tour-entry">

@@ -21,18 +21,16 @@ test("renders the public homepage as the bounded A0 Human View entrance", async 
   const publicNavigation = await readFile(new URL("../public/a0-human/start/nexahedron-public-navigation.js", import.meta.url), "utf8");
   const worldFrame = await readFile(new URL("../components/layout/A0WorldFrame.tsx", import.meta.url), "utf8");
 
-  assert.match(html, /<title>NEXAHEDRON — A0 Human View<\/title>/);
+  assert.match(html, /<title>NEXAHEDRON — Human View · NEXAH A0<\/title>/);
   assert.match(html, /class="a0-source-home-shell"/);
   assert.match(html, /class="a0-source-host-header"/);
-  assert.match(html, /class="a0-source-host-nav"/);
-  for (const destination of ["Human View", "Arcade", "Club", "About NEXAHEDRON", "To NEXAH", "C Connect", "Scarabæus 1033"]) {
+  assert.match(html, /class="a0-source-host-nav(?:\s[^"]*)?"/);
+  for (const destination of ["A0 World", "To NEXAH", "Human Connect", "Scarabæus 1033"]) {
     assert.match(html, new RegExp(destination));
   }
   assert.match(html, /href="\/\?view=human"/);
-  assert.match(html, /href="\/\?view=arcade"/);
-  assert.match(html, /href="\/\?view=club"/);
   assert.doesNotMatch(html, />Visitor Guide<\/a>/);
-  assert.match(html, /href="\/\?view=connect"/);
+  assert.match(html, /href="\/\?view=connect&amp;from=human"/);
   assert.doesNotMatch(html, /a0-source-host-science/);
   assert.match(html, /https:\/\/www\.scarabaeus1033\.net\//);
   assert.match(html, /class="a0-source-home-main" id="main-content"/);
@@ -44,7 +42,6 @@ test("renders the public homepage as the bounded A0 Human View entrance", async 
   assert.match(sourceHome, /Grid → Operator → Anwendung/);
   assert.doesNotMatch(sourceHome, /href="A0_RESEARCH_DESK\.html/);
   assert.doesNotMatch(sourceHome, /SCIENCE_LAB\/NAVIGATION\/APP/);
-  assert.match(sourceHome, /Eine Stimme wird zum Record\./);
   assert.match(sourceHome, /Acht Kapitel verfolgen den Weg eines Ergebnisses\./);
   assert.match(sourceHome, /nexahedron-public-navigation\.js/);
   for (const destination of ["Human", "Science", "Builder", "Werkbank", "Übersicht"]) {
@@ -58,11 +55,10 @@ test("renders the public homepage as the bounded A0 Human View entrance", async 
   assert.match(publicNavigation, /#built-world,body>footer\{display:none!important\}/);
   assert.match(publicNavigation, /getElementById\("a0-home"\).*scrollIntoView/);
   assert.match(worldFrame, /dataset\.nexahedronProjection = isFoyer \? "foyer" : "experience"/);
-  assert.match(worldFrame, /NEXAHEDRON ist die öffentliche A0 Human View innerhalb von NEXAH/);
-  assert.match(worldFrame, /NEXAH hält dahinter Methode, Quellen, Science und Library/);
-  assert.match(worldFrame, /Human View starten →/);
-  assert.match(worldFrame, /#top > :not\(#built-world\)/);
-  assert.match(worldFrame, /\.world-room:not\(\.world-room--human\)/);
+  assert.match(worldFrame, /Orientierung beginnt mit einem Unterschied\./);
+  assert.match(worldFrame, /Eine Stimme wird zum Record\./);
+  assert.match(worldFrame, /TOUR BETRETEN/);
+  assert.match(worldFrame, /main > :not\(\.portal\)/);
   assert.match(worldFrame, /\.world-plate-return/);
   assert.match(worldFrame, /body > footer/);
   assert.match(worldFrame, /\.human-stage-fold--machina/);
@@ -70,21 +66,19 @@ test("renders the public homepage as the bounded A0 Human View entrance", async 
   assert.doesNotMatch(publicNavigation, /Desk|Mission Control|NSN|Research Backlog/i);
 });
 
-test("opens the existing public Connect surface without creating a second shell", async () => {
+test("opens the bounded Human Connect surface inside the existing shell", async () => {
   const response = await render("/?view=connect");
   assert.equal(response.status, 200);
   const html = await response.text();
 
   assert.match(html, /class="a0-source-host-header"/);
-  assert.match(html, /src="\/a0-human\/start\/NEXAH_C_CONNECT\.html"/);
-
-  const connect = await readFile(new URL("../public/a0-human/start/NEXAH_C_CONNECT.html", import.meta.url), "utf8");
-  assert.match(connect, /<strong id="readoutTitle">One constellation\.<\/strong>/);
-  assert.match(connect, /DIFFERENT RESPONSIBILITIES · EXPLICIT RETURNS/);
-  assert.equal((connect.match(/data-lens="(?:human|science|builder)"/g) ?? []).length, 3);
-  assert.match(connect, /data-lens-panel="science" hidden/);
-  assert.match(connect, /data-lens-panel="human" hidden/);
-  assert.match(connect, /data-lens-panel="builder" hidden/);
+  assert.match(html, /class="human-connect"/);
+  assert.match(html, /HUMAN CONNECT · EINE FRAGE REICHT/);
+  assert.match(html, /Du musst den richtigen Weg noch nicht kennen\./);
+  assert.match(html, /Ich habe eine Frage\./);
+  assert.match(html, /Ich möchte etwas teilen\./);
+  assert.match(html, /Ich möchte erst weitersehen\./);
+  assert.match(html, /Eine Nachricht beginnt ein Gespräch\./);
 });
 
 test("renders the Version 1 visitor guide as the local demonstrator orientation layer", async () => {
