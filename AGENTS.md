@@ -28,6 +28,25 @@ work requires the Evidence Architecture and Evidence Binding Architecture.
 ORION integration work requires the live-integration documentation and pinned
 source manifest.
 
+## A0 Owner staging and release rule
+
+Before any NEXAHEDRON page, preview, commit, push or deployment work, read the
+controlling Mission Control documents in this order:
+
+1. `/Users/tho2020/Documents/NEXAH ECOSYSTEM/00 EXECUTIVE/NEXAH-Mission-Control/MISSION_CONTROL_ENTRYPOINT.md`
+   for the cold start, authority matrix and A0 role separation;
+2. `/Users/tho2020/Documents/NEXAH ECOSYSTEM/00 EXECUTIVE/NEXAH-Mission-Control/CURRENT/RETURN_INGESTION_AND_PUBLICATION_BOUNDARY_PROTOCOL.md`
+   for the detailed return, staging and release policy.
+
+NEXAHEDRON remains the only editable source for `nexahedron.com`. The exact
+candidate must be presented in the A0 Owner frame for acceptance. Do not create
+or use a standalone Site, temporary host or copied A0 file as a parallel Owner
+view or deployable master. After approval, commit and push only reviewed source
+paths, deploy only the accepted revision to the declared production Worker,
+verify `https://nexahedron.com`, and return commit plus deployment receipt to
+A0. A staging Site may support diagnostics but never substitutes for the
+production channel.
+
 Do not begin implementation until the owning boundary, current behavior and
 active milestone are understood.
 

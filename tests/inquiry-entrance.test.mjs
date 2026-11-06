@@ -32,6 +32,9 @@ test("makes the source-bound A0 Human Book the primary public action", async () 
   assert.match(publicNavigation, /https:\/\/www\.scarabaeus1033\.net\//);
   assert.match(publicNavigation, /current A0 interface remains the visual source/);
   assert.match(publicNavigation, /A0_WERKBANK\.html/);
+  assert.match(publicNavigation, /isA0OwnerPreview/);
+  assert.match(publicNavigation, /nexah:a0-projection-return/);
+  assert.match(publicNavigation, /a\[href="index\.html#built-world"\]/);
 });
 
 test("communicates the bounded A0 movement without simulating new workflows", async () => {

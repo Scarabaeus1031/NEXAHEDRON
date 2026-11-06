@@ -13,6 +13,19 @@
   const internalSurfacePattern = new RegExp(`A0 (?:Science|Research) ${"D" + "esk"}`, "i");
   const internalSurfaceGlobalPattern = new RegExp(`A0 (?:Science|Research) ${"D" + "esk"}`, "gi");
   const isNexahA0Projection = new URLSearchParams(window.location.search).get("projection") === "nexah-a0";
+  const isA0OwnerPreview = window.self !== window.top && new URLSearchParams(window.location.search).has("a0_preview");
+
+  function bindA0OwnerReturn() {
+    if (!isA0OwnerPreview) return;
+    document.querySelectorAll('a[href="index.html#built-world"]').forEach((link) => {
+      if (link.dataset.a0OwnerReturnBound === "true") return;
+      link.dataset.a0OwnerReturnBound = "true";
+      link.addEventListener("click", (event) => {
+        event.preventDefault();
+        window.parent.postMessage({ type: "nexah:a0-projection-return" }, window.location.origin);
+      });
+    });
+  }
 
   function returnRawSourceToNexahedronEntry() {
     const isTopLevel = window.top === window.self;
@@ -38,6 +51,7 @@
 
   function applyPublicBoundary() {
     applyNexahA0Projection();
+    bindA0OwnerReturn();
     document.querySelectorAll("a[href]").forEach((link) => {
       const raw = link.getAttribute("href") || "";
       const label = (link.textContent || "").trim();
