@@ -51,7 +51,7 @@ export function AppShell({ children }: { readonly children: ReactNode }) {
         <a className="skip-link" href="#main-content">Skip to A0 Human View</a>
         {activeView !== "foyer" ? (
           <nav className="ecosystem-rail" aria-label="NEXAH ecosystem">
-            <span>NEXAH ECOSYSTEM</span>
+            <span>NEXAH · ECOSYSTEM</span>
             <a href="https://nexah.de">NEXAH</a>
             <a href="https://nexah.de/a0/">A0 SCIENCE</a>
             <Link href="/" aria-current="page">NEXAHEDRON</Link>
