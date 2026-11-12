@@ -178,10 +178,10 @@ test("About positions the A0 Human View without exposing internal architecture",
   assert.match(html, /ELSEWHERE · WORKSHOP/);
   assert.match(html, /SCARABÆUS/);
   assert.match(html, /Three doors into NEXAH/);
-  assert.match(html, /NEXAHEDRON ist die A0 Human View/);
-  assert.match(html, /Dies ist weder ein Wechsel der Zuständigkeit noch ein zweites System/);
-  assert.match(html, /Keine einzelne Tür beansprucht das Ganze/);
-  assert.match(html, /Unterscheidung zwischen Erfahrung und Quelle/);
+  assert.match(html, /NEXAHEDRON is the A0 Human View/);
+  assert.match(html, /This is neither a transfer of authority nor a second system/);
+  assert.match(html, /No single door claims the whole/);
+  assert.match(html, /distinction between experience and source/);
   for (const door of ["Visitor Guide", "Method &amp; context", "Science Lab"]) {
     assert.match(html, new RegExp(door));
   }
@@ -197,15 +197,15 @@ test("About NEXAHEDRON explains the Human View, its rooms and the return to NEXA
   const html = await response.text();
   const publicHeader = await readFile(new URL("../components/layout/PublicHeader.tsx", import.meta.url), "utf8");
 
-  assert.match(html, /Erst erleben\./);
-  assert.match(html, /Dann einordnen\./);
-  assert.match(html, /Zwei Maßstäbe\./);
-  assert.match(html, /Eine klare Rückbindung\./);
+  assert.match(html, /Experience first\./);
+  assert.match(html, /Then find the context\./);
+  assert.match(html, /Two scales\./);
+  assert.match(html, /One clear return\./);
   for (const room of ["Human View", "Arcade", "Club", "C Connect"]) {
     assert.match(html, new RegExp(room));
   }
-  assert.match(html, /LIBRARY · VORGEMERKT/);
-  assert.match(html, /keine behauptete aktive Integration/);
+  assert.match(html, /LIBRARY · RESERVED/);
+  assert.match(html, /not a claimed active integration/);
   assert.match(html, /To NEXAH/);
   assert.doesNotMatch(html, /Die Räume verstehen/);
   assert.doesNotMatch(publicHeader, /href="\/about-nexahedron"/);

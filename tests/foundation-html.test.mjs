@@ -14,7 +14,7 @@ async function render(path = "/") {
 }
 
 test("renders the public homepage as the bounded A0 Human View entrance", async () => {
-  const response = await render();
+  const response = await render("/?lang=en");
   assert.equal(response.status, 200);
   const html = await response.text();
   const sourceHome = await readFile(new URL("../public/a0-human/start/index.html", import.meta.url), "utf8");
@@ -30,7 +30,7 @@ test("renders the public homepage as the bounded A0 Human View entrance", async 
   }
   assert.match(html, /href="\/\?view=human"/);
   assert.doesNotMatch(html, />Visitor Guide<\/a>/);
-  assert.match(html, /href="\/\?view=connect&amp;from=human"/);
+  assert.match(html, /href="\/\?view=connect&amp;from=human&amp;lang=en"/);
   assert.doesNotMatch(html, /a0-source-host-science/);
   assert.match(html, /https:\/\/www\.scarabaeus1033\.net\//);
   assert.match(html, /class="a0-source-home-main" id="main-content"/);
@@ -55,9 +55,14 @@ test("renders the public homepage as the bounded A0 Human View entrance", async 
   assert.match(publicNavigation, /#built-world,body>footer\{display:none!important\}/);
   assert.match(publicNavigation, /getElementById\("a0-home"\).*scrollIntoView/);
   assert.match(worldFrame, /dataset\.nexahedronProjection = isFoyer \? "foyer" : "experience"/);
-  assert.match(worldFrame, /Orientierung beginnt mit einem Unterschied\./);
-  assert.match(worldFrame, /Eine Stimme wird zum Record\./);
-  assert.match(worldFrame, /TOUR BETRETEN/);
+  assert.match(worldFrame, /Orientation begins with a difference\./);
+  assert.match(worldFrame, /A voice becomes a record\./);
+  assert.match(worldFrame, /ENTER THE TOUR/);
+  assert.match(html, /aria-label="Choose language"/);
+  assert.match(html, />DE<\/a>/);
+  assert.match(html, />\/<\/span>/);
+  assert.match(sourceHome, /One object\. Several sections\. Visible transitions\. And always a way back\./);
+  assert.doesNotMatch(sourceHome, /Ein Gegenstand\. Mehrere Schnitte\. Sichtbare Übergänge\. Und immer ein Weg zurück\./);
   assert.match(worldFrame, /main > :not\(\.portal\)/);
   assert.match(worldFrame, /\.world-plate-return/);
   assert.match(worldFrame, /body > footer/);
@@ -66,19 +71,56 @@ test("renders the public homepage as the bounded A0 Human View entrance", async 
   assert.doesNotMatch(publicNavigation, /Desk|Mission Control|NSN|Research Backlog/i);
 });
 
+test("starts in German when no language preference is declared", async () => {
+  const response = await render();
+  assert.equal(response.status, 200);
+  const html = await response.text();
+  assert.match(html, /Orientierung beginnt mit einem Unterschied\./);
+  assert.match(html, /Eine Stimme wird zum Record\./);
+  assert.match(html, /href="\/\?view=connect&amp;from=human&amp;lang=de"/);
+});
+
+test("offers a German presentation lens without creating a second route", async () => {
+  const response = await render("/?lang=de");
+  assert.equal(response.status, 200);
+  const html = await response.text();
+
+  assert.match(html, /aria-label="Sprache wählen"/);
+  assert.match(html, /Orientierung beginnt mit einem Unterschied\./);
+  assert.match(html, /Eine Stimme wird zum Record\./);
+  assert.match(html, /TOUR BETRETEN/);
+  assert.match(html, /href="\/\?view=connect&amp;from=human&amp;lang=de"/);
+  assert.doesNotMatch(html, /href="\/de(?:\/|&quot;)/);
+});
+
 test("opens the bounded Human Connect surface inside the existing shell", async () => {
-  const response = await render("/?view=connect");
+  const response = await render("/?view=connect&lang=en");
   assert.equal(response.status, 200);
   const html = await response.text();
 
   assert.match(html, /class="a0-source-host-header"/);
   assert.match(html, /class="human-connect"/);
-  assert.match(html, /HUMAN CONNECT · EINE FRAGE REICHT/);
-  assert.match(html, /Du musst den richtigen Weg noch nicht kennen\./);
-  assert.match(html, /Ich habe eine Frage\./);
-  assert.match(html, /Ich möchte etwas teilen\./);
-  assert.match(html, /Ich möchte erst weitersehen\./);
-  assert.match(html, /Eine Nachricht beginnt ein Gespräch\./);
+  assert.match(html, /HUMAN CONNECT · ONE QUESTION IS ENOUGH/);
+  assert.match(html, /You do not need to know the right path yet\./);
+  assert.match(html, /I have a question\./);
+  assert.match(html, /I would like to share something\./);
+  assert.match(html, /I would like to keep exploring first\./);
+  assert.match(html, /A message begins a conversation\./);
+});
+
+test("labels German source modules without altering their source route", async () => {
+  const response = await render("/?view=human&lang=en");
+  assert.equal(response.status, 200);
+  const html = await response.text();
+
+  assert.match(html, /Original language: German/);
+  assert.match(html, /Use your browser’s Translate function\./);
+  assert.match(html, /src="\/a0-human\/start\/A0_NEXAH_APERTURE_JOURNEY\.html#human-view"/);
+
+  const germanResponse = await render("/?view=human&lang=de");
+  const germanHtml = await germanResponse.text();
+  assert.match(germanHtml, /Originalsprache: Deutsch/);
+  assert.doesNotMatch(germanHtml, /Use your browser’s Translate function\./);
 });
 
 test("renders the Version 1 visitor guide as the local demonstrator orientation layer", async () => {

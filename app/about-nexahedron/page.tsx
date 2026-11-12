@@ -11,33 +11,33 @@ const rooms = [
   {
     index: "01",
     title: "Human View",
-    copy: "Der geführte Weg. Du schaust, veränderst eine Ansicht und kehrst mit einem sichtbaren Unterschied zurück.",
+    copy: "The guided path. You look, change a view and return with a visible difference.",
     href: "/?view=human",
-    action: "Human View öffnen",
+    action: "Open the Human View",
     tone: "human",
   },
   {
     index: "02",
     title: "Arcade",
-    copy: "Einzelne spielbare Räume. Weniger Technik, klare Regeln und immer ein Weg zurück in den Zusammenhang.",
+    copy: "Individual playable rooms. Less machinery, clear rules and always a path back into context.",
     href: "/?view=arcade",
-    action: "Arcade betreten",
+    action: "Enter the Arcade",
     tone: "arcade",
   },
   {
     index: "03",
     title: "Club",
-    copy: "Relationen werden räumlich, rhythmisch und erfahrbar. Ein freierer Kanal — aber weiterhin Teil der Human View.",
+    copy: "Relations become spatial, rhythmic and tangible. A freer channel — while remaining part of the Human View.",
     href: "/?view=club",
-    action: "Club betreten",
+    action: "Enter the Club",
     tone: "club",
   },
   {
     index: "04",
     title: "C Connect",
-    copy: "Die Karte der verbundenen Türen. Sie zeigt, welcher Raum welche Verantwortung trägt, ohne sie gleichzusetzen.",
+    copy: "The map of connected doors. It shows which room carries which responsibility without treating them as equivalent.",
     href: "/?view=connect",
-    action: "Verbindungen ansehen",
+    action: "View the connections",
     tone: "connect",
   },
 ] as const;
@@ -48,9 +48,9 @@ export default function AboutNexahedronPage() {
       <section className="nexahedron-about-hero" aria-labelledby="nexahedron-about-title">
         <div>
           <p className="public-kicker">ABOUT NEXAHEDRON · A0 HUMAN VIEW</p>
-          <h1 id="nexahedron-about-title">Erst erleben.<br /><em>Dann einordnen.</em></h1>
-          <p>NEXAHEDRON ist die öffentliche Human View von A0 innerhalb des NEXAH-Orientierungsfeldes. Die Methode wird hier nicht zuerst erklärt, sondern als begrenzte Erfahrung begehbar.</p>
-          <nav aria-label="About NEXAHEDRON Einstieg">
+          <h1 id="nexahedron-about-title">Experience first.<br /><em>Then find the context.</em></h1>
+          <p>NEXAHEDRON is the public A0 Human View within the NEXAH orientation field. The method is not explained first here; it becomes accessible as a bounded experience.</p>
+          <nav aria-label="About NEXAHEDRON entry">
             <Link href="/about">To NEXAH <span aria-hidden="true">→</span></Link>
           </nav>
         </div>
@@ -65,18 +65,18 @@ export default function AboutNexahedronPage() {
       <section className="nexahedron-about-relation" aria-labelledby="nexahedron-relation-title">
         <header>
           <p className="public-kicker">ONE FIELD · DIFFERENT RESPONSIBILITIES</p>
-          <h2 id="nexahedron-relation-title">Zwei Maßstäbe.<br />Eine klare Rückbindung.</h2>
+          <h2 id="nexahedron-relation-title">Two scales.<br />One clear return.</h2>
         </header>
         <div>
           <article>
-            <small>HIER · EXPERIENCE</small>
+            <small>HERE · EXPERIENCE</small>
             <h3>NEXAHEDRON</h3>
-            <p>macht einen begrenzten Human-Weg sichtbar und spielbar. Es trägt Darstellung, Interaktion und den Rückweg — nicht die ganze Methode oder wissenschaftliche Autorität.</p>
+            <p>makes one bounded Human path visible and playable. It carries presentation, interaction and the way back — not the whole method or scientific authority.</p>
           </article>
           <article>
-            <small>DAHINTER · ORIENTATION</small>
+            <small>BEYOND · ORIENTATION</small>
             <h3>NEXAH</h3>
-            <p>hält das weitere Feld: Methode, Quellen, Science, Bücher und Library. Dorthin führt der Weg, wenn du wissen möchtest, warum etwas trägt und wo seine Grenzen liegen.</p>
+            <p>holds the wider field: method, sources, Science, books and Library. The path continues there when you want to know why something holds and where its boundaries lie.</p>
           </article>
         </div>
       </section>
@@ -85,9 +85,9 @@ export default function AboutNexahedronPage() {
         <header>
           <div>
             <p className="public-kicker">THE PUBLIC ROOMS</p>
-            <h2 id="nexahedron-rooms-title">Vier Zugänge.<br />Nicht vier Systeme.</h2>
+            <h2 id="nexahedron-rooms-title">Four entrances.<br />Not four systems.</h2>
           </div>
-          <p>Jede Rubrik öffnet eine andere Art des Erlebens. Quelle, Verantwortung und Return bleiben getrennt und sichtbar.</p>
+          <p>Each section opens a different kind of experience. Source, responsibility and Return remain separate and visible.</p>
         </header>
         <div className="nexahedron-room-grid">
           {rooms.map((room) => (
@@ -103,19 +103,19 @@ export default function AboutNexahedronPage() {
 
       <section className="nexahedron-library-reserve" aria-labelledby="nexahedron-library-title">
         <div>
-          <p className="public-kicker">LIBRARY · VORGEMERKT</p>
-          <h2 id="nexahedron-library-title">Lesepfade bekommen später einen eigenen Raum.</h2>
+          <p className="public-kicker">LIBRARY · RESERVED</p>
+          <h2 id="nexahedron-library-title">Reading paths will receive their own room later.</h2>
         </div>
         <div>
-          <p>Eine kuratierte Library-Sektion kann Bücher, Serien und weiterführende Lesepfade an die Human View anschließen. Bis ihre öffentliche Strecke source-bound geklärt ist, bleibt sie eine sichtbare Vormerkung — keine behauptete aktive Integration.</p>
+          <p>A curated Library section can connect books, series and further reading paths to the Human View. Until its public source-bound route is settled, it remains a visible reservation — not a claimed active integration.</p>
           <span>IN PREPARATION · SOURCE &amp; EDITORIAL AUTHORITY REMAIN WITH NEXAH</span>
         </div>
       </section>
 
       <section className="nexahedron-about-next" aria-labelledby="nexahedron-next-title">
         <p className="public-kicker">THE NEXT SCALE</p>
-        <h2 id="nexahedron-next-title">Du hast den Raum gesehen.<br />Jetzt kannst du das Feld öffnen.</h2>
-        <p>Auf „To NEXAH“ beginnt die Einordnung: Visitor Guide, Methode, Quellen und öffentlicher Science-Kontext.</p>
+        <h2 id="nexahedron-next-title">You have seen the room.<br />Now you can open the field.</h2>
+        <p>“To NEXAH” begins the wider context: Visitor Guide, method, sources and public Science context.</p>
         <Link href="/about">To NEXAH <span aria-hidden="true">→</span></Link>
       </section>
     </article>

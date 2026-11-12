@@ -4,6 +4,7 @@ import Link from "next/link";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import type { ReactNode } from "react";
 import { JourneyProgress } from "@/components/layout/JourneyProgress";
+import { LanguageSwitch, type PublicLanguage } from "@/components/layout/LanguageSwitch";
 import { PublicFooter } from "@/components/layout/PublicFooter";
 import { PublicHeader } from "@/components/layout/PublicHeader";
 import { WorkspaceTrace } from "@/components/layout/WorkspaceTrace";
@@ -20,6 +21,13 @@ export function AppShell({ children }: { readonly children: ReactNode }) {
 
   if (pathname === "/") {
     const activeView = searchParams.get("view") ?? "foyer";
+    const language: PublicLanguage = searchParams.get("lang") === "en" ? "en" : "de";
+    const withLanguage = (href: string) => {
+      const [path, query = ""] = href.split("?");
+      const params = new URLSearchParams(query);
+      params.set("lang", language);
+      return `${path}?${params.toString()}`;
+    };
     const activeDescriptor = {
       human: "A0 Human View",
       arcade: "Arcade",
@@ -29,10 +37,10 @@ export function AppShell({ children }: { readonly children: ReactNode }) {
     const connectPortal = (
       <Link
         className="a0-source-host-dot"
-        href="/?view=connect&from=human"
+        href={withLanguage("/?view=connect&from=human")}
         aria-current={activeView === "connect" ? "page" : undefined}
-        aria-label="Human Connect · Frage stellen oder etwas teilen"
-        title="Human Connect · Frage stellen oder etwas teilen"
+        aria-label="Human Connect · ask a question or share something"
+        title="Human Connect · ask a question or share something"
       >
         <span aria-hidden="true" />
       </Link>
@@ -51,17 +59,18 @@ export function AppShell({ children }: { readonly children: ReactNode }) {
           </nav>
         ) : null}
         <header className="a0-source-host-header" data-active-view={activeView}>
-          <Link className="a0-source-host-brand" href="/" aria-label={activeDescriptor ? `NEXAHEDRON, ${activeDescriptor} home` : "NEXAHEDRON home"}>
+          <Link className="a0-source-host-brand" href={withLanguage("/")} aria-label={activeDescriptor ? `NEXAHEDRON, ${activeDescriptor} home` : "NEXAHEDRON home"}>
             <span aria-hidden="true">✦</span>
             <strong>NEXAHEDRON</strong>
             {activeDescriptor ? <small>{activeDescriptor}</small> : null}
           </Link>
           {activeView !== "foyer" ? (
           <nav className="a0-source-host-nav" aria-label="NEXAHEDRON Flagships">
-            <Link data-route="human" href="/?view=human" aria-current={activeView === "human" ? "page" : undefined}>Human View</Link>
+            <Link data-route="human" href={withLanguage("/?view=human")} aria-current={activeView === "human" ? "page" : undefined}>Human View</Link>
             {activeView === "human" ? connectPortal : null}
             <Link href="/about">To NEXAH</Link>
             {activeView === "foyer" || activeView === "connect" ? connectPortal : null}
+            <LanguageSwitch language={language} />
             <span className="a0-source-host-portals" aria-label="Connected NEXAH places">
               <a
                 className="a0-source-host-scarab"
@@ -79,9 +88,10 @@ export function AppShell({ children }: { readonly children: ReactNode }) {
           </nav>
           ) : (
             <nav className="a0-source-host-nav a0-source-host-nav--foyer" aria-label="Primary navigation">
-              <Link href="/" aria-current="page">A0 World</Link>
+              <Link href={withLanguage("/")} aria-current="page">A0 World</Link>
               <Link href="/about">To NEXAH</Link>
               {connectPortal}
+              <LanguageSwitch language={language} />
               <span className="a0-source-host-portals" aria-label="Connected NEXAH places">
                 <a
                   className="a0-source-host-scarab"

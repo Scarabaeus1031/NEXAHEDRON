@@ -4,9 +4,11 @@ import { HumanConnect } from "@/features/connect/HumanConnect";
 export default async function Home({
   searchParams,
 }: {
-  readonly searchParams: Promise<{ readonly view?: string; readonly from?: string }>;
+  readonly searchParams: Promise<{ readonly view?: string; readonly from?: string; readonly lang?: string }>;
 }) {
-  const view = (await searchParams).view;
+  const params = await searchParams;
+  const view = params.view;
+  const language = params.lang === "en" ? "en" : "de";
   const sources: Readonly<Record<string, string>> = {
     human: "/a0-human/start/A0_NEXAH_APERTURE_JOURNEY.html#human-view",
     arcade: "/a0-human/start/a0-public-arkade-index.html#arkade",
@@ -17,9 +19,9 @@ export default async function Home({
     arcade: "NEXAHEDRON · Arcade",
     club: "NEXAHEDRON · O·PIUM Club",
   };
-  if (view === "connect") return <HumanConnect />;
+  if (view === "connect") return <HumanConnect language={language} />;
   const source = view ? sources[view] ?? "/a0-human/start/index.html" : "/a0-human/start/index.html";
   const title = view ? titles[view] ?? "NEXAHEDRON · Foyer" : "NEXAHEDRON · Foyer";
 
-  return <A0WorldFrame source={source} title={title} />;
+  return <A0WorldFrame source={source} title={title} language={language} />;
 }

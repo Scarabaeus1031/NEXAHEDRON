@@ -22,8 +22,8 @@ export function PublicHeader({ pathname }: { readonly pathname: string }) {
           <Link
             className="public-navigation__dot"
             href="/?view=connect&from=human"
-            aria-label="Human Connect · Frage stellen oder etwas teilen"
-            title="Human Connect · Frage stellen oder etwas teilen"
+            aria-label="Human Connect · ask a question or share something"
+            title="Human Connect · ask a question or share something"
           ><span aria-hidden="true" /></Link>
           <a
             className="public-navigation__scarab"

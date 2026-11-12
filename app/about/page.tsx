@@ -4,7 +4,7 @@ import Link from "next/link";
 
 export const metadata: Metadata = {
   title: "From NEXAHEDRON to NEXAH",
-  description: "Von der A0 Human View zur weiteren NEXAH-Methode, zum Visitor Guide und zum öffentlichen Forschungskontext.",
+  description: "From the A0 Human View to the wider NEXAH practice, Visitor Guide and public research context.",
   alternates: { canonical: "/about" },
 };
 
@@ -13,7 +13,7 @@ const nexahDoors = [
     index: "01",
     eyebrow: "Begin with the field",
     title: "Visitor Guide",
-    copy: "Lerne die größere NEXAH-Landschaft kennen und wähle, wo du eintreten möchtest.",
+    copy: "Meet the wider NEXAH landscape and choose where you would like to enter.",
     href: "https://nexah.de/visitor-guide/",
     action: "Open at nexah.de",
   },
@@ -21,7 +21,7 @@ const nexahDoors = [
     index: "02",
     eyebrow: "Understand the practice",
     title: "Method & context",
-    copy: "Lies, wie menschliches Urteil, Quellen, Öffnungen und ein ausdrücklicher Return zusammengehören.",
+    copy: "Read how Human judgement, sources, openings and an explicit Return belong together.",
     href: "https://nexah.de/about/",
     action: "Continue to NEXAH",
   },
@@ -29,7 +29,7 @@ const nexahDoors = [
     index: "03",
     eyebrow: "Inspect the record",
     title: "Science Lab",
-    copy: "Sieh öffentliche Forschungsrecords, Grenzen und quellgebundene Arbeit — ohne private Steuerflächen zu betreten.",
+    copy: "Inspect public research records, boundaries and source-bound work — without entering private control surfaces.",
     href: "https://github.com/Scarabaeus1031/NEXAH-Science-Lab",
     action: "Open the public source",
   },
@@ -42,7 +42,7 @@ export default function AboutPage() {
         <div className="about-threshold-hero__copy">
           <p className="public-kicker">NEXAHEDRON → NEXAH</p>
           <h1 id="about-threshold-title">Experience the world.<br /><em>Then meet the method.</em></h1>
-          <p>NEXAHEDRON ist die A0 Human View: ein begrenzter Ort zum Eintreten, Hinsehen, Drehen und Zurückkehren. NEXAH ist die weitere Praxis dahinter — Methode, Quellenlandschaft und öffentlicher Forschungskontext.</p>
+          <p>NEXAHEDRON is the A0 Human View: a bounded place to enter, look, turn and return. NEXAH is the wider practice behind it — method, source landscape and public research context.</p>
           <div className="about-threshold-actions">
             <a className="about-threshold-actions__primary" href="#crossing">Cross to NEXAH <span aria-hidden="true">↓</span></a>
             <Link href="/">Return to A0 World <span aria-hidden="true">↗</span></Link>
@@ -52,12 +52,12 @@ export default function AboutPage() {
           <span className="about-threshold-orbit__outer" />
           <span className="about-threshold-orbit__inner" />
           <i>✦</i>
-          <small>EINE SICHT<br />WEITERES FELD</small>
+          <small>ONE VIEW<br />WIDER FIELD</small>
         </div>
-        <div className="about-threshold-route" aria-label="Weg von NEXAHEDRON zu NEXAH">
+        <div className="about-threshold-route" aria-label="Path from NEXAHEDRON to NEXAH">
           <span>NEXAHEDRON<br /><small>A0 Human View</small></span>
           <i aria-hidden="true" />
-          <span>NEXAH<br /><small>Methode · Quellen · Forschung</small></span>
+          <span>NEXAH<br /><small>Method · sources · research</small></span>
         </div>
       </section>
 
@@ -66,10 +66,10 @@ export default function AboutPage() {
           <p className="public-kicker">The threshold</p>
           <h2 id="about-crossing-title">The room ends.<br />The field opens.</h2>
         </div>
-        <p>Dies ist weder ein Wechsel der Zuständigkeit noch ein zweites System. Es ist ein Wechsel des Maßstabs. Die Erfahrung bleibt NEXAHEDRON; Fragen, Quellen und Methode kehren in den weiteren NEXAH-Kontext zurück.</p>
+        <p>This is neither a transfer of authority nor a second system. It is a change of scale. The experience remains NEXAHEDRON; questions, sources and method return to the wider NEXAH context.</p>
       </section>
 
-      <section className="about-roles" aria-label="Wege zu NEXAH und Scarabæus">
+      <section className="about-roles" aria-label="Paths to NEXAH and Scarabæus">
         <article className="about-roles__nexah">
           <span>THERE · ORIENTATION</span>
           <div className="about-roles__field" aria-hidden="true">
@@ -80,14 +80,14 @@ export default function AboutPage() {
             <i>✦</i>
           </div>
           <h2>NEXAH</h2>
-          <p>Hier liegen die weitere Methode, ihre öffentliche Erklärung und die Wege zu Quellen, Forschung und anschließender Arbeit.</p>
+          <p>This is where the wider method, its public explanation and the paths to sources, research and subsequent work live.</p>
           <a href="https://nexah.de/">Enter nexah.de <span aria-hidden="true">↗</span></a>
         </article>
         <article className="about-roles__scarabaeus">
           <span>ELSEWHERE · WORKSHOP</span>
           <Image src="/images/scarabaeus-1033.webp" alt="" aria-hidden="true" width={1024} height={1024} />
           <h2>SCARABÆUS <em>1033</em></h2>
-          <p>Die dunklere visuelle Werkstatt desselben Feldes — hier können Symbole, Bilder und spekulative Formen bestehen, bevor sie in Erklärung, Forschung oder Anwendung eintreten.</p>
+          <p>The darker visual workshop of the same field — a place where symbols, images and speculative forms can exist before entering explanation, research or application.</p>
           <a href="https://www.scarabaeus1033.net/">Enter the visual codex <span aria-hidden="true">↗</span></a>
         </article>
         <span className="about-roles__joint" aria-hidden="true">✦</span>
@@ -106,7 +106,7 @@ export default function AboutPage() {
             <p className="public-kicker">Three doors into NEXAH</p>
             <h2 id="about-nexah-doors-title">Choose what you need next.</h2>
           </div>
-          <p>Keine einzelne Tür beansprucht das Ganze. Jede öffnet eine andere öffentliche Sicht und hält ihre Quelle sichtbar.</p>
+          <p>No single door claims the whole. Each opens a different public view and keeps its source visible.</p>
         </header>
         <div>
           {nexahDoors.map((door) => (
@@ -120,12 +120,12 @@ export default function AboutPage() {
         </div>
       </section>
 
-      <section className="about-return" id="return-to-nexahedron" aria-label="Rückkehr zu NEXAHEDRON">
+      <section className="about-return" id="return-to-nexahedron" aria-label="Return to NEXAHEDRON">
         <div>
           <span>RETURN · NEXAHEDRON</span>
           <h2>Back to the Human View.</h2>
         </div>
-        <p>Du kannst zur A0 Human View zurückkehren, ohne die Unterscheidung zwischen Erfahrung und Quelle zu verlieren.</p>
+        <p>You can return to the A0 Human View without losing the distinction between experience and source.</p>
         <Link href="/">Return to NEXAHEDRON <span aria-hidden="true">↗</span></Link>
       </section>
     </article>

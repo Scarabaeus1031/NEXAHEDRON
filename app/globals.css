@@ -237,6 +237,39 @@ main:focus {
   border-left: 1px solid rgba(95, 210, 231, 0.22);
 }
 
+.language-switch {
+  display: inline-flex;
+  align-items: center;
+  gap: .38rem;
+  margin-left: .15rem;
+  padding-left: .7rem;
+  border-left: 1px solid rgba(177, 210, 222, .18);
+  color: rgba(219, 230, 232, .32);
+}
+
+.a0-source-host-nav .language-switch a {
+  min-height: auto;
+  padding: .2rem 0;
+  border: 0;
+  color: rgba(224, 233, 235, .52);
+  font-size: .58rem;
+  letter-spacing: .12em;
+  box-shadow: none;
+  text-shadow: none;
+  transition: color 160ms ease, opacity 160ms ease;
+}
+
+.a0-source-host-nav .language-switch a[aria-current="true"] {
+  color: #f2f1ea;
+  box-shadow: inset 0 -1px currentColor;
+}
+
+.a0-source-host-nav .language-switch a:hover,
+.a0-source-host-nav .language-switch a:focus-visible {
+  color: #fff;
+  background: transparent;
+}
+
 .a0-source-host-nav .a0-source-host-dot,
 .a0-source-host-nav .a0-source-host-scarab {
   display: inline-grid;
@@ -315,6 +348,62 @@ main:focus {
   height: 100%;
   border: 0;
   background: #f4f0e7;
+}
+
+.a0-source-module {
+  display: grid;
+  height: 100%;
+  min-height: 0;
+  grid-template-rows: auto minmax(0, 1fr);
+  background: #071722;
+}
+
+.a0-source-module--foyer {
+  display: block;
+  height: auto;
+}
+
+.a0-source-language-note {
+  display: flex;
+  min-height: 2.55rem;
+  align-items: center;
+  gap: .65rem;
+  margin: 0;
+  padding: .55rem clamp(.85rem, 2vw, 1.5rem);
+  border-bottom: 1px solid rgba(109, 211, 231, .24);
+  background: #071722;
+  color: #eef4f1;
+  font: 700 .67rem/1.35 ui-monospace, SFMono-Regular, Menlo, monospace;
+  letter-spacing: .045em;
+}
+
+.a0-source-language-note > span {
+  display: inline-grid;
+  width: 1.7rem;
+  height: 1.7rem;
+  place-items: center;
+  border: 1px solid #eac052;
+  border-radius: 50%;
+  color: #eac052;
+  font-size: .58rem;
+}
+
+.a0-source-language-note small {
+  color: #9eb4bd;
+  font: inherit;
+  font-weight: 500;
+}
+
+@media (max-width: 640px) {
+  .a0-source-language-note {
+    align-items: flex-start;
+    flex-wrap: wrap;
+  }
+
+  .a0-source-language-note small {
+    width: 100%;
+    padding-left: 2.35rem;
+  }
 }
 
 .a0-source-home-shell[data-active-view="foyer"] .a0-source-home-frame {
