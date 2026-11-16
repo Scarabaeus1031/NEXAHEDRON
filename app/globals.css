@@ -407,8 +407,8 @@ main:focus {
 }
 
 .a0-source-home-shell[data-active-view="foyer"] .a0-source-home-frame {
-  height: clamp(34rem, 72svh, 40rem);
-  min-height: 34rem;
+  height: clamp(46rem, 78svh, 52rem);
+  min-height: 46rem;
 }
 
 .human-connect {
@@ -703,8 +703,426 @@ main:focus {
 .nexahedron-showcase {
   display: grid;
   width: min(100%, 82rem);
-  gap: 1.25rem;
+  gap: clamp(2rem, 5vw, 4.5rem);
   margin-inline: auto;
+}
+
+.nexahedron-first-contact--prelude {
+  padding-bottom: 0;
+  border-top: 0;
+}
+
+.nexahedron-first-contact--prelude .nexahedron-welcome {
+  width: min(100%, 82rem);
+  margin-inline: auto;
+}
+
+.nexahedron-welcome {
+  display: grid;
+  min-height: clamp(26rem, 52vw, 40rem);
+  align-content: center;
+  gap: clamp(1.25rem, 3vw, 2.5rem);
+  padding: clamp(4.5rem, 10vw, 9rem) clamp(1rem, 7vw, 7rem);
+  text-align: center;
+}
+
+.nexahedron-welcome > p,
+.nexahedron-welcome > h2,
+.nexahedron-welcome > small,
+.nexahedron-welcome > div > p {
+  margin: 0;
+}
+
+.nexahedron-welcome > p,
+.nexahedron-welcome > small {
+  color: var(--first-contact-gold);
+  font-family: var(--font-mono);
+  font-size: 0.62rem;
+  font-weight: 900;
+  letter-spacing: 0.14em;
+}
+
+.nexahedron-welcome > h2 {
+  color: #f4f2eb;
+  font-size: clamp(3rem, 7vw, 7rem);
+  line-height: 0.92;
+  letter-spacing: -0.055em;
+}
+
+.nexahedron-welcome > div {
+  display: grid;
+  width: min(100%, 50rem);
+  gap: 1.75rem;
+  margin-inline: auto;
+}
+
+.nexahedron-welcome > div > p {
+  color: #b7c8d0;
+  font-family: var(--font-display);
+  font-size: clamp(1.15rem, 2vw, 1.65rem);
+  line-height: 1.5;
+}
+
+.nexahedron-welcome nav {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.75rem;
+}
+
+.nexahedron-welcome a {
+  min-height: 2.75rem;
+  padding: 0.8rem 1rem;
+  border: 1px solid rgb(100 217 234 / 38%);
+  color: var(--first-contact-cyan);
+  font-family: var(--font-mono);
+  font-size: 0.65rem;
+  font-weight: 850;
+  letter-spacing: 0.09em;
+  text-decoration: none;
+  text-transform: uppercase;
+}
+
+.nexahedron-welcome a:hover,
+.nexahedron-welcome a:focus-visible {
+  border-color: var(--first-contact-gold);
+  color: var(--first-contact-gold);
+  outline: 2px solid var(--first-contact-gold);
+  outline-offset: 3px;
+}
+
+.nexahedron-message-gallery {
+  display: grid;
+  width: min(100%, 82rem);
+  gap: 1rem;
+  margin-inline: auto;
+  padding-top: clamp(3rem, 7vw, 7rem);
+  scroll-margin-top: 6rem;
+}
+
+.nexahedron-message-gallery > header {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: 1.25rem 2rem;
+  align-items: end;
+  padding-top: clamp(1.25rem, 3vw, 2.75rem);
+}
+
+.nexahedron-message-gallery__copy {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  gap: 0.65rem 1.25rem;
+  align-items: baseline;
+}
+
+.nexahedron-message-gallery__copy > * {
+  margin: 0;
+}
+
+.nexahedron-message-gallery__copy p,
+.nexahedron-message-gallery__copy span {
+  color: var(--first-contact-gold);
+  font-family: var(--font-mono);
+  font-size: 0.6rem;
+  font-weight: 900;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.nexahedron-message-gallery__copy h2 {
+  color: #f4f2eb;
+  font-size: clamp(1.35rem, 2.4vw, 2.2rem);
+}
+
+.nexahedron-message-gallery__copy span {
+  grid-column: 1 / -1;
+}
+
+.nexahedron-message-gallery__controls {
+  display: flex;
+  align-items: center;
+  gap: 0.45rem;
+}
+
+.nexahedron-message-gallery__controls output,
+.nexahedron-message-gallery__controls button {
+  font-family: var(--font-mono);
+  font-size: 0.62rem;
+  font-weight: 850;
+  letter-spacing: 0.08em;
+}
+
+.nexahedron-message-gallery__controls output {
+  min-width: 4rem;
+  color: #9eb2bb;
+}
+
+.nexahedron-message-gallery__controls button {
+  min-width: 2.7rem;
+  min-height: 2.7rem;
+  padding: 0.65rem 0.75rem;
+  border: 1px solid rgb(100 217 234 / 38%);
+  background: transparent;
+  color: var(--first-contact-cyan);
+  cursor: pointer;
+  text-transform: uppercase;
+}
+
+.nexahedron-message-gallery__controls button:hover,
+.nexahedron-message-gallery__controls button:focus-visible {
+  border-color: var(--first-contact-gold);
+  color: var(--first-contact-gold);
+  outline: 2px solid var(--first-contact-gold);
+  outline-offset: 2px;
+}
+
+.nexahedron-message-gallery__controls button:disabled {
+  cursor: not-allowed;
+  opacity: 0.35;
+}
+
+.nexahedron-message-gallery__stage {
+  position: relative;
+  display: grid;
+  overflow: hidden;
+  min-height: clamp(20rem, 34vw, 30rem);
+  border: 1px solid rgb(239 181 52 / 42%);
+  background: #07141e;
+}
+
+.nexahedron-message-gallery figure {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  min-height: inherit;
+  margin: 0;
+  animation: nexahedron-message-enter 520ms ease both;
+}
+
+.nexahedron-message-gallery img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  min-width: 0;
+  grid-column: 1;
+  grid-row: 1;
+  object-fit: contain;
+  object-position: center;
+  animation: nexahedron-message-drift 7s ease-out both;
+}
+
+.nexahedron-message-gallery figcaption {
+  position: relative;
+  display: grid;
+  grid-column: 2;
+  grid-row: 1;
+  align-content: center;
+  gap: 1rem;
+  padding: clamp(2rem, 5vw, 5rem);
+  border-left: 1px solid rgb(100 217 234 / 22%);
+  background:
+    radial-gradient(circle at 18% 50%, rgb(100 217 234 / 11%), transparent 18rem),
+    #07141e;
+}
+
+.nexahedron-message-gallery figure.is-image-right img {
+  grid-column: 2;
+}
+
+.nexahedron-message-gallery figure.is-image-right figcaption {
+  grid-column: 1;
+  border-right: 1px solid rgb(100 217 234 / 22%);
+  border-left: 0;
+  background:
+    radial-gradient(circle at 82% 50%, rgb(229 72 181 / 11%), transparent 18rem),
+    #07141e;
+}
+
+.nexahedron-message-gallery figure.is-wide img {
+  grid-column: 1 / -1;
+  object-fit: cover;
+}
+
+.nexahedron-message-gallery figure.is-wide figcaption {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  grid-template-columns: auto minmax(0, 1fr);
+  align-items: baseline;
+  padding: clamp(1rem, 2vw, 1.5rem);
+  border-top: 1px solid rgb(100 217 234 / 22%);
+  border-left: 0;
+  background: linear-gradient(90deg, rgb(7 20 30 / 98%), rgb(7 20 30 / 66%), transparent);
+}
+
+.nexahedron-message-gallery figcaption small {
+  color: var(--first-contact-gold);
+  font-family: var(--font-mono);
+  font-size: 0.58rem;
+  font-weight: 900;
+  letter-spacing: 0.1em;
+}
+
+.nexahedron-message-gallery figcaption strong {
+  color: #d9e5e9;
+  font-family: var(--font-display);
+  font-size: clamp(1rem, 1.7vw, 1.45rem);
+  font-weight: 650;
+  line-height: 1.25;
+}
+
+@keyframes nexahedron-message-enter {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes nexahedron-message-drift {
+  from { transform: scale(1.035); }
+  to { transform: scale(1); }
+}
+
+.nexahedron-reading-path {
+  display: grid;
+  overflow: hidden;
+  border: 1px solid rgb(239 181 52 / 56%);
+  background:
+    radial-gradient(circle at 100% 0%, rgb(229 72 181 / 13%), transparent 26rem),
+    linear-gradient(118deg, rgb(239 181 52 / 10%), rgb(7 24 35 / 94%) 45%);
+}
+
+.nexahedron-reading-path > header {
+  display: grid;
+  grid-template-columns: minmax(0, 1.15fr) minmax(18rem, 0.85fr);
+  gap: 0.85rem 2rem;
+  align-items: end;
+  padding: clamp(1.25rem, 3vw, 2.2rem);
+}
+
+.nexahedron-reading-path > header > p {
+  grid-column: 1 / -1;
+  margin: 0;
+  color: var(--first-contact-gold);
+  font-family: var(--font-mono);
+  font-size: 0.62rem;
+  font-weight: 900;
+  letter-spacing: 0.12em;
+}
+
+.nexahedron-reading-path > header > h2 {
+  margin: 0;
+  max-width: 46rem;
+  color: #f4f2eb;
+  font-size: clamp(2rem, 4vw, 4rem);
+  line-height: 0.96;
+  letter-spacing: -0.045em;
+}
+
+.nexahedron-reading-path > header > span {
+  color: #b7c8d0;
+  font-family: var(--font-display);
+  font-size: clamp(1rem, 1.4vw, 1.25rem);
+  line-height: 1.5;
+}
+
+.nexahedron-reading-path > ol {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  margin: 0;
+  padding: 0;
+  border-block: 1px solid rgb(100 217 234 / 25%);
+  list-style: none;
+}
+
+.nexahedron-reading-path > ol > li {
+  position: relative;
+  display: grid;
+  min-height: 9.5rem;
+  align-content: start;
+  gap: 0.5rem;
+  padding: 1.15rem;
+  border-right: 1px solid rgb(100 217 234 / 25%);
+}
+
+.nexahedron-reading-path > ol > li:last-child {
+  border-right: 0;
+}
+
+.nexahedron-reading-path > ol > li:not(:last-child)::after {
+  position: absolute;
+  z-index: 1;
+  top: 50%;
+  right: -0.5rem;
+  width: 1rem;
+  background: #0b1c27;
+  color: var(--first-contact-cyan);
+  content: "→";
+  font-size: 0.72rem;
+  text-align: center;
+}
+
+.nexahedron-reading-path li > b {
+  color: var(--first-contact-gold);
+  font-family: var(--font-display);
+  font-size: 1.8rem;
+  font-weight: 650;
+}
+
+.nexahedron-reading-path li > small {
+  color: var(--first-contact-cyan);
+  font-family: var(--font-mono);
+  font-size: 0.58rem;
+  font-weight: 850;
+  letter-spacing: 0.08em;
+}
+
+.nexahedron-reading-path li > strong {
+  color: #d9e5e9;
+  font-family: var(--font-display);
+  font-size: 0.95rem;
+  line-height: 1.3;
+}
+
+.nexahedron-reading-path > a {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 1rem 1.25rem;
+  color: #f4f2eb;
+  text-decoration: none;
+}
+
+.nexahedron-reading-path > a span,
+.nexahedron-reading-path > a small,
+.nexahedron-reading-path > a strong {
+  display: block;
+}
+
+.nexahedron-reading-path > a small {
+  margin-bottom: 0.3rem;
+  color: var(--first-contact-gold);
+  font-family: var(--font-mono);
+  font-size: 0.6rem;
+  font-weight: 900;
+  letter-spacing: 0.1em;
+}
+
+.nexahedron-reading-path > a strong {
+  font-family: var(--font-display);
+  font-size: clamp(1.15rem, 2vw, 1.65rem);
+}
+
+.nexahedron-reading-path > a > b {
+  color: var(--first-contact-gold);
+  font-size: 2.2rem;
+  font-weight: 400;
+}
+
+.nexahedron-reading-path > a:hover,
+.nexahedron-reading-path > a:focus-visible {
+  background: rgb(239 181 52 / 14%);
+  outline: 3px solid var(--first-contact-gold);
+  outline-offset: -3px;
 }
 
 .nexahedron-showcase-selectors {
@@ -1861,12 +2279,87 @@ main:focus {
   }
 
   .a0-source-home-shell[data-active-view="foyer"] .a0-source-home-frame {
-    height: 36rem;
-    min-height: 36rem;
+    height: 46rem;
+    min-height: 46rem;
   }
 
   .nexahedron-showcase-selectors {
     grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .nexahedron-message-gallery > header {
+    grid-template-columns: 1fr;
+  }
+
+  .nexahedron-message-gallery__copy {
+    grid-template-columns: 1fr;
+  }
+
+  .nexahedron-message-gallery__copy span {
+    grid-column: auto;
+  }
+
+  .nexahedron-message-gallery__controls {
+    justify-content: flex-start;
+  }
+
+  .nexahedron-message-gallery__stage {
+    min-height: min(135vw, 38rem);
+  }
+
+  .nexahedron-message-gallery figure {
+    grid-template-columns: 1fr;
+    grid-template-rows: minmax(0, 1fr) auto;
+  }
+
+  .nexahedron-message-gallery img,
+  .nexahedron-message-gallery figure.is-image-right img {
+    grid-column: 1;
+    grid-row: 1;
+  }
+
+  .nexahedron-message-gallery figcaption {
+    grid-column: 1;
+    grid-row: 2;
+    grid-template-columns: 1fr;
+    padding: 1.1rem 1.25rem 1.25rem;
+    border-top: 1px solid rgb(100 217 234 / 22%);
+    border-right: 0;
+    border-left: 0;
+  }
+
+  .nexahedron-message-gallery figure.is-image-right figcaption {
+    grid-column: 1;
+    grid-row: 2;
+    border-right: 0;
+  }
+
+  .nexahedron-message-gallery figure.is-wide figcaption {
+    grid-template-columns: 1fr;
+  }
+
+  .nexahedron-welcome {
+    min-height: 30rem;
+    padding-inline: 0.5rem;
+  }
+
+  .nexahedron-reading-path > header {
+    grid-template-columns: 1fr;
+  }
+
+  .nexahedron-reading-path > header > p {
+    grid-column: auto;
+  }
+
+  .nexahedron-reading-path > ol {
+    display: flex;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+  }
+
+  .nexahedron-reading-path > ol > li {
+    min-width: min(72vw, 15rem);
+    scroll-snap-align: start;
   }
 
   .nexahedron-showcase-selectors button {
@@ -2054,6 +2547,15 @@ main:focus {
 
   .nexahedron-showcase-club__choices button {
     transition: none;
+  }
+
+  .nexahedron-message-gallery figure {
+    animation: none;
+  }
+
+  .nexahedron-message-gallery img {
+    animation: none;
+    transform: none;
   }
 
   html {

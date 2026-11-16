@@ -18,6 +18,7 @@ test("renders the public homepage as the bounded A0 Human View entrance", async 
   assert.equal(response.status, 200);
   const html = await response.text();
   const sourceHome = await readFile(new URL("../public/a0-human/start/index.html", import.meta.url), "utf8");
+  const humanJourney = await readFile(new URL("../public/a0-human/start/A0_NEXAH_APERTURE_JOURNEY.html", import.meta.url), "utf8");
   const publicNavigation = await readFile(new URL("../public/a0-human/start/nexahedron-public-navigation.js", import.meta.url), "utf8");
   const worldFrame = await readFile(new URL("../components/layout/A0WorldFrame.tsx", import.meta.url), "utf8");
 
@@ -25,7 +26,7 @@ test("renders the public homepage as the bounded A0 Human View entrance", async 
   assert.match(html, /class="a0-source-home-shell"/);
   assert.match(html, /class="a0-source-host-header"/);
   assert.match(html, /class="a0-source-host-nav(?:\s[^"]*)?"/);
-  for (const destination of ["A0 World", "To NEXAH", "Human Connect", "Scarabæus 1033"]) {
+  for (const destination of ["Home", "Human View", "To NEXAH", "Human Connect", "Scarabæus 1033"]) {
     assert.match(html, new RegExp(destination));
   }
   assert.match(html, /href="\/\?view=human"/);
@@ -34,12 +35,17 @@ test("renders the public homepage as the bounded A0 Human View entrance", async 
   assert.doesNotMatch(html, /a0-source-host-science/);
   assert.match(html, /https:\/\/www\.scarabaeus1033\.net\//);
   assert.match(html, /class="a0-source-home-main" id="main-content"/);
-  assert.match(html, /class="a0-source-home-frame"/);
-  assert.match(html, /src="\/a0-human\/start\/index\.html"/);
+  assert.match(html, /<iframe[^>]+a0-source-home-frame/);
+  assert.match(html, /data-a0-source="\/a0-human\/start\/index\.html"/);
+  assert.doesNotMatch(html, /A0 SCIENCE/);
   assert.match(sourceHome, /Welche Reise brauchst du gerade\?/);
   assert.equal((sourceHome.match(/class="entry-route(?: |")/g) ?? []).length, 4);
   assert.match(sourceHome, /<h2 id="wegweiser-title">Wo beginne ich\?<\/h2>/);
-  assert.match(sourceHome, /Grid → Operator → Anwendung/);
+  assert.match(sourceHome, /Human View → Observation → Difference → Time After Time → The Living Blueprint/);
+  assert.match(humanJourney, /The Missing<em>Condition\.<\/em>/);
+  assert.match(humanJourney, /A · EGG/);
+  assert.match(humanJourney, /A′ · CHICKEN/);
+  assert.match(humanJourney, /Das Huhn oder das Ei\?/);
   assert.doesNotMatch(sourceHome, /href="A0_RESEARCH_DESK\.html/);
   assert.doesNotMatch(sourceHome, /SCIENCE_LAB\/NAVIGATION\/APP/);
   assert.match(sourceHome, /Acht Kapitel verfolgen den Weg eines Ergebnisses\./);
@@ -55,14 +61,32 @@ test("renders the public homepage as the bounded A0 Human View entrance", async 
   assert.match(publicNavigation, /#built-world,body>footer\{display:none!important\}/);
   assert.match(publicNavigation, /getElementById\("a0-home"\).*scrollIntoView/);
   assert.match(worldFrame, /dataset\.nexahedronProjection = isFoyer \? "foyer" : "experience"/);
-  assert.match(worldFrame, /Orientation begins with a difference\./);
+  assert.match(worldFrame, /The moments that made us wonder\./);
+  assert.match(worldFrame, /Technology changes\. Curiosity remains\./);
+  assert.match(worldFrame, /You are in NEXAHEDRON\./);
+  assert.ok(
+    worldFrame.indexOf("You are in NEXAHEDRON.") < worldFrame.indexOf("a0-source-module"),
+    "The welcome must precede the A0 Built World source frame",
+  );
+  assert.match(worldFrame, /camera-orbit", "-12deg 72deg 58%/);
+  assert.match(worldFrame, /Control image sequence/);
+  assert.match(worldFrame, /Previous image/);
+  assert.match(worldFrame, /Next image/);
   assert.match(worldFrame, /A voice becomes a record\./);
   assert.match(worldFrame, /ENTER THE TOUR/);
+  assert.match(worldFrame, /ONE ENTRANCE · FIVE STATIONS · ALWAYS RETURN/);
+  assert.match(worldFrame, /The windows stay open\. The tour holds the thread\./);
+  assert.match(worldFrame, /START THE GUIDED PATH/);
+  assert.match(worldFrame, /H → I → II → III → \+1/);
+  assert.match(worldFrame, /nexah-entry-life-is-relation\.jpg/);
+  assert.match(worldFrame, /nexah-entry-ready-light-path\.jpg/);
+  assert.match(worldFrame, /nexah-humanity-remembers\.jpg/);
+  assert.match(worldFrame, /nexah-connection-needs-no-signal\.jpg/);
+  assert.match(worldFrame, /nexah-some-things-cant-be-downloaded\.jpg/);
   assert.match(html, /aria-label="Choose language"/);
   assert.match(html, />DE<\/a>/);
   assert.match(html, />\/<\/span>/);
-  assert.match(sourceHome, /One object\. Several sections\. Visible transitions\. And always a way back\./);
-  assert.doesNotMatch(sourceHome, /Ein Gegenstand\. Mehrere Schnitte\. Sichtbare Übergänge\. Und immer ein Weg zurück\./);
+  assert.match(sourceHome, /Ein Gegenstand\. Mehrere Schnitte\. Sichtbare Übergänge\. Und immer ein Weg zurück\./);
   assert.match(worldFrame, /main > :not\(\.portal\)/);
   assert.match(worldFrame, /\.world-plate-return/);
   assert.match(worldFrame, /body > footer/);
@@ -75,7 +99,8 @@ test("starts in German when no language preference is declared", async () => {
   const response = await render();
   assert.equal(response.status, 200);
   const html = await response.text();
-  assert.match(html, /Orientierung beginnt mit einem Unterschied\./);
+  assert.match(html, /Momente, die uns staunen ließen\./);
+  assert.match(html, /Technologie verändert sich\. Neugier bleibt\./);
   assert.match(html, /Eine Stimme wird zum Record\./);
   assert.match(html, /href="\/\?view=connect&amp;from=human&amp;lang=de"/);
 });
@@ -86,7 +111,8 @@ test("offers a German presentation lens without creating a second route", async 
   const html = await response.text();
 
   assert.match(html, /aria-label="Sprache wählen"/);
-  assert.match(html, /Orientierung beginnt mit einem Unterschied\./);
+  assert.match(html, /Momente, die uns staunen ließen\./);
+  assert.match(html, /Technologie verändert sich\. Neugier bleibt\./);
   assert.match(html, /Eine Stimme wird zum Record\./);
   assert.match(html, /TOUR BETRETEN/);
   assert.match(html, /href="\/\?view=connect&amp;from=human&amp;lang=de"/);
@@ -108,19 +134,20 @@ test("opens the bounded Human Connect surface inside the existing shell", async 
   assert.match(html, /A message begins a conversation\./);
 });
 
-test("labels German source modules without altering their source route", async () => {
+test("renders the A0 Human View through its bilingual source-bound route", async () => {
   const response = await render("/?view=human&lang=en");
   assert.equal(response.status, 200);
   const html = await response.text();
 
-  assert.match(html, /Original language: German/);
-  assert.match(html, /Use your browser’s Translate function\./);
-  assert.match(html, /src="\/a0-human\/start\/A0_NEXAH_APERTURE_JOURNEY\.html#human-view"/);
+  assert.match(html, /English edition/);
+  assert.match(html, /Same A0 identity · same return/);
+  assert.match(html, /src="\/a0-human\/start\/A0_NEXAH_APERTURE_JOURNEY\.html\?lang=en#human-view"/);
 
   const germanResponse = await render("/?view=human&lang=de");
   const germanHtml = await germanResponse.text();
-  assert.match(germanHtml, /Originalsprache: Deutsch/);
-  assert.doesNotMatch(germanHtml, /Use your browser’s Translate function\./);
+  assert.match(germanHtml, /src="\/a0-human\/start\/A0_NEXAH_APERTURE_JOURNEY\.html\?lang=de#human-view"/);
+  assert.match(germanHtml, /Deutsche Fassung/);
+  assert.match(germanHtml, /Dieselbe A0-Identität · derselbe Return/);
 });
 
 test("renders the Version 1 visitor guide as the local demonstrator orientation layer", async () => {
@@ -281,6 +308,12 @@ test("defines visible focus, responsive layout and reduced motion", async () => 
   const publicCss = await readFile(new URL("../styles/public-experience.css", import.meta.url), "utf8");
   const humanCss = await readFile(new URL("../styles/a0-human-view.css", import.meta.url), "utf8");
   assert.match(css, /:focus-visible/);
+  assert.match(css, /\.nexahedron-reading-path/);
+  assert.match(css, /\.nexahedron-reading-path > ol/);
+  assert.match(css, /\.nexahedron-message-gallery/);
+  assert.match(css, /@keyframes nexahedron-message-enter/);
+  assert.match(css, /\.nexahedron-welcome/);
+  assert.match(css, /scroll-snap-type:\s*x mandatory/);
   assert.match(css, /prefers-reduced-motion:\s*reduce/);
   assert.match(css, /min-width:\s*280px/);
   assert.match(css, /@media \(max-width:\s*480px\)/);

@@ -34,6 +34,153 @@ const publicChannels = [
   { href: "https://www.scarabaeus1033.net/", mark: "S", label: "Scarabæus 1033" },
 ] as const;
 
+const messageGallerySlides = [
+  {
+    id: "relation",
+    image: "/media/nexah-entry-life-is-relation.jpg",
+    width: 886,
+    height: 886,
+    altDe: "Ein Kind und ein kleiner Roboter blicken bei Sonnenaufgang gemeinsam über eine Stadt.",
+    altEn: "A child and a small robot look across a city together at sunrise.",
+    label: "RELATION",
+    copyDe: "Leben ist Beziehung in Bewegung.",
+    copyEn: "Life is relation in motion.",
+  },
+  {
+    id: "memory",
+    image: "/media/nexah-humanity-remembers.jpg",
+    width: 1254,
+    height: 627,
+    altDe: "Zehn Erinnerungsbilder zwischen Blue Marble, Voyager, Spiel, Aufnahme und Bibliothek.",
+    altEn: "Ten remembered images from Blue Marble and Voyager to play, recording and the library.",
+    label: "MEMORY",
+    copyDe: "Technologie verändert sich. Staunen verbindet.",
+    copyEn: "Technology changes. Wonder connects.",
+  },
+  {
+    id: "possibility",
+    image: "/media/nexah-entry-ready-light-path.jpg",
+    width: 886,
+    height: 886,
+    altDe: "Ein Kind, ein kleiner Roboter und ein alter Computer blicken auf eine Regenbogensäule über einer Stadt.",
+    altEn: "A child, a small robot and a vintage computer face a rainbow column above a city.",
+    label: "POSSIBILITY",
+    copyDe: "Die Zukunft fühlte sich endlos an. Sie kann es noch immer.",
+    copyEn: "The future felt endless. It still can.",
+  },
+  {
+    id: "connection",
+    image: "/media/nexah-connection-needs-no-signal.jpg",
+    width: 886,
+    height: 886,
+    altDe: "Zwei Menschen mit Robothelmen sitzen bei Sonnenuntergang auf einer Bank.",
+    altEn: "Two people in robot helmets sit on a bench at sunset.",
+    label: "CONNECTION",
+    copyDe: "Verbindung braucht kein Signal.",
+    copyEn: "Connection needs no signal.",
+  },
+  {
+    id: "presence",
+    image: "/media/nexah-some-things-cant-be-downloaded.jpg",
+    width: 886,
+    height: 886,
+    altDe: "Menschen fotografieren einen schwarzen Monolithen unter einem Sternenhimmel.",
+    altEn: "People photograph a black monolith beneath a starry sky.",
+    label: "PRESENCE",
+    copyDe: "Manche Dinge kann man nicht herunterladen.",
+    copyEn: "Some things cannot be downloaded.",
+  },
+] as const;
+
+function NexahedronMessageGallery({ language = "en" }: { readonly language?: PublicLanguage }) {
+  const galleryRef = useRef<HTMLElement>(null);
+  const [activeSlide, setActiveSlide] = useState(0);
+  const [isPaused, setIsPaused] = useState(false);
+  const [isHovering, setIsHovering] = useState(false);
+  const [hasFocusWithin, setHasFocusWithin] = useState(false);
+  const [isVisible, setIsVisible] = useState(false);
+  const german = language === "de";
+  const lastSlide = messageGallerySlides.length - 1;
+  const slide = messageGallerySlides[activeSlide];
+
+  useEffect(() => {
+    const gallery = galleryRef.current;
+    if (!gallery) return;
+    const observer = new IntersectionObserver(([entry]) => setIsVisible(entry.isIntersecting), { threshold: 0.35 });
+    observer.observe(gallery);
+    return () => observer.disconnect();
+  }, []);
+
+  useEffect(() => {
+    const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
+    const applyMotionPreference = () => {
+      if (reducedMotion.matches) setIsPaused(true);
+    };
+    applyMotionPreference();
+    reducedMotion.addEventListener("change", applyMotionPreference);
+    return () => reducedMotion.removeEventListener("change", applyMotionPreference);
+  }, []);
+
+  useEffect(() => {
+    if (isPaused || isHovering || hasFocusWithin || !isVisible) return;
+    const timeout = window.setTimeout(() => {
+      if (activeSlide >= lastSlide) {
+        setIsPaused(true);
+        return;
+      }
+      setActiveSlide((current) => current + 1);
+    }, 7000);
+    return () => window.clearTimeout(timeout);
+  }, [activeSlide, hasFocusWithin, isHovering, isPaused, isVisible, lastSlide]);
+
+  function selectSlide(index: number) {
+    setIsPaused(true);
+    setActiveSlide(index);
+  }
+
+  function togglePlayback() {
+    if (isPaused && activeSlide === lastSlide) setActiveSlide(0);
+    setIsPaused((paused) => !paused);
+  }
+
+  return (
+    <section
+      className="nexahedron-message-gallery"
+      aria-labelledby="nexahedron-entry-visuals-title"
+      onBlurCapture={(event) => {
+        if (!event.currentTarget.contains(event.relatedTarget as Node | null)) setHasFocusWithin(false);
+      }}
+      onFocusCapture={() => setHasFocusWithin(true)}
+      onMouseEnter={() => setIsHovering(true)}
+      onMouseLeave={() => setIsHovering(false)}
+      ref={galleryRef}
+    >
+      <header>
+        <div className="nexahedron-message-gallery__copy">
+          <p>HUMANITY REMEMBERS</p>
+          <h2 id="nexahedron-entry-visuals-title">{german ? "Momente, die uns staunen ließen." : "The moments that made us wonder."}</h2>
+          <span>{german ? "Technologie verändert sich. Neugier bleibt." : "Technology changes. Curiosity remains."}</span>
+        </div>
+        <div className="nexahedron-message-gallery__controls" aria-label={german ? "Bildfolge steuern" : "Control image sequence"}>
+          <output aria-live="polite">{String(activeSlide + 1).padStart(2, "0")} / {String(messageGallerySlides.length).padStart(2, "0")}</output>
+          <button disabled={activeSlide === 0} onClick={() => selectSlide(activeSlide - 1)} type="button" aria-label={german ? "Vorheriges Bild" : "Previous image"}>←</button>
+          <button aria-pressed={isPaused} onClick={togglePlayback} type="button">{isPaused ? (german ? "Abspielen" : "Play") : (german ? "Pause" : "Pause")}</button>
+          <button disabled={activeSlide === lastSlide} onClick={() => selectSlide(activeSlide + 1)} type="button" aria-label={german ? "Nächstes Bild" : "Next image"}>→</button>
+        </div>
+      </header>
+      <div className="nexahedron-message-gallery__stage" aria-label={german ? "NEXAH-Bildfolge" : "NEXAH image sequence"}>
+        <figure className={slide.id === "memory" ? "is-wide" : activeSlide % 2 === 0 ? "is-image-left" : "is-image-right"} key={slide.id}>
+          <img alt={german ? slide.altDe : slide.altEn} height={slide.height} src={slide.image} width={slide.width} />
+          <figcaption>
+            <small>{String(activeSlide + 1).padStart(2, "0")} · {slide.label}</small>
+            <strong>{german ? slide.copyDe : slide.copyEn}</strong>
+          </figcaption>
+        </figure>
+      </div>
+    </section>
+  );
+}
+
 function NexahedronLivingInterior() {
   const previewRef = useRef<HTMLDivElement>(null);
   const [previewReady, setPreviewReady] = useState(false);
@@ -119,6 +266,8 @@ function NexahedronRecordPlayer({ language = "en" }: { readonly language?: Publi
     viewer.setAttribute("src", "/a0-human/start/assets/3d/nexah_roedelheim_record_play.glb");
     viewer.setAttribute("alt", "Interactive 3D model of the Rödelheim Record Play instrument with graph, wave and fold traces");
     viewer.setAttribute("camera-controls", "");
+    viewer.setAttribute("camera-orbit", "-12deg 72deg 58%");
+    viewer.setAttribute("field-of-view", "32deg");
     viewer.setAttribute("rotation-per-second", "10deg");
     viewer.setAttribute("interaction-prompt", "auto");
     viewer.setAttribute("touch-action", "none");
@@ -320,8 +469,14 @@ export function A0WorldFrame({ source, title = "NEXAHEDRON · Foyer", language =
     const framePath = frame.contentWindow?.location.pathname ?? "";
     const isFoyer = framePath.endsWith("/index.html") || framePath.endsWith("/a0-human/start/");
     document.documentElement.dataset.nexahedronProjection = isFoyer ? "foyer" : "experience";
+    document.documentElement.lang = language;
 
     if (isFoyer) {
+      const template = document.querySelector<HTMLTemplateElement>("#a0-built-world-concept");
+      const main = document.querySelector<HTMLElement>("main#top");
+      if (!document.querySelector("#built-world") && template && main) {
+        main.prepend(template.content.cloneNode(true));
+      }
       const depth = document.querySelector<HTMLDetailsElement>("details.portal-depth");
       const trailer = document.querySelector<HTMLElement>("#world-trailer");
       const intro = document.querySelector<HTMLElement>(".world-plate-intro");
@@ -369,6 +524,18 @@ export function A0WorldFrame({ source, title = "NEXAHEDRON · Foyer", language =
           enterHumanView(event);
         });
       }
+      if (trailer && trailer.dataset.nexahedronPauseBound !== "true") {
+        trailer.dataset.nexahedronPauseBound = "true";
+        const toggle = trailer.querySelector<HTMLButtonElement>(".world-trailer-toggle");
+        const signal = trailer.querySelector<HTMLElement>(".world-trailer-live");
+        toggle?.addEventListener("click", () => {
+          const paused = trailer.dataset.paused !== "true";
+          trailer.dataset.paused = String(paused);
+          toggle.textContent = paused ? "Play" : "Pause";
+          toggle.setAttribute("aria-pressed", String(paused));
+          if (signal) signal.textContent = paused ? "World signal · paused" : "World signal · running";
+        });
+      }
     }
 
     const previousStyle = document.getElementById("nexahedronFrameChromeStyle");
@@ -382,16 +549,17 @@ export function A0WorldFrame({ source, title = "NEXAHEDRON · Foyer", language =
         display: none !important;
       }
 
+      html[data-nexahedron-projection="experience"] .mc-status,
+      html[data-nexahedron-projection="experience"] .a0-human-overview,
+      html[data-nexahedron-projection="experience"] body > footer {
+        display: none !important;
+      }
+
       html {
         scroll-padding-top: 0 !important;
       }
 
-      html[data-nexahedron-projection="foyer"] #top > :not(.portal-depth) {
-        display: none !important;
-      }
-
-      html[data-nexahedron-projection="foyer"] .portal-depth > summary,
-      html[data-nexahedron-projection="foyer"] .portal-depth > :not(summary):not(#built-world) {
+      html[data-nexahedron-projection="foyer"] #top > :not(#built-world) {
         display: none !important;
       }
 
@@ -528,12 +696,28 @@ export function A0WorldFrame({ source, title = "NEXAHEDRON · Foyer", language =
 
   return (
     <>
+      {isFoyerSource ? (
+        <div className="nexahedron-first-contact nexahedron-first-contact--prelude">
+          <section className="nexahedron-welcome" aria-labelledby="nexahedron-welcome-title">
+            <p>{german ? "WILLKOMMEN · EIN PFAD ODER EIN FENSTER" : "WELCOME · ONE PATH OR ONE WINDOW"}</p>
+            <h2 id="nexahedron-welcome-title">{german ? "Du bist im NEXAHEDRON." : "You are in NEXAHEDRON."}</h2>
+            <div>
+              <p>{german ? "Du musst nicht zuerst das Ganze verstehen. Folge einem Pfad — oder öffne ein Fenster. Du kannst jederzeit zurückkehren." : "You do not need to understand the whole before you begin. Follow one path — or open one window. You can always return."}</p>
+              <nav aria-label={german ? "Einstieg wählen" : "Choose an entrance"}>
+                <a href="#nexahedron-reading-path">{german ? "Dem Pfad folgen ↓" : "Follow the path ↓"}</a>
+                <a href="#nexahedron-showcase-selectors">{german ? "Ein Fenster öffnen ↓" : "Open a window ↓"}</a>
+              </nav>
+            </div>
+            <small>ONE SOURCE · MANY VIEWS · EXPLICIT RETURN</small>
+          </section>
+        </div>
+      ) : null}
       <div className={`a0-source-module${isFoyerSource ? " a0-source-module--foyer" : ""}`}>
         {!isFoyerSource ? (
           <p className="a0-source-language-note" role="note">
-            <span aria-hidden="true">DE</span>
-            <strong>{german ? "Originalsprache: Deutsch" : "Original language: German"}</strong>
-            {!german ? <small>Use your browser’s Translate function.</small> : null}
+            <span aria-hidden="true">{german ? "DE" : "EN"}</span>
+            <strong>{german ? "Deutsche Fassung" : "English edition"}</strong>
+            <small>{german ? "Dieselbe A0-Identität · derselbe Return" : "Same A0 identity · same return"}</small>
           </p>
         ) : null}
         <iframe
@@ -545,10 +729,28 @@ export function A0WorldFrame({ source, title = "NEXAHEDRON · Foyer", language =
         />
       </div>
       {isFoyerSource ? (
-        <section className="nexahedron-first-contact" aria-labelledby="first-contact-title">
+        <section className="nexahedron-first-contact" data-a0-source={source} aria-label={german ? "NEXAHEDRON-Einstieg" : "NEXAHEDRON entrance"}>
           <section className="nexahedron-showcase" aria-labelledby="nexahedron-showcase-title">
             <h2 className="sr-only" id="nexahedron-showcase-title">{german ? "Sechs Fenster in NEXAHEDRON" : "Six windows into NEXAHEDRON"}</h2>
-            <div className="nexahedron-showcase-selectors" role="toolbar" aria-label={german ? "Eines von sechs Fenstern öffnen" : "Open one of six windows"}>
+            <section className="nexahedron-reading-path" id="nexahedron-reading-path" aria-labelledby="nexahedron-reading-path-title">
+              <header>
+                <p>{german ? "EIN EINGANG · FÜNF STATIONEN · IMMER EIN RETURN" : "ONE ENTRANCE · FIVE STATIONS · ALWAYS RETURN"}</p>
+                <h2 id="nexahedron-reading-path-title">{german ? "Die Fenster bleiben offen. Die Tour hält den Faden." : "The windows stay open. The tour holds the thread."}</h2>
+                <span>{german ? "Wenn du zum ersten Mal hier bist, folge dieser Spur. Danach kannst du jedes Fenster frei öffnen." : "If this is your first visit, follow this thread. Afterwards, every window remains yours to open."}</span>
+              </header>
+              <ol aria-label={german ? "Geführter NEXAHEDRON-Lesepfad" : "Guided NEXAHEDRON reading path"}>
+                <li><b>H</b><small>{german ? "HUMAN VIEW" : "HUMAN VIEW"}</small><strong>{german ? "Beginne innen." : "Begin inside."}</strong></li>
+                <li><b>I</b><small>{german ? "BEOBACHTUNG" : "OBSERVATION"}</small><strong>{german ? "Sieh die Ansicht." : "See the view."}</strong></li>
+                <li><b>II</b><small>{german ? "DIFFERENZ" : "DIFFERENCE"}</small><strong>{german ? "Ändere eine Bedingung." : "Change one condition."}</strong></li>
+                <li><b>III</b><small>TIME AFTER TIME</small><strong>{german ? "Folge Spur und Return." : "Follow trace and return."}</strong></li>
+                <li><b>+1</b><small>LIVING BLUEPRINT</small><strong>{german ? "Wähle den nächsten Weg." : "Choose the next way."}</strong></li>
+              </ol>
+              <Link href={german ? "/?view=human&lang=de" : "/?view=human"}>
+                <span><small>{german ? "GEFÜHRT BEGINNEN" : "START THE GUIDED PATH"}</small><strong>H → I → II → III → +1</strong></span>
+                <b aria-hidden="true">→</b>
+              </Link>
+            </section>
+            <div className="nexahedron-showcase-selectors" id="nexahedron-showcase-selectors" role="toolbar" aria-label={german ? "Eines von sechs Fenstern öffnen" : "Open one of six windows"}>
               {showcaseWindows.map((item) => (
                 <button
                   aria-controls="nexahedron-showcase-window"
@@ -564,13 +766,6 @@ export function A0WorldFrame({ source, title = "NEXAHEDRON · Foyer", language =
                   <span>{item.note}</span>
                 </button>
               ))}
-            </div>
-
-            <div className="nexahedron-first-contact__editorial">
-              <header className="nexahedron-first-contact__intro">
-                <h1 id="first-contact-title">{german ? "Orientierung beginnt mit einem Unterschied." : "Orientation begins with a difference."}</h1>
-                <p>{german ? "Wähle ein Fenster, berühre ein Objekt oder betritt eine spielbare Welt. Die geführte Tour bleibt der gemeinsame Weg durch die Welt." : "Choose a window, touch an object or enter a playable world. The guided tour remains the shared path through the world."}</p>
-              </header>
             </div>
 
             {activeWindow && activeDefinition ? (
@@ -609,6 +804,8 @@ export function A0WorldFrame({ source, title = "NEXAHEDRON · Foyer", language =
             </header>
             <NexahedronRecordPlayer language={language} />
           </section>
+
+          <NexahedronMessageGallery language={language} />
 
           <footer className="nexahedron-first-contact__entry" id="tour-entry">
             <Link href={german ? "/?view=human&lang=de" : "/?view=human"}>

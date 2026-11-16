@@ -10,7 +10,7 @@ export default async function Home({
   const view = params.view;
   const language = params.lang === "en" ? "en" : "de";
   const sources: Readonly<Record<string, string>> = {
-    human: "/a0-human/start/A0_NEXAH_APERTURE_JOURNEY.html#human-view",
+    human: `/a0-human/start/A0_NEXAH_APERTURE_JOURNEY.html?lang=${language}#human-view`,
     arcade: "/a0-human/start/a0-public-arkade-index.html#arkade",
     club: "/a0-human/start/A0_OPIUM.html",
   };

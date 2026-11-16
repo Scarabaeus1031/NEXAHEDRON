@@ -32,9 +32,9 @@ test("makes the source-bound A0 Human Book the primary public action", async () 
   assert.match(publicNavigation, /https:\/\/www\.scarabaeus1033\.net\//);
   assert.match(publicNavigation, /current A0 interface remains the visual source/);
   assert.match(publicNavigation, /A0_WERKBANK\.html/);
-  assert.match(publicNavigation, /isA0OwnerPreview/);
-  assert.match(publicNavigation, /nexah:a0-projection-return/);
-  assert.match(publicNavigation, /a\[href="index\.html#built-world"\]/);
+  assert.match(publicNavigation, /isNexahA0Projection/);
+  assert.match(publicNavigation, /applyNexahA0Projection/);
+  assert.match(publicNavigation, /index\.html#a0-navigation-directory/);
 });
 
 test("communicates the bounded A0 movement without simulating new workflows", async () => {
@@ -56,11 +56,15 @@ test("communicates the bounded A0 movement without simulating new workflows", as
   assert.match(humanBook, /id="humanExperienceWindow" role="dialog"/);
   assert.match(humanBook, /data-experience-window/);
   assert.match(humanBook, /CLOSE &amp; RETURN/);
-  assert.doesNotMatch(humanBook, /href="a0-public-arkade-index\.html#arkade"/);
+  assert.match(humanBook, /href="a0-public-arkade-index\.html#arkade"/);
   assert.match(sourceHome, /Human route/);
   assert.match(sourceHome, /Science route/);
   assert.match(sourceHome, /Builder route/);
-  assert.match(html, /a0-source-home-frame/);
+  assert.match(html, /<iframe[^>]+a0-source-home-frame/);
+  assert.match(html, /data-a0-source="\/a0-human\/start\/index\.html"/);
+  assert.match(html, />Home<|>Start</);
+  assert.match(html, />Human View</);
+  assert.doesNotMatch(html, /A0 SCIENCE/);
 });
 
 test("keeps legacy engines out of the public header", async () => {
