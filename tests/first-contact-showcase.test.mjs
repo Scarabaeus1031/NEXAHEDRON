@@ -21,8 +21,9 @@ test("keeps the foyer compact and opens the existing Living Interior public proj
   assert.match(worldFrame, /useState<ShowcaseId \| null>\(null\)/);
   assert.match(worldFrame, /scrollIntoView\(\{ behavior: "auto", block: "start" \}\)/);
   assert.match(styles, /height: clamp\(46rem, 78svh, 52rem\)/);
-  assert.match(worldFrame, /T − V \+ I · ADDITIONAL WINDOWS · UNGUIDED/);
-  assert.match(worldFrame, /These six windows are not a sequence\./);
+  assert.match(worldFrame, /EXPLORE LIFE · SIX VIEWS · ONE CARRIER/);
+  assert.match(worldFrame, /More paths\. More windows\. One carrier\./);
+  assert.match(worldFrame, /They link six representations of the same built world/);
   assert.ok(worldFrame.indexOf('id="record-player"') < worldFrame.indexOf('id="nexahedron-showcase-selectors"'));
   assert.ok(worldFrame.indexOf('id="nexahedron-showcase-selectors"') < worldFrame.indexOf('<NexahedronMessageGallery'));
   assert.match(styles, /\.nexahedron-free-windows/);

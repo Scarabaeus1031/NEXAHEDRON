@@ -763,9 +763,9 @@ export function A0WorldFrame({ source, title = "NEXAHEDRON · Foyer", language =
 
           <section className="nexahedron-free-windows" aria-labelledby="nexahedron-free-windows-title">
             <header>
-              <p>{german ? "T − V + I · ZUSÄTZLICHE FENSTER · UNGEFÜHRT" : "T − V + I · ADDITIONAL WINDOWS · UNGUIDED"}</p>
-              <h2 id="nexahedron-free-windows-title">{german ? "Hier darfst du den Faden loslassen." : "Here, you may let go of the thread."}</h2>
-              <span>{german ? "Diese sechs Fenster gehören nicht zur Reihenfolge. Öffne eines aus Neugier, verändere die Ansicht und kehre zurück, wenn du möchtest." : "These six windows are not a sequence. Open one out of curiosity, change the view and return whenever you wish."}</span>
+              <p>{german ? "EXPLORE LIFE · SECHS ANSICHTEN · EIN CARRIER" : "EXPLORE LIFE · SIX VIEWS · ONE CARRIER"}</p>
+              <h2 id="nexahedron-free-windows-title">{german ? "Mehr Wege. Mehr Fenster. Ein Carrier." : "More paths. More windows. One carrier."}</h2>
+              <span>{german ? "Die Farben markieren keine Reihenfolge. Sie verlinken sechs Darstellungen derselben gebauten Welt: lesen, eintauchen, ansehen, berühren, spielen oder verbinden." : "The colours do not mark a sequence. They link six representations of the same built world: read, enter, watch, touch, play or connect."}</span>
             </header>
             <div className="nexahedron-showcase-selectors" id="nexahedron-showcase-selectors" role="toolbar" aria-label={german ? "Eines von sechs Fenstern öffnen" : "Open one of six windows"}>
               {showcaseWindows.map((item) => (
