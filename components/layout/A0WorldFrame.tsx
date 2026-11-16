@@ -750,6 +750,23 @@ export function A0WorldFrame({ source, title = "NEXAHEDRON · Foyer", language =
                 <b aria-hidden="true">→</b>
               </Link>
             </section>
+          </section>
+
+          <section className="nexahedron-record-feature" id="record-player" aria-labelledby="record-player-title">
+            <header>
+              <p className="nexahedron-first-contact__eyebrow">{german ? "00 · EIN MOMENT, EIN RECORD, EIN RETURN" : "00 · ONE MOMENT, ONE RECORD, ONE RETURN"}</p>
+              <h2 id="record-player-title">{german ? "Eine Stimme wird zum Record." : "A voice becomes a record."}</h2>
+              <p>{german ? "Jemand singt. Ein Instrument wählt eine Spur aus und speichert sie; später wird daraus wieder Klang. Die Aufnahme bewahrt etwas vom Moment — sie ist nicht der Moment selbst." : "Someone sings. An instrument selects and stores a trace; later it becomes sound again. The recording preserves something of the moment — it is not the moment itself."}</p>
+            </header>
+            <NexahedronRecordPlayer language={language} />
+          </section>
+
+          <section className="nexahedron-free-windows" aria-labelledby="nexahedron-free-windows-title">
+            <header>
+              <p>{german ? "T − V + I · ZUSÄTZLICHE FENSTER · UNGEFÜHRT" : "T − V + I · ADDITIONAL WINDOWS · UNGUIDED"}</p>
+              <h2 id="nexahedron-free-windows-title">{german ? "Hier darfst du den Faden loslassen." : "Here, you may let go of the thread."}</h2>
+              <span>{german ? "Diese sechs Fenster gehören nicht zur Reihenfolge. Öffne eines aus Neugier, verändere die Ansicht und kehre zurück, wenn du möchtest." : "These six windows are not a sequence. Open one out of curiosity, change the view and return whenever you wish."}</span>
+            </header>
             <div className="nexahedron-showcase-selectors" id="nexahedron-showcase-selectors" role="toolbar" aria-label={german ? "Eines von sechs Fenstern öffnen" : "Open one of six windows"}>
               {showcaseWindows.map((item) => (
                 <button
@@ -761,7 +778,7 @@ export function A0WorldFrame({ source, title = "NEXAHEDRON · Foyer", language =
                   ref={(node) => { selectorRefs.current[item.id] = node; }}
                   type="button"
                 >
-                  <small>{item.number} · {item.label}</small>
+                  <small>W{item.number} · {item.label}</small>
                   <strong>{item.title}</strong>
                   <span>{item.note}</span>
                 </button>
@@ -794,15 +811,6 @@ export function A0WorldFrame({ source, title = "NEXAHEDRON · Foyer", language =
                 <ShowcasePanel active={activeWindow} />
               </section>
             ) : null}
-          </section>
-
-          <section className="nexahedron-record-feature" id="record-player" aria-labelledby="record-player-title">
-            <header>
-              <p className="nexahedron-first-contact__eyebrow">{german ? "00 · EIN MOMENT, EIN RECORD, EIN RETURN" : "00 · ONE MOMENT, ONE RECORD, ONE RETURN"}</p>
-              <h2 id="record-player-title">{german ? "Eine Stimme wird zum Record." : "A voice becomes a record."}</h2>
-              <p>{german ? "Jemand singt. Ein Instrument wählt eine Spur aus und speichert sie; später wird daraus wieder Klang. Die Aufnahme bewahrt etwas vom Moment — sie ist nicht der Moment selbst." : "Someone sings. An instrument selects and stores a trace; later it becomes sound again. The recording preserves something of the moment — it is not the moment itself."}</p>
-            </header>
-            <NexahedronRecordPlayer language={language} />
           </section>
 
           <NexahedronMessageGallery language={language} />

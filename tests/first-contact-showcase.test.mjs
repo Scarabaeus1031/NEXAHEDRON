@@ -20,7 +20,13 @@ test("keeps the foyer compact and opens the existing Living Interior public proj
   assert.match(worldFrame, /main > :not\(\.portal\)/);
   assert.match(worldFrame, /useState<ShowcaseId \| null>\(null\)/);
   assert.match(worldFrame, /scrollIntoView\(\{ behavior: "auto", block: "start" \}\)/);
-  assert.match(styles, /height: clamp\(34rem, 72svh, 40rem\)/);
+  assert.match(styles, /height: clamp\(46rem, 78svh, 52rem\)/);
+  assert.match(worldFrame, /T − V \+ I · ADDITIONAL WINDOWS · UNGUIDED/);
+  assert.match(worldFrame, /These six windows are not a sequence\./);
+  assert.ok(worldFrame.indexOf('id="record-player"') < worldFrame.indexOf('id="nexahedron-showcase-selectors"'));
+  assert.ok(worldFrame.indexOf('id="nexahedron-showcase-selectors"') < worldFrame.indexOf('<NexahedronMessageGallery'));
+  assert.match(styles, /\.nexahedron-free-windows/);
+  assert.match(styles, /#f2ecdf/);
   assert.match(styles, /\.nexahedron-showcase-interior__loading/);
   const languageSwitch = await readFile(new URL("../components/layout/LanguageSwitch.tsx", import.meta.url), "utf8");
   assert.match(languageSwitch, /nexahedron-language/);

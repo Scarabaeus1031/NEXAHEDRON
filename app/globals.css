@@ -1653,6 +1653,76 @@ main:focus {
   line-height: 1.6;
 }
 
+.nexahedron-free-windows {
+  --free-window-ink: #102430;
+  display: grid;
+  width: min(100%, 82rem);
+  gap: clamp(1.5rem, 3vw, 2.5rem);
+  margin-inline: auto;
+  padding: clamp(2rem, 5vw, 4.5rem);
+  border: 1px solid rgb(239 181 52 / 46%);
+  background:
+    linear-gradient(90deg, rgb(16 36 48 / 5%) 1px, transparent 1px),
+    linear-gradient(rgb(16 36 48 / 5%) 1px, transparent 1px),
+    #f2ecdf;
+  background-size: 4rem 4rem;
+  color: var(--free-window-ink);
+}
+
+.nexahedron-free-windows > header {
+  display: grid;
+  max-width: 62rem;
+  gap: 0.75rem;
+}
+
+.nexahedron-free-windows > header > * {
+  margin: 0;
+}
+
+.nexahedron-free-windows > header > p {
+  color: #9b6810;
+  font-family: var(--font-mono);
+  font-size: 0.64rem;
+  font-weight: 900;
+  letter-spacing: 0.12em;
+}
+
+.nexahedron-free-windows > header > h2 {
+  color: var(--free-window-ink);
+  font-size: clamp(2rem, 4vw, 4rem);
+  line-height: 0.98;
+  letter-spacing: -0.04em;
+}
+
+.nexahedron-free-windows > header > span {
+  max-width: 50rem;
+  color: #42545b;
+  font-family: var(--font-display);
+  font-size: clamp(1rem, 1.4vw, 1.25rem);
+  line-height: 1.55;
+}
+
+.nexahedron-free-windows .nexahedron-showcase-selectors {
+  border-color: rgb(16 36 48 / 25%);
+  background: rgb(255 253 247 / 56%);
+}
+
+.nexahedron-free-windows .nexahedron-showcase-selectors button {
+  border-right-color: rgb(16 36 48 / 20%);
+  background: rgb(255 253 247 / 74%);
+  color: var(--free-window-ink);
+}
+
+.nexahedron-free-windows .nexahedron-showcase-selectors button:hover,
+.nexahedron-free-windows .nexahedron-showcase-selectors button:focus-visible,
+.nexahedron-free-windows .nexahedron-showcase-selectors button.is-active {
+  background: color-mix(in srgb, var(--showcase-accent) 14%, #fffdf7);
+}
+
+.nexahedron-free-windows .nexahedron-showcase-selectors span {
+  color: #53656c;
+}
+
 .nexahedron-inline-record {
   overflow: hidden;
   border: 1px solid rgb(100 217 234 / 34%);
