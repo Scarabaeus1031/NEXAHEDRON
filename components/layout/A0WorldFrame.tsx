@@ -375,7 +375,7 @@ function NexahedronObject() {
   return <div ref={hostRef} className="nexahedron-showcase-object" />;
 }
 
-function ShowcasePanel({ active }: { readonly active: ShowcaseId }) {
+function ShowcasePanel({ active, language = "en" }: { readonly active: ShowcaseId; readonly language?: PublicLanguage }) {
   if (active === "books") {
     return (
       <div className="nexahedron-showcase-books">
@@ -394,13 +394,21 @@ function ShowcasePanel({ active }: { readonly active: ShowcaseId }) {
   if (active === "interior") return <NexahedronLivingInterior />;
 
   if (active === "film") {
+    const german = language === "de";
     return (
       <div className="nexahedron-showcase-film">
         <video controls playsInline preload="metadata" poster="/media/framework-of-legibility-poster.jpg">
           <source src="/media/framework-of-legibility.mp4" type="video/mp4" />
           Your browser cannot play the film. <a href="/media/framework-of-legibility.mp4">Open the film directly.</a>
         </video>
-        <p><strong>Framework of Legibility · 2:48</strong><br />Image and sound move through rooms, maps, light and shadow. The film is its own entrance, not a translation of the books.</p>
+        <p>
+          <strong>Framework of Legibility · 2:48</strong><br />
+          {german ? "Bild und Klang bewegen sich durch Räume, Karten, Licht und Schatten. Der Film ist ein eigener Eingang, keine Übersetzung der Bücher." : "Image and sound move through rooms, maps, light and shadow. The film is its own entrance, not a translation of the books."}
+          <span className="nexahedron-showcase-film__credit">
+            {german ? "Musik zum Film: produziert von " : "Music for the film produced by "}
+            <a href="https://open.spotify.com/track/5OMLtloRWJE6hY3UD8wudN?si=98402da041584594" rel="noopener noreferrer" target="_blank">Jupiter ↗</a>
+          </span>
+        </p>
       </div>
     );
   }
@@ -845,7 +853,7 @@ export function A0WorldFrame({ source, title = "NEXAHEDRON · Foyer", language =
                     <button type="button" onClick={closeShowcase} aria-label={`${german ? "Schließen" : "Close"} ${activeDefinition.title}`}>{german ? "Schließen ×" : "Close ×"}</button>
                   </div>
                 </header>
-                <ShowcasePanel active={activeWindow} />
+                <ShowcasePanel active={activeWindow} language={language} />
               </section>
             ) : null}
           </section>

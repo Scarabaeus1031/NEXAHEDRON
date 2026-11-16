@@ -20,6 +20,10 @@ test("keeps the foyer compact and opens the existing Living Interior public proj
   assert.match(worldFrame, /Earth<\/strong> · produced by Dan Duck in the Rödelheim Observatory/);
   assert.match(worldFrame, /aria-pressed=\{isPlaying\}/);
   assert.match(worldFrame, /loop/);
+  assert.match(worldFrame, /Music for the film produced by/);
+  assert.match(worldFrame, /Musik zum Film: produziert von/);
+  assert.match(worldFrame, /open\.spotify\.com\/track\/5OMLtloRWJE6hY3UD8wudN/);
+  assert.match(worldFrame, />Jupiter ↗<\/a>/);
   assert.match(worldFrame, /header\.top, main > :not\(\.portal\), body > footer, \.scroll-cue/);
   assert.match(worldFrame, /main > :not\(\.portal\)/);
   assert.match(worldFrame, /useState<ShowcaseId \| null>\(null\)/);

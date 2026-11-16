@@ -1363,6 +1363,32 @@ main:focus {
   font-size: 1.35rem;
 }
 
+.nexahedron-showcase-film__credit {
+  display: block;
+  margin-top: 1.25rem;
+  padding-top: 1rem;
+  border-top: 1px solid rgb(239 181 52 / 28%);
+  color: #c6b98e;
+  font-family: var(--font-mono);
+  font-size: 0.67rem;
+  font-weight: 800;
+  letter-spacing: 0.07em;
+  line-height: 1.55;
+  text-transform: uppercase;
+}
+
+.nexahedron-showcase-film__credit a {
+  color: var(--first-contact-gold);
+  text-decoration-color: rgb(239 181 52 / 42%);
+  text-underline-offset: 0.25em;
+}
+
+.nexahedron-showcase-film__credit a:hover,
+.nexahedron-showcase-film__credit a:focus-visible {
+  color: #fff4ce;
+  text-decoration-color: currentColor;
+}
+
 .nexahedron-showcase-object-wrap {
   display: grid;
   grid-template-columns: minmax(0, 1.55fr) minmax(16rem, 0.45fr);
