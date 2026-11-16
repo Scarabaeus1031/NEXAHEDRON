@@ -1732,6 +1732,11 @@ main:focus {
   background: #06131d;
 }
 
+.nexahedron-inline-record__visual {
+  position: relative;
+  overflow: hidden;
+}
+
 .nexahedron-inline-record__stage,
 .nexahedron-inline-record model-viewer {
   display: block;
@@ -1741,9 +1746,13 @@ main:focus {
 }
 
 .nexahedron-inline-record__meta {
-  display: block;
-  padding: 1rem 1.25rem;
+  display: grid;
+  grid-template-columns: minmax(17rem, 1fr) auto;
+  align-items: center;
+  gap: 1.25rem;
+  padding: 0.9rem 1.25rem;
   border-top: 1px solid rgb(100 217 234 / 34%);
+  background: linear-gradient(100deg, rgb(8 28 39 / 98%), rgb(16 29 43 / 98%));
 }
 
 .nexahedron-inline-record__meta p {
@@ -1754,6 +1763,123 @@ main:focus {
 
 .nexahedron-inline-record__meta p strong {
   color: #f4f2eb;
+}
+
+.nexahedron-inline-record__play {
+  display: grid;
+  min-width: 0;
+  grid-template-columns: 3.75rem minmax(0, 1fr) auto;
+  align-items: center;
+  gap: 0.9rem;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  color: #f4f2eb;
+  cursor: pointer;
+  text-align: left;
+}
+
+.nexahedron-inline-record__play img {
+  display: block;
+  width: 3.75rem;
+  height: 3.75rem;
+  border: 1px solid rgb(239 181 52 / 65%);
+  border-radius: 50%;
+  box-shadow: 0 0 0 0 rgb(239 181 52 / 0%);
+  object-fit: cover;
+  transition: box-shadow 220ms ease, transform 220ms ease;
+}
+
+.nexahedron-inline-record__play span {
+  display: grid;
+  min-width: 0;
+  gap: 0.25rem;
+}
+
+.nexahedron-inline-record__play small {
+  color: var(--first-contact-gold);
+  font-family: var(--font-mono);
+  font-size: 0.6rem;
+  font-weight: 900;
+  letter-spacing: 0.12em;
+}
+
+.nexahedron-inline-record__play strong {
+  font-family: var(--font-display);
+  font-size: clamp(1.15rem, 2vw, 1.65rem);
+  line-height: 1;
+}
+
+.nexahedron-inline-record__play b {
+  display: grid;
+  width: 2.75rem;
+  height: 2.75rem;
+  place-items: center;
+  border: 1px solid var(--first-contact-gold);
+  border-radius: 50%;
+  color: var(--first-contact-gold);
+  font-size: 0.9rem;
+  transition: background 180ms ease, color 180ms ease, transform 180ms ease;
+}
+
+.nexahedron-inline-record__play:hover img,
+.nexahedron-inline-record__play:focus-visible img {
+  box-shadow: 0 0 0 0.45rem rgb(239 181 52 / 13%);
+  transform: scale(1.04);
+}
+
+.nexahedron-inline-record__play:hover b,
+.nexahedron-inline-record__play:focus-visible b {
+  background: var(--first-contact-gold);
+  color: #102430;
+  transform: translateX(0.2rem);
+}
+
+.nexahedron-inline-record__pulse {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.nexahedron-inline-record__pulse i {
+  position: absolute;
+  left: 50%;
+  bottom: 12%;
+  width: 16rem;
+  height: 5rem;
+  border: 1px solid rgb(100 217 234 / 0%);
+  border-radius: 50%;
+  opacity: 0;
+  transform: translate(-50%, 50%) scale(0.5);
+}
+
+.nexahedron-inline-record.is-playing .nexahedron-inline-record__pulse i {
+  animation: nexahedron-record-ripple 3.6s ease-out infinite;
+  border-color: rgb(100 217 234 / 54%);
+}
+
+.nexahedron-inline-record.is-playing .nexahedron-inline-record__pulse i:nth-child(2) {
+  animation-delay: 1.2s;
+}
+
+.nexahedron-inline-record.is-playing .nexahedron-inline-record__pulse i:nth-child(3) {
+  animation-delay: 2.4s;
+}
+
+.nexahedron-inline-record.is-playing .nexahedron-inline-record__play img {
+  animation: nexahedron-record-spin 12s linear infinite;
+  box-shadow: 0 0 0 0.45rem rgb(239 181 52 / 13%), 0 0 2rem rgb(239 181 52 / 22%);
+}
+
+@keyframes nexahedron-record-ripple {
+  0% { opacity: 0; transform: translate(-50%, 50%) scale(0.45); }
+  18% { opacity: 0.72; }
+  100% { opacity: 0; transform: translate(-50%, 50%) scale(5); }
+}
+
+@keyframes nexahedron-record-spin {
+  to { transform: rotate(1turn); }
 }
 
 .nexahedron-first-contact__media {
@@ -2540,8 +2666,12 @@ main:focus {
   }
 
   .nexahedron-inline-record__meta {
+    grid-template-columns: 1fr;
     align-items: flex-start;
-    flex-direction: column;
+  }
+
+  .nexahedron-inline-record__meta > p {
+    padding-left: 4.65rem;
   }
 
   .nexahedron-direction-grid article,
@@ -2648,6 +2778,11 @@ main:focus {
   .nexahedron-message-gallery img {
     animation: none;
     transform: none;
+  }
+
+  .nexahedron-inline-record.is-playing .nexahedron-inline-record__pulse i,
+  .nexahedron-inline-record.is-playing .nexahedron-inline-record__play img {
+    animation: none;
   }
 
   html {

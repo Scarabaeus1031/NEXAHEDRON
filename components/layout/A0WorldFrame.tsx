@@ -257,6 +257,8 @@ function NexahedronLivingInterior() {
 
 function NexahedronRecordPlayer({ language = "en" }: { readonly language?: PublicLanguage }) {
   const hostRef = useRef<HTMLDivElement>(null);
+  const audioRef = useRef<HTMLAudioElement>(null);
+  const [isPlaying, setIsPlaying] = useState(false);
 
   useEffect(() => {
     const host = hostRef.current;
@@ -291,12 +293,47 @@ function NexahedronRecordPlayer({ language = "en" }: { readonly language?: Publi
     };
   }, []);
 
+  const toggleAudio = useCallback(async () => {
+    const audio = audioRef.current;
+    if (!audio) return;
+
+    if (audio.paused) {
+      try {
+        await audio.play();
+      } catch {
+        setIsPlaying(false);
+      }
+    } else {
+      audio.pause();
+    }
+  }, []);
+
   return (
-    <div className="nexahedron-inline-record">
-      <div ref={hostRef} className="nexahedron-inline-record__stage" />
-      <div className="nexahedron-inline-record__meta">
-        <p><strong>Record / Play</strong><br />{language === "de" ? "Ziehen zum Drehen · scrollen oder zoomen · GLB · 1,0 MB" : "Drag to rotate · scroll or pinch to zoom · GLB · 1.0 MB"}</p>
+    <div className={`nexahedron-inline-record${isPlaying ? " is-playing" : ""}`}>
+      <div className="nexahedron-inline-record__visual">
+        <div ref={hostRef} className="nexahedron-inline-record__stage" />
+        <div aria-hidden="true" className="nexahedron-inline-record__pulse"><i /><i /><i /></div>
       </div>
+      <div className="nexahedron-inline-record__meta">
+        <button aria-pressed={isPlaying} className="nexahedron-inline-record__play" onClick={toggleAudio} type="button">
+          <img alt="" height="72" src="/media/earth-stems-roedelheim-label.jpg" width="72" />
+          <span>
+            <small>{isPlaying ? (language === "de" ? "LÄUFT · LOOP" : "PLAYING · LOOP") : (language === "de" ? "RECORD / PLAY" : "RECORD / PLAY")}</small>
+            <strong>{isPlaying ? (language === "de" ? "EARTH PAUSIEREN" : "PAUSE EARTH") : (language === "de" ? "EARTH SPIELEN" : "PLAY EARTH")}</strong>
+          </span>
+          <b aria-hidden="true">{isPlaying ? "Ⅱ" : "▶"}</b>
+        </button>
+        <p><strong>Earth</strong> · produced by Dan Duck in the Rödelheim Observatory<br />{language === "de" ? "42,7 Sekunden · Loop · Ziehen zum Drehen · scrollen oder zoomen" : "42.7 seconds · loop · drag to rotate · scroll or pinch to zoom"}</p>
+      </div>
+      <audio
+        loop
+        onEnded={() => setIsPlaying(false)}
+        onPause={() => setIsPlaying(false)}
+        onPlay={() => setIsPlaying(true)}
+        preload="metadata"
+        ref={audioRef}
+        src="/media/earth-stems-roedelheim-didinbaerlin.mp3"
+      />
     </div>
   );
 }

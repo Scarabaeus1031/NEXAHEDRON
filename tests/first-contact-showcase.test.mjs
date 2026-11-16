@@ -16,6 +16,10 @@ test("keeps the foyer compact and opens the existing Living Interior public proj
   assert.match(worldFrame, /className="nexahedron-record-feature" id="record-player"/);
   assert.match(worldFrame, /A voice becomes a record\./);
   assert.match(worldFrame, /nexah_roedelheim_record_play\.glb/);
+  assert.match(worldFrame, /earth-stems-roedelheim-didinbaerlin\.mp3/);
+  assert.match(worldFrame, /Earth<\/strong> · produced by Dan Duck in the Rödelheim Observatory/);
+  assert.match(worldFrame, /aria-pressed=\{isPlaying\}/);
+  assert.match(worldFrame, /loop/);
   assert.match(worldFrame, /header\.top, main > :not\(\.portal\), body > footer, \.scroll-cue/);
   assert.match(worldFrame, /main > :not\(\.portal\)/);
   assert.match(worldFrame, /useState<ShowcaseId \| null>\(null\)/);
@@ -32,6 +36,8 @@ test("keeps the foyer compact and opens the existing Living Interior public proj
   assert.match(styles, /background: linear-gradient\(100deg, #f2ecdf 0%, #f2ecdf 72%, #efb534 145%\)/);
   assert.match(styles, /animation: nexahedron-entry-wash 8s ease-in-out infinite alternate/);
   assert.match(styles, /animation: nexahedron-entry-arrow 2\.8s ease-in-out infinite/);
+  assert.match(styles, /animation: nexahedron-record-ripple 3\.6s ease-out infinite/);
+  assert.match(styles, /animation: nexahedron-record-spin 12s linear infinite/);
   assert.match(styles, /\.nexahedron-showcase-interior__loading/);
   const languageSwitch = await readFile(new URL("../components/layout/LanguageSwitch.tsx", import.meta.url), "utf8");
   assert.match(languageSwitch, /nexahedron-language/);
