@@ -2246,16 +2246,19 @@ main:focus {
   gap: 2rem;
   padding: clamp(1.5rem, 4vw, 2.75rem);
   border: 1px solid var(--first-contact-gold);
-  background: linear-gradient(105deg, rgb(239 181 52 / 16%), rgb(229 72 181 / 8%));
-  color: #f4f2eb;
+  background: linear-gradient(100deg, #f2ecdf 0%, #f2ecdf 58%, #f7d87e 100%);
+  background-position: 0% 50%;
+  background-size: 165% 100%;
+  color: #102430;
   text-decoration: none;
+  animation: nexahedron-entry-wash 8s ease-in-out infinite alternate;
   transition: background 160ms ease, color 160ms ease, transform 160ms ease, box-shadow 160ms ease;
 }
 
 .nexahedron-first-contact__entry > a small {
   display: block;
   margin-bottom: 0.65rem;
-  color: var(--first-contact-gold);
+  color: #8b5d0e;
   font-family: var(--font-mono);
   font-size: 0.68rem;
   font-weight: 900;
@@ -2271,17 +2274,28 @@ main:focus {
 }
 
 .nexahedron-first-contact__entry > a b {
-  color: var(--first-contact-gold);
+  color: #102430;
   font-size: clamp(2.5rem, 5vw, 5rem);
   font-weight: 400;
+  animation: nexahedron-entry-arrow 2.8s ease-in-out infinite;
 }
 
 .nexahedron-first-contact__entry > a:hover,
 .nexahedron-first-contact__entry > a:focus-visible {
-  background: rgb(239 181 52 / 22%);
-  color: #fff;
+  background: #efb534;
+  color: #102430;
   box-shadow: 12px 12px 0 rgb(100 217 234 / 10%);
   transform: translateY(-2px);
+}
+
+@keyframes nexahedron-entry-wash {
+  from { background-position: 0% 50%; }
+  to { background-position: 100% 50%; }
+}
+
+@keyframes nexahedron-entry-arrow {
+  0%, 100% { transform: translateX(0); }
+  50% { transform: translateX(0.4rem); }
 }
 
 .nexahedron-public-channels {
@@ -2607,7 +2621,12 @@ main:focus {
   }
 
   .nexahedron-first-contact__entry > a {
+    animation: none;
     transition: none;
+  }
+
+  .nexahedron-first-contact__entry > a b {
+    animation: none;
   }
 
   .nexahedron-library-book {
