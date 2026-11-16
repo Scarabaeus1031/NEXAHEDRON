@@ -28,6 +28,8 @@ test("keeps the foyer compact and opens the existing Living Interior public proj
   assert.ok(worldFrame.indexOf('id="nexahedron-showcase-selectors"') < worldFrame.indexOf('<NexahedronMessageGallery'));
   assert.match(styles, /\.nexahedron-free-windows/);
   assert.match(styles, /#f2ecdf/);
+  assert.match(styles, /border-top: clamp\(0\.75rem, 1\.2vw, 1\.1rem\) solid #f2ecdf/);
+  assert.match(styles, /background: linear-gradient\(100deg, #f2ecdf 0%, #f2ecdf 72%, #efb534 145%\)/);
   assert.match(styles, /\.nexahedron-showcase-interior__loading/);
   const languageSwitch = await readFile(new URL("../components/layout/LanguageSwitch.tsx", import.meta.url), "utf8");
   assert.match(languageSwitch, /nexahedron-language/);

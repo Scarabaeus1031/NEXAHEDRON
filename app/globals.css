@@ -361,6 +361,7 @@ main:focus {
 .a0-source-module--foyer {
   display: block;
   height: auto;
+  border-top: clamp(0.75rem, 1.2vw, 1.1rem) solid #f2ecdf;
 }
 
 .a0-source-language-note {
@@ -1088,7 +1089,9 @@ main:focus {
   justify-content: space-between;
   gap: 1rem;
   padding: 1rem 1.25rem;
-  color: #f4f2eb;
+  border-top: 1px solid rgb(239 181 52 / 70%);
+  background: linear-gradient(100deg, #f2ecdf 0%, #f2ecdf 72%, #efb534 145%);
+  color: #102430;
   text-decoration: none;
 }
 
@@ -1100,7 +1103,7 @@ main:focus {
 
 .nexahedron-reading-path > a small {
   margin-bottom: 0.3rem;
-  color: var(--first-contact-gold);
+  color: #8b5d0e;
   font-family: var(--font-mono);
   font-size: 0.6rem;
   font-weight: 900;
@@ -1113,14 +1116,14 @@ main:focus {
 }
 
 .nexahedron-reading-path > a > b {
-  color: var(--first-contact-gold);
+  color: #102430;
   font-size: 2.2rem;
   font-weight: 400;
 }
 
 .nexahedron-reading-path > a:hover,
 .nexahedron-reading-path > a:focus-visible {
-  background: rgb(239 181 52 / 14%);
+  background: #efb534;
   outline: 3px solid var(--first-contact-gold);
   outline-offset: -3px;
 }
