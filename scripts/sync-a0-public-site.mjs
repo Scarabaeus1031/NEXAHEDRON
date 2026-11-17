@@ -21,6 +21,9 @@ const legacyInstrumentEntries = [
   "A0_BLUE_PINK_DODECA_CELL_RETURN.html",
   "A0_GAME_OF_WORLDS_PLAY.html",
 ];
+const preservedPublicDownloads = [
+  "downloads/A0_PENTAGON_KNICK_APERTURE_INTAKE_2026-10-25/deliverables/glb/NEXAH_Fuenflaschenkrone_Animiert_2026-10-25.glb",
+];
 const externalSources = new Map([
   ["e8-axis08-core.js", resolve(ecosystemRoot, "30 SCIENCE LAB/NEXAH-Science-Lab/SCIENCE_LAB/CASE_STUDIES/E8_DEMOS_INTERACTIVE_ORIENTATION_2026-09-21/REPAIR_R1/e8_axis08_core.js")],
   ["breath-model.js", resolve(ecosystemRoot, "30 SCIENCE LAB/NEXAH-Science-Lab/SCIENCE_LAB/CASE_STUDIES/NEXAH_CON_DAO_JANUS_BREATH_SEQUENCER_2026-10-06/breath-model.js")],
@@ -343,6 +346,12 @@ for (const [name, sourcePath] of externalSources) {
   await mkdir(dirname(targetPath), { recursive: true });
   await cp(sourcePath, targetPath);
 }
+for (const sourceRelative of preservedPublicDownloads) {
+  const sourcePath = resolve(sourceRoot, sourceRelative);
+  const targetPath = resolve(targetRoot, sourceRelative);
+  await mkdir(dirname(targetPath), { recursive: true });
+  await cp(sourcePath, targetPath);
+}
 await cp(overlaySource, resolve(targetRoot, "nexahedron-public-navigation.js"));
 for (const sourcePath of sourceFiles.filter((path) => path.endsWith(".html"))) {
   await repairPublicHtmlNavigation(resolve(targetRoot, relative(sourceRoot, sourcePath)));
@@ -358,7 +367,8 @@ console.log(JSON.stringify({
   status: "SYNCED",
   source: relative(ecosystemRoot, sourceRoot),
   target: relative(repositoryRoot, targetRoot),
-  files: sourceFiles.length + externalSources.size + legacyInstrumentEntries.length + 2,
+  files: sourceFiles.length + externalSources.size + preservedPublicDownloads.length + legacyInstrumentEntries.length + 2,
+  preserved_public_downloads: preservedPublicDownloads,
   private_pages_excluded: [...privatePages].sort(),
   navigator_identity_effect: "ZERO",
 }, null, 2));

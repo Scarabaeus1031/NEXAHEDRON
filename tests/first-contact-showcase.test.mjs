@@ -5,6 +5,7 @@ import test from "node:test";
 test("keeps the foyer compact and opens the existing Living Interior public projection", async () => {
   const worldFrame = await readFile(new URL("../components/layout/A0WorldFrame.tsx", import.meta.url), "utf8");
   const styles = await readFile(new URL("../app/globals.css", import.meta.url), "utf8");
+  const publicSync = await readFile(new URL("../scripts/sync-a0-public-site.mjs", import.meta.url), "utf8");
   const sourceManifest = JSON.parse(await readFile(new URL("../public/a0-human/SOURCE_MANIFEST.json", import.meta.url), "utf8"));
 
   assert.match(worldFrame, /id: "interior", number: "02", label: "Enter", title: "The Living Interior"/);
@@ -50,4 +51,9 @@ test("keeps the foyer compact and opens the existing Living Interior public proj
 
   const livingInteriorBinding = sourceManifest.files.find((entry) => entry.bundle_path === "start/A0_THE_LIVING_INTERIOR.html");
   assert.equal(livingInteriorBinding?.treatment, "PUBLIC_PRESENTATION_TRANSFORM");
+  assert.match(publicSync, /const preservedPublicDownloads = \[/);
+  assert.match(publicSync, /NEXAH_Fuenflaschenkrone_Animiert_2026-10-25\.glb/);
+  assert.match(publicSync, /for \(const sourceRelative of preservedPublicDownloads\)/);
+  const crownBinding = sourceManifest.files.find((entry) => entry.bundle_path.endsWith("NEXAH_Fuenflaschenkrone_Animiert_2026-10-25.glb"));
+  assert.equal(crownBinding?.treatment, "BYTE_COPY");
 });
