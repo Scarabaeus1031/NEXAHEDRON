@@ -1,6 +1,7 @@
 import { cp, mkdir, readFile, readdir, rm, writeFile } from "node:fs/promises";
 import { dirname, extname, relative, resolve } from "node:path";
 import { fileURLToPath } from "node:url";
+import { humanEntranceCut } from "./a0-human-entrance-cut.mjs";
 
 const here = dirname(fileURLToPath(import.meta.url));
 const repositoryRoot = resolve(here, "..");
@@ -14,6 +15,7 @@ const bundleRoot = process.env.A0_PUBLIC_BUNDLE_ROOT
   : resolve(repositoryRoot, "public/a0-human");
 const targetRoot = resolve(bundleRoot, "start");
 const overlaySource = resolve(here, "a0-public-navigation-overlay.js");
+const refreshHumanEntrance = process.argv.includes("--human-entrance");
 const sourceAssetIndex = resolve(sourceRoot, "assets/a0-asset-index-v1.json");
 const legacyInstrumentEntries = [
   "A0_NEXAH_APERTURE_JOURNEY.html",
@@ -94,6 +96,17 @@ async function walk(directory) {
 
 function sanitizeText(text, sourcePath, targetPath) {
   let output = text;
+  if (sourcePath.endsWith("/A0_NEXAH_APERTURE_JOURNEY.html")) {
+    output = output
+      .replace(/<section class="a0-human-overview" id="a0-human-overview"[\s\S]*?(?=<section class="missing-condition")/, "")
+      .replace(/^[ \t]*<div class="mc-status"[^>]*>[\s\S]*?<\/div>\n/m, "")
+      .replace(/<a href="#a0-human-overview">Inventory<\/a>/, "")
+      .replace('class="brand" href="#a0-human-overview"', 'class="brand" href="#human-view"');
+    if (refreshHumanEntrance) {
+      // The Field Notes destination is outside this admitted cut.
+      output = output.replace(/<a href="A0_FIELD_NOTES\.html#reading-path">[^<]*<\/a>/g, "");
+    }
+  }
   const publicPosition = relative(dirname(targetPath), resolve(targetRoot, "A0_SCIENTIFIC_POSITION_REPORT.html")).replaceAll("\\", "/");
 
   // The public orientation map is a projection of the A0 corpus, not a set of
@@ -184,7 +197,14 @@ function sanitizeText(text, sourcePath, targetPath) {
   if (sourcePath.endsWith("a0-context-navigation.js")) {
     output = output
       .replace(/\s*const internalMenu = document\.createElement\("details"\);[\s\S]*?overviewBody\.append\(internalMenu\);/, "")
-      .replace("Übersicht · Bereiche, Seiteninhalt und interne Arbeitsseiten", "Übersicht · Bereiche, Seiteninhalt und öffentliche Wege");
+      .replace("Übersicht · Bereiche, Seiteninhalt und interne Arbeitsseiten", "Übersicht · Bereiche, Seiteninhalt und öffentliche Wege")
+      .replaceAll(/owner-routes\/[^"']+/g, "A0_SCIENTIFIC_POSITION_REPORT.html")
+      .replaceAll("A0_NEXAH_APERTURE_JOURNEY.html#a0-human-overview", "A0_NEXAH_APERTURE_JOURNEY.html#human-view");
+    if (refreshHumanEntrance) {
+      output = output
+        .replace(/\s*const registerEntry = document\.createElement\("a"\);[\s\S]*?laneNav\.append\(registerEntry\);/, "")
+        .replace(/^\s*\[\s*\n\s*"A0_(?:FIELD_NOTES|DATA_AND_REGISTERS)\.html#[^"]+",\n[^\n]*\n[^\n]*\n\s*\],?\n/gm, "\n");
+    }
   }
 
   if (sourcePath.endsWith("a0-public-arkade-index.html")) {
@@ -225,7 +245,13 @@ async function copySourceFile(sourcePath) {
     await cp(sourcePath, targetPath);
   } else if (textExtensions.has(extname(sourcePath).toLowerCase())) {
     const text = await readFile(sourcePath, "utf8");
-    await writeFile(targetPath, sanitizeText(text, sourcePath, targetPath), "utf8");
+    let output = sanitizeText(text, sourcePath, targetPath);
+    if (refreshHumanEntrance && sourcePath.endsWith("/a0-context-navigation.js")) {
+      for (const [line, href] of output.matchAll(/^\s*"([\w-]+\.html)",?$/gm)) {
+        if (!await pathExists(resolve(targetRoot, href))) output = output.replace(line, "");
+      }
+    }
+    await writeFile(targetPath, output, "utf8");
   } else {
     await cp(sourcePath, targetPath);
   }
@@ -325,6 +351,22 @@ async function writePublicAssetIndex(copiedFiles) {
   await writeFile(targetPath, `window.A0_ASSET_INDEX = ${JSON.stringify(publicIndex)};\n`, "utf8");
 }
 
+if (refreshHumanEntrance) {
+  // Keep the admitted file set and regenerate only the entrance files.
+  await readFile(resolve(bundleRoot, "SOURCE_MANIFEST.json"), "utf8");
+  for (const bundlePath of humanEntranceCut) {
+    if (bundlePath === "start/nexahedron-public-navigation.js") continue;
+    await copySourceFile(resolve(sourceRoot, bundlePath.slice("start/".length)));
+  }
+  await cp(overlaySource, resolve(targetRoot, "nexahedron-public-navigation.js"));
+  for (const bundlePath of humanEntranceCut) {
+    if (bundlePath.endsWith(".html")) await repairPublicHtmlNavigation(resolve(bundleRoot, bundlePath));
+  }
+} else {
+  await syncCompleteBundle();
+}
+
+async function syncCompleteBundle() {
 await rm(targetRoot, { recursive: true, force: true });
 await rm(resolve(bundleRoot, "instruments"), { recursive: true, force: true });
 await mkdir(targetRoot, { recursive: true });
@@ -372,3 +414,4 @@ console.log(JSON.stringify({
   private_pages_excluded: [...privatePages].sort(),
   navigator_identity_effect: "ZERO",
 }, null, 2));
+}

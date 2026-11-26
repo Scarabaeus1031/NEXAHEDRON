@@ -7,9 +7,11 @@
 
   const main = document.querySelector("main");
   const humanView = document.getElementById("human-view");
-  if (main && humanView && main.firstElementChild !== humanView) main.prepend(humanView);
 
   if (window.parent !== window) {
+    // The public iframe projection enters through the experience. The local A0
+    // owner page preserves source order: inventory and staging come first.
+    if (main && humanView && main.firstElementChild !== humanView) main.prepend(humanView);
     document.documentElement.dataset.nexahedronProjection = "public-human-view";
     document.querySelectorAll("body > header, .mc-status, .a0-human-overview, body > footer").forEach((element) => {
       element.hidden = true;
@@ -18,14 +20,48 @@
     });
   }
 
-  if (language !== "en") return;
-
-  const translations = new Map([
+  const translations = new Map(language === "de" ? [
+    ["The Missing", "Die fehlende "],
+    ["Condition.", "Bedingung."],
+    ["What came first?", "Was kam zuerst?"],
+    ["You are already inside.", "Du bist schon drinnen."],
+    ["A boundary holds potential.", "Eine Grenze birgt Möglichkeiten."],
+    ["The crack changes the contract.", "Der Riss verändert die Regeln."],
+    ["The bird orients within the field.", "Der Vogel orientiert sich im Feld."],
+    ["Life In Transition.", "Leben im Übergang."],
+    ["Enter", "Betritt"],
+    ["What do you see", "Was siehst du"],
+    ["the second time?", "beim zweiten Mal?"],
+    ["Enter a", "Betritt einen"],
+    ["dark room.", "dunklen Raum."],
+    ["The room", "Der Raum"],
+    ["looks back.", "blickt zurück."],
+    ["Stay with the light.", "Bleib beim Licht."],
+    ["Choose how.", "Wähle, wie es weitergeht."],
+    ["Now choose", "Wähle jetzt"],
+    ["your own door.", "deine eigene Tür."],
+    ["Go Deeper", "Weiter vertiefen"],
+    ["The world did not change.", "Die Welt hat sich nicht verändert."],
+    ["Your aperture did.", "Deine Apertur schon."],
+    ["HUMAN VIEW · ROOM 00 · ORIENTATION FROM WITHIN", "HUMAN VIEW · RAUM 00 · ORIENTIERUNG VON INNEN"],
+    ["The human condition", "Die menschliche Bedingung"],
+    ["You are not outside the world you are trying to see.", "Du stehst nicht außerhalb der Welt, die du betrachten willst."],
+    ["THE HUMAN STORY · QUESTION → ORIENTATION → LIGHT → RETURN", "DIE GESCHICHTE · FRAGE → ORIENTIERUNG → LICHT → RETURN"],
+    ["A0 · HUMAN VIEW · BEFORE THE EXPLANATION", "A0 · HUMAN VIEW · VOR DER ERKLÄRUNG"],
+    ["00 · BEGIN WITH ONE CHANGE", "00 · BEGINNE MIT EINER ÄNDERUNG"],
+    ["ODER: PLAY THE QUESTIONS", "ODER: DIE FRAGEN SPIELEN"],
+    ["ONE HUMAN VIEW · A GUIDED NEXAH READING", "HUMAN VIEW · EIN GEFÜHRTER NEXAH-LESEPFAD"],
+    ["LIFE & COSMOS · THE RETURN", "LEBEN & KOSMOS · RETURN"],
+    ["READ THE PATH AGAIN ↺", "DEN PFAD NOCH EINMAL LESEN ↺"],
+    ["OPEN ONE DEEPER ROOM ↑", "EINEN WEITEREN RAUM ÖFFNEN ↑"],
+    ["READ THE WONDER OPERATOR ↗", "DEN WONDER OPERATOR LESEN ↗"],
+  ] : [
     ["Inside", "Inside"],
     ["Story", "Story"],
     ["Questions", "Questions"],
     ["Journey", "Journey"],
     ["Inventory", "Inventory"],
+    ["Public", "Public"],
     ["Return", "Return"],
     ["Schau", "Look"],
     ["noch einmal.", "again."],

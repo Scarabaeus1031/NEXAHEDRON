@@ -157,7 +157,7 @@ function NexahedronMessageGallery({ language = "en" }: { readonly language?: Pub
     >
       <header>
         <div className="nexahedron-message-gallery__copy">
-          <p>HUMANITY REMEMBERS</p>
+          <p>{german ? "DIE MENSCHHEIT ERINNERT SICH" : "HUMANITY REMEMBERS"}</p>
           <h2 id="nexahedron-entry-visuals-title">{german ? "Momente, die uns staunen ließen." : "The moments that made us wonder."}</h2>
           <span>{german ? "Technologie verändert sich. Neugier bleibt." : "Technology changes. Curiosity remains."}</span>
         </div>
@@ -528,7 +528,11 @@ export function A0WorldFrame({ source, title = "NEXAHEDRON · Foyer", language =
       const trailerTitle = document.querySelector<HTMLElement>("#world-trailer-title");
       const trailerCopy = document.querySelector<HTMLElement>(".world-trailer-copy p");
       const trailerSmall = document.querySelector<HTMLElement>(".world-trailer-copy small");
+      const worldTitle = document.getElementById("built-world-title");
+      const worldEyebrow = document.querySelector<HTMLElement>(".world-plate-head .eyebrow");
       document.documentElement.lang = language;
+      if (worldTitle) worldTitle.textContent = german ? "Eine gebaute Welt." : "A Built World.";
+      if (worldEyebrow) worldEyebrow.textContent = german ? "NEXAH · ORIENTIERUNGSPORTAL" : "NEXAH · ORIENTATION PORTAL";
       if (intro) intro.innerHTML = german
         ? "<strong>NEXAH ist eine offene, menschenzentrierte Orientierungspraxis: science-led, human-centered, instrument-enabled.</strong> A0 ist ihr gemeinsames methodisches Referenzobjekt. Hinter diesen Türen liegen Bücher, Bilder, Spiele, Instrumente, Forschung und Software — verbunden, aber nicht gleichgesetzt."
         : "<strong>NEXAH is an open, human-centred orientation practice: science-led, human-centred, instrument-enabled.</strong> A0 is its shared methodological reference object. Behind these doors are books, images, games, instruments, research and software — connected, but not equated.";
@@ -753,7 +757,7 @@ export function A0WorldFrame({ source, title = "NEXAHEDRON · Foyer", language =
                 <a href="#nexahedron-showcase-selectors">{german ? "Ein Fenster öffnen ↓" : "Open a window ↓"}</a>
               </nav>
             </div>
-            <small>ONE SOURCE · MANY VIEWS · EXPLICIT RETURN</small>
+            <small>{german ? "EINE QUELLE · VIELE ANSICHTEN · EIN KLARER RÜCKWEG" : "ONE SOURCE · MANY VIEWS · EXPLICIT RETURN"}</small>
           </section>
         </div>
       ) : null}

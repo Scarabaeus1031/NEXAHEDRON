@@ -2,6 +2,7 @@ import { createHash } from "node:crypto";
 import { readdir, readFile, writeFile } from "node:fs/promises";
 import { dirname, relative, resolve } from "node:path";
 import { fileURLToPath } from "node:url";
+import { humanEntranceCut } from "./a0-human-entrance-cut.mjs";
 
 const here = dirname(fileURLToPath(import.meta.url));
 const repositoryRoot = resolve(here, "..");
@@ -70,18 +71,27 @@ async function walk(directory) {
   return files.sort();
 }
 
-function sourcePathFor(bundlePath, targetPath) {
+function sourcePathFor(bundlePath) {
   const external = externalSources.get(bundlePath);
   if (external) return resolve(ecosystemRoot, external);
-  if (bundlePath === "start/nexahedron-public-navigation.js") return targetPath;
+  if (bundlePath === "start/nexahedron-public-navigation.js") return resolve(here, "a0-public-navigation-overlay.js");
   if (bundlePath.startsWith("start/")) return resolve(a0BookRoot, bundlePath.replace(/^start\//, ""));
   return resolve(a0BookRoot, bundlePath.replace(/^instruments\//, ""));
 }
 
 const files = [];
+const refreshHumanEntrance = process.argv.includes("--human-entrance");
+const existing = refreshHumanEntrance ? JSON.parse(await readFile(manifestPath, "utf8")).files : [];
+const existingByPath = new Map(existing.map((entry) => [entry.bundle_path, entry]));
 for (const targetPath of await walk(bundleRoot)) {
   const bundlePath = relative(bundleRoot, targetPath);
-  const sourcePath = sourcePathFor(bundlePath, targetPath);
+  if (refreshHumanEntrance && !humanEntranceCut.has(bundlePath)) {
+    const entry = existingByPath.get(bundlePath);
+    if (!entry) throw new Error(`Unexpected file outside Human entrance refresh: ${bundlePath}`);
+    files.push(entry);
+    continue;
+  }
+  const sourcePath = sourcePathFor(bundlePath);
   const [targetBytes, sourceBytes] = await Promise.all([
     readFile(targetPath),
     readFile(sourcePath),

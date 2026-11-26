@@ -3,7 +3,7 @@
   const src = document.currentScript?.src;
   if (!src || window.self !== window.top) return;
   const map = document.createElement('script');
-  map.src = new URL('a0-orientation-map.js?v=20261029-a0-navigator-family-map-r2', src).href;
+  map.src = new URL('a0-orientation-map.js?v=a0-editorial-directory', src).href;
   document.head.append(map);
 })();
 (() => {
@@ -48,7 +48,7 @@
   const title = document.title.replace(/^NEXAH\s*[·—-]\s*/i, "").replace(/^A0\s*[·—-]\s*/i, "").trim();
   const quietEntry = file === "A0_NEXAH_APERTURE_JOURNEY.html";
   const overviewWays = [
-    {code:"01 · HUMAN", title:"A0 Human View", copy:"Bestand, Apps, Experiences, Lesepfade und Delta.", href:"A0_NEXAH_APERTURE_JOURNEY.html#a0-human-overview", accent:"#f177b8"},
+    {code:"01 · HUMAN", title:"A0 Human View", copy:"Bestand, Apps, Experiences, Lesepfade und Delta.", href:"A0_NEXAH_APERTURE_JOURNEY.html#human-view", accent:"#f177b8"},
     {code:"02 · PLAY", title:"Game of Worlds", copy:"LIFE, Domains und Numbers in ONE PULSE.", href:"A0_GAME_OF_WORLDS_PLAY.html?world=pulse#pulse", accent:"#d99d00"},
     {code:"03 · MATHFIELD", title:"Mathematical Joints", copy:"Buchstellen, Träger, Linsen und Fugen.", href:"A0_MATHEMATICAL_JOINTS.html", accent:"#159bb4"},
     {code:"04 · BUILDER", title:"A0 Builder · Werkbank", copy:"Hauptmodule, Quellen, Adapter und Kopplungen gemeinsam öffnen.", href:"A0_WERKBANK.html?view=machina#bench-page-top", accent:"#2ca57a"},
@@ -62,7 +62,7 @@
     "code": "H",
     "label": "A0 · Human View",
     "description": "Erleben, orientieren und zurückkehren",
-    "entry": "A0_NEXAH_APERTURE_JOURNEY.html#a0-human-overview",
+    "entry": "A0_NEXAH_APERTURE_JOURNEY.html#human-view",
     "sections": [
       {
         "label": "Beginnen",
@@ -178,17 +178,17 @@
             "Rödelheim Observatory, Q°-Achse, Five H, Complex Fold, Hof und Generationen · interne, noch nicht publizierte Candidate-Revision"
           ],
           [
-            "A0_PLATINUM_IRIDIUM_PI_LENS.html",
+
             "Platinum / Iridium · π Lens",
             "Interne source-bound Linse für Dual Shell, Möbius-Return, Fourier-Slices und Holonomy"
           ],
           [
-            "A0_MATROSCHKA_CLUSTER_BRIDGE.html",
+
             "Matroschka Cluster Bridge",
             "Verschachtelte Carrier und Cluster als begrenztes internes Vergleichsinstrument"
           ],
           [
-            "A0_THREE_MATRIX_HOLONOMY_WORKBENCH.html",
+
             "Three-Matrix Holonomy Workbench",
             "Nichtkommutative Matrixfolge und Return als interne mathematische Werkbank"
           ],
@@ -228,11 +228,7 @@
             "Paper F · Tessarec",
             ""
           ],
-          [
-            "assets/a0-field-notes/index.html#note-49",
-            "Field Notes · Theory kurz",
-            "Begleitnotiz zur bestehenden Theory-Arbeitsquelle · kein Paper"
-          ]
+
         ]
       },
       {
@@ -384,21 +380,9 @@
       {
         "label": "A0 Source Lineageavigator · finden und zuordnen",
         "items": [
-          [
-            "A0_DATA_AND_REGISTERS.html#top",
-            "A0 Source Lineageavigator · Register Lens",
-            "Welche Liste beantwortet welche Frage?"
-          ],
-          [
-            "A0_DATA_AND_REGISTERS.html#search-order",
-            "Vor einer neuen Liste",
-            "Suchen → Autorität prüfen → vorhandenen Datensatz erweitern"
-          ],
-          [
-            "A0_DATA_AND_REGISTERS.html#science-registers",
-            "Source & Evidence / Source Graph",
-            "Quellen, Identitäten und typisierte Relationen"
-          ],
+
+
+
           [
             "A0_VISUAL_FIELD_LIBRARY.html",
             "Visual Field Library",
@@ -654,6 +638,9 @@
         "pages": [
           "A0_TOURS.html",
           "A0_NEXAH_APERTURE_JOURNEY.html",
+
+
+
           "A0_LOOK_AGAIN_PLAY.html",
           "A0_RAINBOW_PURPLE_RAIN.html",
           "A0_NEWTON_GOETHE_OBSERVER_LENS.html",
@@ -675,10 +662,11 @@
         "title": "Zusammenhang und Methode",
         "pages": [
           "A0_LIVING_BLUEPRINT.html",
-          "A0_ARCHITECTURE_OF_DIFFERENCE.html",
-          "A0_FIELD_NOTES.html",
+
+
           "A0_THEORY_STORYBOARD.html",
           "A0_FAMILY_CONNECTION_ATLAS.html",
+
           "A0_NEXAH_RESEARCH_METHOD.html",
           "A0_METHOD.html"
         ]
@@ -686,7 +674,7 @@
       {
         "title": "Quellen und vollständige Indizes",
         "pages": [
-          "A0_DATA_AND_REGISTERS.html",
+
           "A0_VISUAL_FIELD_LIBRARY.html",
           "A0_WERKBANK.html",
           "NEXAH_C_CONNECT.html",
@@ -705,7 +693,7 @@
         "title": "Joints · Mathematik und Return",
         "pages": [
           "A0_FIELDS_AND_JOINTS_ATLAS.html",
-          "A0_ASSEMBLY_ATLAS.html",
+
           "A0_MATHEMATICAL_JOINTS.html",
           "A0_PASCAL_PENTAGON_OPERATOR_JOINTS.html",
           "A0_PASCAL_GENERATION_CORNER.html",
@@ -715,14 +703,22 @@
           "A0_JOINT_APPLICATION_DEMONSTRATOR.html",
           "A0_JARP_CROSS_LENS_EXTENSION.html",
           "A0_IHARA_HASHIMOTO_CYCLE_BRIDGE.html",
-          "A0_PLATINUM_IRIDIUM_PI_LENS.html",
-          "A0_THREE_MATRIX_HOLONOMY_WORKBENCH.html"
+
+
+
+
         ]
       },
       {
         "title": "Grids · Adressen und Projektionen",
         "pages": [
           "A0_NUMBERMAGICK_GRID_RESEARCH.html",
+
+
+
+
+
+
           "A0_PINK_DIAMOND_GRID_ATLAS.html"
         ]
       },
@@ -730,12 +726,15 @@
         "title": "Körper · Faltung und Dynamik",
         "pages": [
           "A0_BLUE_PINK_DODECA_CELL_RETURN.html",
-          "A0_PENTAGON_BODY_EXHIBITION.html",
-          "A0_PENTAGON_BODY_RETURN_GUIDED.html",
+
+
           "A0_TESSAREC_BLUE_BODY_LAB.html",
+
+
+
           "A0_BLUE_BODY_DODECA_COUNTERSHOT.html",
           "A0_AXIS08_FOLD_RETURN_SEQUENCER.html",
-          "A0_MATROSCHKA_CLUSTER_BRIDGE.html",
+
           "A0_AXIAL_CARRIER_ADAPTER_SUITE.html",
           "A0_GAME_4_LIFE_PLUS_1.html",
           "A0_GAME_OF_WORLDS.html",
@@ -746,18 +745,18 @@
         "title": "Steuern und ausprobieren",
         "pages": [
           "A0_WERKBANK.html",
-          "A0_MACHINA_ANATOMY_MAP.html",
+
           "A0_MACHINA_COCKPIT.html",
           "A0_TOWER_RETURN_DEMONSTRATOR.html",
           "A0_IOTA_BRIDGE_DEMONSTRATOR.html",
-          "A0_PENTAGON_CROWN_RETURN_DEMONSTRATOR.html",
-          "A0_LANTERN_PANEL_V_CONTROL_LENS.html",
-          "A0_ROOTROOM_CODON_ORIENTATION_RETURN.html",
-          "A0_SPIN_TO_BLOOM_MEASUREMENT.html",
-          "A0_NLK_LSHELL_DEVELOPMENT_PROBE.html",
-          "A0_BREATHING_CRYSTAL_APERTURE.html",
+
+
+
+
+
+
           "A0_BENCH_ENTDECKEN.html",
-          "A0_BENCH_MODULES.html",
+
           "A0_BENCH_ARBEITEN.html",
           "A0_BENCH_QUELLEN.html",
           "A0_ORIENTATION_CONTROLLER_BENCH.html",
@@ -803,8 +802,10 @@
         "internal": true,
         "pages": [
           "A0_SCIENCE.html",
-          "A0_F_A0_26_REVIEW_PROBE.html",
+
           "A0_SCIENTIFIC_POSITION_REPORT.html",
+
+
           "A0_WERKBANK.html",
           "A0_SCIENCE.html"
         ]
@@ -885,11 +886,15 @@
   const scienceReaderHref = "A0_SCIENCE.html#top";
   const builderShowcaseHref = "A0_BUILDER_TOY_STORE.html#top";
   const scienceDeskHref = "A0_SCIENCE.html?desk=overview&rev=research-reader-r1-20261110#nexah-research-reader-currentness-20261110";
+  // The A0 owner preview is served from A0_BOOK. Cross-repository ../ routes
+  // escape that HTTP root and therefore resolve to 404 even though the files
+  // exist on disk. These source-preserving symlink routes keep one canonical
+  // Arbeitsfläche implementation while making both destinations reachable in preview.
   const builderDeskHref = "A0_SCIENTIFIC_POSITION_REPORT.html";
   const missionControlHref = "A0_SCIENTIFIC_POSITION_REPORT.html";
   // Each lane gets its own invitation. Human is experience-led; Builder keeps the workshop.
   const humanShowcase = [
-    ["A0_NEXAH_APERTURE_JOURNEY.html#a0-human-overview", "A0 HUMAN VIEW", "Bestand, Apps, Experiences, Lesepfade, Szenen und kontrolliertes Delta vor der einzelnen Journey", "nexah", "Start here · Inventory / Delta"],
+    ["A0_NEXAH_APERTURE_JOURNEY.html#human-view", "A0 HUMAN VIEW", "Bestand, Apps, Experiences, Lesepfade, Szenen und kontrolliertes Delta vor der einzelnen Journey", "nexah", "Start here · Inventory / Delta"],
     ["A0_SCIENTIFIC_POSITION_REPORT.html", "MIWA · SKY THREADS", "Human Observatory mit Sternfeld, Apertur, Distanzfäden und quellgebundenem Record; internes Staging, keine astronomische Kopplungsbehauptung", "cells", "HUMAN OBSERVATORY · LOCAL STAGING"],
     ["a0-public-arkade-index.html#arkade", "ARKADE", "ONE PULSE und drei spielbare Welten direkt erleben", "arcade", "Play · Consumer View"],
     ["A0_GAME_OF_WORLDS.html", "GAME OF WORLDS", "Der originale Human-Einstieg in ONE PULSE und die drei spielbaren Welten", "body", "Human Flagship · Original"],
@@ -1089,13 +1094,6 @@
     laneNav.querySelectorAll("details[open]").forEach((other) => { if (other !== workbenchEntry) other.open = false; });
   });
   laneNav.append(workbenchEntry);
-  const registerEntry = document.createElement("a");
-  registerEntry.className = "a0-register-entry";
-  registerEntry.href = "A0_DATA_AND_REGISTERS.html#top";
-  registerEntry.innerHTML = "<strong>A0 · Source Lineageavigator</strong>";
-  registerEntry.setAttribute("aria-label", "A0 Source Lineageavigator · Quellen, Relationen, Register und autoritative Rückwege öffnen");
-  if (file === "A0_DATA_AND_REGISTERS.html") registerEntry.setAttribute("aria-current", "page");
-  laneNav.append(registerEntry);
   const publicChannels = document.createElement("span");
   publicChannels.className = "a0-public-channels";
   publicChannels.setAttribute("aria-label", "Öffentliche NEXAH Channels");
@@ -1420,6 +1418,15 @@
         triggers: localScienceFlagshipEntries,
         route: "science-stoffregister",
         lane: "science"
+      });
+      mountSiteProjection({
+        href: "A0_WERKBANK.html",
+        label: "A0 / B0 · GEMEINSAMER RÜCKLAUF",
+        title: "Gemeinsamer A0/B0-Rücklauf",
+        triggers: [],
+        route: "builder-return",
+        lane: "builder",
+        suppressInnerShell: true
       });
       mountSiteProjection({
         href: builderShowcaseHref,
