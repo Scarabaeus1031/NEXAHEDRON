@@ -43,6 +43,7 @@ const messageGallerySlides = [
     altDe: "Ein Kind und ein kleiner Roboter blicken bei Sonnenaufgang gemeinsam über eine Stadt.",
     altEn: "A child and a small robot look across a city together at sunrise.",
     label: "RELATION",
+    labelDe: "BEZIEHUNG",
     copyDe: "Leben ist Beziehung in Bewegung.",
     copyEn: "Life is relation in motion.",
   },
@@ -54,6 +55,7 @@ const messageGallerySlides = [
     altDe: "Zehn Erinnerungsbilder zwischen Blue Marble, Voyager, Spiel, Aufnahme und Bibliothek.",
     altEn: "Ten remembered images from Blue Marble and Voyager to play, recording and the library.",
     label: "MEMORY",
+    labelDe: "ERINNERUNG",
     copyDe: "Technologie verändert sich. Staunen verbindet.",
     copyEn: "Technology changes. Wonder connects.",
   },
@@ -65,6 +67,7 @@ const messageGallerySlides = [
     altDe: "Ein Kind, ein kleiner Roboter und ein alter Computer blicken auf eine Regenbogensäule über einer Stadt.",
     altEn: "A child, a small robot and a vintage computer face a rainbow column above a city.",
     label: "POSSIBILITY",
+    labelDe: "MÖGLICHKEIT",
     copyDe: "Die Zukunft fühlte sich endlos an. Sie kann es noch immer.",
     copyEn: "The future felt endless. It still can.",
   },
@@ -76,6 +79,7 @@ const messageGallerySlides = [
     altDe: "Zwei Menschen mit Robothelmen sitzen bei Sonnenuntergang auf einer Bank.",
     altEn: "Two people in robot helmets sit on a bench at sunset.",
     label: "CONNECTION",
+    labelDe: "VERBINDUNG",
     copyDe: "Verbindung braucht kein Signal.",
     copyEn: "Connection needs no signal.",
   },
@@ -87,6 +91,7 @@ const messageGallerySlides = [
     altDe: "Menschen fotografieren einen schwarzen Monolithen unter einem Sternenhimmel.",
     altEn: "People photograph a black monolith beneath a starry sky.",
     label: "PRESENCE",
+    labelDe: "GEGENWART",
     copyDe: "Manche Dinge kann man nicht herunterladen.",
     copyEn: "Some things cannot be downloaded.",
   },
@@ -172,7 +177,7 @@ function NexahedronMessageGallery({ language = "en" }: { readonly language?: Pub
         <figure className={slide.id === "memory" ? "is-wide" : activeSlide % 2 === 0 ? "is-image-left" : "is-image-right"} key={slide.id}>
           <img alt={german ? slide.altDe : slide.altEn} height={slide.height} src={slide.image} width={slide.width} />
           <figcaption>
-            <small>{String(activeSlide + 1).padStart(2, "0")} · {slide.label}</small>
+            <small>{String(activeSlide + 1).padStart(2, "0")} · {german ? slide.labelDe : slide.label}</small>
             <strong>{german ? slide.copyDe : slide.copyEn}</strong>
           </figcaption>
         </figure>
@@ -181,7 +186,8 @@ function NexahedronMessageGallery({ language = "en" }: { readonly language?: Pub
   );
 }
 
-function NexahedronLivingInterior() {
+function NexahedronLivingInterior({ language }: { readonly language: PublicLanguage }) {
+  const german = language === "de";
   const previewRef = useRef<HTMLDivElement>(null);
   const [previewReady, setPreviewReady] = useState(false);
 
@@ -241,18 +247,28 @@ function NexahedronLivingInterior() {
           loading="eager"
           onLoad={(event) => applyPublicProjection(event.currentTarget)}
           src="/a0-human/start/A0_THE_LIVING_INTERIOR.html#passage"
-          title="The Living Interior preview"
+          title={german ? "Vorschau: The Living Interior" : "The Living Interior preview"}
         />
       ) : (
-        <div className="nexahedron-showcase-interior__loading" role="status">Opening the Living Interior …</div>
+        <div className="nexahedron-showcase-interior__loading" role="status">{german ? "The Living Interior wird geöffnet …" : "Opening the Living Interior …"}</div>
       )}
       <div>
-        <small>HUMAN VIEW · INNER PASSAGE</small>
+        <small>{german ? "HUMAN VIEW · ÜBERGANG NACH INNEN" : "HUMAN VIEW · INNER PASSAGE"}</small>
         <strong>The Living Interior</strong>
-        <p>A surface opens. Touch the five stations and observe how a visible shell becomes a living field with a trace that can be remembered.</p>
+        <p>{german ? "Eine Oberfläche öffnet sich. Berühre die fünf Stationen und beobachte, wie aus einer sichtbaren Hülle ein lebendiges Feld mit einer bleibenden Spur wird." : "A surface opens. Touch the five stations and observe how a visible shell becomes a living field with a trace that can be remembered."}</p>
       </div>
     </div>
   );
+}
+
+function localizeModelViewerPoster(viewer: HTMLElement, language: PublicLanguage) {
+  if (language !== "de") return;
+  void customElements.whenDefined("model-viewer").then(() => {
+    const poster = viewer.shadowRoot?.querySelector("#default-poster");
+    if (poster?.getAttribute("aria-label") === "Loading 3D model") {
+      poster.setAttribute("aria-label", "3D-Modell wird geladen");
+    }
+  });
 }
 
 function NexahedronRecordPlayer({ language = "en" }: { readonly language?: PublicLanguage }) {
@@ -266,7 +282,7 @@ function NexahedronRecordPlayer({ language = "en" }: { readonly language?: Publi
 
     const viewer = document.createElement("model-viewer");
     viewer.setAttribute("src", "/a0-human/start/assets/3d/nexah_roedelheim_record_play.glb");
-    viewer.setAttribute("alt", "Interactive 3D model of the Rödelheim Record Play instrument with graph, wave and fold traces");
+    viewer.setAttribute("alt", language === "de" ? "Interaktives 3D-Modell des Rödelheimer Plattenspielers mit Kurven, Wellen und Faltspuren" : "Interactive 3D model of the Rödelheim Record Play instrument with graph, wave and fold traces");
     viewer.setAttribute("camera-controls", "");
     viewer.setAttribute("camera-orbit", "-12deg 72deg 58%");
     viewer.setAttribute("field-of-view", "32deg");
@@ -286,12 +302,13 @@ function NexahedronRecordPlayer({ language = "en" }: { readonly language?: Publi
     applyMotionPreference();
     reducedMotion.addEventListener("change", applyMotionPreference);
     host.replaceChildren(viewer);
+    localizeModelViewerPoster(viewer, language);
 
     return () => {
       reducedMotion.removeEventListener("change", applyMotionPreference);
       host.replaceChildren();
     };
-  }, []);
+  }, [language]);
 
   const toggleAudio = useCallback(async () => {
     const audio = audioRef.current;
@@ -318,12 +335,12 @@ function NexahedronRecordPlayer({ language = "en" }: { readonly language?: Publi
         <button aria-pressed={isPlaying} className="nexahedron-inline-record__play" onClick={toggleAudio} type="button">
           <img alt="" height="72" src="/media/earth-stems-roedelheim-label.jpg" width="72" />
           <span>
-            <small>{isPlaying ? (language === "de" ? "LÄUFT · LOOP" : "PLAYING · LOOP") : (language === "de" ? "RECORD / PLAY" : "RECORD / PLAY")}</small>
-            <strong>{isPlaying ? (language === "de" ? "EARTH PAUSIEREN" : "PAUSE EARTH") : (language === "de" ? "EARTH SPIELEN" : "PLAY EARTH")}</strong>
+            <small>{isPlaying ? (language === "de" ? "LÄUFT · WIEDERHOLUNG" : "PLAYING · LOOP") : (language === "de" ? "AUFNAHME / WIEDERGABE" : "RECORD / PLAY")}</small>
+            <strong>{isPlaying ? (language === "de" ? "EARTH PAUSIEREN" : "PAUSE EARTH") : (language === "de" ? "EARTH ABSPIELEN" : "PLAY EARTH")}</strong>
           </span>
           <b aria-hidden="true">{isPlaying ? "Ⅱ" : "▶"}</b>
         </button>
-        <p><strong>Earth</strong> · produced by Dan Duck in the Rödelheim Observatory<br />{language === "de" ? "42,7 Sekunden · Loop · Ziehen zum Drehen · scrollen oder zoomen" : "42.7 seconds · loop · drag to rotate · scroll or pinch to zoom"}</p>
+        <p><strong>Earth</strong> · {language === "de" ? "produziert von Dan Duck im Rödelheim Observatory" : "produced by Dan Duck in the Rödelheim Observatory"}<br />{language === "de" ? "42,7 Sekunden · Wiederholung · Ziehen zum Drehen · scrollen oder zoomen" : "42.7 seconds · loop · drag to rotate · scroll or pinch to zoom"}</p>
       </div>
       <audio
         loop
@@ -338,7 +355,7 @@ function NexahedronRecordPlayer({ language = "en" }: { readonly language?: Publi
   );
 }
 
-function NexahedronObject() {
+function NexahedronObject({ language }: { readonly language: PublicLanguage }) {
   const hostRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -347,7 +364,7 @@ function NexahedronObject() {
 
     const viewer = document.createElement("model-viewer");
     viewer.setAttribute("src", "/a0-human/start/downloads/A0_PENTAGON_KNICK_APERTURE_INTAKE_2026-10-25/deliverables/glb/NEXAH_Fuenflaschenkrone_Animiert_2026-10-25.glb");
-    viewer.setAttribute("alt", "Interactive illustrative 3D object of a five-part crown");
+    viewer.setAttribute("alt", language === "de" ? "Interaktives 3D-Modell einer fünfteiligen Krone" : "Interactive illustrative 3D object of a five-part crown");
     viewer.setAttribute("camera-controls", "");
     viewer.setAttribute("autoplay", "");
     viewer.setAttribute("rotation-per-second", "9deg");
@@ -365,41 +382,43 @@ function NexahedronObject() {
     applyMotionPreference();
     reducedMotion.addEventListener("change", applyMotionPreference);
     host.replaceChildren(viewer);
+    localizeModelViewerPoster(viewer, language);
 
     return () => {
       reducedMotion.removeEventListener("change", applyMotionPreference);
       host.replaceChildren();
     };
-  }, []);
+  }, [language]);
 
   return <div ref={hostRef} className="nexahedron-showcase-object" />;
 }
 
 function ShowcasePanel({ active, language = "en" }: { readonly active: ShowcaseId; readonly language?: PublicLanguage }) {
+  const german = language === "de";
   if (active === "books") {
     return (
       <div className="nexahedron-showcase-books">
         {featuredWorks.map((work, index) => (
           <a href={work.href} key={work.href} target="_blank" rel="noopener noreferrer">
             <small>0{index + 1} · ARE.NA ORIGINAL ↗</small>
-            <img src={work.cover} alt={`Cover of ${work.title}`} loading="lazy" />
+            <img src={work.cover} alt={german ? `Titelbild zu ${work.title}` : `Cover of ${work.title}`} loading="lazy" />
             <strong>{work.title}</strong>
-            <span>{work.note}</span>
+            <span>{german ? work.noteDe : work.note}</span>
           </a>
         ))}
       </div>
     );
   }
 
-  if (active === "interior") return <NexahedronLivingInterior />;
+  if (active === "interior") return <NexahedronLivingInterior language={language} />;
 
   if (active === "film") {
-    const german = language === "de";
     return (
       <div className="nexahedron-showcase-film">
         <video controls playsInline preload="metadata" poster="/media/framework-of-legibility-poster.jpg">
           <source src="/media/framework-of-legibility.mp4" type="video/mp4" />
-          Your browser cannot play the film. <a href="/media/framework-of-legibility.mp4">Open the film directly.</a>
+          {german ? "Dein Browser kann den Film nicht abspielen." : "Your browser cannot play the film."}{" "}
+          <a href="/media/framework-of-legibility.mp4">{german ? "Film direkt öffnen." : "Open the film directly."}</a>
         </video>
         <p>
           <strong>Framework of Legibility · 2:48</strong><br />
@@ -416,8 +435,8 @@ function ShowcasePanel({ active, language = "en" }: { readonly active: ShowcaseI
   if (active === "object") {
     return (
       <div className="nexahedron-showcase-object-wrap">
-        <NexahedronObject />
-        <p><strong>Five-bottle crown · animated 3D object</strong><br />Drag to rotate; scroll or pinch to zoom. An illustrative exhibition object — not scientific evidence and not part of the tour.</p>
+        <NexahedronObject language={language} />
+        <p><strong>{german ? "Fünfflaschenkrone · animiertes 3D-Objekt" : "Five-bottle crown · animated 3D object"}</strong><br />{german ? "Ziehen zum Drehen, scrollen oder mit zwei Fingern zoomen. Ein Ausstellungsobjekt zur Anschauung außerhalb der Tour. Es dient nicht als wissenschaftlicher Beleg." : "Drag to rotate; scroll or pinch to zoom. An illustrative exhibition object — not scientific evidence and not part of the tour."}</p>
       </div>
     );
   }
@@ -428,12 +447,12 @@ function ShowcasePanel({ active, language = "en" }: { readonly active: ShowcaseI
         <iframe
           loading="lazy"
           src="/a0-human/start/A0_OPIUM.html"
-          title="NEXAH Club preview"
+          title={german ? "Vorschau: NEXAH Club" : "NEXAH Club preview"}
         />
         <div>
           <small>HUMAN VIEW · CLUB</small>
           <strong>NEXAH Club</strong>
-          <p>The existing entrance for rhythm, changes of view and encounter — without a Bench, Atlas or scientific control panel.</p>
+          <p>{german ? "Ein Einstieg in Rhythmus, Ansichtswechsel und Begegnung." : "The existing entrance for rhythm, changes of view and encounter — without a Bench, Atlas or scientific control panel."}</p>
         </div>
       </div>
     );
@@ -444,12 +463,12 @@ function ShowcasePanel({ active, language = "en" }: { readonly active: ShowcaseI
       <iframe
         loading="lazy"
         src="/a0-human/start/a0-public-arkade-index.html#arkade"
-        title="NEXAH Arcade preview"
+        title={german ? "Vorschau: NEXAH Arcade" : "NEXAH Arcade preview"}
       />
       <div>
-        <small>PLAY · THREE WORLDS</small>
+        <small>{german ? "SPIELEN · DREI WELTEN" : "PLAY · THREE WORLDS"}</small>
         <strong>NEXAH Arcade</strong>
-        <p>A playable entrance with three connected worlds and a visible Return.</p>
+        <p>{german ? "Ein spielbarer Einstieg mit drei verbundenen Welten und einem sichtbaren Rückweg." : "A playable entrance with three connected worlds and a visible Return."}</p>
       </div>
     </div>
   );
@@ -530,9 +549,12 @@ export function A0WorldFrame({ source, title = "NEXAHEDRON · Foyer", language =
       const trailerSmall = document.querySelector<HTMLElement>(".world-trailer-copy small");
       const worldTitle = document.getElementById("built-world-title");
       const worldEyebrow = document.querySelector<HTMLElement>(".world-plate-head .eyebrow");
+      const trailerMotto = trailer?.querySelector(".world-trailer-bar > span:nth-child(2)");
       document.documentElement.lang = language;
+      document.title = german ? "NEXAH A0 · Ein Blick in den NEXAH-Kosmos" : "NEXAH A0 — A View into the NEXAH Cosmos";
       if (worldTitle) worldTitle.textContent = german ? "Eine gebaute Welt." : "A Built World.";
       if (worldEyebrow) worldEyebrow.textContent = german ? "NEXAH · ORIENTIERUNGSPORTAL" : "NEXAH · ORIENTATION PORTAL";
+      if (trailerMotto) trailerMotto.textContent = german ? "Eine Quelle · viele Ansichten · ein klarer Rückweg" : "One source · many views · explicit return";
       if (intro) intro.innerHTML = german
         ? "<strong>NEXAH ist eine offene, menschenzentrierte Orientierungspraxis: science-led, human-centered, instrument-enabled.</strong> A0 ist ihr gemeinsames methodisches Referenzobjekt. Hinter diesen Türen liegen Bücher, Bilder, Spiele, Instrumente, Forschung und Software — verbunden, aber nicht gleichgesetzt."
         : "<strong>NEXAH is an open, human-centred orientation practice: science-led, human-centred, instrument-enabled.</strong> A0 is its shared methodological reference object. Behind these doors are books, images, games, instruments, research and software — connected, but not equated.";
@@ -569,21 +591,27 @@ export function A0WorldFrame({ source, title = "NEXAHEDRON · Foyer", language =
         trailer.addEventListener("click", enterHumanView);
         trailer.addEventListener("keydown", (event) => {
           if (event.key !== "Enter" && event.key !== " ") return;
+          if (event.target !== trailer) return;
           event.preventDefault();
           enterHumanView(event);
         });
       }
-      if (trailer && trailer.dataset.nexahedronPauseBound !== "true") {
-        trailer.dataset.nexahedronPauseBound = "true";
+      if (trailer) {
         const toggle = trailer.querySelector<HTMLButtonElement>(".world-trailer-toggle");
         const signal = trailer.querySelector<HTMLElement>(".world-trailer-live");
-        toggle?.addEventListener("click", () => {
-          const paused = trailer.dataset.paused !== "true";
-          trailer.dataset.paused = String(paused);
-          toggle.textContent = paused ? "Play" : "Pause";
-          toggle.setAttribute("aria-pressed", String(paused));
-          if (signal) signal.textContent = paused ? "World signal · paused" : "World signal · running";
-        });
+        const updatePlaybackLabel = () => {
+          const paused = trailer.dataset.paused === "true";
+          if (toggle) {
+            toggle.textContent = paused ? (german ? "Fortsetzen" : "Play") : "Pause";
+            toggle.setAttribute("aria-pressed", String(paused));
+          }
+          if (signal) signal.textContent = german ? (paused ? "Weltsignal · pausiert" : "Weltsignal · läuft") : (paused ? "World signal · paused" : "World signal · running");
+        };
+        updatePlaybackLabel();
+        if (toggle) toggle.onclick = () => {
+          trailer.dataset.paused = String(trailer.dataset.paused !== "true");
+          updatePlaybackLabel();
+        };
       }
     }
 
@@ -773,7 +801,7 @@ export function A0WorldFrame({ source, title = "NEXAHEDRON · Foyer", language =
           ref={frameRef}
           className="a0-source-home-frame"
           src={source}
-          title={title}
+          title={german && isFoyerSource ? "NEXAHEDRON · Eingangsbereich" : title}
           onLoad={(event) => applyNexahedronProjection(event.currentTarget)}
         />
       </div>
@@ -803,8 +831,8 @@ export function A0WorldFrame({ source, title = "NEXAHEDRON · Foyer", language =
 
           <section className="nexahedron-record-feature" id="record-player" aria-labelledby="record-player-title">
             <header>
-              <p className="nexahedron-first-contact__eyebrow">{german ? "00 · EIN MOMENT, EIN RECORD, EIN RETURN" : "00 · ONE MOMENT, ONE RECORD, ONE RETURN"}</p>
-              <h2 id="record-player-title">{german ? "Eine Stimme wird zum Record." : "A voice becomes a record."}</h2>
+              <p className="nexahedron-first-contact__eyebrow">{german ? "00 · EIN MOMENT, EINE AUFNAHME, EIN RÜCKWEG" : "00 · ONE MOMENT, ONE RECORD, ONE RETURN"}</p>
+              <h2 id="record-player-title">{german ? "Eine Stimme wird zur Aufnahme." : "A voice becomes a record."}</h2>
               <p>{german ? "Jemand singt. Ein Instrument wählt eine Spur aus und speichert sie; später wird daraus wieder Klang. Die Aufnahme bewahrt etwas vom Moment — sie ist nicht der Moment selbst." : "Someone sings. An instrument selects and stores a trace; later it becomes sound again. The recording preserves something of the moment — it is not the moment itself."}</p>
             </header>
             <NexahedronRecordPlayer language={language} />
@@ -812,8 +840,8 @@ export function A0WorldFrame({ source, title = "NEXAHEDRON · Foyer", language =
 
           <section className="nexahedron-free-windows" aria-labelledby="nexahedron-free-windows-title">
             <header>
-              <p>{german ? "EXPLORE LIFE · SECHS ANSICHTEN · EIN CARRIER" : "EXPLORE LIFE · SIX VIEWS · ONE CARRIER"}</p>
-              <h2 id="nexahedron-free-windows-title">{german ? "Mehr Wege. Mehr Fenster. Ein Carrier." : "More paths. More windows. One carrier."}</h2>
+              <p>{german ? "LEBEN ENTDECKEN · SECHS ANSICHTEN · EIN TRÄGER" : "EXPLORE LIFE · SIX VIEWS · ONE CARRIER"}</p>
+              <h2 id="nexahedron-free-windows-title">{german ? "Mehr Wege. Mehr Fenster. Ein Träger." : "More paths. More windows. One carrier."}</h2>
               <span>{german ? "Die Farben markieren keine Reihenfolge. Sie verlinken sechs Darstellungen derselben gebauten Welt: lesen, eintauchen, ansehen, berühren, spielen oder verbinden." : "The colours do not mark a sequence. They link six representations of the same built world: read, enter, watch, touch, play or connect."}</span>
             </header>
             <div className="nexahedron-showcase-selectors" id="nexahedron-showcase-selectors" role="toolbar" aria-label={german ? "Eines von sechs Fenstern öffnen" : "Open one of six windows"}>
@@ -848,7 +876,7 @@ export function A0WorldFrame({ source, title = "NEXAHEDRON · Foyer", language =
                   <div className="nexahedron-showcase-window__actions">
                     <button
                       aria-expanded={isShowcaseExpanded}
-                      aria-label={`${activeDefinition.title} ${isShowcaseExpanded ? "return to the tile view" : "enlarge"}`}
+                      aria-label={german ? (isShowcaseExpanded ? "Zurück zur Fensterübersicht" : `${activeDefinition.title} vergrößern`) : `${activeDefinition.title} ${isShowcaseExpanded ? "return to the tile view" : "enlarge"}`}
                       onClick={() => setIsShowcaseExpanded((current) => !current)}
                       type="button"
                     >
@@ -875,7 +903,7 @@ export function A0WorldFrame({ source, title = "NEXAHEDRON · Foyer", language =
             <small>{german ? "WEITER" : "CONTINUE"}</small>
             <div>
               {publicChannels.map((channel) => (
-                <a href={channel.href} key={channel.href} target="_blank" rel="noopener noreferrer" aria-label={`Open ${channel.label} in a new window`} title={channel.label}>
+                <a href={channel.href} key={channel.href} target="_blank" rel="noopener noreferrer" aria-label={german ? `${channel.label} in einem neuen Fenster öffnen` : `Open ${channel.label} in a new window`} title={channel.label}>
                   <span aria-hidden="true">{channel.mark}</span>
                 </a>
               ))}

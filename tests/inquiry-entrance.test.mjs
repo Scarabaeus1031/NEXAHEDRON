@@ -21,7 +21,8 @@ test("makes the source-bound A0 Human Book the primary public action", async () 
   const publicNavigation = await readFile(new URL("../public/a0-human/start/nexahedron-public-navigation.js", import.meta.url), "utf8");
   assert.match(html, /\/a0-human\/start\/index\.html/);
   assert.doesNotMatch(html, /href="\/orient"/);
-  assert.match(html, /A0 Human View/);
+  assert.match(html, /Zum Hauptinhalt springen/);
+  assert.match(html, />Human View<\/a>/);
   assert.match(sourceHome, /Welche Reise brauchst du gerade\?/);
   assert.match(sourceHome, /<h2 id="wegweiser-title">Wo beginne ich\?<\/h2>/);
   assert.match(sourceHome, /Pentagon Body Player · 3D/);

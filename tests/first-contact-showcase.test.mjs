@@ -18,7 +18,8 @@ test("keeps the foyer compact and opens the existing Living Interior public proj
   assert.match(worldFrame, /A voice becomes a record\./);
   assert.match(worldFrame, /nexah_roedelheim_record_play\.glb/);
   assert.match(worldFrame, /earth-stems-roedelheim-didinbaerlin\.mp3/);
-  assert.match(worldFrame, /Earth<\/strong> · produced by Dan Duck in the Rödelheim Observatory/);
+  assert.match(worldFrame, /Earth<\/strong> · .*"produced by Dan Duck in the Rödelheim Observatory"/);
+  assert.match(worldFrame, /"produziert von Dan Duck im Rödelheim Observatory"/);
   assert.match(worldFrame, /aria-pressed=\{isPlaying\}/);
   assert.match(worldFrame, /loop/);
   assert.match(worldFrame, /Music for the film produced by/);

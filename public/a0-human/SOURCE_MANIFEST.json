@@ -295,8 +295,8 @@
     {
       "bundle_path": "start/A0_NEXAH_APERTURE_JOURNEY.html",
       "source_path": "30 SCIENCE LAB/NEXAH-Science-Lab/RESEARCH_PROGRAM_B_MATHEMATICAL_FOUNDATIONS/AXIOM0_QMODE_ORIENTATION_TO_MEASUREMENT_FOUNDATION_PACKAGE_2026-10-01/A0_BOOK/A0_NEXAH_APERTURE_JOURNEY.html",
-      "source_sha256": "19910c2eef1476d015112dba83a077aea0ec77b99230f512b2a8dfb92bbcd70b",
-      "bundle_sha256": "c8f57991d88f7b21a9abf5277448f6c3983cccb8ba8b6088401213205f3e5b8d",
+      "source_sha256": "8b0c8b890a52ab7dd21d2be3766787ef6facbc8f6076b7e439b33898b7fc08c1",
+      "bundle_sha256": "75ad643bfeefba820beec1b54d0cf826874197f6c4485fe656b09532426ed9f7",
       "treatment": "PUBLIC_PRESENTATION_TRANSFORM"
     },
     {
@@ -1947,8 +1947,8 @@
     {
       "bundle_path": "start/a0-human-locale.js",
       "source_path": "30 SCIENCE LAB/NEXAH-Science-Lab/RESEARCH_PROGRAM_B_MATHEMATICAL_FOUNDATIONS/AXIOM0_QMODE_ORIENTATION_TO_MEASUREMENT_FOUNDATION_PACKAGE_2026-10-01/A0_BOOK/a0-human-locale.js",
-      "source_sha256": "deccd8764f8b13b28086d4c20c7a95ec964367ac524883390f5deeaf0d909905",
-      "bundle_sha256": "deccd8764f8b13b28086d4c20c7a95ec964367ac524883390f5deeaf0d909905",
+      "source_sha256": "89ca0850a3b56be4e065cfc3d0c07cf542044a03e754c8d825313f0276f7b8df",
+      "bundle_sha256": "89ca0850a3b56be4e065cfc3d0c07cf542044a03e754c8d825313f0276f7b8df",
       "treatment": "BYTE_COPY"
     },
     {

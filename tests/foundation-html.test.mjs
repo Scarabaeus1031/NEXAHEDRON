@@ -101,7 +101,7 @@ test("starts in German when no language preference is declared", async () => {
   const html = await response.text();
   assert.match(html, /Momente, die uns staunen ließen\./);
   assert.match(html, /Technologie verändert sich\. Neugier bleibt\./);
-  assert.match(html, /Eine Stimme wird zum Record\./);
+  assert.match(html, /Eine Stimme wird zur Aufnahme\./);
   assert.match(html, /href="\/\?view=connect&amp;from=human&amp;lang=de"/);
 });
 
@@ -113,7 +113,10 @@ test("offers a German presentation lens without creating a second route", async 
   assert.match(html, /aria-label="Sprache wählen"/);
   assert.match(html, /Momente, die uns staunen ließen\./);
   assert.match(html, /Technologie verändert sich\. Neugier bleibt\./);
-  assert.match(html, /Eine Stimme wird zum Record\./);
+  assert.match(html, /Eine Stimme wird zur Aufnahme\./);
+  assert.match(html, /Zu NEXAH/);
+  assert.match(html, /Zum Hauptinhalt springen/);
+  assert.match(html, /NEXAH in einem neuen Fenster öffnen/);
   assert.match(html, /TOUR BETRETEN/);
   assert.match(html, /href="\/\?view=connect&amp;from=human&amp;lang=de"/);
   assert.doesNotMatch(html, /href="\/de(?:\/|&quot;)/);

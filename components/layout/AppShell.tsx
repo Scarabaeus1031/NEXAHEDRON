@@ -34,13 +34,16 @@ export function AppShell({ children }: { readonly children: ReactNode }) {
       club: "O·PIUM Club",
       connect: "Human Connect",
     }[activeView];
+    const german = language === "de";
+    const connectLabel = german ? "Human Connect · Eine Frage stellen oder etwas teilen" : "Human Connect · ask a question or share something";
+    const workshopLabel = german ? "Scarabæus 1033 · Werkstatt" : "Scarabæus 1033 · Builder and workshop";
     const connectPortal = (
       <Link
         className="a0-source-host-dot"
         href={withLanguage("/?view=connect&from=human")}
         aria-current={activeView === "connect" ? "page" : undefined}
-        aria-label="Human Connect · ask a question or share something"
-        title="Human Connect · ask a question or share something"
+        aria-label={connectLabel}
+        title={connectLabel}
       >
         <span aria-hidden="true" />
       </Link>
@@ -48,26 +51,26 @@ export function AppShell({ children }: { readonly children: ReactNode }) {
 
     return (
       <div className="a0-source-home-shell" data-active-view={activeView}>
-        <a className="skip-link" href="#main-content">Skip to A0 Human View</a>
+        <a className="skip-link" href="#main-content">{german ? "Zum Hauptinhalt springen" : "Skip to A0 Human View"}</a>
         <header className="a0-source-host-header" data-active-view={activeView}>
-          <Link className="a0-source-host-brand" href={withLanguage("/")} aria-label={activeDescriptor ? `NEXAHEDRON, ${activeDescriptor} home` : "NEXAHEDRON home"}>
+          <Link className="a0-source-host-brand" href={withLanguage("/")} aria-label={german ? "NEXAHEDRON · Startseite" : activeDescriptor ? `NEXAHEDRON, ${activeDescriptor} home` : "NEXAHEDRON home"}>
             <span aria-hidden="true">✦</span>
             <strong>NEXAHEDRON</strong>
             {activeDescriptor ? <small>{activeDescriptor}</small> : null}
           </Link>
-          <nav className="a0-source-host-nav" aria-label="NEXAHEDRON Flagships">
+          <nav className="a0-source-host-nav" aria-label={german ? "NEXAHEDRON-Hauptnavigation" : "NEXAHEDRON Flagships"}>
             <Link href={withLanguage("/")} aria-current={activeView === "foyer" ? "page" : undefined}>{language === "de" ? "Start" : "Home"}</Link>
             <Link data-route="human" href={withLanguage("/?view=human")} aria-current={activeView === "human" ? "page" : undefined}>Human View</Link>
             {activeView === "human" ? connectPortal : null}
-            <Link href="/about">To NEXAH</Link>
+            <Link href="/about">{german ? "Zu NEXAH" : "To NEXAH"}</Link>
             {activeView === "foyer" || activeView === "connect" ? connectPortal : null}
             <LanguageSwitch language={language} />
-            <span className="a0-source-host-portals" aria-label="Connected NEXAH places">
+            <span className="a0-source-host-portals" aria-label={german ? "Weitere NEXAH-Websites" : "Connected NEXAH places"}>
               <a
                 className="a0-source-host-scarab"
                 href="https://www.scarabaeus1033.net/"
-                aria-label="Scarabæus 1033 · Builder and workshop"
-                title="Scarabæus 1033 · Builder and workshop"
+                aria-label={workshopLabel}
+                title={workshopLabel}
               >
                 <svg aria-hidden="true" viewBox="0 0 32 32">
                   <path d="M11 10.5c1.2-2.2 2.8-3.3 5-3.3s3.8 1.1 5 3.3M16 7.2V3.8M12.4 6.3 10 3.7M19.6 6.3 22 3.7M9.5 13.2 5 10.8M22.5 13.2l4.5-2.4M9 18.2H4.5M23 18.2h4.5M10.2 23.2 6.5 27M21.8 23.2l3.7 3.8" />

@@ -21,6 +21,167 @@
   }
 
   const translations = new Map(language === "de" ? [
+    ["Inside", "Innen"],
+    ["Story", "Geschichte"],
+    ["Questions", "Fragen"],
+    ["Journey", "Tour"],
+    ["Inventory", "Bestand"],
+    ["Public", "Öffentlich"],
+    ["Light", "Licht"],
+    ["Look", "Hinschauen"],
+    ["Hedge", "Grenze"],
+    ["Hinge", "Gelenk"],
+    ["Receipt", "Übergangsprotokoll"],
+    ["NEXT →", "WEITER →"],
+    ["The Missing Condition Schritte", "Stationen zur fehlenden Bedingung"],
+    ["The Missing Condition: A to A prime through a declared crack", "Die fehlende Bedingung: von A zu A′ durch einen benannten Riss"],
+    ["ILAU transition receipt", "ILAU-Übergangsprotokoll"],
+    ["I · RETAINED", "I · ERHALTEN"],
+    ["L · LOST", "L · VERLOREN"],
+    ["A · INTRODUCED", "A · HINZUGEFÜGT"],
+    ["U · UNKNOWN", "U · UNBEKANNT"],
+    ["Sieben Human Questions ↓", "Sieben Fragen ↓"],
+    ["Human-readable orientation instrument.", "Verständliches Orientierungsinstrument."],
+    ["Sechs Stationen der Human Story", "Sechs Stationen der Geschichte"],
+    ["01 · THE QUESTION", "01 · DIE FRAGE"],
+    ["02 · THE HINGE", "02 · DAS GELENK"],
+    ["03 · THE BIRD", "03 · DER VOGEL"],
+    ["04 · THE LIGHT", "04 · DAS LICHT"],
+    ["05 · THE GOLD", "05 · DAS GOLD"],
+    ["06 · THE RECORD", "06 · DIE AUFZEICHNUNG"],
+    ["Egg ↔ Chicken", "Ei ↔ Huhn"],
+    ["The crack.", "Der Riss."],
+    ["Orientation within.", "Orientierung von innen."],
+    ["Rainbow begins at a difference.", "Der Regenbogen beginnt mit einem Unterschied."],
+    ["What survives the passage?", "Was bleibt nach dem Übergang?"],
+    ["Life is not a stream alone.", "Leben ist mehr als ein Strom."],
+    ["FRAME → ORDER →", "RAHMEN → REIHENFOLGE →"],
+    ["BOUNDARY → APERTURE →", "GRENZE → APERTUR →"],
+    ["BODY · FIELD · DIRECTION →", "KÖRPER · FELD · RICHTUNG →"],
+    ["LIGHT × CONDITION → VIEW →", "LICHT × BEDINGUNG → ANSICHT →"],
+    ["I · RETAINED TRACE →", "I · ERHALTENE SPUR →"],
+    ["PLAY → TRACE → RETURN", "WIEDERGABE → SPUR → RETURN"],
+    ["Declared story grammar.", "Erzählrahmen."],
+    ["Human questions browse controls", "Navigation durch die Fragen"],
+    ["Previous human question", "Vorherige Frage"],
+    ["Next human question", "Nächste Frage"],
+    ["Seven human questions", "Sieben Fragen"],
+    ["ORBIT NAVIGATION · CHOOSE A QUESTION", "KREISNAVIGATION · WÄHLE EINE FRAGE"],
+    ["WHAT'S BEHIND THESE QUESTIONS?", "WAS STECKT HINTER DIESEN FRAGEN?"],
+    ["07 / 07 · BEHIND THE QUESTIONS", "07 / 07 · HINTER DEN FRAGEN"],
+    ["Not an answer.", "Keine Antwort."],
+    ["A moving field.", "Ein Feld in Bewegung."],
+    ["POSITION · BOUNDARY · RELATION · RETURN", "POSITION · GRENZE · BEZIEHUNG · RETURN"],
+    ["RETURN TO QUESTION 07 ↙", "ZURÜCK ZU FRAGE 07 ↙"],
+    ["FOLLOW THE APERTURE ↓", "DER APERTUR FOLGEN ↓"],
+    ["SEE THE HUMAN ROUTE", "ZUM GEFÜHRTEN LESEPFAD"],
+    ["CLEAR MIND", "KLARER KOPF"],
+    ["ORIENTATION", "ORIENTIERUNG"],
+    ["APERTURE", "APERTUR"],
+    ["01 · NOTICE", "01 · WAHRNEHMEN"],
+    ["02 · CHANGE", "02 · VERÄNDERN"],
+    ["ENTER A DARK ROOM ↓", "EINEN DUNKLEN RAUM BETRETEN ↓"],
+    ["OPTIONAL ROOM · THREE BODIES · ONE QUIET VIEWER", "OPTIONALER RAUM · DREI KÖRPER · EINE RUHIGE ANSICHT"],
+    ["ROOM 01", "RAUM 01"],
+    ["ROOM 02", "RAUM 02"],
+    ["AFTER THE PATH", "NACH DEM LESEPFAD"],
+    ["ROOM 00 · LOOK AGAIN · SAME CARRIER, ANOTHER VIEW", "RAUM 00 · LOOK AGAIN · GLEICHER TRÄGER, ANDERE ANSICHT"],
+    ["01 · WATCH", "01 · ANSEHEN"],
+    ["SEE THE DIAMOND LENS", "DIAMOND LENS ANSEHEN"],
+    ["OPEN THE LENS ↗", "DIAMOND LENS ÖFFNEN ↗"],
+    ["02 · PLAY", "02 · SPIELEN"],
+    ["PLAY LOOK AGAIN", "LOOK AGAIN SPIELEN"],
+    ["OPEN ONE GAME ↗", "SPIEL ÖFFNEN ↗"],
+    ["Human boundary:", "Hinweis:"],
+    ["ROOM 01 · RAINBOW LIGHT · A HUMAN TOUR", "RAUM 01 · RAINBOW LIGHT · EINE GEFÜHRTE TOUR"],
+    ["BEGIN IN THE DARK", "IM DUNKELN BEGINNEN"],
+    ["The room answers.", "Der Raum antwortet."],
+    ["THE FIRST VISIBLE JOINT", "DIE ERSTE SICHTBARE FUGE"],
+    ["THE ROOM IS STILL HERE", "DER RAUM IST NOCH DA"],
+    ["RAINBOW LIGHT · SIX HUMAN STATIONS", "RAINBOW LIGHT · SECHS STATIONEN"],
+    ["NO SOURCE · NO VISIBLE RECORD", "KEINE LICHTQUELLE · KEIN SICHTBARES BILD"],
+    ["UV SOURCE · SELECTED MATERIAL RESPONDS", "UV-QUELLE · BESTIMMTE MATERIALIEN REAGIEREN"],
+    ["DIRECTIONAL LIGHT · YOUR SHADOW APPEARS", "GERICHTETES LICHT · DEIN SCHATTEN WIRD SICHTBAR"],
+    ["THREE LIGHTS · ONE MIXED FIELD", "DREI LICHTER · EIN GEMISCHTES FELD"],
+    ["WHITE LIGHT · ORDERED COLOUR PATHS", "WEISSES LICHT · GEORDNETE FARBWEGE"],
+    ["SOURCE · MATERIAL · PATH · OBSERVER", "QUELLE · MATERIAL · LICHTWEG · BEOBACHTUNG"],
+    ["01 · THE DARK ROOM", "01 · DER DUNKLE RAUM"],
+    ["02 · BLACKLIGHT / UV", "02 · SCHWARZLICHT / UV"],
+    ["03 · YOUR SHADOW", "03 · DEIN SCHATTEN"],
+    ["04 · COLOUR MIXING", "04 · FARBMISCHUNG"],
+    ["05 · THE RAINBOW", "05 · DER REGENBOGEN"],
+    ["+1 · FIRST RETURN", "+1 · ERSTER RETURN"],
+    ["BLACKLIGHT EINSCHALTEN →", "SCHWARZLICHT EINSCHALTEN →"],
+    ["Dark Room", "Dunkler Raum"],
+    ["Blacklight", "Schwarzlicht"],
+    ["Your Shadow", "Dein Schatten"],
+    ["Colour Mix", "Farbmischung"],
+    ["Rainbow", "Regenbogen"],
+    ["Human reading, bounded physics.", "Hinweis zur Physik."],
+    ["AFTER RAINBOW LIGHT · TWO DOORS", "NACH RAINBOW LIGHT · ZWEI TÜREN"],
+    ["01 · SEE", "01 · SEHEN"],
+    ["SEEING LIGHT", "LICHT SEHEN"],
+    ["OPEN THE VISUAL STORY ↗", "BILDGESCHICHTE ÖFFNEN ↗"],
+    ["02 · UNDERSTAND", "02 · VERSTEHEN"],
+    ["UNDERSTANDING LIGHT", "LICHT VERSTEHEN"],
+    ["OPEN THE OBSERVER LENS ↗", "OBSERVER LENS ÖFFNEN ↗"],
+    ["AFTER THE GUIDED READING · CHOOSE ANOTHER WAY", "NACH DEM LESEPFAD · WÄHLE EINEN WEITEREN WEG"],
+    ["03 CURATED CONTINUATIONS · OPEN ONE · RETURN HERE", "DREI WEGE ZUR VERTIEFUNG · WÄHLE EINEN · KEHR HIERHER ZURÜCK"],
+    ["01 · PLAY", "01 · SPIELEN"],
+    ["02 · LIVE", "02 · ERLEBEN"],
+    ["03 · READ", "03 · LESEN"],
+    ["OPEN ONE PULSE ↗", "ONE PULSE ÖFFNEN ↗"],
+    ["OPEN THE LIVING INTERIOR ↗", "THE LIVING INTERIOR ÖFFNEN ↗"],
+    ["GO DEEPER · ONE ROOM AT A TIME", "WEITER VERTIEFEN · EIN RAUM NACH DEM ANDEREN"],
+    ["Experience", "Erlebnis"],
+    ["CLOSE & RETURN", "SCHLIESSEN UND ZURÜCKKEHREN"],
+    ["NEXAHEDRON experience", "NEXAHEDRON-Erlebnis"],
+    ["AFTER THE A0 DEVELOPMENT ROUTE · ALREADY OUTSIDE · NEXAHEDRON", "ÖFFENTLICHE ERLEBNISSE · NEXAHEDRON"],
+    ["03 · Play · Public", "03 · Spielen"],
+    ["04 · Human Flagship · Public", "04 · Human View"],
+    ["05 · Club · Public", "05 · Club"],
+    ["06 · Perception · Public", "06 · Wahrnehmung"],
+    ["EXPERIENCE ÖFFNEN ↗", "ERLEBNIS ÖFFNEN ↗"],
+    ["Experience schließen · zum Return ↓", "Erlebnis schließen · zum Return ↓"],
+    ["OUTSIDE ≠ INSIDE", "AUSSEN ≠ INNEN"],
+    ["OBJECT ≠ IMAGE", "OBJEKT ≠ BILD"],
+    ["RELATION ≠ IDENTITY", "BEZIEHUNG ≠ IDENTITÄT"],
+    ["LIFE ≠ COSMOS", "LEBEN ≠ KOSMOS"],
+    ["AND YET: A PASSAGE.", "UND DOCH GIBT ES EINEN ÜBERGANG."],
+    ["What is real?", "Was ist wirklich?"],
+    ["What can I know?", "Was kann ich wissen?"],
+    ["What am I not seeing?", "Was sehe ich nicht?"],
+    ["What connects us?", "Was verbindet uns?"],
+    ["What changes — and what remains?", "Was verändert sich, und was bleibt?"],
+    ["What deserves my attention?", "Was verdient meine Aufmerksamkeit?"],
+    ["How do I want to act?", "Wie möchte ich handeln?"],
+    ["Before an answer, there is a world — and a position from which we meet it.", "Vor jeder Antwort gibt es eine Welt und einen Standpunkt, von dem aus wir ihr begegnen."],
+    ["Every measurement reveals something by choosing what can enter the frame.", "Jede Messung macht etwas sichtbar, indem sie festlegt, was erfasst wird."],
+    ["A window can uncover a pattern, conceal a structure or create a false gate.", "Ein Fenster kann ein Muster aufdecken, eine Struktur verbergen oder einen Übergang vortäuschen."],
+    ["Difference does not end relation. It is often where relation begins.", "Ein Unterschied beendet eine Beziehung nicht. Oft beginnt sie gerade dort."],
+    ["A living world moves. Orientation asks what can return without becoming identical.", "Eine lebendige Welt bewegt sich. Orientierung fragt, was wiederkehren kann, ohne identisch zu werden."],
+    ["Attention is an aperture: a finite opening inside a world without end.", "Aufmerksamkeit ist eine Apertur: eine begrenzte Öffnung in einer Welt ohne Ende."],
+    ["Orientation returns knowledge to judgment, responsibility and life.", "Orientierung verbindet Wissen wieder mit Urteil, Verantwortung und Leben."],
+    ["Seeing Light", "Licht sehen"],
+    ["Understanding Light", "Licht verstehen"],
+    ["OPEN THE HUMAN VIEWER", "3D-ANSICHT ÖFFNEN"],
+    ["What makes something visible?", "Was macht etwas sichtbar?"],
+    ["Light enters.", "Licht fällt ein."],
+    ["A · EGG", "A · EI"],
+    ["A′ · CHICKEN", "A′ · HUHN"],
+    ["INSIDE · HELD POTENTIAL", "INNEN · BEWAHRTE MÖGLICHKEIT"],
+    ["OUTSIDE · REALIZED TRACE", "AUSSEN · SICHTBARE SPUR"],
+    ["YOU ARE HERE", "DU BIST HIER"],
+    ["HEDGE → HINGE → PASSAGE → TRACE", "GRENZE → GELENK → ÜBERGANG → SPUR"],
+    ["Passage", "Übergang"],
+    ["HUMAN VIEW = FIELD + SITUATED BODY", "HUMAN VIEW = FELD + KÖRPER IM FELD"],
+    ["A —[ Bε · CRACK ]→ A′", "A —[ Bε · RISS ]→ A′"],
+    ["Code-native Human-View-Darstellung von Ei, Grenze, Crack und Chicken", "Human-View-Darstellung von Ei, Grenze, Riss und Huhn"],
+    ["Links hält eine Eiform einen situierten menschlichen Körper. Eine leuchtende Bruchfuge öffnet eine Apertur. Eine Spur führt zu einer Chicken-Darstellung rechts.", "Links umschließt eine Eiform einen menschlichen Körper. Eine leuchtende Bruchfuge öffnet eine Apertur. Eine Spur führt zum Huhn rechts."],
+    ["Sechs Stationen von Dark Room bis Return.", "Sechs Stationen vom dunklen Raum bis zum Return."],
+    ["Ein Carrier, eine andere sichtbare Relation.", "Ein Träger, eine andere sichtbare Beziehung."],
+    ["Drei Körper in einem ruhigen Viewer.", "Drei Körper in einer ruhigen 3D-Ansicht."],
+    ["Stationen der Rainbow Light Tour", "Stationen der Tour Rainbow Light"],
     ["The Missing", "Die fehlende "],
     ["Condition.", "Bedingung."],
     ["What came first?", "Was kam zuerst?"],
@@ -196,6 +357,17 @@
     node.nodeValue = original.replace(trimmed, translations.get(trimmed));
   }
 
+  const translatedAttributes = ["aria-label", "title", "alt"];
+  const translatedAttributeSelector = translatedAttributes.map((attribute) => `[${attribute}]`).join(", ");
+
+  function translateAttributes(element) {
+    for (const attribute of translatedAttributes) {
+      const value = element.getAttribute(attribute);
+      const translation = translations.get(value);
+      if (translation !== undefined && translation !== value) element.setAttribute(attribute, translation);
+    }
+  }
+
   function translate(root) {
     if (root.nodeType === Node.TEXT_NODE) {
       translateTextNode(root);
@@ -205,25 +377,16 @@
     const walker = document.createTreeWalker(root, NodeFilter.SHOW_TEXT);
     let node;
     while ((node = walker.nextNode())) translateTextNode(node);
-    if (root instanceof Element) {
-      for (const attribute of ["aria-label", "title"]) {
-        const value = root.getAttribute(attribute);
-        if (value && translations.has(value)) root.setAttribute(attribute, translations.get(value));
-      }
-    }
-    root.querySelectorAll?.("[aria-label], [title]").forEach((element) => {
-      for (const attribute of ["aria-label", "title"]) {
-        const value = element.getAttribute(attribute);
-        if (value && translations.has(value)) element.setAttribute(attribute, translations.get(value));
-      }
-    });
+    if (root instanceof Element) translateAttributes(root);
+    root.querySelectorAll(translatedAttributeSelector).forEach(translateAttributes);
   }
 
   translate(document);
   new MutationObserver((records) => {
     for (const record of records) {
       if (record.type === "characterData") translateTextNode(record.target);
+      if (record.type === "attributes") translateAttributes(record.target);
       record.addedNodes.forEach(translate);
     }
-  }).observe(document.body, { childList: true, subtree: true, characterData: true });
+  }).observe(document.body, { childList: true, subtree: true, characterData: true, attributeFilter: translatedAttributes });
 })();
