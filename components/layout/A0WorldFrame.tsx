@@ -826,6 +826,10 @@ export function A0WorldFrame({ source, title = "NEXAHEDRON · Foyer", language =
                 <span><small>{german ? "GEFÜHRT BEGINNEN" : "START THE GUIDED PATH"}</small><strong>H → I → II → III → +1</strong></span>
                 <b aria-hidden="true">→</b>
               </Link>
+              <a href="/a0-human/start/A0_LOOK_AGAIN_PLAY.html">
+                <strong>{german ? "LOOK AGAIN spielen" : "Play LOOK AGAIN"}</strong>
+                <b aria-hidden="true">→</b>
+              </a>
             </section>
           </section>
 
